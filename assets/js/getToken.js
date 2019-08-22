@@ -40,5 +40,5 @@ async function getToken() {
       return error;
     });
 
-    return data;
+  return data;
 }
