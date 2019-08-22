@@ -33,8 +33,13 @@ body{
     outline:none;
 }
 
+.dash-create-button{
+    max-width: 25%;
+    margin: auto;
+}
+
 .dash-edit-button{
-    width: 50%;
+    width: 60%!important;
     margin: auto;
     color: white!important;
 }

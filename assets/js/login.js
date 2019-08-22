@@ -37,8 +37,7 @@ async function Login() {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
           }
-        })
-          .then(function (a) { return a.json(); })
+        }).then(function (a) { return a.json(); })
           .then(function (j) {
 
             sessionStorage.setItem("verified", "OKAY");
