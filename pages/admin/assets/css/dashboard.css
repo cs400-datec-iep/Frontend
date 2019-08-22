@@ -1,0 +1,47 @@
+@media only screen and (min-width: 360px) { 
+    h4{
+      font-size: 1.2em;
+    }
+  
+}
+
+body{
+    background-color: #e6e6e6!important;
+}
+
+.navbar{
+    box-shadow:0 8px 6px -6px rgba(0,0,0,0.30);
+}
+  
+#dash-title{
+    color: white;
+}
+
+.dash-edit-modal{
+    max-width: 60%!important;
+}
+.dash-edit-modal-dropdown{
+    height: 50px;
+}
+
+.dash-log-out{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.dash-edit-button{
+    width: 50%;
+    margin: auto;
+    color: white!important;
+}
+
+.dash-icon-title{
+    color: white;
+    position: relative;
+    font-size: 1.2em;
+    right: 5px
+}
