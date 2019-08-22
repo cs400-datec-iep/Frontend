@@ -26,18 +26,24 @@ function create_user() {
         var url_usermains = 'https://datectestapi.azurewebsites.net/api/UserMains';
 
 
-        var res_register = post_Json_Data(payload_user, token, url_register);
-        console.log("this is from create_user js :" + sessionStorage.getItem("created_User"));
-        console.log("this is from create_user js response :" + res_register);
 
-        while (sessionStorage.getItem("created_User") == "null") {
+        fetch(url_register, {
+            async: false,
+            method: 'POST',
+            crossDomain: true,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(payload_user)
+        }).then(function (a) { return a.json(); })
+            .then(function (j) {
+                console.log("this is from create_user js ID:" + j);
+                sessionStorage.setItem("created_User", j);
+                return j;
+            }).catch(error => { console.error('Error:', error); return error; });
 
-            
-             console.log("Waiting");
 
-        }
-
-        if (sessionStorage.getItem("created_User") != "null") {
             //making payload
             var payload_usermains = {
                 "ID": sessionStorage.getItem("created_User"),
@@ -48,14 +54,27 @@ function create_user() {
                 "Role": role
             };
 
-            console.log(JSON.stringify(payload_usermains));
-            var res_usermains = post_Json_Data(payload_usermains, token, url_usermains);
-            console.log("this is from create_user js response usermains :" + res_usermains);
-
-        }
-
+            
+            fetch(url_usermains, {
+                async: false,
+                method: 'POST',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(payload_usermains)
+            }).then(function (a) { console.log("sssssss" + a.json()); return a.json(); })
+                .then(function (j) {
+                    console.log("this is from create_user js response usermains :" + j);
+                    return j;
+                }).catch(error => { console.error('Error:', error); return error; });
+    
 
         
+
+
+
         // console.log(lastName);
         // console.log(role);
         // console.log(department);
