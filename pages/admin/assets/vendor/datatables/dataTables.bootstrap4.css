@@ -23,24 +23,27 @@ table.dataTable.nowrap td {
 div.dataTables_wrapper div.dataTables_length label {
   font-weight: normal;
   text-align: left;
+  font-weight: bold;
   white-space: nowrap;
+  
 }
 div.dataTables_wrapper div.dataTables_length select {
   width: auto;
   display: inline-block;
-}
+  }
 div.dataTables_wrapper div.dataTables_filter {
-  text-align: right;
+  text-align: center;
 }
 div.dataTables_wrapper div.dataTables_filter label {
-  font-weight: normal;
+  font-weight: bold;
   white-space: nowrap;
   text-align: left;
+  width: 80%;
 }
 div.dataTables_wrapper div.dataTables_filter input {
   margin-left: 0.5em;
   display: inline-block;
-  width: auto;
+  width: 100%;
 }
 div.dataTables_wrapper div.dataTables_info {
   padding-top: 0.85em;

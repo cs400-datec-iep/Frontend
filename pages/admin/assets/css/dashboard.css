@@ -24,6 +24,15 @@ body{
     height: 50px;
 }
 
+.dash-table i{
+    font-size: 50px;
+    float: left;
+}
+
+.dash-table h1{
+    margin-left: 75px;
+}
+
 .dash-log-out{
     background-color: Transparent;
     background-repeat:no-repeat;

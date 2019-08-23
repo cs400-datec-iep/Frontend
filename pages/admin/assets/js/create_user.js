@@ -26,12 +26,12 @@ function create_user() {
         var url_usermains = 'https://datectestapi.azurewebsites.net/api/UserMains';
 
 
-
+        //Register User into BDB
         fetch(url_register, {
             async: false,
             method: 'POST',
             crossDomain: true,
-            headers: {
+           headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
@@ -54,7 +54,7 @@ function create_user() {
                 "Role": role
             };
 
-            
+            //Upload to user Main table if registered
             fetch(url_usermains, {
                 async: false,
                 method: 'POST',
@@ -70,10 +70,6 @@ function create_user() {
                     return j;
                 }).catch(error => { console.error('Error:', error); return error; });
     
-
-        
-
-
 
         // console.log(lastName);
         // console.log(role);
