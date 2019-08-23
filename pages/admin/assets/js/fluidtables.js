@@ -1,10 +1,7 @@
-// Call the dataTables jQuery plugin
-$(document).ready(function () {
-  $('#fluidTable').DataTable();
-});
 
 // populate table
 $(document).ready(function () {
+
   var token = sessionStorage.getItem("token");
   var url = 'https://datectestapi.azurewebsites.net/api/UserMains';
 
@@ -15,24 +12,40 @@ $(document).ready(function () {
     headers: {
       'Authorization': 'Bearer ' + token
     }
-  }).then(function (a) {
-    console.log(a.json());
-    var data = a.json();
-    var table = document.getElementById('fluidTable');
+  }).then(response => response.json())
+    .then((a) => {
+      console.log('A VALUE: ', a[2]);
+      var data = a;
+      $('#fluidTable').DataTable(
+        {
+          data: a ,
+          columns: [
+            { data: 'Username' },
+            { data: 'Department' },
+            { data: 'Email' },
+            { data: 'Status' },
+            { data: 'Role' }
+        ]
+        }
+      );
+      // var table = document.getElementById('fluidTable');
+      //       data.forEach(function(object) {
+      //           var tr = document.createElement('tr');
+      //           tr.innerHTML = '<td>' + object.Username + '</td>' +
+      //           '<td>' + object.Email + '</td>' +
+      //           '<td>' + object.Role + '</td>' +
+      //           '<td>' + object.Department + '</td>' +
+      //           '<td>' + object.Status + '</td>' +
+      //           '<td style=text-align:center;">' +
+      //           '<a class="btn btn-danger dash-edit-button" data-toggle="modal"data-target="#editModal">Edit</a>'+
+      //           '</td>';
 
+      //           table.appendChild(tr);
+      //       });
 
-    data.forEach(function (object) {
-      var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + object.COUNTRY + '</td>' +
-        '<td>' + object.LoC + '</td>' +
-        '<td>' + object.BALANCE + '</td>' +
-        '<td>' + object.DATE + '</td>';
-      table.appendChild(tr);
-    });
+      
+    }).catch(error => { console.error('Error:', error); return error; });
 
-  })
-    .catch(error => { console.error('Error:', error); return error; });
-
-
-
+    
+  
 });
