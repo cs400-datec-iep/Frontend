@@ -60,5 +60,6 @@ body{
     right: 5px
 }
 .clickedon{
-    background-color: grey
+    background-color: grey;
+    color: azure
 }

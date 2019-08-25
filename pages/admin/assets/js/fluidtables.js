@@ -40,11 +40,16 @@ $(document).ready(function () {
         }
       });
 
-      $('#button').click(function () {
-        table.row('.active').remove().draw(false);
+      $('#edit_button').click(function () {
+        var getuser = table.row('.clickedon').data();
+
+     
+       
+        console.log(getuser.ID);
+
       });
 
-      //table.column(0).visible(false);
+      table.column(0).visible(false);
 
     }).catch(error => { console.error('Error:', error); return error; });
 
