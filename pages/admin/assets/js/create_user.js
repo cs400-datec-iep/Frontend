@@ -31,7 +31,7 @@ function create_user() {
             async: false,
             method: 'POST',
             crossDomain: true,
-           headers: {
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
@@ -43,7 +43,7 @@ function create_user() {
                 return j;
             }).catch(error => { console.error('Error:', error); return error; });
 
-
+        if (sessionStorage.getItem("created_User") != null) {
             //making payload
             var payload_usermains = {
                 "ID": sessionStorage.getItem("created_User"),
@@ -69,7 +69,8 @@ function create_user() {
                     console.log("this is from create_user js response usermains :" + j);
                     return j;
                 }).catch(error => { console.error('Error:', error); return error; });
-    
+        }
+
 
         // console.log(lastName);
         // console.log(role);

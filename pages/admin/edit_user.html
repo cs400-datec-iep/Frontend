@@ -100,27 +100,18 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="fluidTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered " id="fluidTable" width="100%" cellspacing="0">
+                                <button id="edit_button">Edit</button>
                                 <thead>
                                     <tr>
                                         <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        <th>Status</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Department</th>
-                                        <th>Status</th>
-                                        <th>Option</th>
+                                        <th>Active</th>
                                     </tr>
-                                </tfoot>
+                                </thead>
                             </table>
                         </div>
                     </div>
@@ -142,23 +133,23 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <a class="btn btn-primary" href="../../index.html">Logout</a>
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="../../index.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- e=Edit Modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
@@ -250,6 +241,9 @@
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
 
     <!-- Core plugin JavaScript-->
     <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>

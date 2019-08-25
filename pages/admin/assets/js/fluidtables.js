@@ -14,38 +14,40 @@ $(document).ready(function () {
     }
   }).then(response => response.json())
     .then((a) => {
-      console.log('A VALUE: ', a[2]);
-      var data = a;
-      $('#fluidTable').DataTable(
+      var table = $('#fluidTable').DataTable(
         {
-          data: a ,
+          data: a,
+          select: true,
           columns: [
+            { data: 'ID' },
             { data: 'Username' },
-            { data: 'Department' },
             { data: 'Email' },
-            { data: 'Status' },
-            { data: 'Role' }
-        ]
+            { data: 'Role' },
+            { data: 'Department' },
+            { data: 'Status' }
+          ]
         }
       );
-      // var table = document.getElementById('fluidTable');
-      //       data.forEach(function(object) {
-      //           var tr = document.createElement('tr');
-      //           tr.innerHTML = '<td>' + object.Username + '</td>' +
-      //           '<td>' + object.Email + '</td>' +
-      //           '<td>' + object.Role + '</td>' +
-      //           '<td>' + object.Department + '</td>' +
-      //           '<td>' + object.Status + '</td>' +
-      //           '<td style=text-align:center;">' +
-      //           '<a class="btn btn-danger dash-edit-button" data-toggle="modal"data-target="#editModal">Edit</a>'+
-      //           '</td>';
-
-      //           table.appendChild(tr);
-      //       });
 
       
+      $('#fluidTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    } );
+ 
+    $('#button').click( function () {
+        table.row('.selected').remove().draw( false );
+    } );
+
+      //table.column(0).visible(false);
+     
     }).catch(error => { console.error('Error:', error); return error; });
 
-    
-  
+
+
 });
