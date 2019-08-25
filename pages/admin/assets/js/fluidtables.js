@@ -29,23 +29,23 @@ $(document).ready(function () {
         }
       );
 
-      
-      $('#fluidTable tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
+
+      $('#fluidTable tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('clickedon')) {
+          $(this).removeClass('clickedon');
         }
         else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
+          table.$('tr.clickedon').removeClass('clickedon');
+          $(this).addClass('clickedon');
         }
-    } );
- 
-    $('#button').click( function () {
-        table.row('.selected').remove().draw( false );
-    } );
+      });
+
+      $('#button').click(function () {
+        table.row('.active').remove().draw(false);
+      });
 
       //table.column(0).visible(false);
-     
+
     }).catch(error => { console.error('Error:', error); return error; });
 
 
