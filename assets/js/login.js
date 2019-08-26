@@ -7,8 +7,6 @@ async function Login() {
   console.log(token);
   url = 'https://datectestapi.azurewebsites.net/api/account/userinfo';
   if (token == false) {
-    // alert("Incorrect Login Details");
-    // window.location.replace("../../index.html");
     document.getElementById("clickme").click();
   }
 
@@ -40,12 +38,11 @@ async function Login() {
         }).then(function (a) { return a.json(); })
           .then(function (j) {
 
-            sessionStorage.setItem("verified", "OKAY");
+            sessionStorage.setItem("verified", "ACCESS_GRANTED");
             //Redirect Based on Roles
             var role = j.Role;
 
-
-            if (role == "System Admin") {
+            if (role == "System Administrator") {
               sessionStorage.setItem("userID", j.ID);
               sessionStorage.setItem("username", j.Username);
               window.location.replace("../../pages/admin/dashboard.html");

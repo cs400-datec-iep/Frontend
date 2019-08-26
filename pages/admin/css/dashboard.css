@@ -48,8 +48,8 @@ body{
 }
 
 .dash-edit-button{
-    width: 60%!important;
-    margin: auto;
+    width: 10%!important;
+    margin-bottom: 10px;
     color: white!important;
 }
 
@@ -59,6 +59,18 @@ body{
     font-size: 1.2em;
     right: 5px
 }
-.clickedon{
-    background-color: grey
+
+.dash-table th{
+    background-color: rgb(33, 37, 41);
+    color: white;
+    font-weight: 400;
+}
+
+.dash-table tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+  
+.clickedon {
+    background-color: #254261!important;
+    color: white!important;
 }
