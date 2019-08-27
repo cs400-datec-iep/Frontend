@@ -59,6 +59,8 @@ $(document).ready(function () {
     var total = parseInt(sessionStorage.getItem("numManager")) + parseInt(sessionStorage.getItem("numPM")) + parseInt(sessionStorage.getItem("numStaff"));
     document.getElementById("Number_of_User").innerHTML = total;
 
+    window.location(this);
+
     sessionStorage.removeItem("numManager");
     sessionStorage.removeItem("numPM");
     sessionStorage.removeItem("numStaff");
