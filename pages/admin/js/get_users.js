@@ -13,7 +13,7 @@ $(document).ready(function () {
     }).then(response => response.json())
         .then((a) => {
 
-            console.log(a[0]);
+           // console.log(a[0]);
 
             // var count = 0;
             // for (var i = 0; i < a.length; ++i) {
