@@ -6,6 +6,7 @@ $(document).ready(function () {
     var urlGetTotal_Management = 'https://datectestapi.azurewebsites.net/api/GetCountRole/Management';
 
 
+
     //Get table count data staff
     fetch(urlGetTotal_Staff, {
         async: false,
@@ -16,7 +17,7 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
         .then(function (j) {
-            sessionStorage.setItem("numStaff", j.Result);
+            localStorage.setItem("numStaff", j.Result);
             document.getElementById("Number_of_Staff").innerHTML = j.Result;
 
         })
@@ -33,7 +34,7 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
         .then(function (j) {
-            sessionStorage.setItem("numPM", j.Result);
+            localStorage.setItem("numPM", j.Result);
             document.getElementById("Number_of_PM").innerHTML = j.Result;
 
         })
@@ -50,20 +51,12 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
         .then(function (j) {
-            sessionStorage.setItem("numManager", j.Result);
+            localStorage.setItem("numManager", j.Result);
             document.getElementById("Number_of_Management").innerHTML = j.Result;
+            var total = parseInt(localStorage.getItem("numManager")) + parseInt(localStorage.getItem("numPM")) + parseInt(localStorage.getItem("numStaff"));
+            document.getElementById("Number_of_User").innerHTML = total;
 
         })
         .catch(error => { console.error('Error:', error); return error; });
-
-    var total = parseInt(sessionStorage.getItem("numManager")) + parseInt(sessionStorage.getItem("numPM")) + parseInt(sessionStorage.getItem("numStaff"));
-    document.getElementById("Number_of_User").innerHTML = total;
-
-    window.location(this);
-
-    sessionStorage.removeItem("numManager");
-    sessionStorage.removeItem("numPM");
-    sessionStorage.removeItem("numStaff");
-
 
 });
