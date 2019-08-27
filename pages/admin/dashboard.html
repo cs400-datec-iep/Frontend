@@ -17,7 +17,8 @@
 
     <!-- Custom styles for this page-->
     <link href="../../assets/css/sb-admin.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../assets/css/dashboard.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
 
     <!-- Session Check -->
     <script src="../../assets/js/sessionCheck.js"></script>
@@ -28,7 +29,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <h4 id="dash-title">Admin Dashboard</h4>
+        <h4 class="dash-title">Admin Dashboard</h4>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -158,7 +159,7 @@
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="../../index.html">Logout</a>
+                    <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -175,10 +176,10 @@
     <script src="../../assets/js/sb-admin.min.js"></script>
     
     <!-- Scripts for this dashboard -->
+    <script src="../../assets/js/logout.js"></script>
     <script>
     //display username
     var username = sessionStorage.getItem("username");
-
     var a = document.getElementById('user');
     a.innerHTML = username + "!";
     a.style.color = "#007bff";

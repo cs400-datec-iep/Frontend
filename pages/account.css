@@ -1,0 +1,27 @@
+.account-form-title i{
+    font-size: 50px;
+    float: left;
+}
+.account-form-title h1{
+    margin-left: 60px;
+}
+.account-edit-btn{
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    float: right;
+}
+
+.account-role-dropdown{
+    height: 50px;
+}
+
+.account-user-submit-btn{
+    width: 20%!important;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.btn-container{
+    text-align: center; 
+}

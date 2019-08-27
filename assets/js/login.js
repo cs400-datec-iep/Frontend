@@ -37,15 +37,38 @@ async function Login() {
           }
         }).then(function (a) { return a.json(); })
           .then(function (j) {
-
+            //setting session variable
             sessionStorage.setItem("verified", "ACCESS_GRANTED");
-            //Redirect Based on Roles
+            
+            //Redirect Based on Roles and Status
             var role = j.Role;
 
+
+            console.log(role);
             if (role == "System Administrator") {
+
               sessionStorage.setItem("userID", j.ID);
               sessionStorage.setItem("username", j.Username);
-              window.location.replace("../../pages/admin/dashboard.html");
+              window.location.assign("../../pages/admin/dashboard.html");
+
+            }else if(role == "Management"){
+
+              sessionStorage.setItem("userID", j.ID);
+              sessionStorage.setItem("username", j.Username);
+              window.location.assign("../../pages/management/dashboard.html");
+
+            }else if(role == "Project Manager"){
+
+              sessionStorage.setItem("userID", j.ID);
+              sessionStorage.setItem("username", j.Username);
+              window.location.assign("../../pages/project_manager/dashboard.html");
+
+            }else if(role == "Staff"){
+
+              sessionStorage.setItem("userID", j.ID);
+              sessionStorage.setItem("username", j.Username);
+              window.location.assign("../../pages/staff/dashboard.html");
+
             }
 
 

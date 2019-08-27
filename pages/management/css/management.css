@@ -1,0 +1,28 @@
+.drop-active{
+    background-color: #007bff;
+    color: white;
+}
+
+.proj-card{
+    height: 150px!important;
+    box-shadow: 3px 14px 32px -5px rgba(0,0,0,0.75);
+}
+
+.dash-card{
+    margin: 1%;
+}
+
+.proj-card h1{
+    font-size: 3em;
+}
+
+.proj-card p{
+    font-size: 1em;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    white-space: nowrap;
+}
+
+a:hover {
+    text-decoration: none;
+  }

@@ -1,0 +1,54 @@
+.drop-active{
+    background-color: #007bff;
+    color: white;
+}
+
+.proj-card{
+    height: 150px!important;
+    box-shadow: 3px 14px 32px -5px rgba(0,0,0,0.75);
+}
+
+.dash-card{
+    margin: 1%;
+}
+
+.proj-card h1{
+    font-size: 2.5em;
+}
+
+.proj-card p{
+    font-size: 1em;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    white-space: nowrap;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.active{
+    pointer-events:none;
+}
+
+  .project-form-title i{
+    font-size: 50px;
+    float: left;
+}
+.project-form-title h1{
+    margin-left: 60px;
+}
+.project-edit-btn{
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    float: right;
+}
+
+.project-role-dropdown{
+    height: 50px;
+}
+.form-group textarea{
+    margin: 10px;
+    width: 100%;
+}

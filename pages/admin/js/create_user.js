@@ -37,7 +37,6 @@ function create_user() {
             body: JSON.stringify(payload_user)
         }).then(function (a) { return a.json(); })
             .then(function (id) {
-                console.log(id);
                 //making payload
                 var payload_usermains = {
                     "ID": id,
@@ -47,8 +46,6 @@ function create_user() {
                     "Status": true,
                     "Role": role
                 };
-
-                console.log("ID USED IN USERMAIN: " + payload_usermains.ID);
 
                 //Upload to user Main table if registered
                 fetch(url_usermains, {
@@ -60,15 +57,13 @@ function create_user() {
                         'Authorization': 'Bearer ' + token
                     },
                     body: JSON.stringify(payload_usermains)
-                }).then(function (a) {/* alert("User Created" + a.json()); window.location.replace("edit_user.html");*/return a.json(); })
-                    .then(function (j) {
-                        console.log(j);
-                        return j;
-                    }).catch(error => { console.error('Error:', error); return error; });
+                }).then(function (a) { alert("User Created"); window.location.assign("edit_user.html");return a.json(); })
+                .then(function (j) {
+                    console.log(j);
+                    return j;
+                }).catch(error => { console.error('Error:', error); return error; });
 
                     
             }).catch(error => { console.error('Error:', error); return error; });
-
-
     }
 }

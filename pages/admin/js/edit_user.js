@@ -31,7 +31,7 @@ function edit_user(){
         },
         body: JSON.stringify(payload_usermains)
     }).then(function (a) { console.log("User Edited" + a.json()); 
-    window.location.replace("edit_user.html");return a.json()})
+    window.location.assign("edit_user.html");return a.json()})
     .catch(error => { console.error('Error:', error); return error; });
 
     sessionStorage.setItem("edit_clicked", false);
