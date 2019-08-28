@@ -4,7 +4,6 @@ async function Login() {
 
   let token = await getToken();
   var userID;
-  console.log(token);
   url = 'https://datectestapi.azurewebsites.net/api/account/userinfo';
   if (token == false) {
     document.getElementById("clickme").click();
