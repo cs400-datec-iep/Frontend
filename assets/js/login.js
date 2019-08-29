@@ -41,33 +41,35 @@ async function Login() {
             
             //Redirect Based on Roles and Status
             var role = j.Role;
+            var status = j.Status
+            if(status == true){
+              if (role == "System Administrator") {
 
-
-            console.log(role);
-            if (role == "System Administrator") {
-
-              sessionStorage.setItem("userID", j.ID);
-              sessionStorage.setItem("username", j.Username);
-              window.location.assign("../../pages/admin/dashboard.html");
-
-            }else if(role == "Management"){
-
-              sessionStorage.setItem("userID", j.ID);
-              sessionStorage.setItem("username", j.Username);
-              window.location.assign("../../pages/management/dashboard.html");
-
-            }else if(role == "Project Manager"){
-
-              sessionStorage.setItem("userID", j.ID);
-              sessionStorage.setItem("username", j.Username);
-              window.location.assign("../../pages/project_manager/dashboard.html");
-
-            }else if(role == "Staff"){
-
-              sessionStorage.setItem("userID", j.ID);
-              sessionStorage.setItem("username", j.Username);
-              window.location.assign("../../pages/staff/dashboard.html");
-
+                sessionStorage.setItem("userID", j.ID);
+                sessionStorage.setItem("username", j.Username);
+                window.location.assign("../../pages/admin/dashboard.html");
+  
+              }else if(role == "Management"){
+  
+                sessionStorage.setItem("userID", j.ID);
+                sessionStorage.setItem("username", j.Username);
+                window.location.assign("../../pages/management/dashboard.html");
+  
+              }else if(role == "Project Manager"){
+  
+                sessionStorage.setItem("userID", j.ID);
+                sessionStorage.setItem("username", j.Username);
+                window.location.assign("../../pages/project_manager/dashboard.html");
+  
+              }else if(role == "Staff"){
+  
+                sessionStorage.setItem("userID", j.ID);
+                sessionStorage.setItem("username", j.Username);
+                window.location.assign("../../pages/staff/dashboard.html");
+  
+              }
+            }else{
+              window.location.assign("error.html");
             }
 
 

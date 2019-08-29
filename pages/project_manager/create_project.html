@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Project Dashboard</title>
+    <title>Project Manager Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,18 +19,17 @@
     <link href="../../assets/css/sb-admin.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
     <link href="css/proj_manager.css" rel="stylesheet">
+    <link href="../../assets/css/dropzone.css" rel="stylesheet">
 
 
-    <!-- Session Check -->
+    <!--Session Check-->
     <!-- <script src="../../assets/js/sessionCheck.js"></script> -->
-
-</head>
 
 <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <h4 class="dash-title">Project Dashboard</h4>
+        <h4 class="dash-title">Project Manager Dashboard</h4>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -78,7 +77,7 @@
         <ul class="sidebar navbar-nav ">
             <li class="nav-item ">
                 <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-drafting-compass"></i>
+                    <i class="fas fa-fw fa-book"></i>
                     <span>Projects</span>
                 </a>
             </li>
@@ -106,35 +105,118 @@
                 <div class="card mb-3">
                     <div class="card-header project-form-title">
                         <i class="fas fa-edit"> </i>
-                        <h1>Create a Project</h1>
+                        <h2>Create a Project</h2>
                         <p>This page allows you to create a project. Please enter all details.</p>
                     </div>
 
                     <div class="card-body">
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="projName" class="form-control" placeholder="projName"
-                                            required>
-                                        <label for="projName">Enter Project Name</label>
+                        <form onsubmit="create_project();return false">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="projName" class="form-control" placeholder="projName"
+                                                required>
+                                            <label for="projName">Enter Project Name</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="projClient" class="form-control" placeholder="projClient"
-                                            required>
-                                        <label for="projClient">Enter Project Client Name</label>
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="projClient" class="form-control"
+                                                placeholder="projClient" required>
+                                            <label for="projClient">Enter Project Client Name</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="form-label-group project-text-area">
-                            <textarea id="projDesc" class="form-control" rows = "3" >Enter Project Description</textarea>
-                        </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <textarea id="projDesc" class="form-control" rows="3"
+                                        placeholder="Enter Project Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <p class="dateTitle">Start Date:</p>
+                                            <input type="date" id="projStartDate" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <p class="dateTitle">End Date:</p>
+                                            <input type="date" id="projEndDate" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DataTable -->
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <p class="tableTitle">Please select your project members below:</p>
+                                        <button id="add_members"
+                                            class="btn btn-primary btn-block text-white project-add-members"
+                                            type="button">Add Members</button>
+                                        </ul>
+
+                                        <table class="project-add-members-tbl" id="current_members">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Username</th>
+                                                    <th scope="col">Department</th>
+                                                    <th scope="col" style="display:none" id="idCol">id</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
+                                        <table class=" table table-bordered" id="staffTable" width="100%"
+                                            cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Username</th>
+                                                    <th>Email</th>
+                                                    <th>Role</th>
+                                                    <th>Department</th>
+                                                    <th>Active</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- File uplaod dropzone -->
+                            <div class="form-group">
+                                <div class="card-body">
+                                    <div class="custom-file project-file">
+                                        <input type="file" class="custom-file-input" id="FileInput" name="file">
+                                        <label class="custom-file-label" for="FileInput">Choose file</label>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-block project-add-file-btn"
+                                        id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                                    <p>Uploading...</p>
+                                    <div class="progress bar" id="uploadProgressBarContainer">
+                                        <div class="progress-bar " role="progressbar" id="uploadProgressBar"
+                                            style="width: 0%;">
+                                            0%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="uploaded-file-list" id="fileList">
+                                </ul>
+                            </div>
+
+                            <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit">
+                        </form>
                     </div>
 
                 </div>
@@ -172,9 +254,13 @@
             </div>
         </div>
     </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
 
     <!-- Core plugin JavaScript-->
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -184,14 +270,50 @@
 
     <!-- Scripts for this dashboard -->
     <script src="../../assets/js/logout.js"></script>
+    <script src="js/getAllStaff.js"></script>
+    <script src="js/addFile.js"></script>
+    <script src="../../assets/js/dropzone.js"></script>
     <script>
         //display username
         var username = sessionStorage.getItem("username");
         var a = document.getElementById('user');
         a.innerHTML = username + "!";
         a.style.color = "#007bff";
+
+        //set current date
+        let today = new Date().toISOString().substr(0, 10);
+        document.querySelector("#projStartDate").value = today;
+        document.querySelector("#projEndDate").value = today;
+
+        //get current table row for memebers
+        var tablerow = document.getElementById("current_members").rows.length;
+
+        //display notice if table empty
+        if (tablerow == 1) {
+            var table = document.getElementById("current_members").getElementsByTagName('tbody')[0];
+
+            var tr = table.insertRow();
+            var td1 = tr.insertCell(0);
+            var td2 = tr.insertCell(1);
+            var trText = document.createTextNode('No Members Selected');
+            td1.appendChild(trText);
+
+            var no_members = true;
+        } else {
+            no_members = false;
+        }
+
+        $('#FileInput').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+
     </script>
-    <script src="js/get_users.js"></script>
+    <script src="js/create_project.js"></script>
+    <script src="js/azure-storage.blob.js"></script>
+    <script src="js/controller.js"></script>
 
 </body>
 

@@ -1,38 +1,7 @@
-.drop-active{
-    background-color: #007bff;
-    color: white;
-}
 
-.proj-card{
-    height: 150px!important;
-    box-shadow: 3px 14px 32px -5px rgba(0,0,0,0.75);
-}
 
-.dash-card{
-    margin: 1%;
-}
-
-.proj-card h1{
-    font-size: 2.5em;
-}
-
-.proj-card p{
-    font-size: 1em;
-    overflow: hidden!important;
-    text-overflow: ellipsis!important;
-    white-space: nowrap;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-.active{
-    pointer-events:none;
-}
-
-  .project-form-title i{
-    font-size: 50px;
+.project-form-title i{
+    font-size: 40px;
     float: left;
 }
 .project-form-title h1{
@@ -48,7 +17,67 @@ a:hover {
 .project-role-dropdown{
     height: 50px;
 }
-.form-group textarea{
+
+.dateTitle{
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.project-submit-btn{
+    width: 20em!important;
+    margin: auto!important;
+    margin-top: 2em!important;
+    margin-bottom: 2em!important;
+}
+
+.custom-file{
     margin: 10px;
+}
+
+.project-title{
+    background-color: #e6e6e6 !important;
     width: 100%;
+    border-bottom-width: 5px;
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+}
+
+.project-card{
+    margin-top: 2em;
+    margin-left: 2em;
+    box-shadow: 0px 19px 39px 0px rgba(0,0,0,0.45);
+}
+
+.project-file-dropdown{
+    margin-top: 10px;
+}
+
+.project-add-file-btn{
+    width: 10%;
+    margin: 10px;
+    float: right;
+}
+.project-add-members{
+    margin: 0.5em;
+    float: right;
+    width: 130px;
+}
+.project-add-members-tbl{
+    width: 100%;
+    margin-bottom: 2rem;
+    color: #212529;
+}
+
+.project-add-members-tbl th{
+    width: 50%;
+    vertical-align: top;
+}
+.proj-card:hover{
+    cursor: pointer;
+}
+
+.project-file{
+    width: 80%;
 }
