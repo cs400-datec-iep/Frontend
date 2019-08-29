@@ -19,11 +19,6 @@
 .dash-table tr:nth-child(even) {
     background-color: #f2f2f2
 }
-  
-.clickedon {
-    background-color: #254261!important;
-    color: white!important;
-}
 
 .dash-edit-modal{
     max-width: 60%!important;

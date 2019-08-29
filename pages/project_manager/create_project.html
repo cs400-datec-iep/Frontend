@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Project Dashboard</title>
+    <title>Project Manager Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,18 +19,17 @@
     <link href="../../assets/css/sb-admin.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
     <link href="css/proj_manager.css" rel="stylesheet">
+    <link href="../../assets/css/dropzone.css" rel="stylesheet">
 
 
-    <!-- Session Check -->
+    <!--Session Check-->
     <!-- <script src="../../assets/js/sessionCheck.js"></script> -->
-
-</head>
 
 <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <h4 class="dash-title">Project Dashboard</h4>
+        <h4 class="dash-title">Project Manager Dashboard</h4>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -106,35 +105,105 @@
                 <div class="card mb-3">
                     <div class="card-header project-form-title">
                         <i class="fas fa-edit"> </i>
-                        <h1>Create a Project</h1>
+                        <h2>Create a Project</h2>
                         <p>This page allows you to create a project. Please enter all details.</p>
                     </div>
 
                     <div class="card-body">
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="projName" class="form-control" placeholder="projName"
-                                            required>
-                                        <label for="projName">Enter Project Name</label>
+                        <form onsubmit="create_project();return false">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="projName" class="form-control" placeholder="projName"
+                                                required>
+                                            <label for="projName">Enter Project Name</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="projClient" class="form-control" placeholder="projClient"
-                                            required>
-                                        <label for="projClient">Enter Project Client Name</label>
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="projClient" class="form-control"
+                                                placeholder="projClient" required>
+                                            <label for="projClient">Enter Project Client Name</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="form-label-group project-text-area">
-                            <textarea id="projDesc" class="form-control" rows = "3" >Enter Project Description</textarea>
-                        </div>
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <textarea id="projDesc" class="form-control" rows="3"
+                                        placeholder="Enter Project Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <p class="dateTitle">Start Date:</p>
+                                            <input type="date" id="projStartDate" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <p class="dateTitle">End Date:</p>
+                                            <input type="date" id="projEndDate" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DataTable -->
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <p class="tableTitle">Please select your project members below:</p>
+                                        <button id="add_members"
+                                            class="btn btn-primary btn-block text-white project-add-members"
+                                            type="button">Add Members</button>
+                                        </ul>
+
+                                        <table class="project-add-members-tbl" id="current_members">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Username</th>
+                                                    <th scope="col">Department</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
+                                        <table class=" table table-bordered" id="staffTable" width="100%"
+                                            cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Username</th>
+                                                    <th>Email</th>
+                                                    <th>Role</th>
+                                                    <th>Department</th>
+                                                    <th>Active</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- File uplaod dropzone -->
+                            <div class="form-group">
+                                <div class="card card-body">
+                                    <p class="tableTitle">Please upload your project files below:</p>
+                                    <div class="dropzone" id="div">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit"
+                            value="CreateProject">
                     </div>
 
                 </div>
@@ -172,9 +241,13 @@
             </div>
         </div>
     </div>
+    
     <!-- Bootstrap core JavaScript-->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
 
     <!-- Core plugin JavaScript-->
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -184,15 +257,76 @@
 
     <!-- Scripts for this dashboard -->
     <script src="../../assets/js/logout.js"></script>
+    <script src="js/getAllStaff.js"></script>
+    <script src="js/addFile.js"></script>
+    <script src="../../assets/js/dropzone.js"></script>
     <script>
         //display username
         var username = sessionStorage.getItem("username");
         var a = document.getElementById('user');
         a.innerHTML = username + "!";
         a.style.color = "#007bff";
+
+        //set current date
+        let today = new Date().toISOString().substr(0, 10);
+        document.querySelector("#projStartDate").value = today;
+        document.querySelector("#projEndDate").value = today;
+
+        //get current table row for memebers
+        var tablerow = document.getElementById("current_members").rows.length;
+
+        //display notice if table empty
+        if (tablerow == 1) {
+            var table = document.getElementById("current_members").getElementsByTagName('tbody')[0];
+
+            var tr = table.insertRow();
+            var td1 = tr.insertCell(0);
+            var td2 = tr.insertCell(1);
+            var trText = document.createTextNode('No Members Selected');
+            td1.appendChild(trText);
+
+            var no_members = true;
+        } else {
+            no_members = false;
+        }
+
+        //set up dropzone to ID
+        $("div").dropzone({ url: "/file/post" });
+
     </script>
     <script src="js/get_users.js"></script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-md-5">
+                                                <select class="custom-select project-file-dropdown" id="type">
+                                                    <option selected>Select file type</option>
+                                                    <option value="Billing">Billing</option>
+                                                    <option value="Tender">Tender</option>
+                                                    <option value="Quote">Quote</option>
+                                                    <option value="Proposal">Proposal</option>
+                                                </select>
+                                            </div> -->
+
+<!-- <button class="btn btn-primary btn-block text-white project-add-file-btn" type="button" multiple="true">Add
+                                                File</button> -->
