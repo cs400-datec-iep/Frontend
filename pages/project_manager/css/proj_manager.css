@@ -57,6 +57,7 @@
 .project-add-file-btn{
     width: 10%;
     margin: 10px;
+    float: right;
 }
 .project-add-members{
     margin: 0.5em;
@@ -72,4 +73,11 @@
 .project-add-members-tbl th{
     width: 50%;
     vertical-align: top;
+}
+.proj-card:hover{
+    cursor: pointer;
+}
+
+.project-file{
+    width: 80%;
 }

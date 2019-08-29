@@ -3,6 +3,7 @@ $(document).ready(function () {
   var table;
   var token = sessionStorage.getItem("token");
   var url = 'https://datectestapi.azurewebsites.net/api/UserMains';
+  var userIdList = [];
 
   fetch(url, {
     async: false,
@@ -30,6 +31,7 @@ $(document).ready(function () {
         }
       );
 
+      //adding members into table
       $('#staffTable tbody').on('click', 'tr', function () {
 
         if ($(this).hasClass('clickedon')) {
@@ -60,6 +62,9 @@ $(document).ready(function () {
           var username = document.createTextNode(oData[0].Username);
           var department = document.createTextNode(oData[0].Department);
 
+          userIdList.push(oData[0].ID);
+          window.localStorage.setItem("userIDs", JSON.stringify(userIdList));
+
           td1.appendChild(username);
           td2.appendChild(department);
         });
@@ -68,9 +73,6 @@ $(document).ready(function () {
 
 
       table.search("Staff").draw();
-
-
-
       table.column(0).visible(false);
       table.column(3).visible(false);
       table.column(5).visible(false);
@@ -78,5 +80,4 @@ $(document).ready(function () {
     }).catch(error => { console.error('Error:', error); return error; });
 
   // new change
-
 });

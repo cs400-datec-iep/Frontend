@@ -169,6 +169,7 @@
                                                 <tr>
                                                     <th scope="col">Username</th>
                                                     <th scope="col">Department</th>
+                                                    <th scope="col" style="display:none" id="idCol">id</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -194,16 +195,28 @@
 
                             <!-- File uplaod dropzone -->
                             <div class="form-group">
-                                <div class="card card-body">
-                                    <p class="tableTitle">Please upload your project files below:</p>
-                                    <div class="dropzone" id="div">
+                                <div class="card-body">
+                                    <div class="custom-file project-file">
+                                        <input type="file" class="custom-file-input" id="FileInput" name="file">
+                                        <label class="custom-file-label" for="FileInput">Choose file</label>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-block project-add-file-btn"
+                                        id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                                    <p>Uploading...</p>
+                                    <div class="progress bar" id="uploadProgressBarContainer">
+                                        <div class="progress-bar " role="progressbar" id="uploadProgressBar"
+                                            style="width: 0%;">
+                                            0%
+                                        </div>
                                     </div>
                                 </div>
+
+                                <ul class="uploaded-file-list" id="fileList">
+                                </ul>
                             </div>
 
+                            <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit">
                         </form>
-                        <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit"
-                            value="CreateProject">
                     </div>
 
                 </div>
@@ -290,12 +303,18 @@
             no_members = false;
         }
 
-        //set up dropzone to ID
-        $("div").dropzone({ url: "/" });
+        $('#FileInput').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
 
     </script>
-    <script src="js/get_users.js"></script>
+    <script src="js/create_project.js"></script>
+    <script src="js/azure-storage.blob.js"></script>
+    <script src="js/controller.js"></script>
 
 </body>
-</html>
 
+</html>
