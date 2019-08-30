@@ -114,7 +114,7 @@
                         </div>
                     </div>
 
-                    
+
 
 
                 </div>
@@ -171,8 +171,25 @@
         var a = document.getElementById('user');
         a.innerHTML = username + "!";
         a.style.color = "#007bff";
+
+
+           
+
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) {
+                    return sParameterName[1];
+                }
+            }
+        }
+
+        console.log(GetURLParameter('projName'));
+
+
     </script>
-    <script src="js/get_users.js"></script>
     <script src="js/projectChart.js"></script>
 
 

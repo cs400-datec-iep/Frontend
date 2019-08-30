@@ -2,12 +2,11 @@ $(document).ready(function () {
 
     var i;
     for (i = 0; i < 5; i++) {
-    
 
         //creating project card
         var projectName = "Test"+i;
         var projectDesc = "Test";
-        var projectPercentage = 39;
+        var projectPercentage = 39+i;
 
         //get container to put elements in
         var container = document.getElementById("container");
@@ -15,7 +14,8 @@ $(document).ready(function () {
         //create elements
         var a = document.createElement('a');
         a.classList.add('col-xl-5', 'col-sm-6', 'mb-3', 'dash-card');
-        a.onclick = function () { get_project_details(); };
+        a.href = "project_dashboard.html?projName="+projectName;
+        // a.onclick = function () { get_project_details(); };
 
         var card = document.createElement("div");
         card.classList.add('card', 'text-white', 'bg-dark-grey', 'o-hidden', 'h-100', 'proj-card');

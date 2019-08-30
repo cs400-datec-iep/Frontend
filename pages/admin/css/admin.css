@@ -35,3 +35,7 @@
 .dash-table h1{
     margin-left: 75px;
 }
+
+.admin-dash-card{
+    box-shadow: 3px 14px 32px -5px rgba(0,0,0,0.75);
+}

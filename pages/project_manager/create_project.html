@@ -202,17 +202,19 @@
                                     </div>
                                     <button type="button" class="btn btn-primary btn-block project-add-file-btn"
                                         id="UploadBlob" onclick="uploadBlob()">Add File</button>
-                                    <p>Uploading...</p>
+                                    <p>Upload Progress:</p>
                                     <div class="progress bar" id="uploadProgressBarContainer">
                                         <div class="progress-bar " role="progressbar" id="uploadProgressBar"
                                             style="width: 0%;">
                                             0%
                                         </div>
                                     </div>
+                                    
+                                    <p class="project-sub-text">Uploaded file list:</p>
+                                    <ul class="uploaded-file-list" id="fileList">vg
+                                    </ul>
                                 </div>
-
-                                <ul class="uploaded-file-list" id="fileList">
-                                </ul>
+                                
                             </div>
 
                             <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit">
@@ -313,7 +315,7 @@
     </script>
     <script src="js/create_project.js"></script>
     <script src="js/azure-storage.blob.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/file_upload_azure.js"></script>
 
 </body>
 
