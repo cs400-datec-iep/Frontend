@@ -2,7 +2,7 @@ function displayProcess(process) {
 
     document.getElementById("uploadProgressBar").style.width = process + '%';
     document.getElementById("uploadProgressBar").innerHTML = process + '%';
-    
+
 }
 
 function uploadBlob() {
@@ -34,17 +34,33 @@ function uploadBlob() {
     // If one file has been selected in the HTML file input element
     var file = $('#FileInput').get(0).files[0];
     var lastProjectID = localStorage.getItem("newProjectID");
+    var ArrayOfFiles = [];
+    var fileObj = {
+        'Name': "",
+        'Type': "",
+        'Directory': ""
+    }
 
     var customBlockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
     blobService.singleBlobPutThresholdInBytes = customBlockSize;
 
     var finishedOrError = false;
-    var speedSummary = blobService.createBlockBlobFromBrowserFile('internal',lastProjectID+ "_" +file.name, file, { blockSize: customBlockSize }, function (error, result, response) {
+    var speedSummary = blobService.createBlockBlobFromBrowserFile('internal', lastProjectID + "_" + file.name, file, { blockSize: customBlockSize }, function (error, result, response) {
         finishedOrError = true;
         if (error) {
             alert('Error');
         } else {
+            //enacapsulating file object
+            fileObj.Name = file.name;
+            fileObj.Type = file.name.split('.').pop();
+            fileObj.Directory = fileLocation + "/" + lastProjectID + "_" + file.name;
+
+            //placing object into array of object
+            ArrayOfFiles.push(fileObj);
             displayProcess(100);
+
+            //array of uploaded file on to the Blob account
+            localStorage.setItem("ArrayOfFiles", JSON.stringify(ArrayOfFiles));
         }
     });
 
@@ -62,8 +78,8 @@ function uploadBlob() {
 
     var list = document.getElementById("fileList");
     var item = document.createElement("li");
-    var p =  document.createElement("p");
-    p.innerHTML = "<a href='"+fileLocation+"/"+ lastProjectID+ "_" +file.name +"'>"+file.name+"</a>";
+    var p = document.createElement("p");
+    p.innerHTML = "<a href='" + fileLocation + "/" + lastProjectID + "_" + file.name + "'>" + file.name + "</a>";
     item.appendChild(p);
     list.appendChild(item);
 }

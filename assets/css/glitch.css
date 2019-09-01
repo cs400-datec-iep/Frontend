@@ -1,4 +1,4 @@
-.demo-1 {
+.base {
 	--color-text: #fff;
 	--color-bg: #000;
 	--color-link: #f9d77e;
@@ -33,12 +33,10 @@
 .content__title {
 	font-size: 12vw;
 	position: relative;
-	font-family: serif;
 	animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.2);
 }
 
 .content__text {
-	font-family: serif;
 	position: absolute;
 	font-size: 1.5em;
 	top: 4em;
@@ -50,7 +48,6 @@
 }
 
 .content__center {
-	font-family: serif;
 	position: absolute;
 	font-size: 1.5em;
 	top: 16em;
@@ -87,7 +84,7 @@
 	left: calc(-1 * var(--gap-horizontal));
 	width: calc(100% + var(--gap-horizontal) * 2);
 	height: calc(100% + var(--gap-vertical) * 2);
-	background: url(/assets/img/error.jpg) no-repeat 50% 0;
+	background: url(/assets/img/error.png) no-repeat 50% 0;
 	background-color: var(--blend-color-1);
 	background-size: cover;
 	transform: translate3d(0,0,0);

@@ -211,7 +211,7 @@
                                     </div>
                                     
                                     <p class="project-sub-text">Uploaded file list:</p>
-                                    <ul class="uploaded-file-list" id="fileList">vg
+                                    <ul class="uploaded-file-list" id="fileList">
                                     </ul>
                                 </div>
                                 
@@ -252,6 +252,25 @@
                 <div class="modal-footer">
                     <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Creation Success Modal-->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Project Created SuccessFully!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Okay" below to redirect you back to the projects dashboard.</div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary text-white" id="modal_redirect">Okay</a>
                 </div>
             </div>
         </div>
@@ -305,6 +324,7 @@
             no_members = false;
         }
 
+        //Places filename in the "Choose a file" label
         $('#FileInput').on('change',function(){
             //get the file name
             var fileName = $(this).val();
@@ -312,6 +332,11 @@
             $(this).next('.custom-file-label').html(fileName);
         })
 
+        //redirect button for modal
+        document.getElementById("modal_redirect").onclick = function () {
+            localStorage.setItem('created_project',"true");
+            window.location.href ="dashboard.html";
+        };
     </script>
     <script src="js/create_project.js"></script>
     <script src="js/azure-storage.blob.js"></script>

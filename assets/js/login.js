@@ -44,25 +44,26 @@ async function Login() {
             var status = j.Status
             if(status == true){
               if (role == "System Administrator") {
-
+                localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/admin/dashboard.html");
   
               }else if(role == "Management"){
-  
+                localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/management/dashboard.html");
   
               }else if(role == "Project Manager"){
-  
+                localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
+                sessionStorage.setItem("LoggedInNow",'true');
                 window.location.assign("../../pages/project_manager/dashboard.html");
   
               }else if(role == "Staff"){
-  
+                localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/staff/dashboard.html");

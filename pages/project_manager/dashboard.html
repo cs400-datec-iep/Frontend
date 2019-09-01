@@ -78,7 +78,7 @@
         <ul class="sidebar navbar-nav ">
             <li class="nav-item active">
                 <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-book"></i>
+                    <i class="fas fa-fw fa-folder"></i>
                     <span>Projects</span>
                 </a>
             </li>
@@ -105,7 +105,7 @@
                 <!-- Projects -->
                 <div class="row" id="container">
 
-                    <a class="col-xl-5 col-sm-6 mb-3 dash-card" onclick="get_project_details()">
+                    <!-- <a class="col-xl-5 col-sm-6 mb-3 dash-card" onclick="get_project_details()">
 
                         <div class="card text-white bg-dark-grey o-hidden h-100 proj-card">
 
@@ -129,7 +129,8 @@
                             </div>
 
                         </div>
-                    </a>
+                    </a> -->
+                    
 
                 </div>
 
@@ -186,6 +187,11 @@
         var a = document.getElementById('user');
         a.innerHTML = username + "!";
         a.style.color = "#007bff";
+
+        if((localStorage.getItem('created_project') == "true")){
+            localStorage.setItem('created_project',"false");
+            document.location.reload(true);
+        }
     </script>
 
 </body>
