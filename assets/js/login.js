@@ -70,7 +70,7 @@ async function Login() {
   
               }
             }else{
-              window.location.assign("error.html");
+              window.location.assign("error_404.html");
             }
 
 
