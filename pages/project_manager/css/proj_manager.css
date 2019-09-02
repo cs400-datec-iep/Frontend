@@ -96,3 +96,42 @@
 .uploaded-file-list p{
     font-size:1rem!important;
 }
+
+.project-progress-container{
+    border-style: solid;
+    height: 2.5em;
+}
+
+.project-details-progress-bar{
+    height: 2.5em;
+    border-radius: 2em;
+    margin-bottom: 2em;
+}
+
+.progress-bar-text{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.project-progress{
+    text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+    font-size: 1.3em;
+    font-weight: bolder;
+    background-color: #355c7d;
+}
+
+#project_name_title{
+    font-weight: bold;
+}
+
+h3 {
+    display: inline !important;
+    vertical-align: top !important;
+    font-size: 1.5em;
+}
+
+#project_client{
+    font-weight: normal;
+    font-size: 1.3em;
+    padding-left: 1em; 
+}

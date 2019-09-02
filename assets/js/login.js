@@ -59,7 +59,6 @@ async function Login() {
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
-                sessionStorage.setItem("LoggedInNow",'true');
                 window.location.assign("../../pages/project_manager/dashboard.html");
   
               }else if(role == "Staff"){
@@ -68,9 +67,11 @@ async function Login() {
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/staff/dashboard.html");
   
+              }else{
+                window.location.assign("error_404.html");
               }
             }else{
-              window.location.assign("error_404.html");
+              window.location.assign("error_401.html");
             }
 
 

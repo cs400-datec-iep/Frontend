@@ -6998,6 +6998,25 @@ button.bg-danger:focus {
   background-color: #212529 !important;
 }
 
+.bg-dark-mandy-pink{
+  background-color: #F8B195 !important;
+}
+
+.bg-dark-brink-pink{
+  background-color: #F67280 !important;
+}
+
+.bg-dark-tapestry{
+  background-color: #C06C84 !important;
+}
+
+.bg-dark-affair{
+  background-color: #6C5B7B !important;
+}
+
+.bg-dark-matisse{
+  background-color: #355c7d !important;
+}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,

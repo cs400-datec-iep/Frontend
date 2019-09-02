@@ -19,11 +19,11 @@ $(document).ready(function () {
             var i;
 
             for (i = 0; i < j.Result.length; i++) {
-
                 //creating project card
                 var projectName = j.Result[i].Name;
-                var projectDesc = j.Result[i].Description
-                var projectPercentage = j.Result[i].Percentage;
+                var projectDesc = j.Result[i].Description;
+                var projectID = j.Result[i].ProjectID;
+                var projectPercentage = j.Result[i].Percentage+i+i;
 
                 //get container to put elements in
                 var container = document.getElementById("container");
@@ -31,11 +31,10 @@ $(document).ready(function () {
                 //create elements
                 var a = document.createElement('a');
                 a.classList.add('col-xl-5', 'col-sm-6', 'mb-3', 'dash-card');
-                a.href = "project_dashboard.html?projName=" + projectName;
-                // a.onclick = function () { get_project_details(); };
+                a.href = "project_dashboard.html?" + projectID;
 
                 var card = document.createElement("div");
-                card.classList.add('card', 'text-white', 'bg-dark-grey', 'o-hidden', 'h-100', 'proj-card');
+                card.classList.add('card', 'text-white', 'bg-dark-matisse','o-hidden', 'h-100', 'proj-card');
 
                 var cardbody = document.createElement("div");
                 cardbody.classList.add('card-body');
@@ -47,10 +46,10 @@ $(document).ready(function () {
                 paragraph.innerHTML = projectDesc;
 
                 var progressBarDiv = document.createElement("div");
-                progressBarDiv.classList.add('progress');
+                progressBarDiv.classList.add('progress','bg-dark-test','project-progress-container');
 
                 var progressBar = document.createElement("div");
-                progressBar.classList.add('progress-bar');
+                progressBar.classList.add('progress-bar','project-progress');
                 progressBar.setAttribute("role", "progressbar");
                 progressBar.setAttribute("style", "width:" + projectPercentage + "%");
                 progressBar.innerHTML = projectPercentage + "%";

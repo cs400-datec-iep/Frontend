@@ -5,6 +5,16 @@ $(document).ready(function () {
     var urlGetTotal_PM = 'https://datectestapi.azurewebsites.net/api/GetCountRole/Project Manager';
     var urlGetTotal_Management = 'https://datectestapi.azurewebsites.net/api/GetCountRole/Management';
 
+    function randomNum() {
+        "use strict";
+        return Math.floor(Math.random() * 9) + 1;
+    }
+
+    var loop1, loop2, loop3, loop4, time = 30, i = 0, speed = 80,
+        selector4 = document.querySelector('#Number_of_Staff'),
+        selector3 = document.querySelector('#Number_of_PM'),
+        selector2 = document.querySelector('#Number_of_Management'),
+        selector1 = document.querySelector('#Number_of_User');
 
 
     //Get table count data staff
@@ -18,7 +28,18 @@ $(document).ready(function () {
     }).then(function (a) { return a.json() })
         .then(function (j) {
             localStorage.setItem("numStaff", j.Result);
-            document.getElementById("Number_of_Staff").innerHTML = j.Result;
+
+            loop4 = setInterval(function () {
+                "use strict";
+                if (i > speed) {
+                    clearInterval(loop4);
+                    selector4.textContent = j.Result;
+                } else {
+                    selector4.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+
 
         })
         .catch(error => { console.error('Error:', error); return error; });
@@ -35,7 +56,17 @@ $(document).ready(function () {
     }).then(function (a) { return a.json() })
         .then(function (j) {
             localStorage.setItem("numPM", j.Result);
-            document.getElementById("Number_of_PM").innerHTML = j.Result;
+
+            loop3 = setInterval(function () {
+                "use strict";
+                if (i > speed) {
+                    clearInterval(loop3);
+                    selector3.textContent = j.Result;
+                } else {
+                    selector3.textContent = randomNum();
+                    i++;
+                }
+            }, time);
 
         })
         .catch(error => { console.error('Error:', error); return error; });
@@ -52,9 +83,30 @@ $(document).ready(function () {
     }).then(function (a) { return a.json() })
         .then(function (j) {
             localStorage.setItem("numManager", j.Result);
-            document.getElementById("Number_of_Management").innerHTML = j.Result;
+
+            loop2 = setInterval(function () {
+                "use strict";
+                if (i > speed) {
+                    clearInterval(loop2);
+                    selector2.textContent = j.Result;
+                } else {
+                    selector2.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+
             var total = parseInt(localStorage.getItem("numManager")) + parseInt(localStorage.getItem("numPM")) + parseInt(localStorage.getItem("numStaff"));
-            document.getElementById("Number_of_User").innerHTML = total;
+
+            loop1 = setInterval(function () {
+                "use strict";
+                if (i > speed) {
+                    clearInterval(loop1);
+                    selector1.textContent = total;
+                } else {
+                    selector1.textContent = randomNum();
+                    i++;
+                }
+            }, time);
 
         })
         .catch(error => { console.error('Error:', error); return error; });
