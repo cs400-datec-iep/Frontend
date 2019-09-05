@@ -7,18 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Admin Dashboard</title>
+    <title>System Administrator Dashboard</title>
 
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Page level plugin CSS-->
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this page-->
-    <link href="../../assets/css/sb-admin.css" rel="stylesheet">
+    <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
+
 
     <!-- Session Check -->
     <script src="../../assets/js/sessionCheck.js"></script>
@@ -26,120 +29,209 @@
 </head>
 
 <body id="page-top">
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-        <h4 class="dash-title">Admin Dashboard</h4>
-
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- Navbar -->
-        <ul class="navbar-nav  ml-auto dash-user">
-            <label class="dash-icon-title">Welcome &nbsp</label>
-            <label id="user" class="dash-icon-title"></label>
-            <button class="dash-log-out" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-power-off text-white"></i>
-            </button>
-        </ul>
-
-    </nav>
-
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="sidebar navbar-nav ">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="sidebar-brand-text mt-3">System Administrator</div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-3">
+
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html" >
+                <a class="nav-link" href="dashboard.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="create_user.html">
-                    <i class="fas fa-fw fa-user-cog"></i>
+                    <i class="fas fa-fw fa-user-plus"></i>
                     <span>Create A User</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="edit_user.html">
                     <i class="fas fa-fw fa-user-edit"></i>
-                    <span>View & Edit A Users</span></a>
+                    <span>View & Edit Users</span></a>
             </li>
+
+            <!-- Side Bar toggle -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
         </ul>
+        <!-- End of Sidebar -->
 
-        <div id="content-wrapper">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-            <div class="container-fluid">
+            <!-- Main Content -->
+            <div id="content">
 
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        Admin Dashboard
-                    </li>
-                    <li class="breadcrumb-item active">Overview</li>
-                </ol>
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- Cards -->
-                <div class="row">
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card text-white bg-dark-matisse o-hidden h-100 admin-dash-card">
-                            <div class="card-body">
-                                <div class="card-body-icon">
-                                    <i class="fas fa-fw fa-user-friends"></i>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <label class="mt-1 text-primary">Welcome &nbsp</label>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
+                                <i class="fas fa-user-circle fa-fw fa-2x"></i>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Account
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Breadcrumbs -->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            Admin Dashabord
+                        </li>
+                        <li class="breadcrumb-item active">Overview</li>
+                    </ol>
+
+                    <!-- Content Row -->
+                    <div class="row" id="container">
+
+                        <!-- Number of users -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-datec shadow h-90 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Users
+                                                (Total)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <h1 class="text-white" id='Number_of_User'></h1>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-friends fa-3x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h1 id='Number_of_User' value = ></h1>
-                                <div class="mr-5">Users</div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card text-white bg-dark-affair o-hidden h-100 admin-dash-card">
-                            <div class="card-body">
-                                <div class="card-body-icon">
-                                    <i class="fas fa-fw fa-user-tie"></i>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-datec shadow h-90 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Management</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <h1 class="text-white"  id='Number_of_Management'></h1>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-tie fa-3x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h1 id="Number_of_Management"></h1>
-                                <div class="mr-5">Management</div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card text-white bg-dark-tapestry o-hidden h-100 admin-dash-card">
-                            <div class="card-body">
-                                <div class="card-body-icon">
-                                    <i class="fas fa-fw fa-user"></i>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-datec shadow h-90 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Project Managers</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <h1 class="text-white"  id='Number_of_PM'></h1>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-tie fa-3x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h1 id="Number_of_PM"></h1>
-                                <div class="mr-5">Project Managers</div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-3 col-sm-6 mb-3">
-                        <div class="card text-white bg-dark-brink-pink o-hidden h-100 admin-dash-card">
-                            <div class="card-body">
-                                <div class="card-body-icon">
-                                    <i class="fas fa-fw fa-user-injured"></i>
+                        <div class="col-xl-3 col-md-6 ">
+                            <div class="card bg-datec shadow h-90 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Staff</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <h1 class="text-white"  id='Number_of_Staff'></h1>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-injured fa-3x text-gray-300"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h1 id="Number_of_Staff"></h1>
-                                <div class="mr-5">Staff</div>
                             </div>
                         </div>
+                        <!-- End Number of users -->
+
                     </div>
-                </div>    
+                    <!--End of Content Row -->
+
+                    <div class="row">
+                        <div class="col-lg-7 mt-3 mb-3">
+                            <!-- Bar Chart -->
+                            <div class="card shadow">
+                                <div class="card-header bg-datec py-3">
+                                    <h6 class="m-0 font-weight-bold text-uppercase text-white">Active And Inactive Users</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="statusBarChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
 
         </div>
-        <!-- /.content-wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- /#wrapper -->
+    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -152,7 +244,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -165,29 +257,23 @@
             </div>
         </div>
     </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin.min.js"></script>
-    
-    <!-- Scripts for this dashboard -->
+    <script src="../../assets/js/sb-admin-2.min.js"></script>
     <script src="../../assets/js/logout.js"></script>
+    <script src="../../assets/js/get-username.js"></script>
 
-    <script>
-    //display username
-    var username = sessionStorage.getItem("username");
-    var a = document.getElementById('user');
-    a.innerHTML = username + "!";
-    a.style.color = "#007bff";
-    </script>
+    <!-- Scripts for this dashboard -->
+    <script src="js/get-overview.js"></script>
 
-    <script src="js/get_users.js"></script>
-    <script src="js/getOverview.js"></script>
 
 </body>
 

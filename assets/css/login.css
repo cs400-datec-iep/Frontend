@@ -13,7 +13,7 @@
   width: 80px;
   height: 80px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 80px;
   margin-bottom: 50px;
   -webkit-animation: spin 1s linear infinite; /* Safari */
   animation: spin 1s linear infinite;
@@ -44,7 +44,7 @@ h2, h1{
 .login-form{
   max-width:320px;
   width:90%;
-  background-color:#1e2833;
+  background-color:#243568;
   padding:40px;
   border-radius:4px;
   transform:translate(-50%, -50%);
@@ -74,7 +74,7 @@ h2, h1{
 }
 
 .login-form .btn-primary {
-  background:#214a80;
+  background:#4282d4;
   border:none;
   border-radius:4px;
   padding:11px;
@@ -85,7 +85,7 @@ h2, h1{
 }
 
 .login-form .btn-primary:hover, .login-dark form .btn-primary:active {
-  background:#214a80;
+  background:#929aa3;
   outline:none;
 }
 

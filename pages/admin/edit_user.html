@@ -3,123 +3,177 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Admin Dashboard</title>
+  <title>System Administrator Dashboard</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Page level plugin CSS-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/css/sb-admin.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-    <!-- Session Check -->
-    <script src="../../assets/js/sessionCheck.js"></script>
+
+  <!-- Session Check -->
+  <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
 
 <body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <h4 class="dash-title">Admin Dashboard</h4>
+      <!-- Sidebar - Brand -->
+      <div class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-user-shield"></i>
+        </div>
+        <div class="sidebar-brand-text mt-3">System Administrator</div>
+      </div>
 
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
-        </button>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-3">
 
-        <!-- Navbar -->
-        <ul class="navbar-nav  ml-auto dash-user">
-            <label class="dash-icon-title">Welcome &nbsp</label>
-            <label id="user" class="dash-icon-title"></label>
-            <button class="dash-log-out" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-power-off text-white"></i>
-            </button>
-        </ul>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Overview</span>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="create_user.html">
+          <i class="fas fa-fw fa-user-plus"></i>
+          <span>Create A User</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">
+          <i class="fas fa-fw fa-user-edit"></i>
+          <span>View & Edit Users</span></a>
+      </li>
 
-    </nav>
+      <!-- Side Bar toggle -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
 
-    <div id="wrapper">
+    </ul>
+    <!-- End of Sidebar -->
 
-        <!-- Sidebar -->
-        <ul class="sidebar navbar-nav ">
-            <li class="nav-item ">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Overview</span>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <label class="mt-1 text-primary">Welcome &nbsp</label>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
+                <i class="fas fa-user-circle fa-fw fa-2x"></i>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Account
                 </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="create_user.html">
-                    <i class="fas fa-fw fa-user-cog"></i>
-                    <span>Create A User</span></a>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              Admin Dashabord
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="edit_user.html">
-                    <i class="fas fa-fw fa-user-edit"></i>
-                    <span>View & Edit A Users</span></a>
-            </li>
-        </ul>
+            <li class="breadcrumb-item active">Edit & View Users</li>
+          </ol>
 
-        <div id="content-wrapper">
+          <!-- Content Row -->
+          <div class="row" id="container">
+            <div class="col-xl-11 col-md-6 m-auto">
+              <div class="card shadow mb-4">
+                
+                <!--Card Header -->
+                <div class="card-header py-3">
+                    <i class="fas fa-edit float-left text-xxlg"> </i>
+                    <h6 class="font-weight-bold text-xxlg text-primary ml-5">View and Edit Users</h6>
+                    <p>You can view all users as well as edit them on this page.</p>
+                </div>
 
-            <div class="container-fluid">
-
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        Admin Dashboard
-                    </li>
-                    <li class="breadcrumb-item active">View & Edit Users</li>
-                </ol>
-
-
-                <!-- DataTable -->
-                <div class="card mb-3">
-                    <div class="card-header dash-table">
-                        <i class="fas fa-users"> </i>
-                        <h1>All Users</h1>
-                        <p>All users will be displayed here. To Edit a user, select the row which will then be highlighted and click on edit.</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive ">
-                            <button id="edit_button" class="btn btn-danger btn-block text-white dash-edit-button" data-toggle="modal" data-target="#editModal" disabled="true">Edit</button>
-                            <table class=" table table-bordered dash-table" id="fluidTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        <th>Active</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                <div class="card-body">
+                    <div class="table-responsive ">
+                        <button id="edit_button" class="btn btn-danger btn-block text-white  float-right col-2" data-toggle="modal" data-target="#editModal" disabled="true">Edit</button>
+                        <table class=" table table-bordered" id="fluidTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
 
+              </div>
             </div>
-            <!-- /.container-fluid -->
+
+          </div>
+          <!--End of Content Row -->
 
         </div>
-        <!-- /.content-wrapper -->
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
 
     </div>
-    <!-- /#wrapper -->
+    <!-- End of Content Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
     
 
     <!-- Logout Modal-->
@@ -144,7 +198,7 @@
 
     <!-- e=Edit Modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog dash-edit-modal" role="document">
+        <div class="modal-dialog " role="document">
             <form>
                 <div class="modal-content">
                     <div class="modal-header">
@@ -154,16 +208,17 @@
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
                             <div class="form-label-group">
+                                <label for="userName">Username:</label>
                                 <input type="text" id="userName" class="form-control" placeholder="Username" required="required" autofocus="autofocus" >
-                                <label for="userName">Username</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
+                                    <label for="role">Role:</label>
                                         <select class="custom-select dash-edit-modal-dropdown" id="role">
-                                            <option selected>Select Role</option>
+                                            <option selected>Select A Role</option>
                                             <option value="System Administrator">System Administrator</option>
                                             <option value="Management">Management</option>
                                             <option value="Project Manager">Project Manager</option>
@@ -173,8 +228,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
+                                        <label for="department">Department:</label>
                                         <input type="text" id="department" class="form-control" placeholder="Department" required="required">
-                                        <label for="department">Department</label>
                                     </div>
                                 </div>
                             </div>
@@ -183,19 +238,18 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
+                                        <label for="email">Email address:</label>
                                         <input type="email" id="email" class="form-control"
                                             placeholder="Email address" required="required" disabled="true">
-                                        <label for="email">Email address</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <div class="input-group">
-                                            <select class="custom-select dash-edit-modal-dropdown" id="status">
-                                                <option selected value="true">Active</option>
-                                                <option value="false">Inactive</option>
-                                            </select>
-                                        </div>
+                                        <label for="status">Status:</label>
+                                        <select class="custom-select dash-edit-modal-dropdown" id="status">
+                                            <option selected value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -210,8 +264,7 @@
             </form>
         </div>
     </div>
-    
-    
+
     <!-- Bootstrap core JavaScript-->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -222,19 +275,15 @@
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin.min.js"></script>
-     
-    <!-- scripts for this page-->
-    <script src="js/fluidtables.js"></script>
-    <script src="js/edit_user.js"></script>
-    <script>
-        //Display Username
-        var username = sessionStorage.getItem("username");
+    <script src="../../assets/js/sb-admin-2.min.js"></script>
+    <script src="../../assets/js/logout.js"></script>
+    <script src="../../assets/js/get-username.js"></script>
 
-        var a = document.getElementById('user');
-        a.innerHTML = username + "!";
-        a.style.color = "#007bff";
-    </script>
+    <!-- Scripts for this dashboard -->
+    <script src="js/create-user.js"></script>
+    <script src="js/edit-user.js"></script>
+    <script src="js/edit-user-datatable.js"></script>
+
 
 </body>
 

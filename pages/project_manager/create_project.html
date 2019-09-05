@@ -3,344 +3,428 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Project Manager Dashboard</title>
+  <title>Create a Project</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Page level plugin CSS-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/css/sb-admin.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
-    <link href="css/proj_manager.css" rel="stylesheet">
-    <link href="../../assets/css/dropzone.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
 
-    <!--Session Check-->
-    <script src="../../assets/js/sessionCheck.js"></script>
+  <!-- Session Check -->
+  <script src="../../assets/js/sessionCheck.js"></script>
+
+</head>
 
 <body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-        <h4 class="dash-title">Project Manager Dashboard</h4>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
-        </button>
+      <!-- Sidebar - Brand -->
+      <div class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="sidebar-brand-text mt-3">Project Manager</div>
+      </div>
 
-        <!-- Navbar -->
-        <ul class="navbar-nav  ml-auto dash-user">
-            <label class="dash-icon-title">Welcome &nbsp</label>
-            <label id="user" class="dash-icon-title"></label>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle"><span class="badge badge-danger">
-                        <!-- Notification number -->test</span></a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-3">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Your Projects</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link">
+          <i class="fas fa-fw fa-edit"></i>
+          <span>Create a Project</span></a>
+      </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                      aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </li>
+
+            <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
                 </a>
-                <!-- NOTIFICATIONS HERE -->
-
-                <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
             </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <label class="mt-1 text-primary">Welcome &nbsp</label>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
+                <i class="fas fa-user-circle fa-fw fa-2x"></i>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Account
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="profile_management.html">Account</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              Project Dashboard
+            </li>
+            <li class="breadcrumb-item active">Create a Project</li>
+          </ol>
+
+          <!-- Content Row -->
+          <div class="Row">
+            <div class="col-xl-11 col-md-6 m-auto">
+              <div class="card shadow mb-4">
+
+                <!--Card Header -->
+                <div class="card-header py-3">
+                  <i class="fas fa-edit float-left text-xxlg"> </i>
+                  <h6 class="font-weight-bold text-xxlg text-primary ml-5">Create a Project</h6>
+                  <p>This page allows you to create a project. Please enter all details.</p>
                 </div>
-            </li>
-        </ul>
-    </nav>
+                
+                <div class="card-body">
+                    <form onsubmit="create_project();return false">
 
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="sidebar navbar-nav ">
-            <li class="nav-item ">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-book"></i>
-                    <span>Projects</span>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="create_project.html">
-                    <i class="fas fa-fw fa-edit"></i>
-                    <span>Create Project</span>
-                </a>
-            </li>
-        </ul>
-
-        <div id="content-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        Project Dashboard
-                    </li>
-                    <li class="breadcrumb-item active">Create Project</li>
-                </ol>
-
-                <!-- Projects -->
-                <div class="card mb-3">
-                    <div class="card-header project-form-title">
-                        <i class="fas fa-edit"> </i>
-                        <h2>Create a Project</h2>
-                        <p>This page allows you to create a project. Please enter all details.</p>
-                    </div>
-
-                    <div class="card-body">
-                        <form onsubmit="create_project();return false">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-6">
-                                        <div class="form-label-group">
-                                            <input type="text" id="projName" class="form-control" placeholder="projName"
-                                                required>
-                                            <label for="projName">Enter Project Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-label-group">
-                                            <input type="text" id="projClient" class="form-control"
-                                                placeholder="projClient" required>
-                                            <label for="projClient">Enter Project Client Name</label>
-                                        </div>
-                                    </div>
+                        <!-- PRoject name and client name -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                  <input type="text" id="projName" class="form-control" placeholder="Enter Project Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <input type="text" id="projClient" class="form-control" placeholder="Enter Client Name" required>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="form-label-group">
-                                    <textarea id="projDesc" class="form-control" rows="3"
-                                        placeholder="Enter Project Description"></textarea>
+                        </div>
+                        
+                        <!-- Project Description -->
+                        <div class="form-group">
+                            <textarea id="projDesc" class="form-control m-auto" rows="3" placeholder="Enter Project Description"></textarea>
+                        </div>
+                        
+                        <!-- Enter Dates -->
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                  <p class="dateTitle mb-1">Start Date:</p>
+                                  <input type="date" id="projStartDate" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <p class="dateTitle  mb-1">End Date:</p>
+                                  <input type="date" id="projEndDate" class="form-control" required>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-6">
-                                        <div class="form-label-group">
-                                            <p class="dateTitle">Start Date:</p>
-                                            <input type="date" id="projStartDate" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-label-group">
-                                            <p class="dateTitle">End Date:</p>
-                                            <input type="date" id="projEndDate" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- DataTable -->
+                        <div class="card mb-3">
+                          <div class="table-responsive">
+                              <p class="tableTitle">Please select your project members below:</p>
+                              <button id="add_members" class="btn btn-primary btn-block text-white col-2 float-right m-2" type="button">Add Members</button>
+                              </ul>
+
+                              <table class="project-add-members-tbl text-gray" id="current_members">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">Username</th>
+                                          <th scope="col">Department</th>
+                                          <th scope="col" style="display:none" id="idCol">id</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                              </table>
+
+                              <table class=" table table-bordered" id="staffTable" width="100%"
+                                  cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <th>Username</th>
+                                          <th>Email</th>
+                                          <th>Role</th>
+                                          <th>Department</th>
+                                          <th>Active</th>
+                                      </tr>
+                                  </thead>
+                              </table>
+                          </div>
+                      </div>
+
+                      <!-- File Upload -->
+                      <div class="form-group">
+                        
+                          <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
+                          <div class="form-row">
+                              <div class="custom-file col-9">
+                                  <input type="file" class="custom-file-input float-left" id="FileInput" name="file">
+                                  <label class="custom-file-label float-right" for="FileInput">Choose a file...</label>
+                              </div>
+                              <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                          </div>
+
+                        <p class="m-0 mt-1">Upload Progress:</p>
+                        <div class="progress m-auto" id="uploadProgressBarContainer">
+                            <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
+                                0%
                             </div>
+                        </div>
+                        
+                        <p class="project-sub-text mt-3">Uploaded file list:</p>
+                        <ul class="uploaded-file-list" id="fileList">
+                        </ul>
+                      </div>
 
-                            <!-- DataTable -->
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <p class="tableTitle">Please select your project members below:</p>
-                                        <button id="add_members"
-                                            class="btn btn-primary btn-block text-white project-add-members"
-                                            type="button">Add Members</button>
-                                        </ul>
+                      <!-- Submit Button -->
+                      <input class="btn btn-primary btn-block text-white col-4 m-auto" type="submit">
 
-                                        <table class="project-add-members-tbl" id="current_members">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Username</th>
-                                                    <th scope="col">Department</th>
-                                                    <th scope="col" style="display:none" id="idCol">id</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-
-                                        <table class=" table table-bordered" id="staffTable" width="100%"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Role</th>
-                                                    <th>Department</th>
-                                                    <th>Active</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- File uplaod dropzone -->
-                            <div class="form-group">
-                                <div class="card-body">
-                                    <div class="custom-file project-file">
-                                        <input type="file" class="custom-file-input" id="FileInput" name="file">
-                                        <label class="custom-file-label" for="FileInput">Choose file</label>
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-block project-add-file-btn"
-                                        id="UploadBlob" onclick="uploadBlob()">Add File</button>
-                                    <p>Upload Progress:</p>
-                                    <div class="progress bar" id="uploadProgressBarContainer">
-                                        <div class="progress-bar " role="progressbar" id="uploadProgressBar"
-                                            style="width: 0%;">
-                                            0%
-                                        </div>
-                                    </div>
-                                    
-                                    <p class="project-sub-text">Uploaded file list:</p>
-                                    <ul class="uploaded-file-list" id="fileList">
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                            <input class="btn btn-primary btn-block text-white project-submit-btn" type="submit">
-                        </form>
-                    </div>
-
+                    </form>
                 </div>
 
+              </div>  
             </div>
-            <!-- /.container-fluid -->
+          </div>
+          <!--End of Content Row -->
 
         </div>
-        <!-- /.content-wrapper -->
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
 
     </div>
-    <!-- /#wrapper -->
+    <!-- End of Content Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+  </div>
+  <!-- End of Page Wrapper -->
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
-    </div>
-
-    <!-- Project Creation Success Modal-->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Project Created SuccessFully!</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Okay" below to redirect you back to the projects dashboard.</div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary text-white" id="modal_redirect">Okay</a>
-                </div>
-            </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+  <!-- Project Creation Success Modal-->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Project Created SuccessFully!</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">Select "Okay" below to redirect you back to the projects dashboard.</div>
+          <div class="modal-footer">
+              <a class="btn btn-primary text-white" id="modal_redirect">Okay</a>
+          </div>
+      </div>
+  </div>
+</div>
 
+  <!-- Bootstrap core JavaScript-->
+  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../../assets/js/sb-admin-s.min.js"></script>
 
-    <!-- Scripts for this dashboard -->
-    <script src="../../assets/js/logout.js"></script>
-    <script src="js/getAllStaff.js"></script>
-    <script src="js/addFile.js"></script>
-    <script src="../../assets/js/dropzone.js"></script>
-    <script>
-        //display username
-        var username = sessionStorage.getItem("username");
-        var a = document.getElementById('user');
-        a.innerHTML = username + "!";
-        a.style.color = "#007bff";
+  <!-- Scripts for this dashboard -->
+  <script src="../../assets/js/logout.js"></script>
+  <script src="../../assets/js/get-username.js"></script>
+  <script src="js/get-all-project-members.js"></script>
+  <script src="js/upload-file.js"></script>
+  <script>
+  
+  //set current date
+  let today = new Date().toISOString().substr(0, 10);
+  document.querySelector("#projStartDate").value = today;
+  document.querySelector("#projEndDate").value = today;
 
-        //set current date
-        let today = new Date().toISOString().substr(0, 10);
-        document.querySelector("#projStartDate").value = today;
-        document.querySelector("#projEndDate").value = today;
+  //get current table row for memebers
+  var tablerow = document.getElementById("current_members").rows.length;
 
-        //get current table row for memebers
-        var tablerow = document.getElementById("current_members").rows.length;
+  //display notice if table empty
+  if (tablerow == 1) {
+      var table = document.getElementById("current_members").getElementsByTagName('tbody')[0];
 
-        //display notice if table empty
-        if (tablerow == 1) {
-            var table = document.getElementById("current_members").getElementsByTagName('tbody')[0];
+      var tr = table.insertRow();
+      var td1 = tr.insertCell(0);
+      var td2 = tr.insertCell(1);
+      var trText = document.createTextNode('No Members Selected');
+      td1.appendChild(trText);
 
-            var tr = table.insertRow();
-            var td1 = tr.insertCell(0);
-            var td2 = tr.insertCell(1);
-            var trText = document.createTextNode('No Members Selected');
-            td1.appendChild(trText);
+      var no_members = true;
+  } else {
+      no_members = false;
+  }
 
-            var no_members = true;
-        } else {
-            no_members = false;
-        }
+  //Places filename in the "Choose a file" label
+  $('#FileInput').on('change',function(){
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+  })
 
-        //Places filename in the "Choose a file" label
-        $('#FileInput').on('change',function(){
-            //get the file name
-            var fileName = $(this).val();
-            //replace the "Choose a file" label
-            $(this).next('.custom-file-label').html(fileName);
-        })
+  //Redirect button for modal
+  document.getElementById("modal_redirect").onclick = function () {
+      localStorage.setItem('created_project',"true");
+      window.location.href ="dashboard.html";
+  };
+  </script>
+  <script src="js/create-project.js"></script>
+  <script src="js/azure-storage.blob.js"></script>
+  <script src="js/file_upload_azure.js"></script>
 
-        //redirect button for modal
-        document.getElementById("modal_redirect").onclick = function () {
-            localStorage.setItem('created_project',"true");
-            window.location.href ="dashboard.html";
-        };
-    </script>
-    <script src="js/create_project.js"></script>
-    <script src="js/azure-storage.blob.js"></script>
-    <script src="js/file_upload_azure.js"></script>
 
 </body>
 
