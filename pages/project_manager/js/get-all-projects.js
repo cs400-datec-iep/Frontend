@@ -25,7 +25,7 @@ $(document).ready(function () {
                 var projectName = j.Result[i].Name;
                 var projectDesc = j.Result[i].Description;
                 var projectID = j.Result[i].ProjectID;
-                var projectPercentage = j.Result[i].Percentage+i+i;
+                var projectPercentage = j.Result[i].Percentage;
                 var projectSatus = j.Result[i].Progress_Status;
 
                 //Check status
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 header.innerHTML = projectName;
 
                 var paragraph = document.createElement("div");
-                paragraph.classList.add('text-sm','h5','mb-0', 'font-weight-bold', 'text-gray-800');
+                paragraph.classList.add('text-sm','h5','mb-0', 'font-weight-bold', 'text-gray-800','text-truncate');
                 paragraph.innerHTML = projectDesc;
 
                 var col2 = document.createElement("div");

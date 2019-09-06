@@ -10383,6 +10383,10 @@ button.bg-dark:focus {
   text-transform: lowercase !important;
 }
 
+.text-underline {
+  text-decoration: underline !important;
+}
+
 .text-uppercase, .dropdown .dropdown-menu .dropdown-header, .sidebar .sidebar-heading {
   text-transform: uppercase !important;
 }

@@ -133,7 +133,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
                 </a>
@@ -179,37 +179,33 @@
                                 <div class="col mr-2">
                                     <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Basic info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
 
-                                     <!-- Client Name -->
-                                    <div class="project-details-labels">
-                                      <table>
-                                          <tr>
-                                            <td>
-                                                <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block">Client:</div>
-                                                <span id="project_client" class="text-lg ml-3"  ></span> 
-                                            </td>
-                                            <td>
-                                                <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block  ml-7">Project Status:</div>
-                                                <span id="project_status" class="text-lg ml-3"  ></span> 
-                                            </td>
-                                          </tr>
-                                      </table>  
-                                    </div>
+                                    <!-- Client Name -->
+                                    <table>
+                                        <tr>
+                                          <td>
+                                              <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block">Client:</div>
+                                              <span id="project_client" class="text-lg ml-3"  ></span> 
+                                          </td>
+                                          <td>
+                                              <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block  ml-7">Project Status:</div>
+                                              <span id="project_status" class="text-lg ml-3"  ></span> 
+                                          </td>
+                                        </tr>
+                                    </table>  
 
-                                     <!-- Dates -->
-                                    <div class="project-details-labels">
-                                        <table>
-                                            <tr>
-                                                <td><div class="text-lg font-weight-bold text-primary text-gray-800">Start Date:</div></td>
-                                                <td><span id="project_startDate" class="text-lg ml-3"></span></td>
-                                                <td><div class="text-lg font-weight-bold text-primary text-gray-800 ml-6">End Date:</div></td>
-                                                <td><span id="project_endDate" class="text-lg ml-3"></span></td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <!-- Dates -->
+                                    <table>
+                                        <tr>
+                                            <td><div class="text-lg font-weight-bold text-primary text-gray-800">Start Date:</div></td>
+                                            <td><span id="project_startDate" class="text-lg ml-3"></span></td>
+                                            <td><div class="text-lg font-weight-bold text-primary text-gray-800 ml-6">End Date:</div></td>
+                                            <td><span id="project_endDate" class="text-lg ml-3"></span></td>
+                                        </tr>
+                                    </table>
 
                                      <!-- Progress Bar-->
                                     <div class="progress fh-1-6 mt-3 text-center">
-                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" style="width: 100%" id="progress_meter"><span class="text-white text-sm" id="project_percentage_text"></span></div>
+                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" style="width: 0%" id="progress_meter"><span class="text-white text-sm" id="project_percentage_text"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +219,7 @@
             <!-- Second row -->
             <div class="row">
             
-                <div class="col-xl-6 mt-3 ">
+                <div class="col-xl-6 mt-4 ">
                     <div class="card shadow-xxlg py-2">
                         <div class="card-body ">
                             <div class="row no-gutters align-items-center">
@@ -236,8 +232,27 @@
                     </div>
                 </div>
 
-                <div class="col-xl-6 mt-3 ">
-                    <div class="card shadow mb-4">
+                <div class="col-xl-6 mt-4 ">
+                    <div class="card shadow-xxlg py-2">
+                        <div class="card-body ">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Team<i class="fas fa-users text-xxlg text-gray-300 float-right"></i></div>
+                                    <div class="text-sm h5 mb-0 text-gray-800" id="project_desc"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--End of Second Row -->    
+
+             <!-- Third row -->
+             <div class="row">
+
+                <div class="col-xl-6 mt-4 ">
+                    <div class="card shadow-xxlg mb-4">
                         <div class="card-body">
                             <div class="col mr-2">
                                 <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Task Summary<i class="fas fa-chalkboard text-xxlg text-gray-300 float-right"></i></div>
@@ -259,8 +274,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-6 mt-4 ">
+                    <div class="card shadow-xxlg mb-4">
+                        <div class="card-body">
+                            <div class="col mr-2">
+                                <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project Documents<i class="fas fa-file text-xxlg text-gray-300 float-right"></i></div>
+                            </div> 
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--End of First Row -->    
+            <!--End of Third Row -->    
+            
         </div>
         <!-- /.container-fluid -->
 

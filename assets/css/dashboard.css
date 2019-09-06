@@ -56,3 +56,12 @@ animation: spin 1s linear infinite;
     font-size:1rem!important;
 }
 /* Project manager specific styles */
+
+
+.field-icon {
+    float: right;
+    margin-right: 5px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+  }
