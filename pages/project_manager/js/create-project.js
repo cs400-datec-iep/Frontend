@@ -13,7 +13,7 @@ function create_project() {
     token = sessionStorage.getItem("token");
     urlGetProjectID = 'https://datectestapi.azurewebsites.net/api/Projects';
     urlUserProject = 'https://datectestapi.azurewebsites.net/api/UserProjects';
-    urlFiles = 'https://datectestapi.azurewebsites.net/api/Files';
+   
 
 
     if (projStartDate > projEndDate) {
@@ -72,29 +72,29 @@ function create_project() {
                     }).catch(error => { console.error('Error:', error); return error; });
                 }
 
-                //link uploaded file to the project ID
-                for (var i = 0; i < FileArray.length; i++) {
+                // //link uploaded file to the project ID
+                // for (var i = 0; i < FileArray.length; i++) {
 
-                    //data encapsulation
-                    var payload_files = {
-                        'ProjectID': j.ProjectID,
-                        'Name': FileArray[i].Name,
-                        'Type': FileArray[i].Type,
-                        'Directory': FileArray[i].Directory
-                    }
+                //     //data encapsulation
+                //     var payload_files = {
+                //         'ProjectID': j.ProjectID,
+                //         'Name': FileArray[i].Name,
+                //         'Type': FileArray[i].Type,
+                //         'Directory': FileArray[i].Directory
+                //     }
 
-                    fetch(urlFiles, {
-                        async: false,
-                        method: 'POST',
-                        crossDomain: true,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: JSON.stringify(payload_files)
-                    }).catch(error => { console.error('Error:', error); return error; });
+                //     fetch(urlFiles, {
+                //         async: false,
+                //         method: 'POST',
+                //         crossDomain: true,
+                //         headers: {
+                //             'Content-Type': 'application/json',
+                //             'Authorization': 'Bearer ' + token
+                //         },
+                //         body: JSON.stringify(payload_files)
+                //     }).catch(error => { console.error('Error:', error); return error; });
 
-                }
+                // }
             })
             .catch(error => { console.error('Error:', error); return error; });
     }
