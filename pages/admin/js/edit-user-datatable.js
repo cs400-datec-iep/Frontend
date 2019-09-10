@@ -45,6 +45,7 @@ $(document).ready(function () {
         document.getElementById('id').value = oData[0].ID;
         document.getElementById('userName').value = oData[0].Username;
         document.getElementById('role').value = oData[0].Role;
+        document.getElementById('prev_role').value = oData[0].Role;
         document.getElementById('department').value = oData[0].Department;
         document.getElementById('email').value = oData[0].Email;
 

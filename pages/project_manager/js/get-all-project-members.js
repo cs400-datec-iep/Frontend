@@ -1,9 +1,11 @@
+var userIdList = [];
+
 // populate table
 $(document).ready(function () {
     var table;
     var token = sessionStorage.getItem("token");
-    var url = 'https://datectestapi.azurewebsites.net/api/UserMains';
-    var userIdList = [];
+    var url = 'https://datectestapi.azurewebsites.net/api/GetActiveUserForAddMembers/'+sessionStorage.getItem("userID");
+    ;
   
     fetch(url, {
       async: false,
@@ -17,9 +19,6 @@ $(document).ready(function () {
         table = $('#staffTable').DataTable(
           {
             data: a,
-            searching: true,
-            dom: '<"top"l>rt<"bottom"ip><"clear">',
-            select: true,
             columns: [
               { data: 'ID' },
               { data: 'Username' },
@@ -63,16 +62,14 @@ $(document).ready(function () {
             var department = document.createTextNode(oData[0].Department);
   
             userIdList.push(oData[0].ID);
-            window.localStorage.setItem("userIDs", JSON.stringify(userIdList));
+            // window.localStorage.setItem("userIDs", JSON.stringify(userIdList));
   
             td1.appendChild(username);
             td2.appendChild(department);
           });
   
         });
-  
-  
-        table.search("Staff").draw();
+        
         table.column(0).visible(false);
         table.column(3).visible(false);
         table.column(5).visible(false);

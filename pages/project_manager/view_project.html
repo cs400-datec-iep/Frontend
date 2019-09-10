@@ -19,7 +19,6 @@
     <!-- Custom styles for this page-->
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
-    <link href="css/proj_manager.css" rel="stylesheet">
 
 
     <!-- Session Check -->
@@ -205,7 +204,7 @@
 
                                      <!-- Progress Bar-->
                                     <div class="progress fh-1-6 mt-3 text-center">
-                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" style="width: 0%" id="progress_meter"><span class="text-white text-sm" id="project_percentage_text"></span></div>
+                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white text-sm" id="project_percentage_text"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +237,11 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Team<i class="fas fa-users text-xxlg text-gray-300 float-right"></i></div>
-                                    <div class="text-sm h5 mb-0 text-gray-800" id="project_desc"></div>
+                                    <div class="text-sm h5 mb-0 text-gray-800" >
+                                      <p>Here is a list of your project team members:</p>
+                                      <ul id="user_list">
+                                      </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -276,15 +279,21 @@
                 </div>
 
                 <div class="col-xl-6 mt-4 ">
-                    <div class="card shadow-xxlg mb-4">
-                        <div class="card-body">
-                            <div class="col mr-2">
-                                <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project Documents<i class="fas fa-file text-xxlg text-gray-300 float-right"></i></div>
-                            </div> 
-
-                        </div>
-                    </div>
-                </div>
+                  <div class="card shadow-xxlg py-2">
+                      <div class="card-body ">
+                          <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                  <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project Documents<i class="fas fa-folder text-xxlg text-gray-300 float-right"></i></div>
+                                  <div class="text-sm h5 mb-0 text-gray-800" >
+                                    Here is a list of your project documents:
+                                    <ul id="document_list">
+                                    </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
             <!--End of Third Row -->    
             
@@ -324,6 +333,43 @@
     </div>
   </div>
 
+  <!-- Edit Project Modal-->
+  <div class="modal fade" id="editProjectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Project Details</h5>
+        </div>
+        <div class="modal-body">
+
+          <!-- Project name and client name -->
+          <div class="form-group">
+            <label for="projName">Project Name:</label>
+            <input type="text" id="projName" class="form-control" required>
+          </div>
+
+          <!-- Project Description -->
+          <div class="form-group">
+              <label for="projDesc">Project Description:</label>
+              <textarea id="projDesc" class="form-control m-auto" rows="3" required></textarea>
+          </div>
+
+           <!-- Project Files -->
+           <div class="form-group">
+              <label for="projName">Your project documents:</label>
+              <ul id="edit_document_list">
+              </ul>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-danger text-white" onclick="editProject();">Edit</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -334,13 +380,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="../../assets/js/sb-admin-2.min.js"></script>
-
-  <!-- Scripts for this dashboard -->
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
+
+  <!-- Scripts for this dashboard -->
   <script src="js/get-project-details.js"></script>
   <script src="js/chart-get-task-details.js"></script>
-
+  <!-- <script src="js/edit-modal-details.js"></script> -->
 
 
 </body>

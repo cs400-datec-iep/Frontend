@@ -54,22 +54,7 @@ function uploadBlob() {
                         'Directory': fileLocation + "/" + lastProjectID + "_" + file.name
                     }
                     ArrayOfFiles.push(payload_files);
-                  
-
-                    // //link uploaded file to the project ID
-                    // for (var i = 0; i < ArrayOfFiles.length; i++) {
-                       
-                    //     fetch(urlFiles, {
-                    //         async: false,
-                    //         method: 'POST',
-                    //         crossDomain: true,
-                    //         headers: {
-                    //             'Content-Type': 'application/json',
-                    //             'Authorization': 'Bearer ' + token
-                    //         },
-                    //         body: JSON.stringify(payload_files)
-                    //     }).catch(error => { console.error('Error:', error); return error; });
-                    // }
+                    console.log(ArrayOfFiles);
                 }
             });
 
@@ -86,13 +71,23 @@ function uploadBlob() {
 
             var list = document.getElementById("fileList");
             var item = document.createElement("li");
+            item.classList.add();
+            item.id = file.name;
             var p = document.createElement("p");
             p.innerHTML = "<a href='" + fileLocation + "/" + lastProjectID + "_" + file.name + "'>" + file.name + "</a>";
             var btn = document.createElement("button");
             btn.classList.add('btn-circle','btn-danger','col-md-2','ml-2');
             btn.innerHTML = "X";
             btn.onclick = function(){
-                console.log(ArrayOfFiles.pop());
+
+                for(var i = 0; i < ArrayOfFiles.length; i++) {
+                    if(ArrayOfFiles[i].Name == file.name){
+                        ArrayOfFiles.splice(i,1);
+                        var elem = document.getElementById(item.id);
+                        elem.parentNode.removeChild(elem);
+                        console.log(ArrayOfFiles);
+                    }
+                }
             };
             btn.setAttribute("type","button");
             p.appendChild(btn);

@@ -30,8 +30,8 @@ function editPassword() {
             },
             body: JSON.stringify(payload_password)
         }).then(function (a) { 
-            console.log(a.json());
-            return a.json();
+            alert("Your password has been successfully changed.");
+
         }).catch(error => { console.error('Error:', error); return error; });
     }
 }

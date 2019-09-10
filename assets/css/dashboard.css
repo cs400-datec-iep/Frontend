@@ -57,7 +57,42 @@ animation: spin 1s linear infinite;
 }
 /* Project manager specific styles */
 
+/* Blinking Animation */
+.text-blink {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {  
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+/* ///////////////////////////////////////////////////////// */
+/* Blinking Shadow */
+@keyframes blink {
+    0% { box-shadow: -2px 4px 13px 12px #FF6347 ; }
+    50% { box-shadow: none; }
+    100% { box-shadow: -2px 4px 13px 12px #FF6347; }
+}
 
+@-webkit-keyframes blink {
+    0% { box-shadow: -2px 4px 13px 12px #FF6347; }
+    50% { box-shadow: 0 0 0; }
+    100% { box-shadow: -2px 4px 13px 12px #FF6347; }
+}
+
+.blink {
+    -webkit-animation: blink 1.0s linear infinite;
+    -moz-animation: blink 1.0s linear infinite;
+    -ms-animation: blink 1.0s linear infinite;
+    -o-animation: blink 1.0s linear infinite;
+    animation: blink 1.0s linear infinite;
+}
+  
+/* Blinking Animation */
+
+
+/* Account management styles */
 .field-icon {
     float: right;
     margin-right: 5px;
@@ -65,3 +100,4 @@ animation: spin 1s linear infinite;
     position: relative;
     z-index: 2;
   }
+  /* Account management styles */
