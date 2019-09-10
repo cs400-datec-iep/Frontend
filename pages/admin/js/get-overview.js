@@ -100,18 +100,6 @@ $(document).ready(function () {
                         }
                     }, time);
 
-                    total_users = (parseInt(Total_Management) + parseInt(Total_PM) + parseInt(Total_Staff));
-
-                    loop1 = setInterval(function () {
-                        "use strict";
-                        if (i > speed) {
-                            clearInterval(loop1);
-                            selector1.textContent = total_users;
-                        } else {
-                            selector1.textContent = randomNum();
-                            i++;
-                        }
-                    }, time);
                 })
                 .catch(error => { console.error('Error:', error); return error; });
 
@@ -151,150 +139,165 @@ $(document).ready(function () {
                                     'Authorization': 'Bearer ' + token
                                 }
                             }).then(function (a) { return a.json() })
-                            .then(function (Staff) {
-                                active_Staff = Staff;
+                                .then(function (Staff) {
+                                    active_Staff = Staff;
 
-                                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                // Set new default font family and font color to mimic Bootstrap's default styling
-                                Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-                                Chart.defaults.global.defaultFontColor = '#858796';
 
-                                function number_format(number, decimals, dec_point, thousands_sep) {
-                                    // *     example: number_format(1234.56, 2, ',', ' ');
-                                    // *     return: '1 234,56'
-                                    number = (number + '').replace(',', '').replace(' ', '');
-                                    var n = !isFinite(+number) ? 0 : +number,
-                                        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                                        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                                        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                                        s = '',
-                                        toFixedFix = function (n, prec) {
-                                            var k = Math.pow(10, prec);
-                                            return '' + Math.round(n * k) / k;
-                                        };
-                                    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-                                    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-                                    if (s[0].length > 3) {
-                                        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-                                    }
-                                    if ((s[1] || '').length < prec) {
-                                        s[1] = s[1] || '';
-                                        s[1] += new Array(prec - s[1].length + 1).join('0');
-                                    }
-                                    return s.join(dec);
-                                }
 
-                                
-                                // Generate user graph
+                                    total_users = (parseInt(Total_Management) + parseInt(Total_PM) + parseInt(Total_Staff));
 
-                                var activeTotal = parseInt(active_management) + parseInt(active_PM) + parseInt(active_Staff);
-
-                                // get number of users
-                                var InactiveTotal = total_users - activeTotal;
-                                var InactiveStaff = Total_Staff - active_Staff;
-                                var InactivePm = Total_PM - active_PM;
-                                var InactiveManagement = Total_Management - active_management;
-                                
-                                //Generate Chart For User Status
-                                var ctx = document.getElementById('statusBarChart');
-                                var myChart = new Chart(ctx, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: ["Total", "Mangement", "Project Managers", "Staff"],
-                                        datasets: [{
-                                            label: 'Active Users',
-                                            data: [activeTotal, active_management, active_PM, active_Staff],
-                                            backgroundColor: [
-                                                '#1cc88a',
-                                                '#1cc88a',
-                                                '#1cc88a',
-                                                '#1cc88a',
-                                            ],
-                                            borderWidth: 2
-                                        },
-                                        {
-                                            label: 'Inactive Users',
-                                            data: [InactiveTotal, InactiveManagement, InactivePm, InactiveStaff],
-                                            backgroundColor: [
-                                                '#e74a3b',
-                                                '#e74a3b',
-                                                '#e74a3b',
-                                                '#e74a3b',
-                                            ],
-                                            borderWidth: 2
+                                    loop1 = setInterval(function () {
+                                        "use strict";
+                                        if (i > speed) {
+                                            clearInterval(loop1);
+                                            selector1.textContent = total_users;
+                                        } else {
+                                            selector1.textContent = randomNum();
+                                            i++;
                                         }
-                                        ]
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        layout: {
-                                            padding: {
-                                                left: 10,
-                                                right: 25,
-                                                top: 25,
-                                                bottom: 0
-                                            }
-                                        },
-                                        scales: {
-                                            yAxes: [{
-                                                stacked: true,
-                                                time: {
-                                                    unit: 'User Type'
-                                                },
-                                                gridLines: {
-                                                    display: false,
-                                                    drawBorder: false
-                                                },
-                                                ticks: {
-                                                    beginAtZero: true
-                                                },
-                                                maxBarThickness: 25,
-                                            }],
-                                            xAxes: [{
-                                                stacked: true,
-                                                ticks: {
-                                                    beginAtZero: true
-                                                },
-                                                gridLines: {
-                                                    color: "rgb(234, 236, 244)",
-                                                    zeroLineColor: "rgb(234, 236, 244)"
-                                                }
-                                            }]
-                                        },
-                                        legend: {
-                                            display: false
-                                        },
-                                        tooltips: {
-                                            titleMarginBottom: 10,
-                                            titleFontColor: '#6e707e',
-                                            titleFontSize: 14,
-                                            backgroundColor: "rgb(255,255,255)",
-                                            bodyFontColor: "#858796",
-                                            borderColor: '#dddfeb',
-                                            borderWidth: 1,
-                                            xPadding: 15,
-                                            yPadding: 15,
-                                            displayColors: false,
-                                            caretPadding: 10,
-                                            callbacks: {
-                                                label: function (tooltipItem, chart) {
-                                                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                                    return datasetLabel + ':' + number_format(tooltipItem.yLabel);
-                                                }
-                                            }
-                                        },
+                                    }, time);
+
+                                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                    // Set new default font family and font color to mimic Bootstrap's default styling
+                                    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                                    Chart.defaults.global.defaultFontColor = '#858796';
+
+                                    function number_format(number, decimals, dec_point, thousands_sep) {
+                                        // *     example: number_format(1234.56, 2, ',', ' ');
+                                        // *     return: '1 234,56'
+                                        number = (number + '').replace(',', '').replace(' ', '');
+                                        var n = !isFinite(+number) ? 0 : +number,
+                                            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                                            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                                            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                                            s = '',
+                                            toFixedFix = function (n, prec) {
+                                                var k = Math.pow(10, prec);
+                                                return '' + Math.round(n * k) / k;
+                                            };
+                                        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+                                        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+                                        if (s[0].length > 3) {
+                                            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+                                        }
+                                        if ((s[1] || '').length < prec) {
+                                            s[1] = s[1] || '';
+                                            s[1] += new Array(prec - s[1].length + 1).join('0');
+                                        }
+                                        return s.join(dec);
                                     }
-                                });
-                                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                                // var load = document.getElementById("load");
-                                // var container = document.getElementById("container");
-                                // load.classList.add('display-none');
-                                // container.classList.remove('display-none');
-                                // container.classList.add('display-inline-block');
 
 
-                            }).catch(error => { console.error('Error:', error); return error; });
+                                    // Generate user graph
+
+                                    var activeTotal = parseInt(active_management) + parseInt(active_PM) + parseInt(active_Staff);
+
+                                    // get number of users
+                                    var InactiveTotal = total_users - activeTotal;
+                                    var InactiveStaff = Total_Staff - active_Staff;
+                                    var InactivePm = Total_PM - active_PM;
+                                    var InactiveManagement = Total_Management - active_management;
+
+                                    //Generate Chart For User Status
+                                    var ctx = document.getElementById('statusBarChart');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ["Total", "Mangement", "Project Managers", "Staff"],
+                                            datasets: [{
+                                                label: 'Active Users',
+                                                data: [activeTotal, active_management, active_PM, active_Staff],
+                                                backgroundColor: [
+                                                    '#1cc88a',
+                                                    '#1cc88a',
+                                                    '#1cc88a',
+                                                    '#1cc88a',
+                                                ],
+                                                borderWidth: 2
+                                            },
+                                            {
+                                                label: 'Inactive Users',
+                                                data: [InactiveTotal, InactiveManagement, InactivePm, InactiveStaff],
+                                                backgroundColor: [
+                                                    '#e74a3b',
+                                                    '#e74a3b',
+                                                    '#e74a3b',
+                                                    '#e74a3b',
+                                                ],
+                                                borderWidth: 2
+                                            }
+                                            ]
+                                        },
+                                        options: {
+                                            maintainAspectRatio: false,
+                                            layout: {
+                                                padding: {
+                                                    left: 10,
+                                                    right: 25,
+                                                    top: 25,
+                                                    bottom: 0
+                                                }
+                                            },
+                                            scales: {
+                                                yAxes: [{
+                                                    stacked: true,
+                                                    time: {
+                                                        unit: 'User Type'
+                                                    },
+                                                    gridLines: {
+                                                        display: false,
+                                                        drawBorder: false
+                                                    },
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    },
+                                                    maxBarThickness: 25,
+                                                }],
+                                                xAxes: [{
+                                                    stacked: true,
+                                                    ticks: {
+                                                        beginAtZero: true
+                                                    },
+                                                    gridLines: {
+                                                        color: "rgb(234, 236, 244)",
+                                                        zeroLineColor: "rgb(234, 236, 244)"
+                                                    }
+                                                }]
+                                            },
+                                            legend: {
+                                                display: false
+                                            },
+                                            tooltips: {
+                                                titleMarginBottom: 10,
+                                                titleFontColor: '#6e707e',
+                                                titleFontSize: 14,
+                                                backgroundColor: "rgb(255,255,255)",
+                                                bodyFontColor: "#858796",
+                                                borderColor: '#dddfeb',
+                                                borderWidth: 1,
+                                                xPadding: 15,
+                                                yPadding: 15,
+                                                displayColors: false,
+                                                caretPadding: 10,
+                                                callbacks: {
+                                                    label: function (tooltipItem, chart) {
+                                                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                                        return datasetLabel + ':' + number_format(tooltipItem.yLabel);
+                                                    }
+                                                }
+                                            },
+                                        }
+                                    });
+                                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                    // var load = document.getElementById("load");
+                                    // var container = document.getElementById("container");
+                                    // load.classList.add('display-none');
+                                    // container.classList.remove('display-none');
+                                    // container.classList.add('display-inline-block');
+
+
+                                }).catch(error => { console.error('Error:', error); return error; });
 
                         })
                         .catch(error => { console.error('Error:', error); return error; });
@@ -303,6 +306,6 @@ $(document).ready(function () {
 
         }).catch(error => { console.error('Error:', error); return error; });
 
-}); 
+});
 
 
