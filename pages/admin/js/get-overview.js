@@ -20,7 +20,7 @@ $(document).ready(function () {
         return Math.floor(Math.random() * 9) + 1;
     }
 
-    var loop1, loop2, loop3, loop4, time = 30, i = 0, speed = 80,
+    var loop1, loop2, loop3, loop4, time = 30, i = 0, speed = 100,
         selector4 = document.querySelector('#Number_of_Staff'),
         selector3 = document.querySelector('#Number_of_PM'),
         selector2 = document.querySelector('#Number_of_Management'),
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
             loop4 = setInterval(function () {
                 "use strict";
-                if (i > speed) {
+                if (i > 40) {
                     clearInterval(loop4);
                     selector4.textContent = s;
                 } else {
@@ -65,7 +65,7 @@ $(document).ready(function () {
 
                     loop3 = setInterval(function () {
                         "use strict";
-                        if (i > speed) {
+                        if (i > 80) {
                             clearInterval(loop3);
                             selector3.textContent = pm;
                         } else {
@@ -91,7 +91,7 @@ $(document).ready(function () {
 
                     loop2 = setInterval(function () {
                         "use strict";
-                        if (i > speed) {
+                        if (i > 60) {
                             clearInterval(loop2);
                             selector2.textContent = m;
                         } else {
@@ -141,8 +141,6 @@ $(document).ready(function () {
                             }).then(function (a) { return a.json() })
                                 .then(function (Staff) {
                                     active_Staff = Staff;
-
-
 
                                     total_users = (parseInt(Total_Management) + parseInt(Total_PM) + parseInt(Total_Staff));
 
