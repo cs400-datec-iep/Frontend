@@ -1,15 +1,12 @@
+// Global vars
+var arryfordropdown = [];
+
 $(document).ready(function () {
 
     //get ID from url
     var url = window.location.href;
     var file_array = [];
     var projectID = url.substring(url.lastIndexOf('?') + 1);
-
-    var users = [];
-    var user_object = {
-        text: "",
-        value: ""
-    }
 
     var token = sessionStorage.getItem("token");
     var urlGetProjectID = 'https://datectestapi.azurewebsites.net/api/Projects/'+projectID;
@@ -149,18 +146,13 @@ $(document).ready(function () {
             }
         }).then(function (a) { return a.json() })
         .then(function (k) {
-            
             var ul = document.getElementById("user_list");
-           
+
+            
+            // Collect user project into array for edit dropdown
+            arryfordropdown = k;
             // loop thorugh array of users and append them to the display list
             for(var i = 0; i< k.length; i++){
-                // Collect user project into array for edit dropdown
-                user_object.text = k[i].Username;
-                user_object.value = k[i].ID;
-                // console.log(user_object);
-
-                users[i] = user_object;
-                console.log(users);
 
                 var li = document.createElement("li");
                 var p = document.createElement("p");
