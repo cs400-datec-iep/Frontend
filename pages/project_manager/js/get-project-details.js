@@ -4,7 +4,12 @@ $(document).ready(function () {
     var url = window.location.href;
     var file_array = [];
     var projectID = url.substring(url.lastIndexOf('?') + 1);
-    var ifClicked;
+
+    var users = [];
+    var user_object = {
+        text: "",
+        value: ""
+    }
 
     var token = sessionStorage.getItem("token");
     var urlGetProjectID = 'https://datectestapi.azurewebsites.net/api/Projects/'+projectID;
@@ -144,10 +149,19 @@ $(document).ready(function () {
             }
         }).then(function (a) { return a.json() })
         .then(function (k) {
+            
             var ul = document.getElementById("user_list");
            
             // loop thorugh array of users and append them to the display list
             for(var i = 0; i< k.length; i++){
+                // Collect user project into array for edit dropdown
+                user_object.text = k[i].Username;
+                user_object.value = k[i].ID;
+                // console.log(user_object);
+
+                users[i] = user_object;
+                console.log(users);
+
                 var li = document.createElement("li");
                 var p = document.createElement("p");
                 p.classList.add('text-info')
@@ -155,7 +169,6 @@ $(document).ready(function () {
                 li.appendChild(p);
                 ul.appendChild(li);
             }
-
             document.getElementById("load").style.display = "none";
             document.getElementById("container").classList.remove("display-none");
 

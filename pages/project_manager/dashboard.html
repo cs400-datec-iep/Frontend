@@ -20,9 +20,9 @@
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-
     <!-- Session Check -->
     <script src="../../assets/js/sessionCheck.js"></script>
+
 
 </head>
 
@@ -73,10 +73,15 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          
+          <!-- Session Timer -->
+          <div class="nav-item float-left">
+            <p id="cd"></p>
+          </div>
+
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -263,11 +268,12 @@
 
   <!-- Custom scripts for all pages-->
   <script src="../../assets/js/sb-admin-2.min.js"></script>
-
-  <!-- Scripts for this dashboard -->
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
+
+  <!-- Scripts for this dashboard -->
   <script src="js/get-all-projects.js"></script>
+
   <script>
     if((localStorage.getItem('created_project') == "true")){
         localStorage.setItem('created_project',"false");

@@ -19,6 +19,7 @@
   <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <!-- Custom styles for this page-->
+  <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
@@ -195,7 +196,7 @@
 
           <!-- Content Row -->
           <div class="Row">
-            <div class="col-xl-11 col-md-6 m-auto">
+            <div class="col-xl-11 col-md-10 m-auto">
               <div class="card shadow mb-4">
 
                 <!--Card Header -->
@@ -239,64 +240,34 @@
                             </div>
                         </div>
 
-                        <!-- DataTable -->
-                        <div class="card mb-3">
-                          <div class="table-responsive">
-                              <p class="tableTitle">Please select your project members below:</p>
-                              <button id="add_members" class="btn btn-primary btn-block text-white col-2 float-right m-2" type="button">Add Members</button>
-                              </ul>
-
-                              <table class="project-add-members-tbl text-gray" id="current_members">
-                                  <thead>
-                                      <tr>
-                                          <th scope="col">Username</th>
-                                          <th scope="col">Department</th>
-                                          <th scope="col" style="display:none" id="idCol">id</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                  </tbody>
-                              </table>
-
-                              <table class=" table table-bordered" id="staffTable" width="100%"
-                                  cellspacing="0">
-                                  <thead>
-                                      <tr>
-                                          <th>ID</th>
-                                          <th>Username</th>
-                                          <th>Email</th>
-                                          <th>Role</th>
-                                          <th>Department</th>
-                                          <th>Active</th>
-                                      </tr>
-                                  </thead>
-                              </table>
-                          </div>
-                      </div>
-
-                      <!-- File Upload -->
-                      <div class="form-group">
-                        
-                          <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
-                          <div class="form-row">
-                              <div class="custom-file col-9">
-                                  <input type="file" class="custom-file-input float-left" id="FileInput" name="file">
-                                  <label class="custom-file-label float-right" for="FileInput">Choose a file...</label>
-                              </div>
-                              <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
-                          </div>
-
-                        <p class="m-0 mt-1">Upload Progress:</p>
-                        <div class="progress m-auto" id="uploadProgressBarContainer">
-                            <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
-                                0%
-                            </div>
+                        <!-- Member select -->
+                        <div class="form-group">
+                          <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown h-20"></select>
                         </div>
-                        
-                        <p class="project-sub-text mt-3">Uploaded file list:</p>
-                        <ul class="uploaded-file-list" id="fileList">
-                        </ul>
-                      </div>
+
+                        <!-- File Upload -->
+                        <div class="form-group">
+                          
+                            <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
+                            <div class="form-row">
+                                <div class="col-9 ml-1">
+                                    <input type="file" class="custom-file-input" id="FileInput" name="file">
+                                    <label class="custom-file-label" for="FileInput">Choose a file...</label>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                            </div>
+
+                          <p class="m-0 mt-2 ">Upload Progress:</p>
+                          <div class="progress mb-2 mt-2 h-10" id="uploadProgressBarContainer">
+                              <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
+                                  <span class="ml-2">0%</span>
+                              </div>
+                          </div>
+                          
+                          <p class="project-sub-text">Uploaded file list:</p>
+                          <ul class="uploaded-file-list" id="fileList">
+                          </ul>
+                        </div>
 
                       <!-- Submit Button -->
                       <input class="btn btn-primary btn-block text-white col-4 m-auto" type="submit">
@@ -375,51 +346,43 @@
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../../assets/js/sb-admin-s.min.js"></script>
-
-  <!-- Scripts for this dashboard -->
+  <script src="../../assets/js/sb-admin-2.min.js"></script>
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
+
+  <!-- Scripts for this dashboard -->
+  <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
   <script src="js/get-all-project-members.js"></script>
   <script src="js/upload-file.js"></script>
   <script>
-  
-  //set current date
-  let today = new Date().toISOString().substr(0, 10);
-  document.querySelector("#projStartDate").value = today;
-  document.querySelector("#projEndDate").value = today;
+    // Get Dropdownvalues
+    $('#members_list')
+    .dropdown({
+      placeholder:'Please select your members',
+      onChange: function(value){
+          userIdList = value
+          console.log(userIdList);
+      }
+    });
 
-  //get current table row for memebers
-  var tablerow = document.getElementById("current_members").rows.length;
+    //set current date
+    let today = new Date().toISOString().substr(0, 10);
+    document.querySelector("#projStartDate").value = today;
+    document.querySelector("#projEndDate").value = today;
 
-  //display notice if table empty
-  if (tablerow == 1) {
-      var table = document.getElementById("current_members").getElementsByTagName('tbody')[0];
+    //Places filename in the "Choose a file" label
+    $('#FileInput').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
 
-      var tr = table.insertRow();
-      var td1 = tr.insertCell(0);
-      var td2 = tr.insertCell(1);
-      var trText = document.createTextNode('No Members Selected');
-      td1.appendChild(trText);
-
-      var no_members = true;
-  } else {
-      no_members = false;
-  }
-
-  //Places filename in the "Choose a file" label
-  $('#FileInput').on('change',function(){
-      //get the file name
-      var fileName = $(this).val();
-      //replace the "Choose a file" label
-      $(this).next('.custom-file-label').html(fileName);
-  })
-
-  //Redirect button for modal
-  document.getElementById("modal_redirect").onclick = function () {
-      localStorage.setItem('created_project',"true");
-      window.location.href ="dashboard.html";
-  };
+    //Redirect button for modal
+    document.getElementById("modal_redirect").onclick = function () {
+        localStorage.setItem('created_project',"true");
+        window.location.href ="dashboard.html";
+    };
   </script>
   <script src="js/azure-storage.blob.js"></script>
   <script src="js/file_upload_azure.js"></script>

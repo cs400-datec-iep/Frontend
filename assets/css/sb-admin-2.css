@@ -8454,6 +8454,15 @@ button.bg-dark:focus {
   height: auto !important;
 }
 
+.h-10{
+  height: 1.5rem;
+}
+
+
+.h-20{
+  height: 2.5rem;
+}
+
 .mw-100 {
   max-width: 100% !important;
 }

@@ -17,6 +17,7 @@
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this page-->
+    <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
@@ -46,10 +47,16 @@
       <hr class="sidebar-divider my-3">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item active display-none" id="icon_container">
         <a class="nav-link "  >
-          <i class="fas fa-fw fa-folder-open display-none" id="icon_container"></i>
+          <i class="fas fa-fw fa-folder-open " ></i>
           <span id="project_name_side"></span></a>
+        <a class="nav-link"  >
+            <i class="fas fa-fw fa-tasks "></i>
+            <span>Task View</span></a>  
+        <a class="nav-link"  >
+            <i class="fas fa-fw fa-clipboard-list "></i>
+            <span>Smart Analysis</span></a>      
       </li>
 
       <!-- Side Bar toggle -->
@@ -172,7 +179,7 @@
                     <p id="project_name_title" class="font-weight-bold text-primary m-0"></p>
                 </div>
                 <div class="col-xl-12 m-auto ">
-                    <div class="card shadow-xxlg h-100 py-2">
+                    <div class="card shadow-xlg h-100 py-2">
                         <div class="card-body ">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -219,7 +226,7 @@
             <div class="row">
             
                 <div class="col-xl-6 mt-4 ">
-                    <div class="card shadow-xxlg py-2">
+                    <div class="card shadow-xlg py-2">
                         <div class="card-body ">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -232,7 +239,7 @@
                 </div>
 
                 <div class="col-xl-6 mt-4 ">
-                    <div class="card shadow-xxlg py-2">
+                    <div class="card shadow-xlg py-2">
                         <div class="card-body ">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -255,7 +262,7 @@
              <div class="row">
 
                 <div class="col-xl-6 mt-4 ">
-                    <div class="card shadow-xxlg mb-4">
+                    <div class="card shadow-xlg mb-4">
                         <div class="card-body">
                             <div class="col mr-2">
                                 <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Task Summary<i class="fas fa-chalkboard text-xxlg text-gray-300 float-right"></i></div>
@@ -279,7 +286,7 @@
                 </div>
 
                 <div class="col-xl-6 mt-4 ">
-                  <div class="card shadow-xxlg py-2">
+                  <div class="card shadow-xlg py-2">
                       <div class="card-body ">
                           <div class="row no-gutters align-items-center">
                               <div class="col mr-2">
@@ -354,6 +361,11 @@
               <textarea id="projDesc" class="form-control m-auto" rows="3" required></textarea>
           </div>
 
+          <!-- Member select -->
+          <div class="form-group">
+            <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown h-20"></select>
+          </div>
+
            <!-- Project Files -->
            <div class="form-group">
               <label for="projName">Your project documents:</label>
@@ -384,8 +396,20 @@
   <script src="../../assets/js/get-username.js"></script>
 
   <!-- Scripts for this dashboard -->
+  <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
   <script src="js/get-project-details.js"></script>
+  <script src="js/get-all-project-members-edit.js"></script>
   <script src="js/chart-get-task-details.js"></script>
+  <script>
+     // Get Dropdownvalues
+     $('#members_list')
+      .dropdown({
+        placeholder:'Please select your members',
+        onChange: function(value){
+            console.log(value);
+        }
+      });
+  </script>
   <!-- <script src="js/edit-modal-details.js"></script> -->
 
 

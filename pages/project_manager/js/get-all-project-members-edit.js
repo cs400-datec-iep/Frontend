@@ -1,5 +1,4 @@
-
-// populate dropdown create project
+// populate edit dropdown
 $(document).ready(function () {
   var token = sessionStorage.getItem("token");
   var url = 'https://datectestapi.azurewebsites.net/api/GetActiveUserForAddMembers/' + sessionStorage.getItem("userID");
@@ -15,12 +14,20 @@ $(document).ready(function () {
   }).then(response => response.json())
     .then((a) => {
 
-      a.forEach(element => {
-        $('#members_list').append($('<option>', {
-          value: element.ID,
-          text: element.Username
-        }))
-      });
+      for(var i = 0; i < a.length; i++){
+        // if(user_array[i].value == a[i].ID){
+        //   $('#members_list').append($('<option>', {
+        //     value: a[i].ID,
+        //     text: a[i].Username,
+        //     selected: true
+        //   }))
+        // }else{
+        //   $('#members_list').append($('<option>', {
+        //     value: a[i].ID,
+        //     text: a[i].Username,
+        //   }))
+        // }
+      }
 
     }).catch(error => { console.error('Error:', error); return error; });
 
