@@ -1,5 +1,8 @@
 function edit_user(){
+    //Urls
+    var urlEditUserMains = urlMain+'api/UserMains/';
 
+    //Get html containers
     var id = document.getElementById('id').value ;
     var userName = document.getElementById('userName').value ;
     var role = document.getElementById('role').value ;
@@ -7,10 +10,8 @@ function edit_user(){
     var department = document.getElementById('department').value ;
     var email = document.getElementById('email').value ;
     var status = document.getElementById('status').value ;
-    
-    token = sessionStorage.getItem("token");
-    var url_usermains = 'https://datectestapi.azurewebsites.net/api/UserMains/'+id;
 
+    //Check PM Role To place Projects on hold
     if(prev_role == "Project Manager" && role!= "Project Manager"){
         confirm("Role changed from project manager, this user will be removed from the following projects and will all be placed on hold.");
 
@@ -29,7 +30,7 @@ function edit_user(){
     };
 
     //Upload to user Main table if registered
-    fetch(url_usermains, {
+    fetch(urlEditUserMains + id, {
         async: false,
         method: 'PUT',
         crossDomain: true,
@@ -38,9 +39,18 @@ function edit_user(){
             'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify(payload_usermains)
-    }).then(function (a) { console.log("User Edited" + a.json()); 
-    window.location.assign("edit_user.html");return a.json()})
-    .catch(error => { console.error('Error:', error); return error; });
+    }).then(function (a) { 
+        console.log("User Edited" + a.json()); 
+        alert("User Successfull Edited")
+        window.location.assign("edit_user.html");
+        return a.json()
+    }).catch(error => { 
+        console.error('Error:', error); 
+        alert("Error Processing Request, Refreshing page")
+        window.location.reload;
+        return error; 
+    });
 
+    //Set session var to refresh page
     sessionStorage.setItem("edit_clicked", false);
 }

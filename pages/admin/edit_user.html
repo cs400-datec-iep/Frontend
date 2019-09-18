@@ -11,24 +11,21 @@
 
   <!-- Custom fonts for this page-->
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-
-  <!-- Page level plugin CSS-->
-  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this page-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../../assets/css/dashboard.css" rel="stylesheet">
-
-
+  
   <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
   <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
 
 <body id="page-top">
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -175,85 +172,91 @@
     <i class="fas fa-angle-up"></i>
   </a>
     
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+              <div class="modal-footer">
+                  <a class="btn btn-primary" href="../../index.html">Logout</a>
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary" href="../../index.html">Logout</a>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- Edit Modal-->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog " role="document">
+          <form>
+              <div class="modal-content">
+                  <!-- Header -->
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
+                  </div>
 
-    <!-- e=Edit Modal-->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog " role="document">
-            <form>
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="id" name="id">
+                  <!-- Start of Content -->
+                  <div class="modal-body">
+                      <input type="hidden" id="id" name="id">
+                      
+                      <div class="form-group">
+                        <label for="userName">Username:</label>
+                        <input type="text" id="userName" class="form-control" placeholder="Username" required="required" autofocus="autofocus" >
+                      </div>
 
-                        <div class="form-group">
-                          <label for="userName">Username:</label>
-                          <input type="text" id="userName" class="form-control" placeholder="Username" required="required" autofocus="autofocus" >
-                        </div>
-
-                        <div class="form-group row">
-                          <div class="col-md-6">
-                              <label for="role">Role:</label>
-                              <input type="text" id="prev_role" hidden="true">
-                                <select class="custom-select dash-edit-modal-dropdown" id="role">
-                                    <option selected>Select A Role</option>
-                                    <option value="System Administrator">System Administrator</option>
-                                    <option value="Management">Management</option>
-                                    <option value="Project Manager">Project Manager</option>
-                                    <option value="Staff">Staff</option>
-                                </select>
-                          </div>
-                          <div class="col-md-6">
-                            <label for="department">Department:</label>
-                            <input type="text" id="department" class="form-control" placeholder="Department" required="required">
-                          </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                          <div class="col-md-6">
-                            <label for="email">Email address:</label>
-                            <input type="email" id="email" class="form-control"
-                                placeholder="Email address" required="required" disabled="true">
-                          </div>
-                          <div class="col-md-6">
-                              <label for="status">Status:</label>
-                              <select class="custom-select dash-edit-modal-dropdown" id="status">
-                                  <option selected value="true">Active</option>
-                                  <option value="false">Inactive</option>
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="role">Role:</label>
+                            <input type="text" id="prev_role" hidden="true">
+                              <select class="custom-select dash-edit-modal-dropdown" id="role">
+                                  <option selected>Select A Role</option>
+                                  <option value="System Administrator">System Administrator</option>
+                                  <option value="Management">Management</option>
+                                  <option value="Project Manager">Project Manager</option>
+                                  <option value="Staff">Staff</option>
                               </select>
-                          </div>
                         </div>
+                        <div class="col-md-6">
+                          <label for="department">Department:</label>
+                          <input type="text" id="department" class="form-control" placeholder="Department" required="required">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="email">Email address:</label>
+                          <input type="email" id="email" class="form-control"
+                              placeholder="Email address" required="required" disabled="true">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="status">Status:</label>
+                            <select class="custom-select dash-edit-modal-dropdown" id="status">
+                                <option selected value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                      </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-danger text-white" onclick="edit_user();">Edit</a>
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    </div>
-            </form>
-        </div>
-    </div>
+                  </div>
+                  <!-- End of Content -->
+
+                  <!-- Footer -->
+                  <div class="modal-footer">
+                      <a class="btn btn-danger text-white" onclick="edit_user();">Edit</a>
+                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                  </div>
+
+          </form>
+      </div>
+  </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../assets/vendor/jquery/jquery.min.js"></script>
@@ -270,9 +273,9 @@
     <script src="../../assets/js/get-username.js"></script>
 
     <!-- Scripts for this dashboard -->
-    <script src="js/create-user.js"></script>
-    <script src="js/edit-user.js"></script>
+    <script src="../../assets/js/global-variables.js"></script>
     <script src="js/edit-user-datatable.js"></script>
+    <script src="js/edit-user.js"></script>
 
 
 </body>

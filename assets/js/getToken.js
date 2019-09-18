@@ -1,8 +1,16 @@
+/*////////////////////////////////////
+
+Function to Get token for user login
+
+*/////////////////////////////////////
 async function getToken() {
+  //Get html containers
   var username = document.getElementById("usrnme").value;
   var password = document.getElementById("pass").value;
   var data;
-  var url = 'https://datectestapi.azurewebsites.net/token';
+
+  //Urls
+  var urlToken = urlMain+'token';
 
   //data encapsulation
   var details = {
@@ -10,6 +18,8 @@ async function getToken() {
     'password': password,
     'grant_type': 'password'
   };
+
+  //Create a form
   var formBody = [];
   for (var property in details) {
     var encodedKey = encodeURIComponent(property);
@@ -19,15 +29,15 @@ async function getToken() {
   formBody = formBody.join("&");
 
   //Fetch token
-  await fetch(url, {
+  await fetch(urlToken, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
     body: formBody
-  })
-    .then(response => response.json())
+  }).then(response => response.json())
     .then(response => {
+
       if (response.access_token != null) {
         data = response.access_token;
       }
@@ -35,6 +45,7 @@ async function getToken() {
         console.error('Error:', response.error_description);
         data = false;
       }
+
     }).catch(error => {
       console.error('Error:', error)
       return error;

@@ -11,24 +11,20 @@
 
   <!-- Custom fonts for this page-->
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-
-  <!-- Page level plugin CSS-->
-  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this page-->
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-
   <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
   <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
 
 <body id="page-top">
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -128,15 +124,14 @@
             <div class="col-xl-9 col-md-11 m-auto">
               <div class="card shadow mb-4">
                 
-                  <!--Card Header -->
-                  <div class="card-header py-3">
-                      <i class="fas fa-edit float-left text-xxlg"> </i>
-                      <h6 class="font-weight-bold text-xxlg text-primary ml-5">Create A User</h6>
-                      <p>This page allows you to create a user. Please enter all details.</p>
-                    </div>
+                <!--Card Header -->
+                <div class="card-header py-3">
+                  <i class="fas fa-edit float-left text-xxlg"> </i>
+                  <h6 class="font-weight-bold text-xxlg text-primary ml-5">Create A User</h6>
+                  <p>This page allows you to create a user. Please enter all details.</p>
+                </div>
 
                 <div class="card-body">
-
                   <form onsubmit="create_user();return false">
 
                     <div class="form-group">
@@ -233,6 +228,7 @@
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
+  <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/js/sb-admin-2.min.js"></script>
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>

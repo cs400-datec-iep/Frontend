@@ -1,10 +1,15 @@
-// populate table
-$(document).ready(function () {
-  var table;
-  var token = sessionStorage.getItem("token");
-  var url = 'https://datectestapi.azurewebsites.net/api/UserMains';
+/*////////////////////////////////////
 
-  fetch(url, {
+Function to populate datatable with all users
+
+*/////////////////////////////////////
+$(document).ready(function () {
+  //Urls
+  var urlGetUserMains = urlMain+'api/UserMains';
+
+  var table;
+
+  fetch(urlGetUserMains, {
     async: false,
     method: 'GET',
     crossDomain: true,
@@ -12,22 +17,25 @@ $(document).ready(function () {
       'Authorization': 'Bearer ' + token
     }
   }).then(response => response.json())
-    .then((a) => {
-      table = $('#fluidTable').DataTable(
-        {
-          data: a,
-          select: true,
-          columns: [
-            { data: 'ID' },
-            { data: 'Username' },
-            { data: 'Email' },
-            { data: 'Role' },
-            { data: 'Department' },
-            { data: 'Status' }
-          ]
-        }
-      );
+  .then((a) => {
+
+    //Genrate table
+    table = $('#fluidTable').DataTable(
+      {
+        data: a,
+        select: true,
+        columns: [
+          { data: 'ID' },
+          { data: 'Username' },
+          { data: 'Email' },
+          { data: 'Role' },
+          { data: 'Department' },
+          { data: 'Status' }
+        ]
+      }
+    );
       
+    //Edit user onclick
     $('#fluidTable tbody').on('click', 'tr', function () {
       if ($(this).hasClass('clickedon')) {
         $(this).removeClass('clickedon');
@@ -39,6 +47,7 @@ $(document).ready(function () {
         document.getElementById("edit_button").disabled = false;
       }
 
+      //Load clicked user details into modal
       $('#edit_button').on("click", function () {
         var oData = table.rows('.clickedon').data();
         
@@ -55,8 +64,5 @@ $(document).ready(function () {
 
     table.column(0).visible(false);
 
-    }).catch(error => { console.error('Error:', error); return error; });
-
-// new change
-
+  }).catch(error => { console.error('Error:', error); return error; });
 });

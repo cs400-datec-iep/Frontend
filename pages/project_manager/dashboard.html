@@ -13,14 +13,12 @@
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
     <!-- Custom styles for this page-->
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
     <!-- Session Check -->
+    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
     <script src="../../assets/js/sessionCheck.js"></script>
 
 
@@ -196,29 +194,29 @@
             <!-- Content Row -->
             <div class="row" id="container">
 
-                <!-- PROJECTS GO HERE -->
+              <!-- PROJECTS GO HERE -->
 
-                  <div class="m-auto mt-10 display-none" id="no_project">
-                    <h1 class="mt-center">It Feels empty here, create a project.</h1>
+              <div class="m-auto mt-10 display-none" id="no_project">
+                <h1 class="mt-center">It Feels empty here, create a project.</h1>
+              </div>
+
+              <!-- Card Template -->
+              <!-- <div class="col-xl-5 col-md-6 mb-4 mt-3">
+                  <div class="card border-left-primary shadow h-100 py-2">
+                      <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                  <div class="text-xlg font-weight-bold text-primary text-uppercase mb-1">Project Name<div class="text-sm font-weight-normal text-green text-uppercase mb-1 float-right">On Going</div></div>
+                                  <div class="text-sm h5 mb-0 font-weight-bold text-gray-800">Project Description</div>
+                              </div>
+                          </div>
+                          <h4 class="small font-weight-bold mt-1">&nbsp<span class="float-right">14%</span></h4>
+                          <div class="progress">
+                            <div class="progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                      </div>
                   </div>
-
-                <!-- Card Template -->
-                <!-- <div class="col-xl-5 col-md-6 mb-4 mt-3">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xlg font-weight-bold text-primary text-uppercase mb-1">Project Name<div class="text-sm font-weight-normal text-green text-uppercase mb-1 float-right">On Going</div></div>
-                                    <div class="text-sm h5 mb-0 font-weight-bold text-gray-800">Project Description</div>
-                                </div>
-                            </div>
-                            <h4 class="small font-weight-bold mt-1">&nbsp<span class="float-right">14%</span></h4>
-                            <div class="progress">
-                              <div class="progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+              </div> -->
 
             </div>
             <!--End of Content Row -->
@@ -267,19 +265,21 @@
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
+  <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/js/sb-admin-2.min.js"></script>
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
 
   <!-- Scripts for this dashboard -->
   <script src="js/get-all-projects.js"></script>
-
   <script>
+    //Refresh Project cache
     if((localStorage.getItem('created_project') == "true")){
         localStorage.setItem('created_project',"false");
         document.location.reload(true);
     }
   </script>
+
 </body>
 
 </html>

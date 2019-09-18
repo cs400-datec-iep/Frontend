@@ -1,10 +1,19 @@
+/*////////////////////////////////////
+
+Function to login user
+
+*/////////////////////////////////////
 async function Login() {
+  //Urls
+  var urlUserAccountInfo = urlMain+'api/account/userinfo';
+  var urlUserMains = urlMain+'api/UserMains/';
+
+  //Get html containers
   document.getElementById('illus').style.display = 'none';
   document.getElementById('load').style.display = 'block';
 
   let token = await getToken();
-  var userID;
-  url = 'https://datectestapi.azurewebsites.net/api/account/userinfo';
+
   if (token == false) {
     document.getElementById("clickme").click();
   }
@@ -12,7 +21,7 @@ async function Login() {
   if (token != false) {
     sessionStorage.setItem("token", token);
 
-    fetch(url, {
+    fetch(urlUserAccountInfo, {
       async: false,
       method: 'GET',
       crossDomain: true,
@@ -22,11 +31,9 @@ async function Login() {
       }
     }).then(function (a) { return a.json(); })
       .then(function (j) {
-        console.log("Successful");
-        userID = j.UserID;
-        var url2 = 'https://datectestapi.azurewebsites.net/api/UserMains/' + userID;
+        console.log("Token Authenticated");
 
-        fetch(url2, {
+        fetch(urlUserMains + j.UserID, {
           async: false,
           method: 'GET',
           crossDomain: true,
@@ -36,50 +43,58 @@ async function Login() {
           }
         }).then(function (a) { return a.json(); })
           .then(function (j) {
+
+            // Get Login Timestamp and store
+            var loginTimestamp = new Date();
+
             //setting session variable
-            sessionStorage.setItem("verified", "ACCESS_GRANTED");
-            
+            sessionStorage.setItem("verified", "User_Successfully_Authenticated");
+            sessionStorage.setItem("loginTimestamp", loginTimestamp);
+
             //Redirect Based on Roles and Status
-            var role = j.Role;
-            var status = j.Status
-            if(status == true){
-              if (role == "System Administrator") {
+            if(j.Status == true){
+              if (j.Role == "System Administrator") {
+
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/admin/dashboard.html");
   
-              }else if(role == "Management"){
+              }else if(j.Role == "Management"){
+
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/management/dashboard.html");
   
-              }else if(role == "Project Manager"){
+              }else if(j.Role == "Project Manager"){
+
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/project_manager/dashboard.html");
   
-              }else if(role == "Staff"){
+              }else if(j.Role == "Staff"){
+
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
                 window.location.assign("../../pages/staff/dashboard.html");
   
               }else{
+
                 window.location.assign("error_404.html");
+
               }
             }else{
+
               window.location.assign("error_401.html");
+
             }
 
 
           }).catch(error => console.error('Error:', error));
-
-
-      })
-      .catch(error => console.error('Error:', error));
+      }).catch(error => console.error('Error:', error));
   }
 }
 

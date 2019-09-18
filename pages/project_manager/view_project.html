@@ -21,8 +21,8 @@
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-
     <!-- Session Check -->
+    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
     <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
@@ -178,6 +178,7 @@
                 <div class="card-header col-12 text-xxlg pb-0 mb-3" id="project_title_conatiner">
                     <p id="project_name_title" class="font-weight-bold text-primary m-0"></p>
                 </div>
+
                 <div class="col-xl-12 m-auto ">
                     <div class="card shadow-xlg h-100 py-2">
                         <div class="card-body ">
@@ -186,32 +187,34 @@
                                     <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Basic info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
 
                                     <!-- Client Name -->
-                                    <table>
+                                    <table class="table-responsive-md col-md-12">
                                         <tr>
                                           <td>
-                                              <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block">Client:</div>
-                                              <span id="project_client" class="text-lg ml-3"  ></span> 
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Client:</div>
+                                            <span id="project_client" class="text-lg"></span>
                                           </td>
                                           <td>
-                                              <div class="text-lg font-weight-bold text-primary mb-1 text-gray-800 display-inline-block  ml-7">Project Status:</div>
-                                              <span id="project_status" class="text-lg ml-3"  ></span> 
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
+                                            <span id="project_status" class="text-lg ml-2"></span>
+                                          </td>
+                                        </tr>
+
+                                        <!-- Dates -->
+                                        <tr>
+                                          <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Start Date:</div>
+                                            <span id="project_startDate" class="text-lg"></span>
+                                          </td>
+                                          <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">End Date:</div>
+                                            <span id="project_endDate" class="text-lg "></span>
                                           </td>
                                         </tr>
                                     </table>  
 
-                                    <!-- Dates -->
-                                    <table>
-                                        <tr>
-                                            <td><div class="text-lg font-weight-bold text-primary text-gray-800">Start Date:</div></td>
-                                            <td><span id="project_startDate" class="text-lg ml-3"></span></td>
-                                            <td><div class="text-lg font-weight-bold text-primary text-gray-800 ml-6">End Date:</div></td>
-                                            <td><span id="project_endDate" class="text-lg ml-3"></span></td>
-                                        </tr>
-                                    </table>
-
                                      <!-- Progress Bar-->
                                     <div class="progress fh-1-6 mt-3 text-center">
-                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white text-sm" id="project_percentage_text"></span></div>
+                                        <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white font-weight-bold text-sm" id="project_percentage_text"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -344,16 +347,26 @@
   <div class="modal fade" id="editProjectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <!-- Header -->
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Edit Project Details</h5>
         </div>
+
+        <!-- Content -->
         <div class="modal-body">
 
           <!-- Project name and client name -->
           <div class="form-group">
             <label for="projName">Project Name:</label>
             <input type="text" id="projName" class="form-control" required>
+            <input type="text" id="project_client" class="form-control" hidden>
           </div>
+
+          <!-- Start dates , end dates , percentage and critical HIDDEN -->
+          <input type="date" id="project_startDate" class="form-control" hidden>
+          <input type="date" id="project_endDate" class="form-control" hidden>
+          <input type="text" id="project_percentage" class="form-control" hidden>
+          <input type="text" id="project_critical" class="form-control" hidden>
 
           <!-- Project Description -->
           <div class="form-group">
@@ -363,19 +376,58 @@
 
           <!-- Member select -->
           <div class="form-group">
-            <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown h-20"></select>
+            <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown"></select>
           </div>
 
            <!-- Project Files -->
            <div class="form-group">
-              <label for="projName">Your project documents:</label>
-              <ul id="edit_document_list">
-              </ul>
+              <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
+              <div class="form-row">
+                  <div class="col-9 ml-1">
+                      <input type="file" class="custom-file-input" id="FileInput" name="file">
+                      <label class="custom-file-label" for="FileInput">Choose a file...</label>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
+              </div>
+
+            <p class="m-0 mt-2 ">Upload Progress:</p>
+            <div class="progress mb-2 mt-2 h-10" id="uploadProgressBarContainer">
+                <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
+                    <span class="ml-2">0%</span>
+                </div>
+            </div>
+            
+            <p class="project-sub-text">Your project documents:</p>
+            <ul class="uploaded-file-list" id="fileList">
+            </ul>
+            
+          </div>
+
+          <!--Project Status's -->
+          <div class="form-group row">
+            <div class="col-md-6">
+                <label for="status">Is Project Active:</label>
+                <select class="custom-select dash-edit-modal-dropdown" id="status">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="project_status">Project Status:</label>
+                <select class="custom-select dash-edit-modal-dropdown" id="project_status">
+                    <option value="OnGoing">On Going</option>
+                    <option value="OnHold">On Hold</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
           </div>
 
         </div>
+
+        <!-- Footer -->
         <div class="modal-footer">
-          <a class="btn btn-danger text-white" onclick="editProject();">Edit</a>
+          <a class="btn btn-info text-white" onclick="editProject();">Save Changes</a>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -396,23 +448,24 @@
   <script src="../../assets/js/get-username.js"></script>
 
   <!-- Scripts for this dashboard -->
+  <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
   <script src="js/get-project-details.js"></script>
   <script src="js/get-all-project-members-edit.js"></script>
   <script src="js/chart-get-task-details.js"></script>
+  <script src="js/azure-storage.blob.js"></script>
+  <script src="js/edit-file-upload.js"></script>
+  <script src="js/dropdown-member-list.js"></script>
   <script>
-    console.log(arryfordropdown);
-    
-     // Get Dropdownvalues
-     $('#members_list')
-      .dropdown({
-        placeholder:'Please select your members',
-        onChange: function(value){
-            console.log(value);
-        }
-      });
+    //Places filename in the "Choose a file" label
+    $('#FileInput').on('change', function () {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+    })
   </script>
-  <!-- <script src="js/edit-modal-details.js"></script> -->
+  <script src="js/edit-project.js"></script>
 
 
 </body>
