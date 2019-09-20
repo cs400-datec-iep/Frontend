@@ -43,10 +43,8 @@ function resetPassword(){
         }).then(function (a) { return a.json(); })
         .then(function (j) {
 
-            console.log(j);
-
             alert("Your password has been reset, please use your new password to login. You will now be redirected back to the login page");
-            // window.location.assign("index.html");
+            window.location.assign("index.html");
 
         }).catch(error => { console.error('Error:', error); return error; });
 
