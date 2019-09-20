@@ -33,12 +33,12 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav navbar-fixed bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <div class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-tie"></i>
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
         <div class="sidebar-brand-text mt-3">Project Manager</div>
       </div>
@@ -47,23 +47,23 @@
       <hr class="sidebar-divider my-3">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active display-none" id="icon_container">
-        <a class="nav-link "  >
-          <i class="fas fa-fw fa-folder-open " ></i>
-          <span id="project_name_side"></span></a>
-        <a class="nav-link"  >
-            <i class="fas fa-fw fa-tasks "></i>
-            <span>Task View</span></a>  
-        <a class="nav-link"  >
-            <i class="fas fa-fw fa-clipboard-list "></i>
-            <span>Smart Analysis</span></a>      
-      </li>
-
-      <!-- Side Bar toggle -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0 display-none" id="sidebarToggle"></button>
+      <div class="display-none" id="icon_container">
+        <li class="nav-item active" >
+            <a class="nav-link">
+              <i class="fas fa-fw fa-folder-open "></i>
+              <span id="project_name_side"></span></a>
+          </li>
+          <li  class="nav-item">
+            <a class="nav-link" id="task_view_link">
+              <i class="fas fa-fw fa-tasks "></i>
+              <span>Task View</span></a>
+          </li>
+          <li  class="nav-item">
+            <a class="nav-link" id="smart_analysis_link">
+              <i class="fas fa-fw fa-clipboard-list "></i>
+              <span>Smart Analysis</span></a>
+          </li>
       </div>
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -169,7 +169,6 @@
                 <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
                 <li class="breadcrumb-item active" id="project_name_crumb"></li>
             </ol>
-
 
              <!-- First row -->
             <div class="row">
@@ -345,7 +344,7 @@
 
   <!-- Edit Project Modal-->
   <div class="modal fade" id="editProjectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-lg" role="document">
       <div class="modal-content">
         <!-- Header -->
         <div class="modal-header">
@@ -443,7 +442,7 @@
   <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../../assets/js/sb-admin-2.min.js"></script>
+  <script src="../../assets/js/sb-admin-2.js"></script>
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
 

@@ -36,7 +36,6 @@ $(document).ready(function () {
         var project_desc =  document.getElementById("project_desc");
         var project_percentage =  document.getElementById("project_percentage_text");
         var progress_meter  =  document.getElementById("progress_meter");
-        var project_document  =  document.getElementById("document_list");
         
         //Get dates only
         var start = j.Start_Date; 
@@ -75,7 +74,15 @@ $(document).ready(function () {
         button.setAttribute("id","edit_button");
         button.innerHTML = "Edit Project";
 
-        //Appending data onto the htmk containers
+        
+        // Set session var for project name and project ID
+        sessionStorage.setItem('ProjectName',j.Name);
+        sessionStorage.setItem('ProjectID',j.ProjectID);
+        
+        //Set sidebar links to send project ID back and forth
+        document.getElementById('task_view_link').setAttribute("href","task_view.html?"+j.ProjectID)
+
+        //Appending data onto the html containers
         project_name.innerHTML = j.Name;
 
         project_name.appendChild(button);
@@ -193,7 +200,7 @@ $(document).ready(function () {
             }
         }).catch(error => { console.error('Error:', error); return error; });
 
-         //Remove loading icon and display output for sidebar
+        //Remove loading icon and display output for sidebar
         document.getElementById("icon_container").classList.remove("display-none");
         document.getElementById("sidebarToggle").classList.remove("display-none");
         

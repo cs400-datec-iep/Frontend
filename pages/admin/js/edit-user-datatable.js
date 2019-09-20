@@ -63,6 +63,10 @@ $(document).ready(function () {
     });
 
     table.column(0).visible(false);
+    
+    //Removing loading icon and display output
+    document.getElementById("load").style.display = "none";
+    document.getElementById("container").classList.remove("display-none");
 
   }).catch(error => { console.error('Error:', error); return error; });
 });

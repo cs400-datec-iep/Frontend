@@ -32,6 +32,6 @@ fetch(urlGetUserInfo + sessionStorage.getItem("userID"), {
 
         //Removing loading icon and display output
         document.getElementById("load").style.display = "none";
-        document.getElementById("page_content").classList.remove("display-none");
+        document.getElementById("container").classList.remove("display-none");
 
     }).catch(error => console.error('Error:', error));

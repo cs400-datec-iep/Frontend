@@ -29,12 +29,12 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav navbar-fixed bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <div class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-user-tie"></i>
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
                 <div class="sidebar-brand-text mt-3">Project Manager</div>
             </div>
@@ -53,11 +53,6 @@
                     <i class="fas fa-fw fa-edit"></i>
                     <span>Create Project</span></a>
             </li>
-
-            <!-- Side Bar toggle -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -155,13 +150,8 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                
-                <!-- Loading Icon -->
-                <div class="loader" id="load"></div>
-
-
                 <!-- Begin Page Content -->
-                <div class="container-fluid display-none" id="page_content">
+                <div class="container-fluid ">
 
                     <!-- Breadcrumbs -->
                     <ol class="breadcrumb">
@@ -170,10 +160,14 @@
                         </li>
                         <li class="breadcrumb-item active">Account</li>
                     </ol>
+                
+                    <!-- Loading Icon -->
+                    <div class="loader" id="load"></div>
 
                     <!-- Content Row -->
-                    <div class="row" id="container">
-                        <div class="col-xl-7 col-md-11 m-auto">
+                    <div class="row ">
+                        
+                        <div class="col-xl-7 col-md-11 m-auto display-none"  id="container">
                             <div class="card shadow mb-4">
 
                                 <!--Card Header -->
@@ -325,7 +319,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/global-variables.js"></script>
-    <script src="../../assets/js/sb-admin-2.min.js"></script>
+    <script src="../../assets/js/sb-admin-2.js"></script>
     <script src="../../assets/js/logout.js"></script>
     <script src="../../assets/js/get-username.js"></script>
 
