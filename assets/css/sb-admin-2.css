@@ -10911,6 +10911,11 @@ a:focus {
   font-size: .9rem;
 }
 
+.text-m {
+  font-size: 1rem;
+}
+
+
 .text-lg {
   font-size: 1.2rem;
 }

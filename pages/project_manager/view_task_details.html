@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title id="page_title">Loading..</title>
+    <title id="page_title"></title>
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -165,8 +165,9 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Project Dashboard</li>
                 <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
-                <li class="breadcrumb-item " id="project_name_crumb"></li>
-                <li class="breadcrumb-item active">Task View</li>
+                <li class="breadcrumb-item" id="project_name_crumb"></li>
+                <li class="breadcrumb-item"><a href="task_view.html">Task View</a></li>
+                <li class="breadcrumb-item active" id="task_name_crumb"></li>
             </ol>
 
             <!-- Loading Icon -->
@@ -177,35 +178,54 @@
 
               <!-- Content Row -->
               <div class="Row">
-                  <div class="col-xl-10 col-md-12 m-auto">
-                      <div class="card shadow mb-4">
-                          <!--Card Header -->
-                          <div class="card-header py-3">
-                              <i class="fas fa-tasks float-left text-xxlg"> </i>
-                              <h6 class="font-weight-bold text-xxlg text-primary ml-5">Task View</h6>
-                              <p>This page allows you to view and create tasks, objectives and milestones in the system</p>
-                          </div>
+                    <div class="col-xl-10 col-md-12 m-auto">
+                        <div class="card shadow mb-4">
+                            <!--Card Header -->
+                            <div class="card-header py-3">
+                                <i class="fas fa-th-large float-left text-xxlg"> </i>
+                                <h6 class="font-weight-bold text-xxlg text-primary ml-5" id="task_name_title"></h6>
+                                <p id="task_type">Type:</p>
+                                <p id="predecessor_task">Parent Task:</p>
+                            </div>
+    
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <table class="table-responsive-md col-md-12 ">
+                                    <tr>
+                                        <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Assigned to:</div>
+                                            <span id="task_assigned_to" class="text-lg"></span>
+                                        </td>
+                                        <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Task Status:</div>
+                                            <span id="task_status" class="text-lg"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Start Date:</div>
+                                            <span id="task_start_date" class="text-lg"></span>
+                                        </td>
+                                        <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">End Date:</div>
+                                            <span id="task_end_date" class="text-lg"></span>
+                                        </td>
+                                        <td>
+                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Duration (Days):</div>
+                                            <span id="task_duration" class="text-lg"></span>
+                                        </td>
+                                    </tr>
+                                </table> 
 
-                          <!-- Card body -->
-                          <div class="card-body">
-                              <div class="table-responsive ">
-                                  <button id="edit_button" class="btn btn-info btn-block text-white  float-right col-md-2" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
-                                  <table class="hover table table-bordered " id="taskTable" width="100%" cellspacing="0">
-                                      <thead>
-                                          <tr>
-                                              <th>ID</th>
-                                              <th>Type</th>
-                                              <th>Name</th>
-                                              <th>Start Date</th>
-                                              <th>Status</th>
-                                              <th>Predecesor</th>
-                                          </tr>
-                                      </thead>
-                                  </table>
-                              </div>
-                          </div>
-                      </div>    
-                  </div>
+                                <div class="progress fh-1-6 mt-2 text-center">
+                                    <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white font-weight-bold text-sm" id="task_percentage"></span></div>
+                                </div>
+
+                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block mt-3">Task Description:</div>
+                                <div class="text-lg" id="task_desc"></div>
+                            </div>
+                        </div>    
+                    </div>
               </div>
 
             </div>
@@ -227,65 +247,96 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Create Task Modal-->
-    <div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="createTaskModal"
+    <!-- Edit Task Modal-->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModal"
         aria-hidden="true">
-        <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!-- Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Task</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
                 </div>
 
                 <!-- Content -->
                 <div class="modal-body">
 
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <input type="text" id="taskName" class="form-control" placeholder="Enter Task Name" autofocus="autofocus" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <select class="custom-select dash-edit-modal-dropdown" id="type">
-                                <option value="" disabled selected>Select Task Type:</option>
-                                <option value="task">Task</option>
-                                <option value="objective">Objective</option>
-                                <option value="milestone">Milestone</option>
-                            </select>
-                        </div>
+                  <!--Task name and status -->
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="taskName">Task Name:</label>
+                      <input type="text" id="taskName" class="form-control" required>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <input type="number" id="taskDuration" class="form-control" placeholder="Enter Duration of Task (in Days)" min="1" autofocus="autofocus" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown">
-                                <option disabled>Please Select Task Predecesor</option>
-                                <option value="none">None</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <select name="members" id="members_list" class="label ui selection fluid dropdown">
-                            <option value="">Assign Task to:</option>
+                    <div class="col-md-6">
+                        <label for="taskStatus">Task Status:</label>
+                        <select class="custom-select dash-edit-modal-dropdown" id="taskStatus">
+                            <option value="OnGoing">On Going</option>
+                            <option value="OnHold">On Hold</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
+                  </div>
 
-                    <div class="form-group">
-                        <textarea id="taskDesc" class="form-control m-auto" rows="3" placeholder="Enter Task Description"></textarea>
+                  <!--Task type and duration -->
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="taskType">Task Type:</label>
+                      <select class="custom-select dash-edit-modal-dropdown" id="taskType">
+                          <option value="task">Task</option>
+                          <option value="objective">Objective</option>
+                          <option value="milestone">Milestone</option>
+                      </select>
                     </div>
+                    <div class="col-md-6">
+                        <label for="taskDuration">Task Duration:</label>
+                        <input type="number" id="taskDuration" class="form-control" min="1" required>
+                    </div>
+                  </div>
+
+                  <!--Task Predecesor -->
+                  <div class="form-group">
+                    <label for="taskPredecesor">Task Predecesor:</label>
+                    <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown">
+                        <option value="none">None</option>
+                    </select>
+                  </div>
+
+                  <!--Task assgined to -->
+                  <div class="form-group">
+                    <label for="members_list">Assigned to:</label>
+                    <select name="members" id="members_list" class="label ui selection fluid dropdown">
+                    </select>
+                  </div>
+
+                  <!--Task Description -->
+                  <div class="form-group">
+                    <label for="taskDesc">Task Description:</label>
+                    <textarea id="taskDesc" class="form-control m-auto" rows="3" required></textarea>
+                  </div>
+
+                  <!--Task Critical and Active -->
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="status">Is Task Active:</label>
+                        <select class="custom-select dash-edit-modal-dropdown" id="status">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="project_critical">Set Critical Status:</label>
+                        <select class="custom-select dash-edit-modal-dropdown" id="project_status">
+                            <option value="true">Is Critical</option>
+                            <option value="false">Not Critical</option>
+                        </select>
+                    </div>
+                  </div>
 
                 </div>
-
+                
                 <!-- Footer -->
                 <div class="modal-footer">
-                    <a class="btn btn-success text-white" onclick="createTask();">Create</a>
+                    <a class="btn btn-info text-white" onclick="editTask();">Save Changes</a>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -329,9 +380,8 @@
   <!-- Scripts for this dashboard -->
   <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
-  <script src="js/get-all-staff.js"></script>
-  <script src="js/get-all-project-tasks.js"></script>
-  <script src="js/create-task.js"></script>
+  <script src="js/get-task-details.js"></script>
+  <script src="js/edit-task.js"></script>
 
 </body>
 

@@ -33,6 +33,15 @@ animation: spin 1s linear infinite;
 }
 /* Style for loaders used in this project */
 
+/* Datatable styles specific  */
+#taskTable tbody tr:hover{
+    background-color: #918d8d;
+    color: white;
+    cursor: pointer;
+}
+/* Datatable styles specific  */
+
+
 /* Project manager specific styles */
 .clickedon {
     background-color: #4e73df!important;
@@ -56,6 +65,10 @@ animation: spin 1s linear infinite;
 
 .uploaded-file-list p{
     font-size:1rem!important;
+}
+
+.table-responsive-md td{
+    padding-bottom: 0.5rem;
 }
 /* Project manager specific styles */
 
@@ -93,6 +106,13 @@ animation: spin 1s linear infinite;
   
 /* Blinking Animation */
 
+/* Card Divider */
+.divider{
+    width: 100%;
+    border-bottom: 2px dashed #bfc1c9;
+    height: 0;
+    margin: auto;
+}
 
 /* Account management styles */
 .field-icon {

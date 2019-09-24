@@ -26,6 +26,7 @@ $(document).ready(function () {
     .then(function (j) {
 
         //Get html Containers
+        var page_title =  document.getElementById("page_title");
         var project_name =  document.getElementById("project_name_title");
         var project_name_side =  document.getElementById("project_name_side");
         var project_name_crumb =  document.getElementById("project_name_crumb");
@@ -36,6 +37,10 @@ $(document).ready(function () {
         var project_desc =  document.getElementById("project_desc");
         var project_percentage =  document.getElementById("project_percentage_text");
         var progress_meter  =  document.getElementById("progress_meter");
+        var project_duration  =  document.getElementById("project_duration");
+        var project_billed  =  document.getElementById("project_billed");
+        var project_cost  =  document.getElementById("project_cost");
+
         
         //Get dates only
         var start = j.Start_Date; 
@@ -54,11 +59,24 @@ $(document).ready(function () {
 
         //Get end date
         for (var i = 0; i < end.length; i++) {
-            if(start.charAt(i) == "T"){
+            if(end.charAt(i) == "T"){
                 break;
             }
-            dateend += start.charAt(i);
+            dateend += end.charAt(i);
         }
+
+        // Parsing date in dd/mm/yyyyy
+        var datestart = new Date(datestart);
+        var dateend = new Date(dateend);
+
+        startDate.innerHTML = moment(datestart).format('DD-MMM-YYYY');
+        endDate.innerHTML =   moment(dateend).format('DD-MMM-YYYY');
+        project_duration.innerHTML = j.number_of_days;
+
+        //set project billing information 
+        project_cost.innerHTML = "$"+j.amount_cost;
+        project_billed.innerHTML = "$"+j.amount_billed;
+
 
         //Display critical status
         var critical = document.createElement("p");
@@ -67,7 +85,7 @@ $(document).ready(function () {
 
         //Create edit button for project
         var button = document.createElement("button");
-        button.classList.add('btn', 'btn-danger', 'btn-block', 'text-white',  'float-right', 'col-md-3');
+        button.classList.add('btn', 'btn-danger', 'btn-block', 'text-white',  'float-right', 'col-md-2');
         button.setAttribute("data-toggle","modal");
         button.setAttribute("data-target","#editProjectModel");
         button.setAttribute("disabled-target","true");
@@ -83,6 +101,7 @@ $(document).ready(function () {
         document.getElementById('task_view_link').setAttribute("href","task_view.html?"+j.ProjectID)
 
         //Appending data onto the html containers
+        page_title.innerHTML = j.Name;
         project_name.innerHTML = j.Name;
 
         project_name.appendChild(button);
@@ -91,8 +110,7 @@ $(document).ready(function () {
 
         project_desc.innerHTML = j.Description;
         project_client.innerHTML = j.Client_Name;
-        startDate.innerHTML = datestart;
-        endDate.innerHTML = dateend;
+
         progress_meter.setAttribute("Style","width:"+j.Percentage+"%;")
         project_percentage.innerHTML = j.Percentage+"%";
 
@@ -212,9 +230,15 @@ $(document).ready(function () {
             document.getElementById("status").value = j.Status;
             document.getElementById("project_status").value = j.Progress_Status;
             document.getElementById("project_startDate").value = j.Start_Date;
+            document.getElementById("project_duration").value = j.number_of_days;
             document.getElementById("project_endDate").value = j.End_Date;
             document.getElementById("project_percentage").value = j.Percentage;
             document.getElementById("project_critical").value = j.Critical_flag;
+            document.getElementById("projBilled").value = j.amount_billed;
+            document.getElementById("projCost").value = j.amount_cost;
+            document.getElementById("projCost").value = j.amount_cost;
+            document.getElementById("projBilled").value = j.amount_billed;
+
 
             //Get html container
             var ul = document.getElementById("fileList");

@@ -188,7 +188,7 @@
 
           <!-- Content Row -->
           <div class="Row">
-            <div class="col-xl-11 col-md-10 m-auto">
+            <div class="col-xl-10 col-md-10 m-auto">
               <div class="card shadow mb-4">
 
                 <!--Card Header -->
@@ -218,6 +218,8 @@
                         <div class="form-group">
                             <textarea id="projDesc" class="form-control m-auto" rows="3" placeholder="Enter Project Description"></textarea>
                         </div>
+
+                        <div class="divider mb-3 mt-3"></div>
                         
                         <!-- Enter Dates -->
                         <div class="form-group">
@@ -227,16 +229,27 @@
                                   <input type="date" id="projStartDate" class="form-control" required>
                                 </div>
                                 <div class="col-md-6">
-                                  <p class="dateTitle  mb-1">End Date:</p>
-                                  <input type="date" id="projEndDate" class="form-control" required>
+                                  <p class="dateTitle  mb-1">Project Duration (In days):</p>
+                                  <input type="number" min="1" id="projDuration" class="form-control" required>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="divider  mb-3 mt-3"></div>
+
+                        <!-- Billing -->
+                        <div class="form-group">
+                          <input type="number" id="projBilled" class="form-control" placeholder="Enter Amount Billed (Project Initial Cost)" step="0.01" min="1" required>
+                        </div>
+
+                        <div class="divider  mb-3 mt-3"></div>
 
                         <!-- Member select -->
                         <div class="form-group">
                           <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown"></select>
                         </div>
+
+                        <div class="divider  mb-3 mt-3"></div>
 
                         <!-- File Upload -->
                         <div class="form-group">
@@ -263,7 +276,7 @@
                         </div>
 
                       <!-- Submit Button -->
-                      <input class="btn btn-primary btn-block text-white col-4 m-auto" type="submit">
+                      <input class="btn btn-primary btn-block text-white col-md-2 m-auto" type="submit">
 
                     </form>
                 </div>
@@ -310,30 +323,6 @@
     </div>
   </div>
 
-  <!-- Project Creation Success Modal-->
-  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <!-- Header -->
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Project Created SuccessFully!</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-
-        <!-- Content -->
-        <div class="modal-body">Select "Okay" below to redirect you back to the projects dashboard.</div>
-
-        <!-- Footer -->
-        <div class="modal-footer">
-            <a class="btn btn-primary text-white" id="modal_redirect">Okay</a>
-        </div>
-      </div>
-  </div>
-</div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -366,7 +355,6 @@
     //Set current date
     let today = new Date().toISOString().substr(0, 10);
     document.querySelector("#projStartDate").value = today;
-    document.querySelector("#projEndDate").value = today;
 
     //Places filename in the "Choose a file" label
     $('#FileInput').on('change',function(){
@@ -375,12 +363,6 @@
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
     })
-
-    //Redirect button for modal
-    document.getElementById("modal_redirect").onclick = function () {
-        localStorage.setItem('created_project',"true");
-        window.location.href ="dashboard.html";
-    };
   </script>
   <script src="js/azure-storage.blob.js"></script>
   <script src="js/upload-file.js"></script>

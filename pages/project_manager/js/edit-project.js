@@ -21,11 +21,14 @@ function editProject() {
         var projClient = document.getElementById("project_client").value;
         var projDesc = document.getElementById("projDesc").value;
         var project_startDate = document.getElementById("project_startDate").value;
+        var project_duration = document.getElementById("project_duration").value;
         var project_endDate = document.getElementById("project_endDate").value;
         var project_status = document.getElementById("project_status").value;
         var status = document.getElementById("status").value;
         var project_percentage = document.getElementById("project_percentage").value;
         var project_critical = document.getElementById("project_critical").value;
+        var project_cost = document.getElementById("projCost").value;
+        var project_billed = document.getElementById("projBilled").value;
         var ProjectMangerId = sessionStorage.getItem("userID");
 
         //Data encapsulation
@@ -35,13 +38,16 @@ function editProject() {
             'Description': projDesc,
             'Start_Date': project_startDate,
             'Project_managerID': ProjectMangerId,
+            'number_of_days': project_duration,
             'End_Date': project_endDate,
             'Client_Name': projClient,
             'Expected_Date': project_endDate,
             'Progress_Status': project_status,
             'Percentage': project_percentage,
             'Status': status,
-            'Critical_flag': project_critical
+            'Critical_flag': project_critical,
+            'amount_billed': project_cost,
+            'amount_cost': project_billed,
         }
 
         //Delete all  members
@@ -125,7 +131,7 @@ function editProject() {
         }).then(function (a) { 
         
             alert("Project successfully edited");   
-            window.location.assign("view_project.html");
+            window.location.assign("view_project.html?"+projectID);
 
         }).catch(error => { console.error('Error:', error); return error; });
         
