@@ -23,21 +23,21 @@ $(document).ready(function () {
         document.getElementById("load").style.display = "none";
 
         //Message for no Projects to Display
-        if(j.Result.length == 0){
+        if(j.length == 0){
             document.getElementById("no_project").style.display = "inline-block";
         }
 
         //Loop to display all projects
-        for (var i = 0; i < j.Result.length; i++) {
+        for (var i = 0; i < j.length; i++) {
 
-            if(j.Result[i].Status == true){
+            if(j[i].Status == true){
                 //Creating project card
-                var projectName = j.Result[i].Name;
-                var projectDesc = j.Result[i].Description;
-                var projectID = j.Result[i].ProjectID;
-                var projectPercentage = j.Result[i].Percentage;
-                var projectSatus = j.Result[i].Progress_Status;
-                var projectCritical = j.Result[i].Critical_flag;
+                var projectName = j[i].Name;
+                var projectDesc = j[i].Description;
+                var projectID = j[i].ProjectID;
+                var projectPercentage = j[i].Percentage;
+                var projectSatus = j[i].Progress_Status;
+                var projectCritical = j[i].Critical_flag;
 
 
                 //Check status
