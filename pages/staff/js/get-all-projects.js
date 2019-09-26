@@ -1,11 +1,11 @@
 /*////////////////////////////////////
 
-Function to get and display all projects for PM
+Function to get and display all projects for Staff
 
 */////////////////////////////////////
 $(document).ready(function () {
     //Urls
-    var urlGetUserProjects = urlMain+'api/GetProjectsForPM/' ;
+    var urlGetUserProjects = urlMain+'api/GetProjectsForUser/' ;
 
     //Get projects based on manager id
     fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {

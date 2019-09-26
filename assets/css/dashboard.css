@@ -123,3 +123,35 @@ animation: spin 1s linear infinite;
     z-index: 2;
   }
   /* Account management styles */
+
+  .border-solid{
+    border: 5px solid black;
+
+  }
+
+  .drag-border{
+    border-left: 2px solid rgb(36, 53, 104);
+    border-right: 2px solid rgb(36, 53, 104);
+  }
+
+  .drag-item{
+    border: 2px solid rgb(153, 150, 150);
+    background-color: rgb(36, 53, 104);
+    color: white;
+    border-radius: 5px;
+    margin: 0.1em;
+    padding: 0.5em;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+
+  .rounded-corners{
+    border-radius: 5px;
+  }
+
+.parent {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 50px 0;
+    padding: 20px;
+  }

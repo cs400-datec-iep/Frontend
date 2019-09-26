@@ -8,7 +8,6 @@ function createTask(){
     var taskDuration = document.getElementById("taskDuration").value;
     var taskPredecesor = document.getElementById("taskPredecesor").value;
     var taskDesc = document.getElementById("taskDesc").value;
-    taskDuration = 5;
 
     //Setup dates for task
     var current_date = new Date();
@@ -33,6 +32,10 @@ function createTask(){
             "If_Milestone": false,
             "If_Objective": false,
             "PredecessorTaskID": taskPredecesor,
+            "Number_of_days" : taskDuration,
+            "Percentage" : 0,
+            "Progress_Status": "Todo",
+            "Critical_flag": false
         }
     }else if(type == "objective"){
         var payload_task = {
@@ -45,6 +48,10 @@ function createTask(){
             "If_Milestone": false,
             "If_Objective": true,
             "PredecessorTaskID": taskPredecesor,
+            "Number_of_days" : taskDuration,
+            "Percentage" : 0,
+            "Progress_Status": "Todo",
+            "Critical_flag": false
         }
     }else if(type == "milestone"){
         var payload_task = {
@@ -57,6 +64,10 @@ function createTask(){
             "If_Milestone": true,
             "If_Objective": false,
             "PredecessorTaskID": taskPredecesor,
+            "Number_of_days" : taskDuration,
+            "Percentage" : 0,
+            "Progress_Status": "Todo",
+            "Critical_flag": false
         }
     }
 

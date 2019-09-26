@@ -60,11 +60,11 @@ $(document).ready(function () {
 
           var dataObj = {
             "TaskID" : element.TaskID,
-            "Type" :"Task",
+            "Type" : "Task",
             "Name" : element.Name,
             "Start_Date" : datestart,
-            "Status" : element.Status,
-            "Predecesor" : element.PredecessorTaskID,
+            "Status" : element.Progress_Status,
+            "Duration" : element.Number_of_days,
           };
 
           dataset.push(dataObj);
@@ -76,8 +76,8 @@ $(document).ready(function () {
             "Type" :"Objective",
             "Name" : element.Name,
             "Start_Date" : datestart,
-            "Status" : element.Status,
-            "Predecesor" : element.PredecessorTaskID,
+            "Status" : element.Progress_Status,
+            "Duration" : element.Number_of_days,
           };
 
           dataset.push(dataObj);
@@ -89,8 +89,8 @@ $(document).ready(function () {
             "Type" :"Milestone",
             "Name" : element.Name,
             "Start_Date" : datestart,
-            "Status" : element.Status,
-            "Predecesor" : element.PredecessorTaskID,
+            "Status" : element.Progress_Status,
+            "Duration" : element.Number_of_days,
           };
 
           dataset.push(dataObj);
@@ -110,7 +110,7 @@ $(document).ready(function () {
             { data: 'Name' },
             { data: 'Start_Date' },
             { data: 'Status' },
-            { data: 'Predecesor' }
+            { data: 'Duration' }
           ]
         }
       );

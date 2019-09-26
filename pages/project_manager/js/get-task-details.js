@@ -90,22 +90,18 @@ $(document).ready(function () {
                 
             }else{
                 // Check Project status and display
-                if(a.Progress_Status == "OnGoing"){
+                if(a.Progress_Status == "Todo"){
                   
-                    document.getElementById("task_status").innerHTML ="On Going";
+                    document.getElementById("task_status").innerHTML ="To Do";
     
-                }else if(a.Progress_Status == "OnHold"){
+                }else if(a.Progress_Status == "Doing"){
                    
-                    document.getElementById("task_status").innerHTML ="On Hold";
+                    document.getElementById("task_status").innerHTML ="Doing";
     
-                }else if(a.Progress_Status == "Completed"){
+                }else if(a.Progress_Status == "Done"){
                
-                    document.getElementById("task_status").innerHTML ="Completed";
+                    document.getElementById("task_status").innerHTML ="Done";
         
-                }else if(alert.Progress_Status == "Cancelled"){
-                   
-                    document.getElementById("task_status").innerHTML ="Cancelled";
-    
                 }
             }
 
@@ -125,6 +121,10 @@ $(document).ready(function () {
 
             document.getElementById("task_desc").innerHTML = a.Description;
 
+            //Setup range slider for percentage
+            document.getElementById("value").innerHTML = a.Percentage+"%";
+            document.getElementById("percentageRange").value = a.Percentage;
+
             // Setting links with project ID
             document.getElementById('view_project_link').setAttribute("href","view_project.html?"+ sessionStorage.getItem('ProjectID'));
             document.getElementById('page_title').innerHTML =  sessionStorage.getItem('ProjectName');
@@ -140,24 +140,32 @@ $(document).ready(function () {
 
                 //Set edit modal input fields
                 document.getElementById("taskName").value = a.Name;
-                document.getElementById("taskStatus").value = "";
+                document.getElementById("taskStatus").value = a.Progress_Status;
+                document.getElementById("status").value = a.Status;
+                document.getElementById("project_critical").value = a.Critical_flag;
                 document.getElementById("taskType").value = task_type;
                 document.getElementById("taskDuration").value = a.Number_of_days;
                 document.getElementById("taskDesc").value = a.Description;
 
+                //Set task ID as session and start date as session
+                sessionStorage.setItem('taskID',a.TaskID);
+                sessionStorage.setItem('startDate',a.Start_Date);
+
+
+                //Get task array from previous page
                 var task_array = JSON.parse(sessionStorage.getItem('task_array'));
 
                 task_array.forEach(element => {
 
-                    if(element.taskID === a.taskID){
+                    if(element.TaskID === a.TaskID){
                         $('#taskPredecesor').append($('<option>', {
-                            value: element.taskID,
+                            value: element.TaskID,
                             text: element.Name,
                             selected: true
                         }));
                     }else{
                         $('#taskPredecesor').append($('<option>', {
-                            value: element.taskID,
+                            value: element.TaskID,
                             text: element.Name,
                         }));
                     }

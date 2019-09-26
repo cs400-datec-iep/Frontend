@@ -49,7 +49,7 @@ function uploadBlob() {
 
             //If one file has been selected in the HTML file input element
             var file = $('#FileInput').get(0).files[0];
-            var lastProjectID = result.Result + 1;
+            var lastProjectID = result;
             var customBlockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512;
             blobService.singleBlobPutThresholdInBytes = customBlockSize;
             var finishedOrError = false;

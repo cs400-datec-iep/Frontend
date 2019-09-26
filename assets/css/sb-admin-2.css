@@ -6951,9 +6951,16 @@ a.close.disabled {
   background-color: #4e73df !important;
 }
 
+.bg-grey{
+  background-color: rgb(133, 135, 150) !important;
+}
 
 .bg-datec {
   background-color: var(--datec) !important;
+}
+
+.bg-datec-fade{
+  background-color: #224abe  !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -7029,6 +7036,14 @@ button.bg-light:focus {
 
 .bg-dark {
   background-color: #5a5c69 !important;
+}
+
+.bg-darker{
+  background-color: rgb(32, 31, 30) !important;
+}
+
+.bg-light-darker {
+  background-color: rgb(90, 92, 105) !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,

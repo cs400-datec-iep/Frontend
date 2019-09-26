@@ -269,12 +269,17 @@
                     <div class="col-md-6">
                         <label for="taskStatus">Task Status:</label>
                         <select class="custom-select dash-edit-modal-dropdown" id="taskStatus">
-                            <option value="OnGoing">On Going</option>
-                            <option value="OnHold">On Hold</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
+                            <option value="Todo">To do</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Done">Done</option>
                         </select>
                     </div>
+                  </div>
+
+                  <!--Task Percentage Completion -->
+                  <div class="form-group">
+                    <label for="taskPercentage">Task Percentage Completion:  <span id="value" class="text-success"></span></label>
+                    <input type="range" min="1" max="100" step="0.01" class="form-control-range custom-range" id="percentageRange">
                   </div>
 
                   <!--Task type and duration -->
@@ -297,7 +302,7 @@
                   <div class="form-group">
                     <label for="taskPredecesor">Task Predecesor:</label>
                     <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown">
-                        <option value="none">None</option>
+                        <option value="0">None</option>
                     </select>
                   </div>
 
@@ -325,7 +330,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="project_critical">Set Critical Status:</label>
-                        <select class="custom-select dash-edit-modal-dropdown" id="project_status">
+                        <select class="custom-select dash-edit-modal-dropdown" id="project_critical">
                             <option value="true">Is Critical</option>
                             <option value="false">Not Critical</option>
                         </select>
@@ -382,6 +387,16 @@
   <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
   <script src="js/get-task-details.js"></script>
   <script src="js/edit-task.js"></script>
+  <script>
+    var slider = document.getElementById("percentageRange");
+    var output = document.getElementById("value");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value+"%";
+    }
+
+  </script>
 
 </body>
 
