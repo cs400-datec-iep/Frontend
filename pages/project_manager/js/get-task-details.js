@@ -11,6 +11,7 @@ $(document).ready(function () {
     //Urls
     var urlGetTaskDetails = urlMain + "api/Tasks/"+taskID;
     var urlGetUsers = urlMain + "api/UserMains";
+    var urlGetTasksPerProject = urlMain + "api/GetTasksPerProject/"+sessionStorage.getItem('ProjectID');
 
     // Get task details
     fetch(urlGetTaskDetails, {
@@ -80,10 +81,6 @@ $(document).ready(function () {
 
                 }
             });
-            //Set Dropdown values for tasks
-
-            console.log(a);
-            
 
             // Check status and critical
             if(a.Critical_flag == true){
@@ -121,6 +118,36 @@ $(document).ready(function () {
 
             document.getElementById("task_desc").innerHTML = a.Description;
 
+            document.getElementById("task_type").innerHTML = "Type: "+task_type;
+
+            //Get task array from previous page
+            var task_array = JSON.parse(sessionStorage.getItem('task_array'));
+
+            task_array.forEach(element => {
+
+                if(element.TaskID === a.TaskID){
+                    $('#taskPredecesor').append($('<option>', {
+                        value: element.TaskID,
+                        text: element.Name,
+                        selected: true
+                    }));
+                    
+                    if(a.TaskID === "0"){
+                        document.getElementById('predecessor_task').innerHTML = "Parent Task: None" ;
+                    }else{
+                        document.getElementById('predecessor_task').innerHTML = "Parent Task:" + element.Name + "[ID:"+ element.TaskID + "]" ;
+                    }
+
+                }else{
+                    $('#taskPredecesor').append($('<option>', {
+                        value: element.TaskID,
+                        text: element.Name,
+                    }));
+
+                    document.getElementById('predecessor_task').innerHTML = "Parent Task: None" ;
+                }
+            });
+
             //Setup range slider for percentage
             document.getElementById("value").innerHTML = a.Percentage+"%";
             document.getElementById("percentageRange").value = a.Percentage;
@@ -150,26 +177,6 @@ $(document).ready(function () {
                 //Set task ID as session and start date as session
                 sessionStorage.setItem('taskID',a.TaskID);
                 sessionStorage.setItem('startDate',a.Start_Date);
-
-
-                //Get task array from previous page
-                var task_array = JSON.parse(sessionStorage.getItem('task_array'));
-
-                task_array.forEach(element => {
-
-                    if(element.TaskID === a.TaskID){
-                        $('#taskPredecesor').append($('<option>', {
-                            value: element.TaskID,
-                            text: element.Name,
-                            selected: true
-                        }));
-                    }else{
-                        $('#taskPredecesor').append($('<option>', {
-                            value: element.TaskID,
-                            text: element.Name,
-                        }));
-                    }
-                });
                
             };
             button.innerHTML = "Edit Task";
@@ -186,5 +193,7 @@ $(document).ready(function () {
 
         }).catch(error => { console.error('Error:', error); return error; });
         
+        
+
     }).catch(error => { console.error('Error:', error); return error; });
 })

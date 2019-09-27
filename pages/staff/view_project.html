@@ -228,13 +228,12 @@
                       <!--Card Header -->
                       <div class="card-header py-3">
                           <i class="fas fa-tasks float-left text-xxlg"> </i>
-                          <h6 class="font-weight-bold text-xxlg text-primary ml-5">Tasks Board
-                          </h6>
-                          <p>A kanban board for your tasks</p>
+                          <h6 class="font-weight-bold text-xxlg text-primary ml-5">Your Work Board<button id="toggle_view" class="btn btn-info btn-block text-white float-right col-md-2" onclick="toggleListView();">List View</button></h6>
+                          <p>Here all milestones, objectives and tasks will be displayed. <br>Toggle between  <b>Grid View</b> ( Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all tasks, objectives and milestone where you can view information of each item)</p>
                       </div>
 
-                      <!-- Card Body -->
-                      <div class="card-body bg-datec">
+                      <!-- Card Body Grid-->
+                      <div class="card-body bg-datec" id="grid">
                         <div class="form-group row">
                           <div class="col-md-4 bg-datec p-3">
                             <h3 class="font-weight-bold text-center text-white">To Do</h4>
@@ -255,7 +254,28 @@
                           </div>
 
                         </div>
+                      </div>
+
+                      <!-- Card Body list -->
+                      <div class="card-body display-none" id="list">
+                        <div class="form-group row">
+                            <div class="table-responsive ">
+                                <table class="hover table " id="taskTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Start Date</th>
+                                            <th>Status</th>
+                                            <th>Duration(Days)</th>
+                                            <th>Assigned To</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
+                      </div>
 
                     </div>
                   </div>
@@ -306,6 +326,8 @@
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -322,6 +344,22 @@
   <script src="../../assets/vendor/dragula.js/dragula.min.js"></script>
   <script src="js/kanban-board.js"></script>
   <script src="js/get-project-details.js"></script>
+  <script>
+    
+    function toggleListView(){
+      document.getElementById('grid').classList.toggle('display-none');
+      document.getElementById('list').classList.toggle('display-none');
+
+      if(document.getElementById('grid').classList.contains('display-none')){
+        document.getElementById('toggle_view').innerHTML = "Gird View";
+      }else if(document.getElementById('list').classList.contains('display-none')){
+        document.getElementById('toggle_view').innerHTML = "List View";
+      }
+
+      
+    }
+    
+  </script>
 
 
 </body>

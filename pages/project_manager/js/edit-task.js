@@ -31,6 +31,7 @@ function editTask(){
         }
     }
 
+    console.log(taskPredecesor);
 
     if(taskType === "task"){
 

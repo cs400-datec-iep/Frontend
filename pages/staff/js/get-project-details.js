@@ -10,8 +10,12 @@ $(document).ready(function () {
 
     //Urls
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
-    var urlGetTasksByUser = urlMain+'api/GetTasksPerUser/';
+    var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
+    var urlGetTask = urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem('ProjectID');
+    var urlGetUserMains = urlMain + "api/UserMains";
 
+    //Dataset array for table
+    var dataset = [];
 
     //Get project details
     fetch(urlGetProjectByID, {
@@ -130,8 +134,8 @@ $(document).ready(function () {
             }
         }
 
-        //Get user tasks
-        fetch(urlGetTasksByUser + sessionStorage.getItem("userID"), {
+        //Get user tasks for grid view
+        fetch(urlGetTasksByUserANdProject + sessionStorage.getItem("userID"), {
             async: false,
             method: 'GET',
             crossDomain: true,
@@ -141,12 +145,14 @@ $(document).ready(function () {
             }
         }).then(function (c) { return c.json() })
         .then(function (b) {
-
+            
             //Display tasks in baords
             var cointaner_todo = document.getElementById("todo");
+            var cointaner_doing = document.getElementById("doing");
+            var cointaner_done = document.getElementById("done");
              
             b.forEach(element => {
-                if(element.Progress_Status){
+                if(element.Progress_Status === "Todo"){
 
                     var card = document.createElement("div");
                     card.classList.add("drag-item" ,"border-left-warning","mb-2");
@@ -166,23 +172,172 @@ $(document).ready(function () {
                     cointaner_todo.appendChild(card);
 
                    
-                } else if(element.Progress_Status){
+                } else if(element.Progress_Status  === "Doing"){
 
-                } else if(element.Progress_Status){
+                    var card = document.createElement("div");
+                    card.classList.add("drag-item" ,"border-left-danger","mb-2");
+                    card.id = element.TaskID;
+
+                    var taskTitle =  document.createElement("p");
+                    taskTitle.classList.add("text-lg");
+                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
+
+                    var tasksStartDate = document.createElement("p");
+                    tasksStartDate.classList.add("text-sm");
+                    var datetask = new Date(element.Start_Date);
+                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+
+                    card.appendChild(taskTitle);
+                    card.appendChild(tasksStartDate);
+                    cointaner_doing.appendChild(card);
+
+                } else if(element.Progress_Status === "Done"){
+
+                    var card = document.createElement("div");
+                    card.classList.add("drag-item" ,"border-left-success","mb-2");
+                    card.id = element.TaskID;
+
+                    var taskTitle =  document.createElement("p");
+                    taskTitle.classList.add("text-lg");
+                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
+
+                    var tasksStartDate = document.createElement("p");
+                    tasksStartDate.classList.add("text-sm");
+                    var datetask = new Date(element.Start_Date);
+                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+
+                    card.appendChild(taskTitle);
+                    card.appendChild(tasksStartDate);
+                    cointaner_done.appendChild(card);
 
                 }
             });
 
+            // Get user names to compare with userdID in task
+            fetch(urlGetUserMains, {
+                async: false,
+                method: 'GET',
+                crossDomain: true,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).then(result => result.json())
+            .then((users) => {
+    
+                userIdList = users;
+
+            }).catch(error => { console.error('Error:', error); return error; });
+
+            //Get All tasks for list view
+            fetch(urlGetTask, {
+                async: false,
+                method: 'GET',
+                crossDomain: true,
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+            }).then(response => response.json())
+            .then((a) => {
+                    
+                tasks_array = JSON.stringify(a);
+        
+                //loop through tasks and user to match matching UserID's
+                a.forEach(element => {
+                    userIdList.forEach(user => {
+
+                        if(element.UserID === user.ID){
+
+                            //Parsing date into correct format
+                            var datestart = new Date(element.Start_Date);
+                            datestart = moment(datestart).format('DD-MMM-YYYY');
+                    
+                            //Populate task predecessor
+                            $('#taskPredecesor').append($('<option>', {
+                                value: element.TaskID,
+                                text: element.Name,
+                            }));
+
+                            
+                            // Check task type (Prepare array for datatable)
+                            if (element.If_Milestone === false && element.If_Objective === false) {
+                    
+                                var dataObj = {
+                                "TaskID" : element.TaskID,
+                                "Type" : "Task",
+                                "Name" : element.Name,
+                                "Start_Date" : datestart,
+                                "Status" : element.Progress_Status,
+                                "Duration" : element.Number_of_days,
+                                "Assigned_To" : user.Username
+                                };
+                    
+                                dataset.push(dataObj);
+                    
+                            } else if (element.If_Objective === true && element.If_Milestone === false) {
+                    
+                                var dataObj = {
+                                "TaskID" : element.TaskID,
+                                "Type" :"Objective",
+                                "Name" : element.Name,
+                                "Start_Date" : datestart,
+                                "Status" : element.Progress_Status,
+                                "Duration" : element.Number_of_days,
+                                "Assigned_To" : user.Username
+                                };
+                    
+                                dataset.push(dataObj);
+                    
+                            } else if (element.If_Milestone === true && element.If_Objective === false) {
+                    
+                                var dataObj = {
+                                "TaskID" : element.TaskID,
+                                "Type" :"Milestone",
+                                "Name" : element.Name,
+                                "Start_Date" : datestart,
+                                "Status" : element.Progress_Status,
+                                "Duration" : element.Number_of_days,
+                                "Assigned_To" : user.Username
+                                };
+                    
+                                dataset.push(dataObj);
+                    
+                            }
+                        }
+                    });
+                });
+        
+                //Initialize datatable
+                table = $('#taskTable').DataTable(
+                {
+                    data: dataset,
+                    select: true,
+                    columns: [
+                    { data: 'TaskID' },
+                    { data: 'Type' },
+                    { data: 'Name' },
+                    { data: 'Start_Date' },
+                    { data: 'Status' },
+                    { data: 'Duration' },
+                    { data: 'Assigned_To' }
+                    ]
+                });
+        
+                $('#taskTable tbody').on( 'click', 'tr', function () {
+
+                });
+
             
-            //Remove loading icon on success
-            document.getElementById("load").style.display = "none";
+                //Remove loading icon on success
+                document.getElementById("load").style.display = "none";
 
-            //Remove loading icon and display output for sidebar
-            document.getElementById("icon_container").classList.remove("display-none");
-            document.getElementById("sidebarToggle").classList.remove("display-none");
+                //Remove loading icon and display output for sidebar
+                document.getElementById("icon_container").classList.remove("display-none");
+                document.getElementById("sidebarToggle").classList.remove("display-none");
 
-            //Return Container to display normal output
-            document.getElementById("container").classList.remove("display-none");
+                //Return Container to display normal output
+                document.getElementById("container").classList.remove("display-none");
+        
+            }).catch(error => { console.error('Error:', error); return error; });
             
 
         }).catch(error => console.error('Error:', error));

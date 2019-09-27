@@ -19,7 +19,11 @@ $(document).ready(function () {
   // Initialize Dropdown For Predecessors
   $('#taskPredecesor')
   .dropdown({
-    placeholder:'Please Select Task Predecesors:'
+    placeholder:'Please Select Task Predecesors:',
+    onChange: function (value) {
+      selected_tasks_array.push(value);
+      console.log(value);
+    }
   });
 
   //Place project name into document variables
@@ -54,6 +58,12 @@ $(document).ready(function () {
         //Parsing date into correct format
         var datestart = new Date(element.Start_Date);
         datestart = moment(datestart).format('DD-MMM-YYYY');
+
+        //Populate task predecessor
+        $('#taskPredecesor').append($('<option>', {
+          value: element.TaskID,
+          text: element.Name,
+        }));
 
         // Check task type (Prepare array for datatable)
         if (element.If_Milestone === false && element.If_Objective === false) {

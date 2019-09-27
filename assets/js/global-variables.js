@@ -30,6 +30,7 @@ var deleted_file_array = [];
 var userIdList = [];
 var deleted_members_array = [];
 var tasks_array = [];
+var selected_tasks_array = [];
 
 var ProjectName;
 

@@ -6,7 +6,6 @@ function createTask(){
     var taskName = document.getElementById("taskName").value;
     var type = document.getElementById("type").value;
     var taskDuration = document.getElementById("taskDuration").value;
-    var taskPredecesor = document.getElementById("taskPredecesor").value;
     var taskDesc = document.getElementById("taskDesc").value;
 
     //Setup dates for task
@@ -24,6 +23,7 @@ function createTask(){
     if(type == "task"){
         var payload_task = {
             "UserID": userIdList[0],
+            "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
             "Start_Date": current_date,
@@ -31,7 +31,7 @@ function createTask(){
             "Status": true,
             "If_Milestone": false,
             "If_Objective": false,
-            "PredecessorTaskID": taskPredecesor,
+            "PredecessorTaskID": selected_tasks_array[0],
             "Number_of_days" : taskDuration,
             "Percentage" : 0,
             "Progress_Status": "Todo",
@@ -40,6 +40,7 @@ function createTask(){
     }else if(type == "objective"){
         var payload_task = {
             "UserID": userIdList[0],
+            "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
             "Start_Date": current_date,
@@ -56,6 +57,7 @@ function createTask(){
     }else if(type == "milestone"){
         var payload_task = {
             "UserID": userIdList[0],
+            "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
             "Start_Date": current_date,
@@ -71,11 +73,15 @@ function createTask(){
         }
     }
 
+    console.log(payload_task);
+
+    //Creates a task to the database
     fetch(urlPostTask, {
         async: false,
         method: 'POST',
         crossDomain: true,
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify(payload_task)
