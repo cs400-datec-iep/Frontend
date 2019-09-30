@@ -20,18 +20,28 @@ function editTask(){
     var percentageRange = document.getElementById("percentageRange").value;
 
 
-    //Calculate End date
-    var startDate = new Date(sessionStorage.getItem('startDate'));
-    var endDate = "", count = 0;
-    while(count < taskDuration){
-        endDate = new Date(startDate.setDate(startDate.getDate() + 1));
+    //Set up dates
+    if(sessionStorage.getItem('startDate') === null){
+        var createdDate = new Date(sessionStorage.getItem('createdDate'));
+        var startDate = null;
+        var endDate = null;
+        var expDate = null;
 
-        if(endDate.getDay() != 0 && endDate.getDay() != 6){
-           count++;
+    }else{
+        //Expected Completion Date
+        var createdDate = new Date(sessionStorage.getItem('createdDate'));
+        var startDate = new Date(sessionStorage.getItem('startDate'));
+        var endDate = new Date(sessionStorage.getItem('endDate'));
+        var expDate = "", count = 0;
+        while(count < taskDuration){
+            expDate = new Date(createdDate.setDate(createdDate.getDate() + 1));
+
+            if(expDate.getDay() != 0 && expDate.getDay() != 6){
+            count++;
+            }
         }
-    }
 
-    console.log(taskPredecesor);
+    }
 
     if(taskType === "task"){
 
@@ -42,7 +52,9 @@ function editTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Start_Date": sessionStorage.getItem('startDate'),
+            "Date_Created": createdDate,
+            "Expected_Date": expDate,
+            "Start_Date": startDate,
             "End_Date": endDate,
             "Status": status,
             "If_Milestone": false,
@@ -63,6 +75,8 @@ function editTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
+            "Date_Created": createdDate,
+            "Expected_Date": expDate,
             "Start_Date": startDate,
             "End_Date": endDate,
             "Status": status,
@@ -84,6 +98,8 @@ function editTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
+            "Date_Created": createdDate,
+            "Expected_Date": expDate,
             "Start_Date": startDate,
             "End_Date": endDate,
             "Status": status,

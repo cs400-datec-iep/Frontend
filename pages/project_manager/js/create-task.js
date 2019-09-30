@@ -8,16 +8,8 @@ function createTask(){
     var taskDuration = document.getElementById("taskDuration").value;
     var taskDesc = document.getElementById("taskDesc").value;
 
-    //Setup dates for task
+    //Setup start date for task
     var current_date = new Date();
-    var Start = new Date(current_date);
-    var End_date = "", count = 0;
-    while(count < taskDuration){
-        End_date = new Date(Start.setDate(Start.getDate() + 1));
-        if(End_date.getDay() != 0 && End_date.getDay() != 6){
-           count++;
-        }
-    }
     
     // Data encapsulation based on type
     if(type == "task"){
@@ -26,8 +18,10 @@ function createTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Start_Date": current_date,
-            "End_Date": End_date,
+            "Date_Created": current_date,
+            "Expected_Date": null,
+            "Start_Date": null,
+            "End_Date": null,
             "Status": true,
             "If_Milestone": false,
             "If_Objective": false,
@@ -43,8 +37,10 @@ function createTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Start_Date": current_date,
-            "End_Date": End_date,
+            "Date_Created": current_date,
+            "Expected_Date": null,
+            "Start_Date": null,
+            "End_Date": null,
             "Status": true,
             "If_Milestone": false,
             "If_Objective": true,
@@ -60,8 +56,10 @@ function createTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Start_Date": current_date,
-            "End_Date": End_date,
+            "Date_Created": current_date,
+            "Expected_Date": null,
+            "Start_Date": null,
+            "End_Date": null,
             "Status": true,
             "If_Milestone": true,
             "If_Objective": false,

@@ -11,7 +11,6 @@ $(document).ready(function () {
     //Urls
     var urlGetTaskDetails = urlMain + "api/Tasks/"+taskID;
     var urlGetUsers = urlMain + "api/UserMains";
-    var urlGetTasksPerProject = urlMain + "api/GetTasksPerProject/"+sessionStorage.getItem('ProjectID');
 
     // Get task details
     fetch(urlGetTaskDetails, {
@@ -102,22 +101,49 @@ $(document).ready(function () {
                 }
             }
 
+            //Setup Dates
+            if(a.Start_Date === null){
+                //Parsing date into correct format
+                var datecreated = new Date(a.Date_Created);
+                datecreated = moment(datecreated).format('DD-MMM-YYYY');
 
-            //Parsing date into correct format
-            var datestart = new Date(a.Start_Date);
-            datestart = moment(datestart).format('DD-MMM-YYYY');
-            var dateend = new Date(a.End_Date);
-            dateend = moment(dateend).format('DD-MMM-YYYY');
-           
-            document.getElementById("task_start_date").innerHTML = datestart;
-            document.getElementById("task_end_date").innerHTML = dateend;
-            document.getElementById("task_duration").innerHTML = a.Number_of_days;
+                document.getElementById("task_Created_date").innerHTML = datecreated;
+                document.getElementById("task_expected").innerHTML = "Not Started";
+                document.getElementById("task_start").innerHTML = "Not Started";
+                document.getElementById("task_end_date").innerHTML = "Not Started";
+            }else{
+                //Parsing date into correct format
+                var datecreated = new Date(a.Date_Created);
+                datecreated = moment(datecreated).format('DD-MMM-YYYY');
+
+                //Date Task completed work
+                var dateend = new Date(a.End_Date);
+                dateend = moment(dateend).format('DD-MMM-YYYY');
+
+                //Date Task started work
+                var datestart = new Date(a.Start_Date);
+                datestart = moment(datestart).format('DD-MMM-YYYY');
+
+                //Calculate expected date
+                var dateexp = "", count = 0;
+                while(count < a.Number_of_days){
+                    dateexp = new Date(datecreated.setDate(datecreated.getDate() + 1));
+
+                    if(dateexp.getDay() != 0 && datecreated.getDay() != 6){
+                    count++;
+                    }
+                }
             
+                document.getElementById("task_Created_date").innerHTML = datecreated;
+                document.getElementById("task_expected").innerHTML = dateexp;
+                document.getElementById("task_start").innerHTML = datestart;
+                document.getElementById("task_end_date").innerHTML = dateend;
+            }
+
+            document.getElementById("task_duration").innerHTML = a.Number_of_days;
             document.getElementById("progress_meter").setAttribute("Style","width:"+a.Percentage+"%;")
             document.getElementById("task_percentage").innerHTML = a.Percentage+"%";
-
             document.getElementById("task_desc").innerHTML = a.Description;
-
             document.getElementById("task_type").innerHTML = "Type: "+task_type;
 
             //Get task array from previous page
@@ -177,6 +203,10 @@ $(document).ready(function () {
                 //Set task ID as session and start date as session
                 sessionStorage.setItem('taskID',a.TaskID);
                 sessionStorage.setItem('startDate',a.Start_Date);
+                sessionStorage.setItem('endDate',a.End_Date);
+                sessionStorage.setItem('expDate',a.Expected_Date);
+                sessionStorage.setItem('createdDate',a.Date_Created);
+
                
             };
             button.innerHTML = "Edit Task";

@@ -54,10 +54,13 @@ $(document).ready(function () {
       tasks_array = JSON.stringify(a);
 
       a.forEach(element => {
-
         //Parsing date into correct format
-        var datestart = new Date(element.Start_Date);
-        datestart = moment(datestart).format('DD-MMM-YYYY');
+        if(element.Start_Date === null){
+         var  datestart = "Not Started";
+        }else{
+          var datestart = new Date(element.Start_Date);
+          datestart = moment(datestart).format('DD-MMM-YYYY');
+        }
 
         //Populate task predecessor
         $('#taskPredecesor').append($('<option>', {

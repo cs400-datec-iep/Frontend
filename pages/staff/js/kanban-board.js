@@ -3,76 +3,69 @@
 
     //Urls
     var urlUpdateTaskStatus = urlMain + "api/UpdateTasksStatus/";
-    
+
+    //Event Listeners
+
+
     dragula([$('todo'), $('doing'),$('done')],{
-        accepts: function (el, target, source, sibling) {
-            if(source.id == "todo" && target.id=="done"){
-                return false;
-            }else if(source.id == "done" && target.id=="todo"){
-                return false;
-            }   
+        accepts: function (target, source, el) {
+
+            if(el.id == "todo" && source.id=="done"){
+              return false;
+            }else if(el.id == "doing" && source.id=="todo"){
+              return false;
+            }else if(el.id == "done" && source.id=="doing"){
+              return false;
+            }else if(el.id == "done" && source.id=="todo"){
+              return false;
+            }else if(el.id == "doing" && source.id=="todo"){
+              return false;
+            }
+
+            if(el.id == "todo" && source.id=="doing"){
+              console.log("gotchu bitch");
+              return false;
+            }
             return true; // elements can be dropped in any of the `containers` by default
         }
-    })
-      .on('drop', function (el,target) {
+    }).on('drop', function (el,target) {
 
-        switch(target.id) {
-            case "todo":
-                document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #f6c23e !important");
-
-                fetch(urlUpdateTaskStatus + el.id+"/"+"Todo", {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).catch(error => console.error('Error:', error));
-
-                break;
-            case "doing":
+        switch(target.id) { 
+          case "doing":
                 document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #e74a3b !important");
 
-                fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).catch(error => console.error('Error:', error));
+                // fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
+                //     async: false,
+                //     method: 'POST',
+                //     crossDomain: true,
+                //     headers: {
+                //         'Authorization': 'Bearer ' + token
+                //     }
+                // }).catch(error => console.error('Error:', error));
+
                 break;
             case "done":
                 document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #1cc88a !important");
 
-                fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).catch(error => console.error('Error:', error));
+                // fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
+                //     async: false,
+                //     method: 'POST',
+                //     crossDomain: true,
+                //     headers: {
+                //         'Authorization': 'Bearer ' + token
+                //     }
+                // }).catch(error => console.error('Error:', error));
                 break;
             default:
                 break;
           }
       })
     
-    dragula([sortable]);
-    
-    crossvent.add(sortable, 'click', clickHandler);
-    
     function clickHandler (e) {
-      var target = e.target;
-      if (target === sortable) {
-        return;
-      }
-      target.innerHTML += ' [click!]';
-    
-      setTimeout(function () {
-        target.innerHTML = target.innerHTML.replace(/ \[click!\]/g, '');
-      }, 500);
+      var element = e.target;
+     
+      console.log(element);
+      
     }
     
     function $ (id) {

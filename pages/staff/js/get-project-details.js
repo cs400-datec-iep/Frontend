@@ -154,9 +154,22 @@ $(document).ready(function () {
             b.forEach(element => {
                 if(element.Progress_Status === "Todo"){
 
-                    var card = document.createElement("div");
+                    var card = document.createElement("button");
                     card.classList.add("drag-item" ,"border-left-warning","mb-2");
                     card.id = element.TaskID;
+                    card.setAttribute("data-toggle","modal");
+                    card.setAttribute("data-target","#taskViewModal");
+                    card.onclick = function (){
+
+                        document.getElementById("taskName").innerHTML = element.Name;
+                        document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                        document.getElementById("value").innerHTML = element.Percentage+"%";
+                        document.getElementById("percentageRange").value = element.Percentage;
+                        document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                        document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                        document.getElementById("taskDesc").innerHTML = element.Description;
+
+                    }
 
                     var taskTitle =  document.createElement("p");
                     taskTitle.classList.add("text-lg");
@@ -238,8 +251,7 @@ $(document).ready(function () {
                 }
             }).then(response => response.json())
             .then((a) => {
-                    
-                tasks_array = JSON.stringify(a);
+                tasks_array = a;
         
                 //loop through tasks and user to match matching UserID's
                 a.forEach(element => {
@@ -322,7 +334,30 @@ $(document).ready(function () {
                     ]
                 });
         
+                //View task details
                 $('#taskTable tbody').on( 'click', 'tr', function () {
+
+                    //Create a button to open modal cause frankly modal.('show') doesnt work
+                    var btn = document.createElement("button");
+                    btn.id = "click";
+                    btn.setAttribute("data-toggle","modal");
+                    btn.setAttribute("data-target","#taskViewListModal");
+                    btn.setAttribute("hidden","true");
+                    document.getElementById("container").appendChild(btn);
+                    $('#click').trigger('click');
+
+                    //Load data into modal
+                    tasks_array.forEach(value => {
+                        if(value.TaskID == table.row(this).data().TaskID){
+                            document.getElementById("taskNameList").innerHTML = value.Name;
+                            document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
+                            document.getElementById("valueList").innerHTML = value.Percentage+"%";
+                            document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
+                            document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
+                            document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
+                            document.getElementById("taskDescList").innerHTML = value.Description;
+                        }
+                    })
 
                 });
 
