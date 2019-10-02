@@ -10,7 +10,10 @@ $(document).ready(function () {
 
     //Urls
     var urlGetTaskDetails = urlMain + "api/Tasks/"+taskID;
-    var urlGetUsers = urlMain + "api/UserMains";
+    var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+sessionStorage.getItem('ProjectID');
+
+    //Loacal Variables
+    var task_type;
 
     // Get task details
     fetch(urlGetTaskDetails, {
@@ -24,7 +27,7 @@ $(document).ready(function () {
     .then((a) => {
 
         // Get Users for dropdown and get user for task
-        fetch(urlGetUsers, {
+        fetch(urlGetProjectTeam, {
             async: false,
             method: 'GET',
             crossDomain: true,
@@ -35,7 +38,6 @@ $(document).ready(function () {
         .then((j) => {
             //Linking data result to html containers
             document.getElementById("project_name_side").innerHTML = sessionStorage.getItem('ProjectName');
-            var task_type;
             
             //Making Breadcrumb links
             var link = document.createElement("a");
@@ -144,24 +146,26 @@ $(document).ready(function () {
             document.getElementById("progress_meter").setAttribute("Style","width:"+a.Percentage+"%;")
             document.getElementById("task_percentage").innerHTML = a.Percentage+"%";
             document.getElementById("task_desc").innerHTML = a.Description;
-            document.getElementById("task_type").innerHTML = "Type: "+task_type;
+            document.getElementById("task_type").innerHTML = "<b>Type:</b> "+task_type;
 
             //Get task array from previous page
             var task_array = JSON.parse(sessionStorage.getItem('task_array'));
 
+            console.log(a);
+            //Predecssor task display
             task_array.forEach(element => {
+                if(element.TaskID === a.PredecessorTaskID){
 
-                if(element.TaskID === a.TaskID){
                     $('#taskPredecesor').append($('<option>', {
                         value: element.TaskID,
                         text: element.Name,
                         selected: true
                     }));
                     
-                    if(a.TaskID === "0"){
-                        document.getElementById('predecessor_task').innerHTML = "Parent Task: None" ;
+                    if(a.PredecessorTaskID === "0"){
+                        document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> None" ;
                     }else{
-                        document.getElementById('predecessor_task').innerHTML = "Parent Task:" + element.Name + "[ID:"+ element.TaskID + "]" ;
+                        document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> " + element.Name + "[ID:"+ element.TaskID + "]" ;
                     }
 
                 }else{
@@ -169,8 +173,6 @@ $(document).ready(function () {
                         value: element.TaskID,
                         text: element.Name,
                     }));
-
-                    document.getElementById('predecessor_task').innerHTML = "Parent Task: None" ;
                 }
             });
 

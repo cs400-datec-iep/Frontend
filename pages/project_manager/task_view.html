@@ -258,15 +258,15 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6">
+                    <div class="form-group row" id="duration_row">
+                        <div class="col-md-6" id="duration_container">
                             <input type="number" id="taskDuration" class="form-control" placeholder="Enter Duration of Task (in Days)" min="1" autofocus="autofocus" >
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="pred_container">
                             <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown">
-                                <option disabled>Please Select Task Predecesor</option>
-                                <option value="none">None</option>
+                                <option disabled selected="true">Please Select Task Predecesor</option>
+                                <option value="0">None</option>
                             </select>
                         </div>
                     </div>
@@ -332,6 +332,31 @@
   <script src="js/get-all-staff.js"></script>
   <script src="js/get-all-project-tasks.js"></script>
   <script src="js/create-task.js"></script>
+  <script>
+  //Removes duration when selecting milestone or objective
+  $('#type').on('change',function(){
+    if(($(this).val() == 'objective')){
+
+      document.getElementById("duration_row").classList.remove("row");
+      document.getElementById("duration_container").classList.add("display-none");
+      document.getElementById("pred_container").classList.remove("col-md-6");
+
+    }else if($(this).val() == 'milestone'){
+
+      document.getElementById("duration_row").classList.remove("row");
+      document.getElementById("duration_container").classList.add("display-none");
+      document.getElementById("pred_container").classList.remove("col-md-6");
+
+    }else{
+
+      document.getElementById("duration_row").classList.add("row");
+      document.getElementById("duration_container").classList.remove("display-none");
+      document.getElementById("pred_container").classList.add("col-md-6");
+
+    }
+  });
+  
+  </script>
 
 </body>
 

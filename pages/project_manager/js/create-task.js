@@ -44,8 +44,8 @@ function createTask(){
             "Status": true,
             "If_Milestone": false,
             "If_Objective": true,
-            "PredecessorTaskID": taskPredecesor,
-            "Number_of_days" : taskDuration,
+            "PredecessorTaskID":  selected_tasks_array[0],
+            "Number_of_days" : 0,
             "Percentage" : 0,
             "Progress_Status": "Todo",
             "Critical_flag": false
@@ -63,8 +63,8 @@ function createTask(){
             "Status": true,
             "If_Milestone": true,
             "If_Objective": false,
-            "PredecessorTaskID": taskPredecesor,
-            "Number_of_days" : taskDuration,
+            "PredecessorTaskID":  selected_tasks_array[0],
+            "Number_of_days" : 0,
             "Percentage" : 0,
             "Progress_Status": "Todo",
             "Critical_flag": false
@@ -86,7 +86,8 @@ function createTask(){
     }).then(response => response.json())
     .then((a) => {
 
-        console.log(a);
+        alert("Task has been created, the page will now refresh.");
+        window.location.assign("task_view.html?"+sessionStorage.getItem('ProjectID'));
 
     }).catch(error => { console.error('Error:', error); return error; });
 

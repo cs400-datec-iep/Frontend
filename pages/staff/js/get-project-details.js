@@ -11,7 +11,7 @@ $(document).ready(function () {
     //Urls
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
-    var urlGetTask = urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem('ProjectID');
+    var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
     var urlGetUserMains = urlMain + "api/UserMains";
 
     //Dataset array for table
@@ -145,86 +145,6 @@ $(document).ready(function () {
             }
         }).then(function (c) { return c.json() })
         .then(function (b) {
-            
-            //Display tasks in baords
-            var cointaner_todo = document.getElementById("todo");
-            var cointaner_doing = document.getElementById("doing");
-            var cointaner_done = document.getElementById("done");
-             
-            b.forEach(element => {
-                if(element.Progress_Status === "Todo"){
-
-                    var card = document.createElement("button");
-                    card.classList.add("drag-item" ,"border-left-warning","mb-2");
-                    card.id = element.TaskID;
-                    card.setAttribute("data-toggle","modal");
-                    card.setAttribute("data-target","#taskViewModal");
-                    card.onclick = function (){
-
-                        document.getElementById("taskName").innerHTML = element.Name;
-                        document.getElementById("taskStatus").innerHTML = element.Progress_Status;
-                        document.getElementById("value").innerHTML = element.Percentage+"%";
-                        document.getElementById("percentageRange").value = element.Percentage;
-                        document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
-                        document.getElementById("taskDuration").innerHTML = element.Number_of_days;
-                        document.getElementById("taskDesc").innerHTML = element.Description;
-
-                    }
-
-                    var taskTitle =  document.createElement("p");
-                    taskTitle.classList.add("text-lg");
-                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
-
-                    var tasksStartDate = document.createElement("p");
-                    tasksStartDate.classList.add("text-sm");
-                    var datetask = new Date(element.Start_Date);
-                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
-
-                    card.appendChild(taskTitle);
-                    card.appendChild(tasksStartDate);
-                    cointaner_todo.appendChild(card);
-
-                   
-                } else if(element.Progress_Status  === "Doing"){
-
-                    var card = document.createElement("div");
-                    card.classList.add("drag-item" ,"border-left-danger","mb-2");
-                    card.id = element.TaskID;
-
-                    var taskTitle =  document.createElement("p");
-                    taskTitle.classList.add("text-lg");
-                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
-
-                    var tasksStartDate = document.createElement("p");
-                    tasksStartDate.classList.add("text-sm");
-                    var datetask = new Date(element.Start_Date);
-                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
-
-                    card.appendChild(taskTitle);
-                    card.appendChild(tasksStartDate);
-                    cointaner_doing.appendChild(card);
-
-                } else if(element.Progress_Status === "Done"){
-
-                    var card = document.createElement("div");
-                    card.classList.add("drag-item" ,"border-left-success","mb-2");
-                    card.id = element.TaskID;
-
-                    var taskTitle =  document.createElement("p");
-                    taskTitle.classList.add("text-lg");
-                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
-
-                    var tasksStartDate = document.createElement("p");
-                    tasksStartDate.classList.add("text-sm");
-                    var datetask = new Date(element.Start_Date);
-                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
-
-                    card.appendChild(taskTitle);
-                    card.appendChild(tasksStartDate);
-                    cointaner_done.appendChild(card);
-
-                }
-            });
 
             // Get user names to compare with userdID in task
             fetch(urlGetUserMains, {
@@ -236,144 +156,227 @@ $(document).ready(function () {
                 }
             }).then(result => result.json())
             .then((users) => {
-    
-                userIdList = users;
+                
+                //Get All tasks for list view
+                fetch(urlGetTask, {
+                    async: false,
+                    method: 'GET',
+                    crossDomain: true,
+                    headers: {
+                    'Authorization': 'Bearer ' + token
+                    }
+                }).then(response => response.json())
+                .then((tasks) => {
 
-            }).catch(error => { console.error('Error:', error); return error; });
-
-            //Get All tasks for list view
-            fetch(urlGetTask, {
-                async: false,
-                method: 'GET',
-                crossDomain: true,
-                headers: {
-                  'Authorization': 'Bearer ' + token
-                }
-            }).then(response => response.json())
-            .then((a) => {
-                tasks_array = a;
-        
-                //loop through tasks and user to match matching UserID's
-                a.forEach(element => {
-                    userIdList.forEach(user => {
-
-                        if(element.UserID === user.ID){
-
-                            //Parsing date into correct format
-                            var datestart = new Date(element.Start_Date);
-                            datestart = moment(datestart).format('DD-MMM-YYYY');
+                    //Display tasks in boards
+                    var cointaner_todo = document.getElementById("todo");
+                    var cointaner_doing = document.getElementById("doing");
+                    var cointaner_done = document.getElementById("done");
                     
-                            //Populate task predecessor
-                            $('#taskPredecesor').append($('<option>', {
-                                value: element.TaskID,
-                                text: element.Name,
-                            }));
-
+                    b.forEach(element => {
+                        if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false){
                             
-                            // Check task type (Prepare array for datatable)
-                            if (element.If_Milestone === false && element.If_Objective === false) {
-                    
-                                var dataObj = {
-                                "TaskID" : element.TaskID,
-                                "Type" : "Task",
-                                "Name" : element.Name,
-                                "Start_Date" : datestart,
-                                "Status" : element.Progress_Status,
-                                "Duration" : element.Number_of_days,
-                                "Assigned_To" : user.Username
-                                };
-                    
-                                dataset.push(dataObj);
-                    
-                            } else if (element.If_Objective === true && element.If_Milestone === false) {
-                    
-                                var dataObj = {
-                                "TaskID" : element.TaskID,
-                                "Type" :"Objective",
-                                "Name" : element.Name,
-                                "Start_Date" : datestart,
-                                "Status" : element.Progress_Status,
-                                "Duration" : element.Number_of_days,
-                                "Assigned_To" : user.Username
-                                };
-                    
-                                dataset.push(dataObj);
-                    
-                            } else if (element.If_Milestone === true && element.If_Objective === false) {
-                    
-                                var dataObj = {
-                                "TaskID" : element.TaskID,
-                                "Type" :"Milestone",
-                                "Name" : element.Name,
-                                "Start_Date" : datestart,
-                                "Status" : element.Progress_Status,
-                                "Duration" : element.Number_of_days,
-                                "Assigned_To" : user.Username
-                                };
-                    
-                                dataset.push(dataObj);
-                    
+                            tasks.forEach(task_element => {
+                                if(element.PredecessorTaskID == task_element.TaskID && !(task_element.Progress_Status == "Done")){
+
+                                    var card = document.createElement("button");
+                                    card.classList.add("border-left-warning","mb-2");
+                                    card.id = "Locked";
+                
+                                    var taskTitle =  document.createElement("p");
+                                    taskTitle.classList.add("text-lg");
+                                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
+                
+                                    var tasksStartDate = document.createElement("p");
+                                    tasksStartDate.classList.add("text-sm");
+                                    var datetask = new Date(element.Start_Date);
+                                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+                
+                                    card.appendChild(taskTitle);
+                                    card.appendChild(tasksStartDate);
+                                    cointaner_todo.appendChild(card);
+                                }
+
+                            })
+                        
+                        } else if(element.Progress_Status  === "Doing" && element.If_Milestone == false && element.If_Objective == false){
+
+                            var card = document.createElement("div");
+                            card.classList.add("drag-item" ,"border-left-danger","mb-2");
+                            card.id = element.TaskID;
+                            card.setAttribute("data-toggle","modal");
+                            card.setAttribute("data-target","#taskViewModal");
+                            card.onclick = function (){
+
+                                document.getElementById("taskName").innerHTML = element.Name;
+                                document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                document.getElementById("value").innerHTML = element.Percentage+"%";
+                                document.getElementById("percentageRange").value = element.Percentage;
+                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                                document.getElementById("taskDesc").innerHTML = element.Description;
+                                document.getElementById("grid_edit").classList.add('d-none');
+                                sessionStorage.setItem("taskIdKanbanClicked",element.TaskID);
+
                             }
+
+                            var taskTitle =  document.createElement("p");
+                            taskTitle.classList.add("text-lg");
+                            taskTitle.innerHTML = element.TaskID+" "+element.Name;
+
+                            var tasksStartDate = document.createElement("p");
+                            tasksStartDate.classList.add("text-sm");
+                            var datetask = new Date(element.Start_Date);
+                            tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+
+                            card.appendChild(taskTitle);
+                            card.appendChild(tasksStartDate);
+                            cointaner_doing.appendChild(card);
+
+                        } else if(element.Progress_Status === "Done" && element.If_Milestone == false && element.If_Objective == false){
+
+                            var card = document.createElement("div");
+                            card.classList.add("drag-item" ,"border-left-success","mb-2");
+                            card.id = element.TaskID;
+
+                            var taskTitle =  document.createElement("p");
+                            taskTitle.classList.add("text-lg");
+                            taskTitle.innerHTML = element.TaskID+" "+element.Name;
+
+                            var tasksStartDate = document.createElement("p");
+                            tasksStartDate.classList.add("text-sm");
+                            var datetask = new Date(element.Start_Date);
+                            tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+
+                            card.appendChild(taskTitle);
+                            card.appendChild(tasksStartDate);
+                            cointaner_done.appendChild(card);
+
                         }
                     });
-                });
-        
-                //Initialize datatable
-                table = $('#taskTable').DataTable(
-                {
-                    data: dataset,
-                    select: true,
-                    columns: [
-                    { data: 'TaskID' },
-                    { data: 'Type' },
-                    { data: 'Name' },
-                    { data: 'Start_Date' },
-                    { data: 'Status' },
-                    { data: 'Duration' },
-                    { data: 'Assigned_To' }
-                    ]
-                });
-        
-                //View task details
-                $('#taskTable tbody').on( 'click', 'tr', function () {
+                    
+                    //loop through tasks and user to match matching UserID's
+                    tasks.forEach(element => {
+                        users.forEach(user => {
 
-                    //Create a button to open modal cause frankly modal.('show') doesnt work
-                    var btn = document.createElement("button");
-                    btn.id = "click";
-                    btn.setAttribute("data-toggle","modal");
-                    btn.setAttribute("data-target","#taskViewListModal");
-                    btn.setAttribute("hidden","true");
-                    document.getElementById("container").appendChild(btn);
-                    $('#click').trigger('click');
+                            if(element.UserID === user.ID){
 
-                    //Load data into modal
-                    tasks_array.forEach(value => {
-                        if(value.TaskID == table.row(this).data().TaskID){
-                            document.getElementById("taskNameList").innerHTML = value.Name;
-                            document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
-                            document.getElementById("valueList").innerHTML = value.Percentage+"%";
-                            document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
-                            document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
-                            document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
-                            document.getElementById("taskDescList").innerHTML = value.Description;
-                        }
-                    })
+                                //Parsing date into correct format
+                                var datestart = new Date(element.Start_Date);
+                                datestart = moment(datestart).format('DD-MMM-YYYY');
+                        
+                                //Populate task predecessor
+                                $('#taskPredecesor').append($('<option>', {
+                                    value: element.TaskID,
+                                    text: element.Name,
+                                }));
 
-                });
-
+                                
+                                // Check task type (Prepare array for datatable)
+                                if (element.If_Milestone === false && element.If_Objective === false) {
+                        
+                                    var dataObj = {
+                                    "TaskID" : element.TaskID,
+                                    "Type" : "Task",
+                                    "Name" : element.Name,
+                                    "Start_Date" : datestart,
+                                    "Status" : element.Progress_Status,
+                                    "Duration" : element.Number_of_days,
+                                    "Assigned_To" : user.Username
+                                    };
+                        
+                                    dataset.push(dataObj);
+                        
+                                } else if (element.If_Objective === true && element.If_Milestone === false) {
+                        
+                                    var dataObj = {
+                                    "TaskID" : element.TaskID,
+                                    "Type" :"Objective",
+                                    "Name" : element.Name,
+                                    "Start_Date" : datestart,
+                                    "Status" : element.Progress_Status,
+                                    "Duration" : element.Number_of_days,
+                                    "Assigned_To" : user.Username
+                                    };
+                        
+                                    dataset.push(dataObj);
+                        
+                                } else if (element.If_Milestone === true && element.If_Objective === false) {
+                        
+                                    var dataObj = {
+                                    "TaskID" : element.TaskID,
+                                    "Type" :"Milestone",
+                                    "Name" : element.Name,
+                                    "Start_Date" : datestart,
+                                    "Status" : element.Progress_Status,
+                                    "Duration" : element.Number_of_days,
+                                    "Assigned_To" : user.Username
+                                    };
+                        
+                                    dataset.push(dataObj);
+                        
+                                }
+                            }
+                        });
+                    });
             
-                //Remove loading icon on success
-                document.getElementById("load").style.display = "none";
+                    //Initialize datatable
+                    table = $('#taskTable').DataTable(
+                    {
+                        data: dataset,
+                        select: true,
+                        columns: [
+                        { data: 'TaskID' },
+                        { data: 'Type' },
+                        { data: 'Name' },
+                        { data: 'Start_Date' },
+                        { data: 'Status' },
+                        { data: 'Duration' },
+                        { data: 'Assigned_To' }
+                        ]
+                    });
+            
+                    //View task details
+                    $('#taskTable tbody').on( 'click', 'tr', function () {
 
-                //Remove loading icon and display output for sidebar
-                document.getElementById("icon_container").classList.remove("display-none");
-                document.getElementById("sidebarToggle").classList.remove("display-none");
+                        //Create a button to open modal cause frankly modal.('show') doesnt work
+                        var btn = document.createElement("button");
+                        btn.id = "click";
+                        btn.setAttribute("data-toggle","modal");
+                        btn.setAttribute("data-target","#taskViewListModal");
+                        btn.setAttribute("hidden","true");
+                        document.getElementById("container").appendChild(btn);
+                        $('#click').trigger('click');
 
-                //Return Container to display normal output
-                document.getElementById("container").classList.remove("display-none");
-        
+                        //Load data into modal
+                        tasks.forEach(value => {
+                            if(value.TaskID == table.row(this).data().TaskID){
+                                document.getElementById("taskNameList").innerHTML = value.Name;
+                                document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
+                                document.getElementById("valueList").innerHTML = value.Percentage+"%";
+                                document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
+                                document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
+                                document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
+                                document.getElementById("taskDescList").innerHTML = value.Description;
+                            }
+                        })
+
+                    });
+
+                
+                    //Remove loading icon on success
+                    document.getElementById("load").style.display = "none";
+
+                    //Remove loading icon and display output for sidebar
+                    document.getElementById("icon_container").classList.remove("display-none");
+                    document.getElementById("sidebarToggle").classList.remove("display-none");
+
+                    //Return Container to display normal output
+                    document.getElementById("container").classList.remove("display-none");
+            
+                }).catch(error => { console.error('Error:', error); return error; });
+
             }).catch(error => { console.error('Error:', error); return error; });
-            
 
         }).catch(error => console.error('Error:', error));
 

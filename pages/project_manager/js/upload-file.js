@@ -45,6 +45,8 @@ function uploadBlob() {
         //Store Result into var
         var lastProjID = response.json();
 
+        console.log(lastProjID);
+
         lastProjID.then(function (result) {
 
             //If one file has been selected in the HTML file input element

@@ -361,7 +361,9 @@
           </div>
 
         </div>
-
+        <div class="modal-footer" >
+          <a class="btn btn-primary text-white" onclick="editTask();" id="grid_edit">Save Changes</a>
+        </div>
       </div>
     </div>
   </div>
@@ -470,8 +472,20 @@
   <script src="../../assets/vendor/dragula.js/dragula.min.js"></script>
   <script src="js/kanban-board.js"></script>
   <script src="js/get-project-details.js"></script>
+  <script src="js/edit-task.js"></script>
   <script>
+    //dynamic slider number when slider is moved
+    var slider = document.getElementById("percentageRange");
+    var output = document.getElementById("value");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value+"%";
+
+      document.getElementById("grid_edit").classList.remove("d-none");
+    }
     
+    //Toggle duration for milestones and objectives (No duration)
     function toggleListView(){
       document.getElementById('grid').classList.toggle('display-none');
       document.getElementById('list').classList.toggle('display-none');
@@ -482,7 +496,6 @@
         document.getElementById('toggle_view').innerHTML = "List View";
       }
 
-      
     }
     
   </script>

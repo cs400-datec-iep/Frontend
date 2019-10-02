@@ -244,12 +244,7 @@ $(document).ready(function () {
             var ul = document.getElementById("fileList");
             $('#fileList').empty();//Empty list from previous load
 
-            
-            /*////////////////////////////////////
-
-            Function to populate project memebrs in list
-
-            */////////////////////////////////////
+            //Populate file list in edit modal
             function populateList(){
                 //Loop through file array and display with hyperlinks
                 for(var i = 0; i< file_array.length; i++){

@@ -29,7 +29,7 @@ function uploadBlob() {
     /////////////////////////////////////////////////////////////////////////////////
 
     //Uploads File with referenced project ID
-    async function lastProjID() {
+    async function lastProjID(){
         
         //Get ID from url
         var url = window.location.href;
@@ -80,13 +80,12 @@ function uploadBlob() {
 
             //File name in list
             var p = document.createElement("p");
-            p.innerHTML = "<a href='" + fileLocation + "/" + lastProjectID + "_" + file.name + "'>" + file.name + "</a>";
-
+            p.innerHTML = "<a href='" + fileLocation + "/" + projectID + "_" + file.name + "'>" + file.name + "</a>";
 
             //Delete file button
             var btn = document.createElement("button");
-            btn.classList.add('btn-circle', 'btn-danger', 'col-md-2', 'ml-2');
-            btn.innerHTML = "X";
+            btn.classList.add('btn-circle-edit', 'btn-danger', 'col-md-2', 'ml-2');
+            btn.innerHTML = "x";
             btn.setAttribute("type", "button");
             btn.onclick = function () {
                 //Searches for file in list and removes it
