@@ -174,43 +174,112 @@ $(document).ready(function () {
                     var cointaner_done = document.getElementById("done");
                     
                     b.forEach(element => {
-                        if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false){
-                            
-                            // tasks.forEach(task_element => {
-                                // if(element.PredecessorTaskID == task_element.TaskID){
+                        if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false && element.PredecessorTaskID != 0){
 
-                                    var card = document.createElement("button");
-                                    card.classList.add("drag-item","border-left-warning","mb-2");
-                                    card.id =  element.TaskID;
-                                    card.setAttribute("data-toggle","modal");
-                                    card.setAttribute("data-target","#taskViewModal");
-                                    card.onclick = function (){
+                            tasks.forEach(task => {
+                                if(element.PredecessorTaskID == task.TaskID){
+                                    if(task.Progress_Status == "Done"){
+                                        var card = document.createElement("button");
+                                        card.classList.add("drag-item","border-left-warning","mb-2");
+                                        card.id =  element.TaskID;
+                                        card.setAttribute("data-toggle","modal");
+                                        card.setAttribute("data-target","#taskViewModal");
+                                        card.onclick = function (){
 
-                                        document.getElementById("taskName").innerHTML = element.Name;
-                                        document.getElementById("taskStatus").innerHTML = element.Progress_Status;
-                                        document.getElementById("percentage_container").classList.add('d-none');
-                                        document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
-                                        document.getElementById("taskDuration").innerHTML = element.Number_of_days;
-                                        document.getElementById("taskDesc").innerHTML = element.Description;
-                                        document.getElementById("grid_edit").classList.add('d-none');
+                                            document.getElementById("taskName").innerHTML = element.Name;
+                                            document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                            document.getElementById("percentage_container").classList.add('d-none');
+                                            document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                            document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
+                                            document.getElementById("taskDesc").innerHTML = element.Description;
+                                            document.getElementById("grid_edit").classList.add('d-none');
 
+                                        }
+                    
+                                        var taskTitle =  document.createElement("p");
+                                        taskTitle.classList.add("text-lg");
+                                        taskTitle.innerHTML = element.TaskID+" "+element.Name;
+                    
+                                        var tasksStartDate = document.createElement("p");
+                                        tasksStartDate.classList.add("text-sm");
+                                        var datetask = new Date(element.Start_Date);
+                                        tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+                    
+                                        card.appendChild(taskTitle);
+                                        card.appendChild(tasksStartDate);
+                                        cointaner_todo.appendChild(card);
+
+                                    }else{
+                                        var card = document.createElement("button");
+                                        card.classList.add("drag-item","border-left-warning","mb-2");
+                                        card.id =  "Locked";
+                                        card.setAttribute("data-toggle","modal");
+                                        card.setAttribute("data-target","#taskViewModal");
+                                        card.onclick = function (){
+
+                                            document.getElementById("taskName").innerHTML = element.Name;
+                                            document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                            document.getElementById("percentage_container").classList.add('d-none');
+                                            document.getElementById("taskPred").innerHTML = element.PredecessorTaskID + "(NOT COMPLETED)";
+                                            document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
+                                            document.getElementById("taskDesc").innerHTML = element.Description;
+                                            document.getElementById("grid_edit").classList.add('d-none');
+
+                                        }
+                    
+                                        var taskTitle =  document.createElement("p");
+                                        taskTitle.classList.add("text-lg");
+                                        taskTitle.innerHTML = element.TaskID+" "+element.Name;
+
+                                        var taskSubTitle =  document.createElement("p");
+                                        taskSubTitle.classList.add("text-m","text-danger");
+                                        taskSubTitle.innerHTML = "PREDECESSOR TASK NOT YET COMPLETED ID: "+element.PredecessorTaskID;
+                    
+                                        var tasksStartDate = document.createElement("p");
+                                        tasksStartDate.classList.add("text-sm");
+                                        var datetask = new Date(element.Start_Date);
+                                        tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+                    
+                                        card.appendChild(taskTitle);
+                                        card.appendChild(taskSubTitle);
+                                        card.appendChild(tasksStartDate);
+                                        cointaner_todo.appendChild(card);
                                     }
-                
-                                    var taskTitle =  document.createElement("p");
-                                    taskTitle.classList.add("text-lg");
-                                    taskTitle.innerHTML = element.TaskID+" "+element.Name;
-                
-                                    var tasksStartDate = document.createElement("p");
-                                    tasksStartDate.classList.add("text-sm");
-                                    var datetask = new Date(element.Start_Date);
-                                    tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
-                
-                                    card.appendChild(taskTitle);
-                                    card.appendChild(tasksStartDate);
-                                    cointaner_todo.appendChild(card);
-                                // }
+                                }
+                                
+                            });
 
-                            // })
+                        }else if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false){
+                            
+                            var card = document.createElement("button");
+                            card.classList.add("drag-item","border-left-warning","mb-2");
+                            card.id =  element.TaskID;
+                            card.setAttribute("data-toggle","modal");
+                            card.setAttribute("data-target","#taskViewModal");
+                            card.onclick = function (){
+
+                                document.getElementById("taskName").innerHTML = element.Name;
+                                document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                document.getElementById("percentage_container").classList.add('d-none');
+                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
+                                document.getElementById("taskDesc").innerHTML = element.Description;
+                                document.getElementById("grid_edit").classList.add('d-none');
+
+                            }
+        
+                            var taskTitle =  document.createElement("p");
+                            taskTitle.classList.add("text-lg");
+                            taskTitle.innerHTML = element.TaskID+" "+element.Name;
+        
+                            var tasksStartDate = document.createElement("p");
+                            tasksStartDate.classList.add("text-sm");
+                            var datetask = new Date(element.Start_Date);
+                            tasksStartDate.innerHTML = "Created: "+moment(datetask).format('DD-MMM-YYYY') + " (Duration: "+element.Number_of_days+" days)";
+        
+                            card.appendChild(taskTitle);
+                            card.appendChild(tasksStartDate);
+                            cointaner_todo.appendChild(card);
                         
                         } else if(element.Progress_Status  === "Doing" && element.If_Milestone == false && element.If_Objective == false){
 
@@ -227,7 +296,7 @@ $(document).ready(function () {
                                 document.getElementById("value").innerHTML = element.Percentage+"%";
                                 document.getElementById("percentageRange").value = element.Percentage;
                                 document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
-                                document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                                document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                 document.getElementById("taskDesc").innerHTML = element.Description;
                                 document.getElementById("grid_edit").classList.add('d-none');
                                 sessionStorage.setItem("taskIdKanbanClicked",element.TaskID);
@@ -260,7 +329,7 @@ $(document).ready(function () {
                                 document.getElementById("taskStatus").innerHTML = element.Progress_Status;
                                 document.getElementById("percentage_container").classList.add('d-none');
                                 document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
-                                document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                                document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                 document.getElementById("taskDesc").innerHTML = element.Description;
                                 document.getElementById("grid_edit").classList.add('d-none');
 

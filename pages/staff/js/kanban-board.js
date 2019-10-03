@@ -6,18 +6,20 @@
     
     dragula([$('todo'), $('doing'),$('done')],{
         accepts: function (target, source, el) {
-            if(el.id == "todo" && source.id=="done"){
-              return false;
-            }else if(el.id == "doing" && source.id=="todo"){
-              return false;
-            }else if(el.id == "done" && source.id=="doing"){
-              return false;
-            }else if(el.id == "done" && source.id=="todo"){
-              return false;
-            }else if(el.id == "doing" && source.id=="todo"){
-              return false;
-            }
-            return true; // elements can be dropped in any of the `containers` by default
+          if(target.id == "Locked"){
+            return false;
+          }else if(el.id == "todo" && source.id=="done"){
+            return false;
+          }else if(el.id == "doing" && source.id=="todo"){
+            return false;
+          }else if(el.id == "done" && source.id=="doing"){
+            return false;
+          }else if(el.id == "done" && source.id=="todo"){
+            return false;
+          }else if(el.id == "doing" && source.id=="todo"){
+            return false;
+          }
+          return true; // elements can be dropped in any of the `containers` by default
         }
     }).on('drop', function (el,target) {
 
@@ -25,27 +27,27 @@
           case "doing":
               document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #e74a3b !important");
 
-              // fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
-              //     async: false,
-              //     method: 'POST',
-              //     crossDomain: true,
-              //     headers: {
-              //         'Authorization': 'Bearer ' + token
-              //     }
-              // }).catch(error => console.error('Error:', error));
+              fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
+                  async: false,
+                  method: 'POST',
+                  crossDomain: true,
+                  headers: {
+                      'Authorization': 'Bearer ' + token
+                  }
+              }).catch(error => console.error('Error:', error));
 
               break;
           case "done":
               document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #1cc88a !important");
 
-              // fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
-              //     async: false,
-              //     method: 'POST',
-              //     crossDomain: true,
-              //     headers: {
-              //         'Authorization': 'Bearer ' + token
-              //     }
-              // }).catch(error => console.error('Error:', error));
+              fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
+                  async: false,
+                  method: 'POST',
+                  crossDomain: true,
+                  headers: {
+                      'Authorization': 'Bearer ' + token
+                  }
+              }).catch(error => console.error('Error:', error));
               break;
           default:
               break;
