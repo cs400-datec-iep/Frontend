@@ -176,12 +176,25 @@ $(document).ready(function () {
                     b.forEach(element => {
                         if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false){
                             
-                            tasks.forEach(task_element => {
-                                if(element.PredecessorTaskID == task_element.TaskID && !(task_element.Progress_Status == "Done")){
+                            // tasks.forEach(task_element => {
+                                // if(element.PredecessorTaskID == task_element.TaskID){
 
                                     var card = document.createElement("button");
-                                    card.classList.add("border-left-warning","mb-2");
-                                    card.id = "Locked";
+                                    card.classList.add("drag-item","border-left-warning","mb-2");
+                                    card.id =  element.TaskID;
+                                    card.setAttribute("data-toggle","modal");
+                                    card.setAttribute("data-target","#taskViewModal");
+                                    card.onclick = function (){
+
+                                        document.getElementById("taskName").innerHTML = element.Name;
+                                        document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                        document.getElementById("percentage_container").classList.add('d-none');
+                                        document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                        document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                                        document.getElementById("taskDesc").innerHTML = element.Description;
+                                        document.getElementById("grid_edit").classList.add('d-none');
+
+                                    }
                 
                                     var taskTitle =  document.createElement("p");
                                     taskTitle.classList.add("text-lg");
@@ -195,9 +208,9 @@ $(document).ready(function () {
                                     card.appendChild(taskTitle);
                                     card.appendChild(tasksStartDate);
                                     cointaner_todo.appendChild(card);
-                                }
+                                // }
 
-                            })
+                            // })
                         
                         } else if(element.Progress_Status  === "Doing" && element.If_Milestone == false && element.If_Objective == false){
 
@@ -210,6 +223,7 @@ $(document).ready(function () {
 
                                 document.getElementById("taskName").innerHTML = element.Name;
                                 document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                document.getElementById("percentage_container").classList.remove('d-none');
                                 document.getElementById("value").innerHTML = element.Percentage+"%";
                                 document.getElementById("percentageRange").value = element.Percentage;
                                 document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
@@ -238,6 +252,19 @@ $(document).ready(function () {
                             var card = document.createElement("div");
                             card.classList.add("drag-item" ,"border-left-success","mb-2");
                             card.id = element.TaskID;
+                            card.setAttribute("data-toggle","modal");
+                            card.setAttribute("data-target","#taskViewModal");
+                            card.onclick = function (){
+
+                                document.getElementById("taskName").innerHTML = element.Name;
+                                document.getElementById("taskStatus").innerHTML = element.Progress_Status;
+                                document.getElementById("percentage_container").classList.add('d-none');
+                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                document.getElementById("taskDuration").innerHTML = element.Number_of_days;
+                                document.getElementById("taskDesc").innerHTML = element.Description;
+                                document.getElementById("grid_edit").classList.add('d-none');
+
+                            }
 
                             var taskTitle =  document.createElement("p");
                             taskTitle.classList.add("text-lg");

@@ -3,10 +3,7 @@
 
     //Urls
     var urlUpdateTaskStatus = urlMain + "api/UpdateTasksStatus/";
-
-    //Event Listeners
-
-
+    
     dragula([$('todo'), $('doing'),$('done')],{
         accepts: function (target, source, el) {
             if(el.id == "todo" && source.id=="done"){
