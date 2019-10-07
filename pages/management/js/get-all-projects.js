@@ -6,7 +6,7 @@ $(document).ready(function () {
     //Urls
     var urlGetUserProjects = urlMain+'api/Projects' ;
 
-    //Get projects based on manager id
+    //Get all projects in the system
     fetch(urlGetUserProjects, {
         async: false,
         method: 'GET',
@@ -17,48 +17,35 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
-
-        //Remove loading icon on success
-        document.getElementById("load").style.display = "none";
-
         //Message for no Projects to Display
         if(j.length == 0){
             document.getElementById("no_project").style.display = "inline-block";
         }
 
-        //Loop to display all projects
+        //Loop to display all projects in cards
         for (var i = 0; i < j.length; i++) {
 
             if(j[i].Status == true){
-                //Creating project card
-                var projectName = j[i].Name;
-                var projectDesc = j[i].Description;
-                var projectID = j[i].ProjectID;
-                var projectPercentage = j[i].Percentage;
-                var projectSatus = j[i].Progress_Status;
-                var projectCritical = j[i].Critical_flag;
-
-
                 //Check status
-                if(projectSatus == "OnGoing"){
+                if(j[i].Progress_Status == "OnGoing"){
 
                     var status = document.createElement("div");
                     status.classList.add('text-sm','font-weight-normal','text-green', 'text-uppercase', 'mb-1','float-right');
                     status.innerHTML = "On Going";
 
-                }else if(projectSatus == "OnHold"){
+                }else if(j[i].Progress_Status == "OnHold"){
 
                     var status = document.createElement("div");
                     status.classList.add('text-sm','font-weight-normal','text-yellow', 'text-uppercase', 'mb-1','float-right');
                     status.innerHTML = "On Hold";
 
-                }else if(projectSatus == "Completed"){
+                }else if(j[i].Progress_Status == "Completed"){
 
                     var status = document.createElement("div");
                     status.classList.add('text-sm','font-weight-normal','text-green', 'text-uppercase', 'mb-1','float-right');
                     status.innerHTML = "Completed";
 
-                }else if(projectSatus == "Cancelled"){
+                }else if(j[i].Progress_Status == "Cancelled"){
 
                     var status = document.createElement("div");
                     status.classList.add('text-sm','font-weight-normal','text-red', 'text-uppercase', 'mb-1','float-right');
@@ -75,7 +62,7 @@ $(document).ready(function () {
 
                 var card = document.createElement("a");
                 card.classList.add('card', 'border-left-primary','shadow','o-hidden', 'h-100', 'py-2');
-                card.href = "view_project.html?" + projectID;
+                card.href = "view_project.html?" + j[i].ProjectID;
 
                 var cardbody = document.createElement("div");
                 cardbody.classList.add('card-body');
@@ -85,11 +72,11 @@ $(document).ready(function () {
 
                 var header = document.createElement("div");
                 header.classList.add('text-xlg','font-weight-bold','text-primary', 'text-uppercase', 'mb-1');
-                header.innerHTML = projectName;
+                header.innerHTML = j[i].Name;
 
                 var paragraph = document.createElement("div");
                 paragraph.classList.add('text-sm','h5','mb-0', 'font-weight-bold', 'text-gray-800','text-truncate');
-                paragraph.innerHTML = projectDesc;
+                paragraph.innerHTML = j[i].Description;
 
                 var col2 = document.createElement("div");
                 cardbody.classList.add('col-auto');
@@ -103,7 +90,7 @@ $(document).ready(function () {
 
                 var progressPercnetage = document.createElement("span");
                 progressPercnetage.classList.add('float-right');
-                progressPercnetage.innerHTML = projectPercentage + "%";
+                progressPercnetage.innerHTML = j[i].Percentage + "%";
 
                 var progressBarDiv = document.createElement("div");
                 progressBarDiv.classList.add('progress');
@@ -111,10 +98,10 @@ $(document).ready(function () {
                 var progressBar = document.createElement("div");
                 progressBar.classList.add('progress-bar-stripe','bg-success');
                 progressBar.setAttribute("role", "progressbar");
-                progressBar.setAttribute("style", "width:" + projectPercentage + "%");
+                progressBar.setAttribute("style", "width:" + j[i].Percentage + "%");
 
-                // Check project critical flag
-                if(projectCritical == true){
+                //Check project and flag if critical
+                if(j[i].Critical_flag == true){
 
                     card.classList.add('blink');
                     var status = document.createElement("div");
@@ -135,14 +122,13 @@ $(document).ready(function () {
                 progressHeader.appendChild(progressPercnetage);
                 cardbody.appendChild(progressBarDiv);
                 progressBarDiv.appendChild(progressBar);
-
-                //Place generated elements into container  
                 container.append(a);
             }    
 
         }
-        
-        //Return Container to display normal output
+
+        //Remove loading icon on success and return Container to display normal output
+        document.getElementById("load").style.display = "none";
         document.getElementById("container").style.display = "";
 
     }).catch(error => { console.error('Error:', error); return error; });
