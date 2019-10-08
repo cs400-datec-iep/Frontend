@@ -176,7 +176,7 @@
                             <div class="card-body ">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Basic info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
+                                        <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
 
                                         <!-- Client Name -->
                                         <table class="table-responsive-md col-md-12 ">
@@ -202,13 +202,14 @@
                                                 <span id="project_endDate" class="text-lg "></span>
                                               </td>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration(Days):</div>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration:</div>
                                                 <span id="project_duration" class="text-lg"></span>
                                               </td>
                                             </tr>
                                         </table>  
 
                                         <!-- Progress Bar-->
+                                        <div class="text-sm font-weight-bold text-primary text-center text-gray-800 mb-1">Percentage Completed</div>
                                         <div class="progress fh-1-6 mt-3 text-center">
                                             <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white font-weight-bold text-sm" id="project_percentage_text"></span></div>
                                         </div>
@@ -227,9 +228,9 @@
                     <div class="card shadow mb-4">
                       <!--Card Header -->
                       <div class="card-header py-3">
-                          <i class="fas fa-tasks float-left text-xxlg"> </i>
-                          <h6 class="font-weight-bold text-xxlg text-primary ml-5">Your Work Board<button id="toggle_view" class="btn btn-info btn-block text-white float-right col-md-2" onclick="toggleListView();">List View</button></h6>
-                          <p>Here all milestones, objectives and tasks will be displayed. <br>Toggle between  <b>Grid View</b> ( Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all tasks, objectives and milestone where you can view information of each item)</p>
+                          <i class="fas fa-tasks float-left text-xlg mr-2"> </i>
+                          <h6 class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-2">Your Work Board<button id="toggle_view" class="btn btn-info btn-block text-white float-right col-md-2" onclick="toggleListView();">List View</button></h6>
+                          <p>Here all milestones, objectives and tasks will be displayed.<br>Toggle between  <b>Grid View</b> ( Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all tasks, objectives and milestone where you can view information of each item)</p>
                       </div>
 
                       <!-- Card Body Grid-->
@@ -243,13 +244,13 @@
 
                           <div class="col-md-4 drag-border bg-grey rounded-corners p-3" >
                             <h3 class="font-weight-bold text-center text-white">Doing</h4>
-                            <div id='doing'  class="h-100">
+                            <div id='doing'  class="h-100 mb-2">
                             </div>
                           </div>
 
                           <div class="col-md-4 bg-grey rounded-corners p-3">
                             <h3 class="font-weight-bold text-center text-white">Done</h4>
-                            <div id='done'  class="h-100">
+                            <div id='done'  class="h-100 mb-2">
                             </div>
                           </div>
 
@@ -361,7 +362,7 @@
           </div>
 
         </div>
-        <div class="modal-footer" >
+        <div class="modal-footer" id="grid_footer">
           <a class="btn btn-primary text-white" onclick="editTask();" id="grid_edit">Save Changes</a>
         </div>
       </div>
@@ -482,7 +483,7 @@
     slider.oninput = function() {
       output.innerHTML = this.value+"%";
 
-      document.getElementById("grid_edit").classList.remove("d-none");
+      document.getElementById("grid_footer").classList.remove("d-none");
     }
     
     //Toggle duration for milestones and objectives (No duration)

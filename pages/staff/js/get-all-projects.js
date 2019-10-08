@@ -1,6 +1,6 @@
 /*////////////////////////////////////
 
-Function to get and display all projects for Staff
+Function to get and display all projects for Staff User
 
 */////////////////////////////////////
 $(document).ready(function () {
@@ -18,10 +18,6 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
-
-        //Remove loading icon on success
-        document.getElementById("load").style.display = "none";
-
         //Message for no Projects to Display
         if(j.length == 0){
             document.getElementById("no_project").style.display = "inline-block";
@@ -142,6 +138,8 @@ $(document).ready(function () {
             }    
 
         }
+        //Remove loading icon on success
+        document.getElementById("load").style.display = "none";
         
         //Return Container to display normal output
         document.getElementById("container").style.display = "";

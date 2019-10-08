@@ -6,60 +6,51 @@
     
     dragula([$('todo'), $('doing'),$('done')],{
         accepts: function (target, source, el) {
-          if(target.id == "Locked"){
+          if(target.id == "Locked"){//Task with predecessor cant be placed into any containers
             return false;
-          }else if(el.id == "todo" && source.id=="done"){
+          }else if(el.id == "todo" && source.id=="done"){//Cant place tasks from Todo directly to Done
             return false;
-          }else if(el.id == "doing" && source.id=="todo"){
+          }else if(el.id == "doing" && source.id=="todo"){//Cant place tasks from Doing directly to Todo
             return false;
-          }else if(el.id == "done" && source.id=="doing"){
+          }else if(el.id == "done" && source.id=="doing"){//Cant place tasks from Done directly to Doing
             return false;
-          }else if(el.id == "done" && source.id=="todo"){
-            return false;
-          }else if(el.id == "doing" && source.id=="todo"){
+          }else if(el.id == "done" && source.id=="todo"){//Cant place tasks from Done directly to Todo
             return false;
           }
-          return true; // elements can be dropped in any of the `containers` by default
+          return true; 
         }
     }).on('drop', function (el,target) {
+      //Change card styles based on container 
+      switch(target.id) { 
+        case "doing":
+            document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #e74a3b !important");
+            //Updates status to Doing
+            fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
+                async: false,
+                method: 'POST',
+                crossDomain: true,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).catch(error => console.error('Error:', error));
 
-        switch(target.id) { 
-          case "doing":
-              document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #e74a3b !important");
-
-              fetch(urlUpdateTaskStatus + el.id+"/"+"Doing", {
-                  async: false,
-                  method: 'POST',
-                  crossDomain: true,
-                  headers: {
-                      'Authorization': 'Bearer ' + token
-                  }
-              }).catch(error => console.error('Error:', error));
-
-              break;
-          case "done":
-              document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #1cc88a !important");
-
-              fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
-                  async: false,
-                  method: 'POST',
-                  crossDomain: true,
-                  headers: {
-                      'Authorization': 'Bearer ' + token
-                  }
-              }).catch(error => console.error('Error:', error));
-              break;
-          default:
-              break;
-          }
+            break;
+        case "done":
+            document.getElementById(el.id).setAttribute("style","border-left: 0.25rem solid #1cc88a !important");
+            //Updates status to Done
+            fetch(urlUpdateTaskStatus + el.id+"/"+"Done", {
+                async: false,
+                method: 'POST',
+                crossDomain: true,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).catch(error => console.error('Error:', error));
+            break;
+        default:
+            break;
+        }
       })
-    
-    function clickHandler (e) {
-      var element = e.target;
-     
-      console.log(element);
-      
-    }
     
     function $ (id) {
       return document.getElementById(id);

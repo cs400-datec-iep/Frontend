@@ -242,14 +242,14 @@
 
                 <!-- Content -->
                 <div class="modal-body">
-
+                  <form onsubmit="createTask();return false">
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <input type="text" id="taskName" class="form-control" placeholder="Enter Task Name" autofocus="autofocus" >
+                            <input type="text" id="taskName" class="form-control" placeholder="Enter Task Name" autofocus="autofocus" required>
                         </div>
 
                         <div class="col-md-6">
-                            <select class="custom-select dash-edit-modal-dropdown" id="type">
+                            <select class="custom-select dash-edit-modal-dropdown" id="type" required>
                                 <option value="" disabled selected>Select Task Type:</option>
                                 <option value="task">Task</option>
                                 <option value="objective">Objective</option>
@@ -260,7 +260,7 @@
 
                     <div class="form-group row" id="duration_row">
                         <div class="col-md-6" id="duration_container">
-                            <input type="number" id="taskDuration" class="form-control" placeholder="Enter Duration of Task (in Days)" min="1" autofocus="autofocus" >
+                            <input type="number" id="taskDuration" class="form-control" placeholder="Enter Duration of Task (in Days)" min="1" autofocus="autofocus" required>
                         </div>
 
                         <div class="col-md-6" id="pred_container">
@@ -272,7 +272,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="members" id="members_list" class="label ui selection fluid dropdown">
+                        <select name="members" id="members_list" class="label ui selection fluid dropdown" required>
                             <option value="">Assign Task to:</option>
                         </select>
                     </div>
@@ -285,9 +285,10 @@
 
                 <!-- Footer -->
                 <div class="modal-footer">
-                    <a class="btn btn-success text-white" onclick="createTask();">Create</a>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <input class="btn btn-success btn-block text-white col-md-2 float-right" type="submit">
+                    <button class="btn btn-secondary col-md-2" type="button" data-dismiss="modal">Cancel</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
