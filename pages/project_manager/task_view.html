@@ -188,21 +188,24 @@
 
                           <!-- Card body -->
                           <div class="card-body">
-                              <div class="table-responsive ">
-                                  <button id="edit_button" class="btn btn-info btn-block text-white  float-right col-md-2" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
-                                  <table class="hover table " id="taskTable" width="100%" cellspacing="0">
-                                      <thead>
-                                          <tr>
-                                              <th>ID</th>
-                                              <th>Type</th>
-                                              <th>Name</th>
-                                              <th>Start Date</th>
-                                              <th>Status</th>
-                                              <th>Duration(Days)</th>
-                                          </tr>
-                                      </thead>
-                                  </table>
-                              </div>
+                            <div class="m-auto d-none" id="no_tasksTable">
+                              <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                            </div>
+                            <div class="table-responsive" id="taskTableContainer">
+                                <button id="edit_button" class="btn btn-info btn-block text-white  float-right col-md-2" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
+                                <table class="hover table " id="taskTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Start Date</th>
+                                            <th>Status</th>
+                                            <th>Duration(Days)</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                           </div>
                       </div>    
                   </div>

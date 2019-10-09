@@ -120,6 +120,44 @@ $(document).ready(function () {
                 ]
             });
 
+            //Allow view tasks if records > 0
+            var records = totalDisplayRecord = $("#taskTable").DataTable().page.info().recordsDisplay;
+
+            if(records > 0){
+                
+
+                //View task details
+                $('#taskTable tbody').on( 'click', 'tr', function () {
+    
+                    //Create a button to open modal cause frankly modal.('show') doesnt work
+                    var btn = document.createElement("button");
+                    btn.id = "click";
+                    btn.setAttribute("data-toggle","modal");
+                    btn.setAttribute("data-target","#taskViewListModal");
+                    btn.setAttribute("hidden","true");
+                    document.getElementById("container").appendChild(btn);
+                    $('#click').trigger('click');
+    
+                    //Load data into modal
+                    tasks.forEach(value => {
+                        if(value.TaskID == table.row(this).data().TaskID){
+                            document.getElementById("taskNameList").innerHTML = value.Name;
+                            document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
+                            document.getElementById("valueList").innerHTML = value.Percentage+"%";
+                            document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
+                            document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
+                            document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
+                            document.getElementById("taskDescList").innerHTML = value.Description;
+                        }
+                    })
+    
+                });
+            }else{
+                document.getElementById("taskTableContainer").classList.toggle("d-none");
+                document.getElementById("no_tasksTable").classList.toggle("d-none");
+
+            }
+
         }).catch(error => { console.error('Error:', error); return error; });
     }).catch(error => { console.error('Error:', error); return error; });
 

@@ -12,6 +12,8 @@ $(document).ready(function () {
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
     var urlGetProjectFiles = urlMain+'api/GetFilesProjectID/'+projectID;
     var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
+    var urlGetUserMain = urlMain+'api/UserMains/';
+
 
     //Get project details
     fetch(urlGetProjectByID, {
@@ -133,6 +135,27 @@ $(document).ready(function () {
                 project_status.appendChild(icon);
             }
         }
+        //Get Project Manager
+        fetch(urlGetUserMain, {
+            async: false,
+            method: 'GET',
+            crossDomain: true,
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(function (a) { return a.json() })
+        .then(function (k) {
+            //Get html container
+            var pm = document.getElementById("project_manager");
+
+            //Loop thorugh array of users and append them to the project manager container
+            for(var i = 0; i< k.length; i++){
+                if(j.Project_managerID === k[i].ID){
+                    pm.innerHTML = k[i].Username;
+                }
+            }
+
+        }).catch(error => { console.error('Error:', error); return error; });
 
         //Get members related to project
         fetch(urlGetProjectTeam, {

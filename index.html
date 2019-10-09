@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body id="container">
     <div class="login-dark">
         <ul class="cb-slideshow">
             <li><span>Image 01</span><div><h3 class="font-weight-bold">PLAN</h3></div></li>
@@ -71,6 +71,23 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" onclick="passwordReset()" data-backdrop="static">Submit</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project manager choose dashboard modal -->
+    <div class="modal fade" id="dashboardOption" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hmm...</h5>
+                </div>
+                <div class="modal-body">Would you like to login as a Staff or a Project Manager?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="redirectStaff()">Staff</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="redirectPM()">Project Manager</button>
                 </div>
             </div>
         </div>

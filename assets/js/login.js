@@ -68,11 +68,19 @@ async function Login() {
                 window.location.assign("../../pages/management/dashboard.html");
   
               }else if(j.Role == "Project Manager"){
-
                 localStorage.clear();
                 sessionStorage.setItem("userID", j.ID);
                 sessionStorage.setItem("username", j.Username);
-                window.location.assign("../../pages/project_manager/dashboard.html");
+
+                var btn = document.createElement("button");
+                btn.id = "click";
+                btn.setAttribute("data-toggle","modal");
+                btn.setAttribute("data-target","#dashboardOption");
+                btn.setAttribute("hidden","true");
+                document.getElementById("container").appendChild(btn);
+                $('#click').trigger('click');
+
+
   
               }else if(j.Role == "Staff"){
 
@@ -95,6 +103,16 @@ async function Login() {
           }).catch(error => console.error('Error:', error));
       }).catch(error => console.error('Error:', error));
   }
+}
+
+function redirectStaff(){
+  window.location.assign("../../pages/staff/dashboard.html");
+
+}
+
+function redirectPM(){
+  window.location.assign("../../pages/project_manager/dashboard.html");
+
 }
 
 

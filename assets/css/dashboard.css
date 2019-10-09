@@ -146,6 +146,17 @@ animation: spin 1s linear infinite;
     cursor: -webkit-grabbing;
   }
 
+  .item-danger{
+    border-left: 0.25rem solid var(--danger) !important; 
+    background: repeating-linear-gradient(
+    45deg,
+    var(--danger),
+    var(--datec) 10px,
+    var(--danger) 10px,
+    var(--datec) 20px
+  );
+  }
+
   .rounded-corners{
     border-radius: 5px;
   }

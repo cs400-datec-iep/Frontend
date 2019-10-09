@@ -128,10 +128,20 @@ $(document).ready(function () {
         }
       );
 
-      $('#taskTable tbody').on( 'click', 'tr', function () {
-        sessionStorage.setItem("task_array",tasks_array);
-        window.location.assign("view_task_details.html?"+table.row( this ).data().TaskID);
-      });
+      //Allow view tasks if records > 0
+      var records = totalDisplayRecord = $("#taskTable").DataTable().page.info().recordsDisplay;
+
+      if(records > 0){
+        //View task details
+        $('#taskTable tbody').on( 'click', 'tr', function () {
+          sessionStorage.setItem("task_array",tasks_array);
+          window.location.assign("view_task_details.html?"+table.row( this ).data().TaskID);
+        });
+
+    }else{
+        document.getElementById("taskTableContainer").classList.toggle("d-none");
+        document.getElementById("no_tasksTable").classList.toggle("d-none");
+    }
 
       //Remove loading icon and display output
       document.getElementById("load").style.display = "none";

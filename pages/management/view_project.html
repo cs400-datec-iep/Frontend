@@ -181,16 +181,17 @@
                                     <div class="col mr-2">
                                         <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
 
-                                        <!-- Client Name -->
+                                      
                                         <table class="table-responsive-md col-md-12 mb-2">
+                                          <!-- Client and PM Name -->
                                             <tr>
+                                              <td>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Manager:</div>
+                                                <span id="project_manager" class="text-lg"></span>
+                                              </td>
                                               <td>
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Client:</div>
                                                 <span id="project_client" class="text-lg"></span>
-                                              </td>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
-                                                <span id="project_status" class="text-lg"></span>
                                               </td>
                                             </tr>
                                           
@@ -203,6 +204,10 @@
                                               <td>
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Current Cost:</div>
                                                 <span id="project_cost" class="text-lg"></span>
+                                              </td>
+                                              <td>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
+                                                <span id="project_status" class="text-lg"></span>
                                               </td>
                                             </tr>
 
@@ -277,20 +282,27 @@
                             <div class="card-body">
                                 <div class="col mr-2">
                                     <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Activity Summary<i class="fas fa-chalkboard text-xxlg text-gray-300 float-right"></i></div>
-                                </div> 
-                                <div class="chart-pie pt-4 pb-2">
-                                <canvas id="myPieChart"></canvas>
                                 </div>
-                                <div class="mt-4 text-center small">
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-success"></i> Tasks Completed
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-danger"></i> Tasks Left to do
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-warning"></i> Tasks being done
-                                </span>
+
+                                <div class="m-auto d-none" id="no_tasks">
+                                  <h3 class="text-center mt-5 mb-5">There are no tasks to summarize</h3>
+                                </div>
+
+                                <div id="chart_container">
+                                  <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="myPieChart"></canvas>
+                                  </div>
+                                  <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-success"></i> Tasks Completed
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-danger"></i> Tasks Left to do
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-warning"></i> Tasks being done
+                                    </span>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -323,7 +335,10 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                               <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Activity View<i class="fas fa-tasks text-xxlg text-gray-300 float-right"></i></div>
-                              <div class="table-responsive ">
+                              <div class="m-auto d-none" id="no_tasksTable">
+                                <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                              </div>
+                              <div class="table-responsive" id="taskTableContainer">
                                   <table class="hover table " id="taskTable" width="100%" cellspacing="0">
                                       <thead>
                                           <tr>
@@ -366,6 +381,70 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- View Task(List)-->
+  <div class="modal fade" id="taskViewListModal"role="dialog" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <!-- Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskViewTitle">View Task</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <!-- Content -->
+        <div class="modal-body">
+
+        <!--Task name and status -->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label for="taskNameList" class="font-weight-bolder">Task Name:</label>
+            <p id="taskNameList"></p>
+          </div>
+          <div class="col-md-6">
+            <label for="taskStatusList" class="font-weight-bolder">Task Status:</label>
+            <p id="taskStatusList"></p>
+          </div>
+        </div>
+
+        <!--Task Percentage Completion -->
+        <div class="form-group">
+          <label for="percentageRangeList" class="font-weight-bolder">Task Percentage Completion:</label>
+          <div class="progress fh-1-6 mt-3 text-center">
+              <div class="progress-bar-striped bg-success p-1" role="progressbar" id="percentageRangeList"><span class="text-white font-weight-bold text-sm" id="valueList"></span></div>
+          </div>
+        </div>
+
+        <!--Task Predecesor and Duration -->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskPredList" class="font-weight-bolder">Task Predecesor ID:</label>
+              <p id="taskPredList"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskDurationList" class="font-weight-bolder">Task Duration:</label>
+              <p id="taskDurationList"></p>
+            </div>
+          </div>
+        </div>
+
+        <!--Task Description -->
+        <div class="form-group">
+          <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
+          <p id="taskDescList" class="m-auto" rows="3" required></p>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -12,7 +12,7 @@ $(document).ready(function () {
   //Urls
   var urlGetTasksByPerProject = urlMain + 'api/GetTasksPerProject/'+projectID;
 
-  //Get project details
+  //Get all tasks for project
   fetch(urlGetTasksByPerProject, {
     async: false,
     method: 'GET',
@@ -25,7 +25,6 @@ $(document).ready(function () {
   .then(function (j) {
 
     var tasksDoneCounter = 0, tasksDoingCounter = 0, tasksTodoCounter = 0;
-    var tasksTotalCounter = j.length;
 
     j.forEach(element => {
 
@@ -39,14 +38,16 @@ $(document).ready(function () {
       
     });
 
-    console.log(tasksTodoCounter);
-    console.log(tasksDoingCounter);
-    console.log(tasksDoneCounter);
+    
 
+    if(j.length == 0){
+      document.getElementById("chart_container").classList.toggle("d-none");
+      document.getElementById("no_tasks").classList.toggle("d-none");
+    }
 
-
+    //Display doughnut chart
     var ctx = document.getElementById("myPieChart");
-    var myPieChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ["Tasks Completed", "Tasks Left to do", "Tasks being done"],

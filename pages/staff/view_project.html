@@ -182,6 +182,10 @@
                                         <table class="table-responsive-md col-md-12 ">
                                             <tr>
                                               <td>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Manager:</div>
+                                                <span id="project_manager" class="text-lg"></span>
+                                              </td>
+                                              <td>
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Client:</div>
                                                 <span id="project_client" class="text-lg"></span>
                                               </td>
@@ -233,6 +237,10 @@
                           <p>Here all milestones, objectives and tasks will be displayed.<br>Toggle between  <b>Grid View</b> ( Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all tasks, objectives and milestone where you can view information of each item)</p>
                       </div>
 
+                      <div class="m-auto d-none" id="no_tasksKanban">
+                        <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                      </div>
+
                       <!-- Card Body Grid-->
                       <div class="card-body bg-datec" id="grid">
                         <div class="form-group row">
@@ -260,21 +268,21 @@
                       <!-- Card Body list -->
                       <div class="card-body display-none" id="list">
                         <div class="form-group row">
-                            <div class="table-responsive ">
-                                <table class="hover table " id="taskTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Start Date</th>
-                                            <th>Status</th>
-                                            <th>Duration(Days)</th>
-                                            <th>Assigned To</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                          <div class="table-responsive" id="taskTableContainer">
+                              <table class="hover table " id="taskTable" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <th>Type</th>
+                                          <th>Name</th>
+                                          <th>Start Date</th>
+                                          <th>Status</th>
+                                          <th>Duration(Days)</th>
+                                          <th>Assigned To</th>
+                                      </tr>
+                                  </thead>
+                              </table>
+                          </div>
                         </div>
                       </div>
 
@@ -493,6 +501,7 @@
 
       if(document.getElementById('grid').classList.contains('display-none')){
         document.getElementById('toggle_view').innerHTML = "Gird View";
+        
       }else if(document.getElementById('list').classList.contains('display-none')){
         document.getElementById('toggle_view').innerHTML = "List View";
       }

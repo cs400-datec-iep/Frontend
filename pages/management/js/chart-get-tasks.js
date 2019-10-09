@@ -38,6 +38,13 @@ $(document).ready(function () {
       
     });
 
+    
+
+    if(j.length == 0){
+      document.getElementById("chart_container").classList.toggle("d-none");
+      document.getElementById("no_tasks").classList.toggle("d-none");
+    }
+
     //Display doughnut chart
     var ctx = document.getElementById("myPieChart");
     new Chart(ctx, {

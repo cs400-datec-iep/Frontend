@@ -71,7 +71,7 @@ $(document).ready(function () {
 
         startDate.innerHTML = moment(datestart).format('DD-MMM-YYYY');
         endDate.innerHTML =   moment(dateend).format('DD-MMM-YYYY');
-        project_duration.innerHTML = j.number_of_days;
+        project_duration.innerHTML = j.number_of_days+" Days";
 
         //set project billing information 
         project_cost.innerHTML = "$"+j.amount_cost;

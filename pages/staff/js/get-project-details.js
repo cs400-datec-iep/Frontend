@@ -152,6 +152,17 @@ $(document).ready(function () {
                 }
             }).then(result => result.json())
             .then((users) => {
+
+                //Get html container
+                var pm = document.getElementById("project_manager");
+
+                //Loop thorugh array of users and append them to the project manager container
+                for(var i = 0; i< users.length; i++){
+                    if(j.Project_managerID === users[i].ID){
+                        pm.innerHTML = users[i].Username;
+                    }
+                }
+
                 //Get All tasks for list view
                 fetch(urlGetTask, {
                     async: false,
@@ -207,7 +218,7 @@ $(document).ready(function () {
 
                                     }else{
                                         var card = document.createElement("div");
-                                        card.classList.add("drag-item","border-left-warning","mb-2","col-md-11");
+                                        card.classList.add("drag-item","item-danger","mb-2","col-md-11");
                                         card.id =  "Locked";
                                         card.setAttribute("data-toggle","modal");
                                         card.setAttribute("data-target","#taskViewModal");
@@ -228,8 +239,8 @@ $(document).ready(function () {
                                         taskTitle.innerHTML = element.TaskID+" "+element.Name;
                     
                                         var taskSubTitle =  document.createElement("p");
-                                        taskSubTitle.classList.add("text-danger","text-center","m-0","p-0");
-                                        taskSubTitle.innerHTML = "PREDECESSOR TASK NOT YET COMPLETED ID: "+element.PredecessorTaskID;
+                                        taskSubTitle.classList.add("text-white","text-center","mt-2","mb-2","p-0","font-weight-bold","text-lg","text-underline");
+                                        taskSubTitle.innerHTML = "PREDECESSOR TASK NOT COMPLETED ID: "+element.PredecessorTaskID;
                     
                                         var taskCreatedDate = document.createElement("p");
                                         taskCreatedDate.classList.add("text-sm");
@@ -426,33 +437,43 @@ $(document).ready(function () {
                         { data: 'Assigned_To' }
                         ]
                     });
-            
-                    //View task details
-                    $('#taskTable tbody').on( 'click', 'tr', function () {
 
-                        //Create a button to open modal cause frankly modal.('show') doesnt work
-                        var btn = document.createElement("button");
-                        btn.id = "click";
-                        btn.setAttribute("data-toggle","modal");
-                        btn.setAttribute("data-target","#taskViewListModal");
-                        btn.setAttribute("hidden","true");
-                        document.getElementById("container").appendChild(btn);
-                        $('#click').trigger('click');
+                     //Allow view tasks if records > 0
+                    var records = totalDisplayRecord = $("#taskTable").DataTable().page.info().recordsDisplay;
 
-                        //Load data into modal
-                        tasks.forEach(value => {
-                            if(value.TaskID == table.row(this).data().TaskID){
-                                document.getElementById("taskNameList").innerHTML = value.Name;
-                                document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
-                                document.getElementById("valueList").innerHTML = value.Percentage+"%";
-                                document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
-                                document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
-                                document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
-                                document.getElementById("taskDescList").innerHTML = value.Description;
-                            }
-                        })
+                    if(records > 0){
+                        //View task details
+                        $('#taskTable tbody').on( 'click', 'tr', function () {
 
-                    });
+                            //Create a button to open modal cause frankly modal.('show') doesnt work
+                            var btn = document.createElement("button");
+                            btn.id = "click";
+                            btn.setAttribute("data-toggle","modal");
+                            btn.setAttribute("data-target","#taskViewListModal");
+                            btn.setAttribute("hidden","true");
+                            document.getElementById("container").appendChild(btn);
+                            $('#click').trigger('click');
+
+                            //Load data into modal
+                            tasks.forEach(value => {
+                                if(value.TaskID == table.row(this).data().TaskID){
+                                    document.getElementById("taskNameList").innerHTML = value.Name;
+                                    document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
+                                    document.getElementById("valueList").innerHTML = value.Percentage+"%";
+                                    document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
+                                    document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
+                                    document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
+                                    document.getElementById("taskDescList").innerHTML = value.Description;
+                                }
+                            })
+
+                        });
+
+                    }else{
+                        document.getElementById("list").classList.toggle("d-none");
+                        document.getElementById("no_tasksKanban").classList.toggle("d-none");
+                        document.getElementById("grid").classList.toggle("d-none");
+                    }
 
                 
                     //Remove loading icon on success
