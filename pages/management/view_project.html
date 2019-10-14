@@ -82,7 +82,7 @@
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="notifications">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -314,8 +314,11 @@
                               <div class="row no-gutters align-items-center">
                                   <div class="col mr-2">
                                       <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project Documents<i class="fas fa-folder text-xxlg text-gray-300 float-right"></i></div>
-                                      <div class="text-sm h5 mb-0 text-gray-800" >
+                                      <div class="text-sm mb-0 text-gray-800" >
                                         Here is a list of the project documents:
+                                        <div class="m-auto d-none" id="no_files">
+                                          <h3 class="text-center mt-5 mb-5">There are no files in this project</h3>
+                                        </div>
                                         <ul id="document_list">
                                         </ul>
                                       </div>

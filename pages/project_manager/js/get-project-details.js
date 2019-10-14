@@ -161,6 +161,7 @@ $(document).ready(function () {
             }
         }).then(function (a) { return a.json() })
         .then(function (k) {
+
             //Get html container
             var ul = document.getElementById("user_list");
 
@@ -195,6 +196,13 @@ $(document).ready(function () {
         .then(function (k) {
             //Get html container
             var ul = document.getElementById("document_list");
+
+            //Check if empty
+            if(k.length == 0){
+                document.getElementById("document_list_container").classList.toggle("d-none");
+                document.getElementById("no_files").classList.toggle("d-none");
+                document.getElementById("no_files").classList.remove("text-gray-800");
+            }
 
             //Loop thorugh array of users and append them to list
             for(var i = 0; i< k.length; i++){

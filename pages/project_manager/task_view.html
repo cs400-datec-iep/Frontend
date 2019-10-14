@@ -87,7 +87,7 @@
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="notifications">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
@@ -188,23 +188,25 @@
 
                           <!-- Card body -->
                           <div class="card-body">
-                            <div class="m-auto d-none" id="no_tasksTable">
-                              <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
-                            </div>
-                            <div class="table-responsive" id="taskTableContainer">
+                            <div class="table-responsive">
                                 <button id="edit_button" class="btn btn-info btn-block text-white  float-right col-md-2" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
-                                <table class="hover table " id="taskTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Type</th>
-                                            <th>Name</th>
-                                            <th>Start Date</th>
-                                            <th>Status</th>
-                                            <th>Duration(Days)</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <div class="m-auto d-none" id="no_tasksTable">
+                                  <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                                </div>
+                                <div id="taskTableContainer">
+                                  <table class="hover table " id="taskTable" width="100%" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th>ID</th>
+                                              <th>Type</th>
+                                              <th>Name</th>
+                                              <th>Start Date</th>
+                                              <th>Status</th>
+                                              <th>Duration(Days)</th>
+                                          </tr>
+                                      </thead>
+                                  </table>
+                                </div>
                             </div>
                           </div>
                       </div>    

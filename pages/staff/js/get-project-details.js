@@ -364,8 +364,12 @@ $(document).ready(function () {
                             if(element.UserID === user.ID){
 
                                 //Parsing date into correct format
-                                var datestart = new Date(element.Start_Date);
-                                datestart = moment(datestart).format('DD-MMM-YYYY');
+                                if(element.Start_Date === null){
+                                    var datestart = "Not Started";
+                                }else{
+                                    var datestart = new Date(element.Start_Date);
+                                    datestart = moment(datestart).format('DD-MMM-YYYY');
+                                }
                         
                                 //Populate task predecessor
                                 $('#taskPredecesor').append($('<option>', {
@@ -463,7 +467,28 @@ $(document).ready(function () {
                                     document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
                                     document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
                                     document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
-                                    document.getElementById("taskDescList").innerHTML = value.Description;
+
+                                    //Set up Dates
+                                    if(value.Start_Date === null){
+                                        document.getElementById("taskStartDate").innerHTML = "Not Started";
+                                    }else{
+                                        var datestart = new Date(value.Start_Date);
+                                        document.getElementById("taskStartDate").innerHTML = moment(datestart).format('DD-MMM-YYYY');
+                                    }
+
+                                    if(value.Expected_Date === null){
+                                        document.getElementById("taskExpDate").innerHTML = "Tasks Have Not Started";
+                                    }else{
+                                        var exp = new Date(value.Expected_Date);
+                                        document.getElementById("taskExpDate").innerHTML = moment(exp).format('DD-MMM-YYYY');
+                                    }
+
+                                    var dateend = new Date(value.End_Date);
+                                    var created = new Date(value.Date_Created);
+
+                                    
+                                    document.getElementById("taskEndDate").innerHTML =   moment(dateend).format('DD-MMM-YYYY');
+                                    document.getElementById("taskCreatedDate").innerHTML =   moment(created).format('DD-MMM-YYYY');
                                 }
                             })
 

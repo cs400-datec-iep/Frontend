@@ -28,8 +28,6 @@ function create_project() {
         }
     }
 
-    console.log();
-
     //Validates selected members
     if(userIdList === undefined  || userIdList.length == 0){
         alert("Please add members!");
@@ -99,12 +97,14 @@ function create_project() {
                         'Authorization': 'Bearer ' + token
                     },
                     body: JSON.stringify(ArrayOfFiles[i])
+                }).then(function (a) {
+                    
+                    localStorage.setItem('created_project',"true");
+                    window.location.href ="dashboard.html";
+                    alert("Project created successfully");
+
                 }).catch(error => { console.error('Error:', error); return error; });
             }
-
-            localStorage.setItem('created_project',"true");
-            window.location.href ="dashboard.html";
-            alert("Project created successfully");
 
         }).catch(error => { console.error('Error:', error); return error; });
     }    

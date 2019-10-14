@@ -3323,6 +3323,10 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
+#notifications {
+  height: 20rem !important;
+}
+
 .dropdown-menu-left {
   right: auto;
   left: 0;
@@ -11201,7 +11205,7 @@ a:focus {
 .topbar .dropdown-list {
   padding: 0;
   border: none;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .topbar .dropdown-list .dropdown-header {

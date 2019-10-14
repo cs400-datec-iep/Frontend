@@ -10,6 +10,14 @@ function createTask(){
 
     //Setup start date for task
     var current_date = new Date();
+    var Start = new Date();
+    var end_date = "", count = 0;
+    while(count < taskDuration){
+        end_date = new Date(Start.setDate(Start.getDate() + 1));
+        if(end_date.getDay() != 0 && end_date.getDay() != 6){
+           count++;
+        }
+    }
     
     // Data encapsulation based on type
     if(type == "task"){
@@ -19,9 +27,9 @@ function createTask(){
             "Name": taskName,
             "Description": taskDesc,
             "Date_Created": current_date,
-            "Expected_Date": null,
+            "Expected_Date": end_date,
             "Start_Date": null,
-            "End_Date": null,
+            "End_Date": end_date,
             "Status": true,
             "If_Milestone": false,
             "If_Objective": false,
@@ -38,9 +46,9 @@ function createTask(){
             "Name": taskName,
             "Description": taskDesc,
             "Date_Created": current_date,
-            "Expected_Date": null,
+            "Expected_Date": end_date,
             "Start_Date": null,
-            "End_Date": null,
+            "End_Date": end_date,
             "Status": true,
             "If_Milestone": false,
             "If_Objective": true,
@@ -57,9 +65,9 @@ function createTask(){
             "Name": taskName,
             "Description": taskDesc,
             "Date_Created": current_date,
-            "Expected_Date": null,
+            "Expected_Date": end_date,
             "Start_Date": null,
-            "End_Date": null,
+            "End_Date": end_date,
             "Status": true,
             "If_Milestone": true,
             "If_Objective": false,
@@ -70,8 +78,6 @@ function createTask(){
             "Critical_flag": false
         }
     }
-
-    console.log(payload_task);
 
     //Creates a task to the database
     fetch(urlPostTask, {

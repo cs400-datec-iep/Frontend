@@ -15,6 +15,8 @@ function editProject() {
         var urlPutProjectID = urlMain+'api/Projects/' + projectID;
         var urlPostUserProject = urlMain+'api/UserProjects/' + projectID;
         var URLDeleteProjectMembers = urlMain+'api/DeleteUserProjectUsingProject/' + projectID;
+        var urlFiles = urlMain+'/api/Files';
+        var wait = false;
 
         //Get values from html elements
         var projectName = document.getElementById("projName").value;
@@ -50,94 +52,96 @@ function editProject() {
             'amount_cost': project_billed,
         }
 
-        //Delete all  members
-        for (var i = 0; i < deleted_members_array.length; i++) {
-
-            //Delete Users in UserProject
-            fetch(URLDeleteProjectMembers, {
-                async: false,
-                method: 'DELETE',
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-            }).then(function (a) {
-                //Link users to project
-                for (var i = 0; i < userIdList.length; i++) {
-
-                    //Data encapsulation
-                    var payload_user_project = {
-                        'ProjectID': projectID,
-                        'UserID': userIdList[i]
-                    }
-                    console.log(JSON.stringify(payload_user_project));
-                    //Create Users in UserProject
-                    fetch(urlPostUserProject, {
-                        async: false,
-                        method: 'POST',
-                        crossDomain: true,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: JSON.stringify(payload_user_project)
-                    }).catch(error => { console.error('Error:', error); return error; });
-                }
-            }).catch(error => { console.error('Error:', error); return error; });
-        }
-
-        //Add new files
-        for (var i = 0; i < ArrayOfFiles.length; i++) {
-            urlFiles = 'https://datectestapi.azurewebsites.net/api/Files';
-
-            fetch(urlFiles, {
-                async: false,
-                method: 'POST',
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-                body: JSON.stringify(ArrayOfFiles[i])
-            }).catch(error => { console.error('Error:', error); return error; });
-        }
-
-        //Delete old files
-        for (var i = 0; i < deleted_file_array.length; i++) {
-            var urlDeleteFiles = 'https://datectestapi.azurewebsites.net/api/Files/' + deleted_file_array[i];
-
-            fetch(urlDeleteFiles, {
-                async: false,
-                method: 'DELETE',
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-            }).catch(error => { console.error('Error:', error); return error; });
-        }
-
-        //Edit Project Details
-        fetch(urlPutProjectID, {
+        //Delete all  members in UserProject
+        fetch(URLDeleteProjectMembers, {
             async: false,
-            method: 'PUT',
+            method: 'DELETE',
             crossDomain: true,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
-            body: JSON.stringify(payload_project)
-        }).then(function (a) { 
-        
-            alert("Project successfully edited");   
-            window.location.assign("view_project.html?"+projectID);
+        }).then(function (a) {
+            wait = true;
+            //Link users to project
+            for (var i = 0; i < userIdList.length; i++) {
+
+                //Data encapsulation
+                var payload_user_project = {
+                    'ProjectID': projectID,
+                    'UserID': userIdList[i]
+                }
+
+                //Create Users in UserProject
+                fetch(urlPostUserProject, {
+                    async: false,
+                    method: 'POST',
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(payload_user_project)
+                }).catch(error => { console.error('Error:', error); return error; });
+            }
+            wait = false;
+
+            //Add new files
+            for (var i = 0; i < ArrayOfFiles.length; i++) {
+                fetch(urlFiles, {
+                    async: false,
+                    method: 'POST',
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(ArrayOfFiles[i])
+                }).catch(error => { console.error('Error:', error); return error; });
+            }
+    
+            //Delete old files
+            for (var i = 0; i < deleted_file_array.length; i++) {
+                var urlDeleteFiles = urlMain+'api/Files/' + deleted_file_array[i];
+    
+                fetch(urlDeleteFiles, {
+                    async: false,
+                    method: 'DELETE',
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                }).catch(error => { console.error('Error:', error); return error; });
+            }
+    
+            //Edit Project Details
+            fetch(urlPutProjectID, {
+                async: false,
+                method: 'PUT',
+                crossDomain: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(payload_project)
+            }).then(function (a) { 
+                
+                while(wait == true){
+    
+                }
+                alert("Project successfully edited");   
+                window.location.assign("view_project.html?"+projectID);
+    
+            }).catch(error => { console.error('Error:', error); return error; });
+            
+            //Clear delete cache arrays
+            deleted_members_array.length = 0;
+            deleted_file_array.length = 0;
+
 
         }).catch(error => { console.error('Error:', error); return error; });
         
-        //Clear delete cache arrays
-        deleted_members_array.length = 0;
-        deleted_file_array.length = 0;
     } 
 
 }

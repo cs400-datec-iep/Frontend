@@ -11,7 +11,9 @@
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this page-->
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
@@ -74,7 +76,7 @@
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                                aria-labelledby="alertsDropdown" id="notifications">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -155,14 +157,14 @@
                         </li>
                         <li class="breadcrumb-item active">Account</li>
                     </ol>
-                
+
                     <!-- Loading Icon -->
                     <div class="loader" id="load"></div>
 
                     <!-- Content Row -->
                     <div class="row ">
-                        
-                        <div class="col-xl-7 col-md-11 m-auto display-none"  id="container">
+
+                        <div class="col-xl-7 col-md-11 m-auto display-none" id="container">
                             <div class="card shadow mb-4">
 
                                 <!--Card Header -->
@@ -171,7 +173,7 @@
                                     <h6 class="font-weight-bold text-xxlg text-primary ml-5">Your Account
                                     </h6>
                                     <p>You can view your necessary account details here.</p>
-                                    
+
                                 </div>
 
                                 <!-- Card Content -->
@@ -213,9 +215,10 @@
                                     </table>
 
                                     <div class="col-md-5 col-lg-4  m-auto">
-                                        <button id="change_password_button" class="btn btn-info btn-block text-white" 
-                                        data-toggle="modal" data-target="#passwordEditModal" >Change Password</button>
-                                    </div>    
+                                        <button id="change_password_button" class="btn btn-info btn-block text-white"
+                                            data-toggle="modal" data-target="#passwordEditModal">Change
+                                            Password</button>
+                                    </div>
 
                                 </div>
                             </div>
@@ -279,16 +282,19 @@
                 <div class="modal-body">
                     <p>Please enter your new password below:</p>
                     <div class="form-group">
-                        <input id="oldpassword" type="password" class="form-control" name="password"  placeholder="Enter Old Password">
+                        <input id="oldpassword" type="password" class="form-control" name="password"
+                            placeholder="Enter Old Password">
                         <span toggle="#oldpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    </div>    
+                    </div>
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password"  placeholder="Enter New Password">
+                            <input id="password" type="password" class="form-control" name="password"
+                                placeholder="Enter New Password">
                             <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="col-md-6">
-                            <input id="passwordConfirm" type="password" class="form-control" name="password"  placeholder="Confirm New Password">
+                            <input id="passwordConfirm" type="password" class="form-control" name="password"
+                                placeholder="Confirm New Password">
                             <span toggle="#passwordConfirm" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                     </div>
@@ -323,14 +329,14 @@
     <script src="js/edit-password.js"></script>
     <script>
         $(".toggle-password").click(function () {
-                $(this).toggleClass("fa-eye fa-eye-slash");
-                var input = $($(this).attr("toggle"));
-                if (input.attr("type") == "password") {
-                    input.attr("type", "text");
-                } else {
-                    input.attr("type", "password");
-                }
-            });
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
     </script>
 
 
