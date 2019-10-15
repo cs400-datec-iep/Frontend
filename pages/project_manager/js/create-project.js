@@ -39,7 +39,7 @@ function create_project() {
         btn.setAttribute("data-toggle","modal");
         btn.setAttribute("data-target","#loader_work");
         btn.setAttribute("hidden","true");
-        document.getElementById("container").appendChild(btn);
+        document.getElementById("content").appendChild(btn);
         $('#click').trigger('click');
 
         //Data encapsulation
@@ -111,6 +111,7 @@ function create_project() {
                     body: JSON.stringify(ArrayOfFiles[i])
                 }).then(function (a) {
                     
+                    $("#loader_work").modal('hide');
                     localStorage.setItem('created_project',"true");
                     alert("Project created successfully");
                     window.location.href ="dashboard.html";
