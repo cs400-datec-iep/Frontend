@@ -8,6 +8,17 @@ function createTask(){
     var taskDuration = document.getElementById("taskDuration").value;
     var taskDesc = document.getElementById("taskDesc").value;
 
+
+    $("#createTaskModal").modal('hide');
+    //Loading modal
+    var btn = document.createElement("button");
+    btn.id = "click";
+    btn.setAttribute("data-toggle","modal");
+    btn.setAttribute("data-target","#loader_work");
+    btn.setAttribute("hidden","true");
+    document.getElementById("wrapper").appendChild(btn);
+    $('#click').trigger('click');
+
     //Setup start date for task
     var current_date = new Date();
     var Start = new Date();

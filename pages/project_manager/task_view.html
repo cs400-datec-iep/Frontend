@@ -298,6 +298,20 @@
         </div>
     </div>
 
+    <!--Loader Modal -->
+    <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <div class="loader-work"></div>
+            <div clas="loader-txt">
+              <p>Please wait...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal"
         aria-hidden="true">
@@ -346,12 +360,14 @@
       document.getElementById("duration_row").classList.remove("row");
       document.getElementById("duration_container").classList.add("display-none");
       document.getElementById("pred_container").classList.remove("col-md-6");
+      document.getElementById("taskDuration").required = false;
 
     }else if($(this).val() == 'milestone'){
 
       document.getElementById("duration_row").classList.remove("row");
       document.getElementById("duration_container").classList.add("display-none");
       document.getElementById("pred_container").classList.remove("col-md-6");
+      document.getElementById("taskDuration").required = false;
 
     }else{
 

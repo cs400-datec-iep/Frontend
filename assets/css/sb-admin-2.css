@@ -11404,10 +11404,10 @@ a:focus {
   outline: none;
 }
 
-.sidebar.toggled {
+/* .sidebar.toggled {
   width: 0 !important;
   overflow: hidden;
-}
+} */
 
 .sidebar.toggled #sidebarToggle::after {
   content: '\f039';

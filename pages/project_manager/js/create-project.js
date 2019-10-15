@@ -32,6 +32,16 @@ function create_project() {
     if(userIdList === undefined  || userIdList.length == 0){
         alert("Please add members!");
     }else{
+
+        //Loading modal
+        var btn = document.createElement("button");
+        btn.id = "click";
+        btn.setAttribute("data-toggle","modal");
+        btn.setAttribute("data-target","#loader_work");
+        btn.setAttribute("hidden","true");
+        document.getElementById("container").appendChild(btn);
+        $('#click').trigger('click');
+
         //Data encapsulation
         var payload_project = {
             'Name': projectName,
@@ -62,6 +72,8 @@ function create_project() {
             body: JSON.stringify(payload_project)
         }).then(function (a) { return a.json() })
         .then(function (j) {
+            //Add Project Manager as a member
+            userIdList.push(sessionStorage.getItem("userID"));
 
             //Loop for each user store project id and link users to project
             for (var i = 0; i < userIdList.length; i++) {
@@ -100,8 +112,8 @@ function create_project() {
                 }).then(function (a) {
                     
                     localStorage.setItem('created_project',"true");
-                    window.location.href ="dashboard.html";
                     alert("Project created successfully");
+                    window.location.href ="dashboard.html";
 
                 }).catch(error => { console.error('Error:', error); return error; });
             }

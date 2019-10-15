@@ -303,6 +303,20 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  <!--Loader Modal -->
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Please wait...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -340,7 +354,7 @@
   <!-- Scripts for this dashboard -->
   <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/vendor/semantic-ui/semantic.js"></script>
-  <script src="js/get-all-staff.js"></script>
+  <script src="js/get-all-staff-new-project.js"></script>
   <script>
     // Get Dropdownvalues
     $('#members_list')
@@ -348,7 +362,6 @@
       placeholder:'Please select your members',
       onChange: function(value){
           userIdList = value
-          console.log(userIdList);
       }
     });
 

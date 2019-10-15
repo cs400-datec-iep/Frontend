@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Blueprint Error</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+    <!-- Custom fonts for this template-->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/no_access.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=IM+Fell+English|Playfair+Display:900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/glitch_base.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/glitch.css" />
+
+    
+    <!-- Session Check -->
+    <script src="assets/js/sessionCheck.js"></script>
+
+</head>
+
+<body>
+    <div  class="base loading">
+        <div class="content">
+            <div class="glitch">
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+                <div class="glitch__img"></div>
+            </div>
+            <div class="error">
+                <div class="container-floud">
+                    <div class="col-xs-12 ground-color text-center err-container">
+                        <div class="container-error-404">
+                            <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                            <div class="msg">Oops<span class="triangle"></span></div>
+                        </div>
+                        <h2 class="display-1 content__title">Account is Deactivated, please contact your system administrator for more details<br><br><a href="index.html">Return to Login</a></h2>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="assets/js/glitch.js"></script>
+<script>
+    //generate random numbers for error message
+    function randomNum()
+    {
+        "use strict";
+        return Math.floor(Math.random() * 9)+1;
+    }
+
+    var loop1,loop2,loop3,time=30, i=0, number, selector3 = document.querySelector('.thirdDigit'), selector2 = document.querySelector('.secondDigit'),
+        selector1 = document.querySelector('.firstDigit');
+
+    //first loop of random ints
+    loop3 = setInterval(function()
+    {
+        "use strict";
+        if(i > 40)
+        {
+            clearInterval(loop3);
+            selector3.textContent = 4;
+        }else
+        {
+            selector3.textContent = randomNum();
+            i++;
+        }
+    }, time);
+
+    //second loop of random ints
+    loop2 = setInterval(function()
+    {
+        "use strict";
+        if(i > 80)
+        {
+            clearInterval(loop2);
+            selector2.textContent = 0;
+        }else
+        {
+            selector2.textContent = randomNum();
+            i++;
+        }
+    }, time);
+
+    //third loop of random ints
+    loop1 = setInterval(function()
+    {
+        "use strict";
+        if(i > 100)
+        {
+            clearInterval(loop1);
+            selector1.textContent = 3;
+        }else
+        {
+            selector1.textContent = randomNum();
+            i++;
+        }
+    }, time);
+</script>
+
+</html>

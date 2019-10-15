@@ -31,7 +31,14 @@ $(document).ready(function () {
           { data: 'Role' },
           { data: 'Department' },
           { data: 'Status' }
-        ]
+        ],
+        "columnDefs": [
+          {
+              "targets": [ 0 ],
+              "visible": false,
+              "searchable": false
+          }
+          ]
       }
     );
       
@@ -61,8 +68,6 @@ $(document).ready(function () {
       });
 
     });
-
-    table.column(0).visible(false);
     
     //Removing loading icon and display output
     document.getElementById("load").style.display = "none";

@@ -168,6 +168,20 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!--Loader Modal -->
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Please wait...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -247,7 +261,7 @@
 
                   <!-- Footer -->
                   <div class="modal-footer">
-                      <a class="btn btn-danger text-white" onclick="edit_user();">Edit</a>
+                      <a class="btn btn-info text-white" onclick="edit_user();">Save</a>
                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                   </div>
 

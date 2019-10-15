@@ -40,8 +40,17 @@ function editTask(){
             count++;
             }
         }
-
     }
+
+    $("#editTaskModal").modal('hide');
+    //Loading modal
+    var btn = document.createElement("button");
+    btn.id = "click";
+    btn.setAttribute("data-toggle","modal");
+    btn.setAttribute("data-target","#loader_work");
+    btn.setAttribute("hidden","true");
+    document.getElementById("wrapper").appendChild(btn);
+    $('#click').trigger('click');
 
     if(taskType === "task"){
 

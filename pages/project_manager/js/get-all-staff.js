@@ -1,7 +1,7 @@
 
 /*////////////////////////////////////
 
-Function to populate staff list dropdown for create project
+Function to populate staff list dropdown for task view
 
 */////////////////////////////////////
 $(document).ready(function () {
@@ -11,7 +11,6 @@ $(document).ready(function () {
 
   //Urls
   var urlGetProjectMembers = urlMain+'api/GetMembersProjectID/'+projectID;
-
   fetch(urlGetProjectMembers, {
     async: false,
     method: 'GET',

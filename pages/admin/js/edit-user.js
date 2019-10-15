@@ -19,6 +19,13 @@ function edit_user(){
         confirm("status changed from active to inactive, this user will be removed from the following projects and will all be placed on hold.");
     }
 
+    $("#editModal").modal("hide");
+    $("#loader_work").modal({
+        backdrop: "static", //remove ability to close modal with click
+        keyboard: false, //remove option to close with keyboard
+        show: true //Display loader!
+    });
+
     //making payload
     var payload_usermains = {
         "ID": id,
@@ -40,16 +47,12 @@ function edit_user(){
         },
         body: JSON.stringify(payload_usermains)
     }).then(function (a) { 
-        console.log("User Edited" + a.json()); 
-        alert("User Successfull Edited")
+
+        alert("User Successfull Edited");
         window.location.assign("edit_user.html");
         return a.json()
-    }).catch(error => { 
-        console.error('Error:', error); 
-        alert("Error Processing Request, Refreshing page")
-        window.location.reload;
-        return error; 
-    });
+        
+    }).catch(error => { $("#loadMe").modal("hide");console.error('Error:', error); return error;});
 
     //Set session var to refresh page
     sessionStorage.setItem("edit_clicked", false);

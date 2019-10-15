@@ -119,6 +119,11 @@
               </div>
             </li>
 
+            <!-- Change View Staff/PM -->
+            <li class="nav-item dropdown no-arrow float-left">
+              <button class="btn btn-info mt-3" type="button" onclick="changeView();">View As Staff</button>
+            </li>
+
             <div class="topbar-divider d-none d-sm-block "></div>
 
             <!-- Nav Item - User Information -->
@@ -242,6 +247,7 @@
 
   <!-- Scripts for this dashboard -->
   <script src="js/get-all-projects.js"></script>
+  <script src="js/change-view.js"></script>
   <script>
     //Refresh Project cache
     if((localStorage.getItem('created_project') == "true")){

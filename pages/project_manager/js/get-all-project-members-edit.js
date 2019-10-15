@@ -1,6 +1,6 @@
 /*////////////////////////////////////
 
-Function to Populate the memebrs dropdown in edit modal
+Function to Populate the memebers dropdown in edit modal
 
 */////////////////////////////////////
 $(document).ready(function () {
@@ -9,8 +9,8 @@ $(document).ready(function () {
   var projectID = url.substring(url.lastIndexOf('?') + 1);
 
   //Urls
-  var urlGetAllUsers = urlMain+'api/GetActiveUserForAddMembers/' + sessionStorage.getItem("userID");
-  var urlGetPorjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
+  var urlGetAllUsers = urlMain+'api/UserMains/';
+  var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
 
   //Get all users in system
   fetch(urlGetAllUsers, {
@@ -24,7 +24,7 @@ $(document).ready(function () {
     .then((a) => {
 
       //Get all project team members
-      fetch(urlGetPorjectTeam, {
+      fetch(urlGetProjectTeam, {
           async: false,
           method: 'GET',
           crossDomain: true,

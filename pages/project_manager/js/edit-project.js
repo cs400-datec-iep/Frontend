@@ -7,6 +7,17 @@ function editProject() {
 
     //Validate Edit
     if (confirm('Are you sure you want to save your changes?')) {
+        $("#editProjectModel").modal('hide');
+
+       //Loading modal
+       var btn = document.createElement("button");
+       btn.id = "click";
+       btn.setAttribute("data-toggle","modal");
+       btn.setAttribute("data-target","#loader_work");
+       btn.setAttribute("hidden","true");
+       document.getElementById("wrapper").appendChild(btn);
+       $('#click').trigger('click');
+
         //Get ID from url
         var url = window.location.href;
         var projectID = url.substring(url.lastIndexOf('?') + 1);
@@ -32,6 +43,7 @@ function editProject() {
         var project_cost = document.getElementById("projCost").value;
         var project_billed = document.getElementById("projBilled").value;
         var ProjectMangerId = sessionStorage.getItem("userID");
+        
 
         //Data encapsulation
         var payload_project = {

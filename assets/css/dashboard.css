@@ -25,6 +25,47 @@ margin-bottom: 50px;
 animation: spin 1s linear infinite;
 }
 
+.loader-work{
+  position: relative;
+  text-align: center;
+  margin: 15px auto 35px auto;
+  z-index: 9999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 10px solid white;
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin2 1s ease-in-out infinite;
+  -webkit-animation: spin2 1s ease-in-out infinite;
+}
+
+.modal-loader .modal-content{
+  background-color: rgb(61, 61, 61);
+  color: white;
+}
+
+.loader-txt p {
+  font-size: 13px;
+  color: #666;
+}
+.loader-txt p small {
+  font-size: 11.5px;
+  color: #999;
+}
+
+@keyframes spin2 {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin2 {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
     
 
 @keyframes spin {
