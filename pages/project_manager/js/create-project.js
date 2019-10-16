@@ -116,6 +116,10 @@ function create_project() {
                         localStorage.setItem('created_project',"true");
                         alert("Project created successfully");
                         window.location.href ="dashboard.html";
+                    $("#loader_work").modal('hide');
+                    localStorage.setItem('created_project',"true");
+                    alert("Project created successfully");
+                    window.location.href ="dashboard.html";
 
                     }).catch(error => { console.error('Error:', error); return error; });
                 }
