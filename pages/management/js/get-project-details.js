@@ -27,6 +27,9 @@ $(document).ready(function () {
     }).then(function (a) { return a.json() })
     .then(function (j) {
 
+        //Set Project Details for Smart reporting
+        sessionStorage.setItem('ProjectDetails',JSON.stringify(j));
+
         //Get html Containers
         var page_title =  document.getElementById("page_title");
         var project_name =  document.getElementById("project_name_title");

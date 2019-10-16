@@ -276,7 +276,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="members_list_container">
                         <select name="members" id="members_list" class="label ui selection fluid dropdown" required>
                             <option value="">Assign Task to:</option>
                         </select>
@@ -359,15 +359,20 @@
 
       document.getElementById("duration_row").classList.remove("row");
       document.getElementById("duration_container").classList.add("display-none");
+      document.getElementById("members_list_container").classList.add("display-none");
       document.getElementById("pred_container").classList.remove("col-md-6");
       document.getElementById("taskDuration").required = false;
+      document.getElementById("members_list").required = false;
 
     }else if($(this).val() == 'milestone'){
 
       document.getElementById("duration_row").classList.remove("row");
       document.getElementById("duration_container").classList.add("display-none");
+      document.getElementById("members_list_container").classList.add("display-none");
       document.getElementById("pred_container").classList.remove("col-md-6");
       document.getElementById("taskDuration").required = false;
+      document.getElementById("members_list").required = false;
+
 
     }else{
 

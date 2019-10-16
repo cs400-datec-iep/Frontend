@@ -207,3 +207,14 @@ animation: spin 1s linear infinite;
     margin: 50px 0;
     padding: 20px;
   }
+
+  .chart_container{
+    height: 100% !important;
+  }
+
+  #chart{
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }

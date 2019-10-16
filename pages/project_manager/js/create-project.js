@@ -39,7 +39,7 @@ function create_project() {
         btn.setAttribute("data-toggle","modal");
         btn.setAttribute("data-target","#loader_work");
         btn.setAttribute("hidden","true");
-        document.getElementById("container").appendChild(btn);
+        document.getElementById("content").appendChild(btn);
         $('#click').trigger('click');
 
         //Data encapsulation
@@ -96,28 +96,35 @@ function create_project() {
                     body: JSON.stringify(payload_user_project)
                 }).catch(error => { console.error('Error:', error); return error; });
             }
+
             
             //Link uploaded files to the project ID 
-            for (var i = 0; i < ArrayOfFiles.length; i++) {
-                
-                fetch(urlPostFiles, {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-                    },
-                    body: JSON.stringify(ArrayOfFiles[i])
-                }).then(function (a) {
+            if(ArrayOfFiles.length > 0){
+                for (var i = 0; i < ArrayOfFiles.length; i++) {
                     
-                    localStorage.setItem('created_project',"true");
-                    alert("Project created successfully");
-                    window.location.href ="dashboard.html";
+                    fetch(urlPostFiles, {
+                        async: false,
+                        method: 'POST',
+                        crossDomain: true,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: JSON.stringify(ArrayOfFiles[i])
+                    }).then(function (a) {
+                        
+                        localStorage.setItem('created_project',"true");
+                        alert("Project created successfully");
+                        window.location.href ="dashboard.html";
 
-                }).catch(error => { console.error('Error:', error); return error; });
+                    }).catch(error => { console.error('Error:', error); return error; });
+                }
+            }else{
+                localStorage.setItem('created_project',"true");
+                alert("Project created successfully");
+                window.location.href ="dashboard.html";
             }
-
+            
         }).catch(error => { console.error('Error:', error); return error; });
     }    
 }

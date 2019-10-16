@@ -9,7 +9,7 @@ $(document).ready(function () {
   var projectID = url.substring(url.lastIndexOf('?') + 1);
 
   //Urls
-  var urlGetAllUsers = urlMain+'api/UserMains/';
+  var urlGetAllUsers = urlMain+'api/GetActiveUserForAddMembers/'+sessionStorage.getItem("userID");
   var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
 
   //Get all users in system
