@@ -57,12 +57,11 @@ $(document).ready(function () {
                 // end = null;
             }
 
-            if (j[i].PredecessorTaskID == 0) {
+            if (j[i].PredecessorTaskID == 0 ) {
 
                 array.push([
-                    
-                    j[i].Name,
-                    String(j[i].TaskID),
+                    String(j[i].TaskID), 
+                    j[i].Name,                  
                     start,
                     end,
                     daysToMilliseconds(j[i].Number_of_days),
@@ -72,9 +71,8 @@ $(document).ready(function () {
 
             } else {
                 array.push([
-                   
-                    j[i].Name,
                     String(j[i].TaskID),
+                    j[i].Name,                   
                     start,
                     end,
                     daysToMilliseconds(j[i].Number_of_days),
