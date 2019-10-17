@@ -210,11 +210,13 @@ animation: spin 1s linear infinite;
 
   .chart_container{
     height: 100% !important;
+    width: 100% !important;
   }
 
   #chart{
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }

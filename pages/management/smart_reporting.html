@@ -17,8 +17,6 @@
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this page-->
-    <link href="../../assets/vendor/anychart.js/anychart-ui.min.css" rel="stylesheet" type="text/css">
-    <link href="../../assets/vendor/anychart.js/anychart-font.min.css" rel="stylesheet" type="text/css">
     <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
@@ -26,22 +24,12 @@
     <!-- Session Check -->
     <script src="../../assets/vendor/moment.js/moment.min.js"></script>
     <script src="../../assets/js/sessionCheck.js"></script>
-    <style>html, body, #container {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        .test{
-            height: 100%;
-        }
-        </style>
 </head>
 
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper" class="chart_container">
+  <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav navbar-fixed bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -60,7 +48,7 @@
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
         <li class="nav-item" >
-            <a class="nav-link">
+            <a class="nav-link" id="project_link">
               <i class="fas fa-fw fa-folder-open "></i>
               <span id="project_name_side"></span></a>
           </li>
@@ -162,7 +150,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid chart_container" id="container_content">
+        <div class="container-fluid" >
 
             <!-- Breadcrumbs -->
             <ol class="breadcrumb">
@@ -174,17 +162,21 @@
             <!-- Loading Icon -->
             <div class="loader " id="load"></div>
 
-            <!-- First row -->
-            <div class="row chart_container">
-                <div class="col-xl-12 chart_container">
-                    <div class="card shadow-xlg py-2 mb-5 chart_container">
-                        <div class="card-body chart_container">
-                            <div id="chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Container content -->
+            <div class="display-none" id="container_content">
 
+              <!-- First row -->
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="card py-2 mb-5">
+                          <div class="card-body ">
+                            <div id="chart_div"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -239,10 +231,7 @@
 
   <!-- Scripts for this dashboard -->
   <script src="../../assets/js/global-variables.js"></script>
-  <script src="../../assets/vendor/anychart.js/anychart-base.min.js"></script>
-  <script src="../../assets/vendor/anychart.js/anychart-ui.min.js"></script>
-  <script src="../../assets/vendor/anychart.js/anychart-exports.min.js"></script>
-  <script src="../../assets/vendor/anychart.js/anychart-pert.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="js/smart-reporting.js"></script>
 </body>
 
