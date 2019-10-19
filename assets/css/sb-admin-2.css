@@ -3323,9 +3323,9 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
-#notifications {
+/* #notifications {
   height: 20rem !important;
-}
+} */
 
 .dropdown-menu-left {
   right: auto;

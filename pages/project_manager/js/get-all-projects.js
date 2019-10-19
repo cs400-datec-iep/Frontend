@@ -6,6 +6,7 @@ Function to get and display all projects for PM
 $(document).ready(function () {
     //Urls
     var urlGetUserProjects = urlMain+'api/GetProjectsForPM/' ;
+    var urlUpdateProjectStatus = urlMain+'api/UpdateProjectStatus/';
 
     //Get projects based on manager id
     fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {
@@ -18,6 +19,27 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
+
+        //Check critical status
+        j.forEach(element => {
+            
+            var current_date =  moment(new Date());
+            var end_date = moment(element.Expected_Date);
+            var difference = end_date.diff(current_date, 'days');
+
+            if(difference == 7){
+                //Get project details
+                fetch(urlUpdateProjectStatus+'true', {
+                    async: false,
+                    method: 'POST',
+                    crossDomain: true,
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                }).catch(error => { console.error('Error:', error); return error; });
+            }
+
+        });
 
         //Remove loading icon on success
         document.getElementById("load").style.display = "none";

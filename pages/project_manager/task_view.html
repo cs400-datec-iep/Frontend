@@ -40,7 +40,7 @@
         <div class="sidebar-brand-icon">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-        <div class="sidebar-brand-text mt-3">Project Manager</div>
+        <div class="sidebar-brand-text mt-3"><a class="text-white" href="dashboard.html">Project Manager</a></div>
       </div>
 
       <!-- Divider -->
@@ -57,11 +57,6 @@
                 <a class="nav-link " >
                     <i class="fas fa-fw fa-tasks "></i>
                     <span>Task View</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="fas fa-fw fa-clipboard-list "></i>
-                    <span>Smart Analysis</span></a>
             </li>
         </div>
     </ul>
@@ -80,55 +75,57 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="notifications">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
+                  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-bell fa-fw"></i>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+                      <span class="badge badge-danger badge-counter">3+</span>
+                  </a>
+
+                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                      aria-labelledby="alertsDropdown" id="notifications">
+                      <h6 class="dropdown-header">
+                          Alerts Center
+                      </h6>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-primary">
+                                  <i class="fas fa-file-alt text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 12, 2019</div>
+                              <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                          </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-success">
+                                  <i class="fas fa-donate text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 7, 2019</div>
+                              $290.29 has been deposited into your account!
+                          </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-warning">
+                                  <i class="fas fa-exclamation-triangle text-white"></i>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="small text-gray-500">December 2, 2019</div>
+                              Spending Alert: We've noticed unusually high spending for your account.
+                          </div>
+                      </a>
+                      <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                  </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>-->
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -203,6 +200,8 @@
                                               <th>Start Date</th>
                                               <th>Status</th>
                                               <th>Duration(Days)</th>
+                                              <th>Critical</th>
+                                              <th>Predecessor</th>
                                           </tr>
                                       </thead>
                                   </table>
@@ -253,14 +252,14 @@
                             <input type="text" id="taskName" class="form-control" placeholder="Enter Task Name" autofocus="autofocus" required>
                         </div>
 
-                        <div class="col-md-6">
-                            <select class="custom-select dash-edit-modal-dropdown" id="type" required>
-                                <option value="" disabled selected>Select Task Type:</option>
-                                <option value="task">Task</option>
-                                <option value="objective">Objective</option>
-                                <option value="milestone">Milestone</option>
-                            </select>
+                        <div class="col-md-6 m-auto">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="IfMilestone">
+                              <label class="custom-control-label" for="IfMilestone">Check if this is a Milestone</label>
+                          </div>
                         </div>
+
+
                     </div>
 
                     <div class="form-group row" id="duration_row">
@@ -352,38 +351,6 @@
   <script src="js/get-all-staff.js"></script>
   <script src="js/get-all-project-tasks.js"></script>
   <script src="js/create-task.js"></script>
-  <script>
-  //Removes duration when selecting milestone or objective
-  $('#type').on('change',function(){
-    if(($(this).val() == 'objective')){
-
-      document.getElementById("duration_row").classList.remove("row");
-      document.getElementById("duration_container").classList.add("display-none");
-      document.getElementById("members_list_container").classList.add("display-none");
-      document.getElementById("pred_container").classList.remove("col-md-6");
-      document.getElementById("taskDuration").required = false;
-      document.getElementById("members_list").required = false;
-
-    }else if($(this).val() == 'milestone'){
-
-      document.getElementById("duration_row").classList.remove("row");
-      document.getElementById("duration_container").classList.add("display-none");
-      document.getElementById("members_list_container").classList.add("display-none");
-      document.getElementById("pred_container").classList.remove("col-md-6");
-      document.getElementById("taskDuration").required = false;
-      document.getElementById("members_list").required = false;
-
-
-    }else{
-
-      document.getElementById("duration_row").classList.add("row");
-      document.getElementById("duration_container").classList.remove("display-none");
-      document.getElementById("pred_container").classList.add("col-md-6");
-
-    }
-  });
-  
-  </script>
 
 </body>
 

@@ -4,7 +4,7 @@ function createTask(){
 
     //Get html values
     var taskName = document.getElementById("taskName").value;
-    var type = document.getElementById("type").value;
+    var IfMilestone = document.getElementById("IfMilestone").checked;
     var taskDuration = document.getElementById("taskDuration").value;
     var taskDesc = document.getElementById("taskDesc").value;
 
@@ -31,45 +31,7 @@ function createTask(){
     }
     
     // Data encapsulation based on type
-    if(type == "task"){
-        var payload_task = {
-            "UserID": userIdList[0],
-            "ProjectID": sessionStorage.getItem('ProjectID'),
-            "Name": taskName,
-            "Description": taskDesc,
-            "Date_Created": current_date,
-            "Expected_Date": end_date,
-            "Start_Date": null,
-            "End_Date": null,
-            "Status": true,
-            "If_Milestone": false,
-            "If_Objective": false,
-            "PredecessorTaskID": selected_tasks_array[0],
-            "Number_of_days" : taskDuration,
-            "Percentage" : 0,
-            "Progress_Status": "Todo",
-            "Critical_flag": false
-        }
-    }else if(type == "objective"){
-        var payload_task = {
-            "UserID": userIdList[0],
-            "ProjectID": sessionStorage.getItem('ProjectID'),
-            "Name": taskName,
-            "Description": taskDesc,
-            "Date_Created": current_date,
-            "Expected_Date": end_date,
-            "Start_Date": null,
-            "End_Date": null,
-            "Status": true,
-            "If_Milestone": false,
-            "If_Objective": true,
-            "PredecessorTaskID":  selected_tasks_array[0],
-            "Number_of_days" : 0,
-            "Percentage" : 0,
-            "Progress_Status": "Todo",
-            "Critical_flag": false
-        }
-    }else if(type == "milestone"){
+    if(IfMilestone == true){//Is a milestone
         var payload_task = {
             "UserID": userIdList[0],
             "ProjectID": sessionStorage.getItem('ProjectID'),
@@ -81,7 +43,24 @@ function createTask(){
             "End_Date": null,
             "Status": true,
             "If_Milestone": true,
-            "If_Objective": false,
+            "PredecessorTaskID": selected_tasks_array[0],
+            "Number_of_days" : taskDuration,
+            "Percentage" : 0,
+            "Progress_Status": "Todo",
+            "Critical_flag": false
+        }
+    }else if(IfMilestone == false){//Is a task
+        var payload_task = {
+            "UserID": userIdList[0],
+            "ProjectID": sessionStorage.getItem('ProjectID'),
+            "Name": taskName,
+            "Description": taskDesc,
+            "Date_Created": current_date,
+            "Expected_Date": end_date,
+            "Start_Date": null,
+            "End_Date": null,
+            "Status": true,
+            "If_Milestone": false,
             "PredecessorTaskID":  selected_tasks_array[0],
             "Number_of_days" : 0,
             "Percentage" : 0,

@@ -36,6 +36,7 @@ function editProject() {
         var project_startDate = document.getElementById("project_startDate").value;
         var project_duration = document.getElementById("project_duration").value;
         var project_endDate = document.getElementById("project_endDate").value;
+        var project_expendDate = document.getElementById("project_expendDate").value;
         var project_status = document.getElementById("project_status").value;
         var status = document.getElementById("status").value;
         var project_percentage = document.getElementById("project_percentage").value;
@@ -55,7 +56,7 @@ function editProject() {
             'number_of_days': project_duration,
             'End_Date': project_endDate,
             'Client_Name': projClient,
-            'Expected_Date': project_endDate,
+            'Expected_Date': project_expendDate,
             'Progress_Status': project_status,
             'Percentage': project_percentage,
             'Status': status,

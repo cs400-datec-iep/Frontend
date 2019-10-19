@@ -44,6 +44,12 @@ $(document).ready(function () {
             link.setAttribute("href","view_project.html?"+ sessionStorage.getItem('ProjectID'));
             link.innerHTML = sessionStorage.getItem('ProjectName');
             document.getElementById("project_name_crumb").appendChild(link);
+
+            var link2 = document.createElement("a");
+            link2.setAttribute("href","task_view.html?"+ sessionStorage.getItem('ProjectID'));
+            link2.innerHTML = "Task View";
+            document.getElementById("task_view_crumb").appendChild(link2);
+            
             document.getElementById("task_name_crumb").innerHTML = a.Name;
 
             // Check task type
@@ -103,44 +109,28 @@ $(document).ready(function () {
                 }
             }
 
-            //Setup Dates
+            //Parsing dates into correct format
+            //Start Date
             if(a.Start_Date === null){
-                //Parsing date into correct format
-                var datecreated = new Date(a.Date_Created);
-                datecreated = moment(datecreated).format('DD-MMM-YYYY');
-
-                document.getElementById("task_Created_date").innerHTML = datecreated;
-                document.getElementById("task_expected").innerHTML = "Not Started";
                 document.getElementById("task_start").innerHTML = "Not Started";
-                document.getElementById("task_end_date").innerHTML = "Not Started";
             }else{
-                //Parsing date into correct format
-                var datecreated = new Date(a.Date_Created);
-                datecreated = moment(datecreated).format('DD-MMM-YYYY');
+                var datecreated = moment(a.Date_Created).format('DD-MMM-YYYY');
+                document.getElementById("task_start").innerHTML = datecreated;
+            }
 
-                //Date Task completed work
-                var dateend = new Date(a.End_Date);
-                dateend = moment(dateend).format('DD-MMM-YYYY');
-
-                //Date Task started work
-                var datestart = new Date(a.Start_Date);
-                datestart = moment(datestart).format('DD-MMM-YYYY');
-
-                //Calculate expected date
-                var dateexp = "", count = 0;
-                while(count < a.Number_of_days){
-                    dateexp = new Date(datecreated.setDate(datecreated.getDate() + 1));
-
-                    if(dateexp.getDay() != 0 && datecreated.getDay() != 6){
-                    count++;
-                    }
-                }
-            
-                document.getElementById("task_Created_date").innerHTML = datecreated;
-                document.getElementById("task_expected").innerHTML = dateexp;
-                document.getElementById("task_start").innerHTML = datestart;
+            //End Date
+            if(a.End_Date === null){
+                document.getElementById("task_end_date").innerHTML = "Not Completed";
+            }else{
+                var dateend = moment(a.End_Date).format('DD-MMM-YYYY');
                 document.getElementById("task_end_date").innerHTML = dateend;
             }
+
+            var datecreated = moment(a.Date_Created).format('DD-MMM-YYYY');
+            var dateexp = moment(a.Expected_Date).format('DD-MMM-YYYY');
+
+            document.getElementById("task_Created_date").innerHTML = datecreated;
+            document.getElementById("task_expected").innerHTML = dateexp;
 
             document.getElementById("task_duration").innerHTML = a.Number_of_days;
             document.getElementById("progress_meter").setAttribute("Style","width:"+a.Percentage+"%;")
@@ -151,30 +141,29 @@ $(document).ready(function () {
             //Get task array from previous page
             var task_array = JSON.parse(sessionStorage.getItem('task_array'));
 
-            console.log(a);
             //Predecssor task display
-            task_array.forEach(element => {
-                if(element.TaskID === a.PredecessorTaskID){
-
-                    $('#taskPredecesor').append($('<option>', {
-                        value: element.TaskID,
-                        text: element.Name,
-                        selected: true
-                    }));
-                    
-                    if(a.PredecessorTaskID === "0"){
-                        document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> None" ;
-                    }else{
+            if(a.PredecessorTaskID === 0){
+                document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> None" ;
+            }else{
+                task_array.forEach(element => {
+                    if(element.TaskID === a.PredecessorTaskID){
+    
+                        $('#taskPredecesor').append($('<option>', {
+                            value: element.TaskID,
+                            text: element.Name,
+                            selected: true
+                        }));
+    
                         document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> " + element.Name + "[ID:"+ element.TaskID + "]" ;
+                        
+                    }else{
+                        $('#taskPredecesor').append($('<option>', {
+                            value: element.TaskID,
+                            text: element.Name,
+                        }));
                     }
-
-                }else{
-                    $('#taskPredecesor').append($('<option>', {
-                        value: element.TaskID,
-                        text: element.Name,
-                    }));
-                }
-            });
+                });
+            }
 
             //Setup range slider for percentage
             document.getElementById("value").innerHTML = a.Percentage+"%";

@@ -39,42 +39,24 @@ $(document).ready(function () {
         var project_status  =  document.getElementById("project_status");
         var startDate =  document.getElementById("project_startDate");
         var endDate =  document.getElementById("project_endDate");
+        var expDate =  document.getElementById("project_expDate");
         var project_desc =  document.getElementById("project_desc");
         var project_percentage =  document.getElementById("project_percentage_text");
         var progress_meter  =  document.getElementById("progress_meter");
         var project_duration  =  document.getElementById("project_duration");
         var project_billed  =  document.getElementById("project_billed");
         var project_cost  =  document.getElementById("project_cost");
-        
-        //Get dates only
-        var start = j.Start_Date; 
-        var end = j.End_Date;
-        
-        var datestart ="";
-        var dateend ="";
 
-        //Get start date
-        for (var i = 0; i < start.length; i++) {
-            if(start.charAt(i) == "T"){
-                break;
-            }
-            datestart += start.charAt(i);
+        //Set up dates
+        expDate.innerHTML =  moment(j.Expected_Date).format('DD-MMM-YYYY');
+        startDate.innerHTML = moment(j.Start_Date).format('DD-MMM-YYYY');
+
+        if(j.endDate === null){
+            endDate.innerHTML = "Not Completed";
+        }else{
+            endDate.innerHTML =  moment(j.endDate).format('DD-MMM-YYYY');
         }
 
-        //Get end date
-        for (var i = 0; i < end.length; i++) {
-            if(end.charAt(i) == "T"){
-                break;
-            }
-            dateend += end.charAt(i);
-        }
-
-        // Parsing date in dd/mm/yyyyy
-        var datestart = new Date(datestart);
-        var dateend = new Date(dateend);
-
-        startDate.innerHTML = moment(datestart).format('DD-MMM-YYYY');
-        endDate.innerHTML =   moment(dateend).format('DD-MMM-YYYY');
         project_duration.innerHTML = j.number_of_days+" Days";
 
         //set project billing information 

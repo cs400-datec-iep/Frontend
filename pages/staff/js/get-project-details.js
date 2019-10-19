@@ -13,6 +13,7 @@ $(document).ready(function () {
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
     var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
     var urlGetUserMains = urlMain + "api/UserMains";
+    var UpdateProjectPercentage = urlMain + 'api/UpdateProjectPercentage/'+projectID+'/';
 
     //Dataset array for table
     var dataset = [];
@@ -43,40 +44,22 @@ $(document).ready(function () {
         var project_status  =  document.getElementById("project_status");
         var startDate =  document.getElementById("project_startDate");
         var endDate =  document.getElementById("project_endDate");
+        var expDate =  document.getElementById("project_expDate");
         var project_percentage =  document.getElementById("project_percentage_text");
         var progress_meter  =  document.getElementById("progress_meter");
         var project_duration  =  document.getElementById("project_duration");
 
-        
-        //Get dates
-        var start = j.Start_Date; 
-        var end = j.End_Date;
-        var datestart ="";
-        var dateend ="";
+        //Set up dates
+        expDate.innerHTML =  moment(j.Expected_Date).format('DD-MMM-YYYY');
+        startDate.innerHTML = moment(j.Start_Date).format('DD-MMM-YYYY');
 
-        //Set start date
-        for (var i = 0; i < start.length; i++) {
-            if(start.charAt(i) == "T"){
-                break;
-            }
-            datestart += start.charAt(i);
+        if(j.endDate === null){
+            endDate.innerHTML = "Not Completed";
+        }else{
+            endDate.innerHTML =  moment(j.endDate).format('DD-MMM-YYYY');
         }
 
-        //Set end date
-        for (var i = 0; i < end.length; i++) {
-            if(end.charAt(i) == "T"){
-                break;
-            }
-            dateend += end.charAt(i);
-        }
-
-        //Parsing date in dd/mm/yyyyy
-        var datestart = new Date(datestart);
-        var dateend = new Date(dateend);
-
-        startDate.innerHTML = moment(datestart).format('DD-MMM-YYYY');
-        endDate.innerHTML =   moment(dateend).format('DD-MMM-YYYY');
-        project_duration.innerHTML = j.number_of_days+ " Days";
+        project_duration.innerHTML = j.number_of_days+" Days";
 
         //Display critical status
         var critical = document.createElement("p");
@@ -181,11 +164,12 @@ $(document).ready(function () {
                     
                     //Display tasks in kanban boards
                     b.forEach(element => {
-                        if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false && element.PredecessorTaskID != 0){
+                        if(element.Progress_Status === "Todo" && element.PredecessorTaskID != 0){
+                            
                             //Checks if predecesor tasks are compelte
                             tasks.forEach(task => {
-                                if(element.PredecessorTaskID == task.TaskID){
-                                    if(task.Progress_Status == "Done"){
+                                if(element.PredecessorTaskID == task.TaskID ){
+                                    if(task.Progress_Status == "Done" ){
                                         var card = document.createElement("div");
                                         card.classList.add("drag-item","border-left-warning","mb-2","col-md-11");
                                         card.id =  element.TaskID;
@@ -256,7 +240,7 @@ $(document).ready(function () {
                                 
                             });
 
-                        }else if(element.Progress_Status === "Todo" && element.If_Milestone == false && element.If_Objective == false){
+                        }else if(element.Progress_Status === "Todo"){
                             
                             var card = document.createElement("div");
                             card.classList.add("drag-item","border-left-warning","mb-2" ,"col-md-11");
@@ -288,7 +272,7 @@ $(document).ready(function () {
                             card.appendChild(taskCreatedDate);
                             cointaner_todo.appendChild(card);
                         
-                        } else if(element.Progress_Status  === "Doing" && element.If_Milestone == false && element.If_Objective == false){
+                        } else if(element.Progress_Status  === "Doing"){
                             var card = document.createElement("div");
                             card.classList.add("drag-item" ,"border-left-danger","mb-2");
                             card.id = element.TaskID;
@@ -322,7 +306,7 @@ $(document).ready(function () {
                             card.appendChild(taskCreatedDate);
                             cointaner_doing.appendChild(card);
 
-                        } else if(element.Progress_Status === "Done" && element.If_Milestone == false && element.If_Objective == false){
+                        } else if(element.Progress_Status === "Done"){
 
                             var card = document.createElement("div");
                             card.classList.add("drag-item" ,"border-left-success","mb-2");
@@ -356,6 +340,29 @@ $(document).ready(function () {
 
                         }
                     });
+
+                    //Updates percentage of project via task calculation
+                    var total_tasks = tasks.length;
+                    var total_percentage, counter = 0;
+
+                    tasks.forEach(element => {
+                        if(element.Progress_Status == "Done"){
+                            counter++;
+                        }
+                    })
+                    
+                    total_percentage = (counter/total_tasks)* 100;
+
+                    //Update project percentage
+                    fetch(UpdateProjectPercentage + total_percentage, {
+                        async: false,
+                        method: 'POST',
+                        crossDomain: true,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token
+                        }
+                    }).catch(error => { console.error('Error:', error); return error; });
                     
                     //loop through tasks and user to match matching UserID's
                     tasks.forEach(element => {
@@ -442,10 +449,24 @@ $(document).ready(function () {
                         ]
                     });
 
-                     //Allow view tasks if records > 0
+                    //Allow view tasks if records > 0
                     var records = totalDisplayRecord = $("#taskTable").DataTable().page.info().recordsDisplay;
 
                     if(records > 0){
+
+                        var rowData = $("#taskTable").DataTable().rows().data();
+
+                        for(var i = 0; i < records; i++){
+                            if(rowData[i].Assigned_To == sessionStorage.getItem("username")){
+                                if(!(rowData[i].Type == "Task")){
+                                    document.getElementById("list").classList.toggle("d-none");
+                                    document.getElementById("no_tasksKanban").classList.toggle("d-none");
+                                    document.getElementById("grid").classList.toggle("d-none");
+                                }
+                            }
+                        }
+
+
                         //View task details
                         $('#taskTable tbody').on( 'click', 'tr', function () {
 

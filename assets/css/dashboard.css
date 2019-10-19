@@ -220,3 +220,12 @@ animation: spin 1s linear infinite;
     margin: 0;
     padding: 0;
   }
+
+  #chart_div g g text{
+   font-family:  sans-serif !important;
+  }
+
+  #chart_div {
+    overflow-x: scroll;
+  }
+  

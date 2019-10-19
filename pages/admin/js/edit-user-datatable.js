@@ -38,7 +38,7 @@ $(document).ready(function () {
               "visible": false,
               "searchable": false
           }
-          ]
+        ]
       }
     );
       

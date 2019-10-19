@@ -1,15 +1,14 @@
 /*////////////////////////////////////
 
-Function to initailize Pert Diagram
+Function to initailize CPA Diagram
 
 */////////////////////////////////////
 $(document).ready(function () {
-    //Urls
-    var urlGetAllTasks = urlMain + 'api/GetTasksPerProject/'+sessionStorage.getItem('ProjectID');
-    var result = JSON.parse(sessionStorage.getItem('ProjectDetails'));
+    //Url
+    var urlGetAllProjects = urlMain + 'api/Projects';
 
-    //Fetch all project tasks
-    fetch(urlGetAllTasks, {
+    //Fetch All Projects
+    fetch(urlGetAllProjects, {
         async: false,
         method: 'GET',
         crossDomain: true,
@@ -18,100 +17,87 @@ $(document).ready(function () {
             'Authorization': 'Bearer ' + token
         }
     }).then(function (a) { return a.json() })
-        .then(function (j) {
-        var array =[];
+    .then(function (j) {
 
-        google.charts.load('current', {'packages':['gantt']});
+        //Variable decalration
+        var chart_payload = [];
+        chart_payload.push(['Project Name', 'Percentage Complete',]);
+
+        var calendar_payload = [];
+
+
+        //Set datasets
+        j.forEach(element => {
+            chart_payload.push([element.Name, element.Percentage]);
+            calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+
+        });
+
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = google.visualization.arrayToDataTable(chart_payload);
+
+            // set inner height to 30 pixels per row
+            var chartAreaHeight = data.getNumberOfRows() * 30;
+            // add padding to outer height to accomodate title, axis labels, etc
+            var chartHeight = chartAreaHeight + 80;
+
+            var options = {
+                title: 'Project Percentage Complete',
+                height: chartHeight,
+                chartArea: {
+                    width: '70%',
+                    height: chartAreaHeight
+                },
+                hAxis: {
+                title: 'Percentage Complete',
+                minValue: 0
+                },
+                vAxis: {
+                title: 'Project Name'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('project_percentage_chart'));
+
+            chart.draw(data, options);
+        }
+
+        google.charts.load("current", {packages:["calendar"]});
         google.charts.setOnLoadCallback(drawChart);
 
-        function daysToMilliseconds(days) {
-        return days * 24 * 60 * 60 * 1000;
-        }
-
         function drawChart() {
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn({ type: 'date', id: 'Date' });
+            dataTable.addColumn({ type: 'number', id: 'Id' });
+            dataTable.addColumn({type: 'string', role: 'tooltip'});
+            dataTable.addRows(calendar_payload);
 
-        var data = new google.visualization.DataTable();
-        var start, end;
-        data.addColumn('string', 'Task ID');
-        data.addColumn('string', 'Task Name');
-        data.addColumn('date', 'Start Date');
-        data.addColumn('date', 'End Date');
-        data.addColumn('number', 'Duration');
-        data.addColumn('number', 'Percent Complete');
-        data.addColumn('string', 'Dependencies');
-    
+            var chart = new google.visualization.Calendar(document.getElementById('project_calender_chart'));
 
-        for (var i = 0; i < j.length; i++) {
+            // set inner height to 30 pixels per row
+            var chartAreaHeight = dataTable.getNumberOfRows() * 30;
+            // add padding to outer height to accomodate title, axis labels, etc
+            var chartHeight = chartAreaHeight + 80;
 
-            if(j[i].Start_Date === null){
-                start = null;
-            }else{
-                start = new Date(moment(j[i].Start_Date));
-                // start = null;
-            }
-            
-            if(j[i].End_Date === null){
-                end = null;
-            }else{
-                end = new Date(moment(j[i].End_Date));
-                // end = null;
-            }
+            var options = {
+                title: "Today: " + moment().format("MMM DD, YYYY"),
+                height: chartHeight,
+                chartArea: {
+                    width: '100%',
+                    height: chartAreaHeight
+                },
+                tooltip: {isHtml: true}
+            };
 
-            if (j[i].PredecessorTaskID == 0 ) {
-
-                array.push([
-                    String(j[i].TaskID), 
-                    j[i].Name,                  
-                    start,
-                    end,
-                    daysToMilliseconds(j[i].Number_of_days),
-                    j[i].Percentage,
-                    null
-                ]);
-
-            } else {
-                array.push([
-                    String(j[i].TaskID),
-                    j[i].Name,                   
-                    start,
-                    end,
-                    daysToMilliseconds(j[i].Number_of_days),
-                    j[i].Percentage,
-                    String(j[i].PredecessorTaskID)
-                ]);
-
-            }
-
+            chart.draw(dataTable, options);
         }
 
-      data.addRows(array);
-
-      var options = {
-        height: 275,
-        gantt:{
-            defaultStartDateMills: new Date(2019,3,28)
-        }
-      };
-
-      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-
-      chart.draw(data, options);
-    }
-
-    //Addnames on sidebar and breadcrumb
-    document.getElementById("project_name_side").innerHTML = result.Name;
-    document.getElementById("project_link").href = "view_project.html?"+sessionStorage.getItem('ProjectID');
-    document.getElementById("project_name_crumb").innerHTML = result.Name;
+    }).catch(error => console.error('Error:', error));
 
 
-    //Remove loading icon and display output
-    document.getElementById("load").style.display = "none";
-    document.getElementById("container_content").classList.remove("display-none");
 
-
-    //Remove loading icon and display output for sidebar
-    document.getElementById("icon_container").classList.remove("display-none");
-    document.getElementById("sidebarToggle").classList.remove("display-none");
-
-}).catch(error => console.error('Error:', error));
-});
+})

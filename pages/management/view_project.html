@@ -40,7 +40,7 @@
         <div class="sidebar-brand-icon">
           <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-        <div class="sidebar-brand-text mt-3 p-3">Management</div>
+        <div class="sidebar-brand-text mt-3 p-3"><a class="text-white" href="dashboard.html">Management</a></div>
       </div>
 
       <!-- Divider -->
@@ -54,9 +54,9 @@
               <span id="project_name_side"></span></a>
           </li>
           <li  class="nav-item">
-            <a class="nav-link" id="smart_analysis_link" href="smart_reporting.html">
-              <i class="fas fa-fw fa-clipboard-list "></i>
-              <span>Smart Analysis</span></a>
+            <a class="nav-link" id="smart_analysis_link" href="cpa.html">
+              <i class="fas fa-fw fa-sitemap"></i>
+              <span>CPA</span></a>
           </li>
       </div>
     </ul>
@@ -75,55 +75,57 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="notifications">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-bell fa-fw"></i>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+                  <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown" id="notifications">
+                  <h6 class="dropdown-header">
+                      Alerts Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-primary">
+                              <i class="fas fa-file-alt text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">December 12, 2019</div>
+                          <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                      </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-success">
+                              <i class="fas fa-donate text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">December 7, 2019</div>
+                          $290.29 has been deposited into your account!
+                      </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                      <div class="mr-3">
+                          <div class="icon-circle bg-warning">
+                              <i class="fas fa-exclamation-triangle text-white"></i>
+                          </div>
+                      </div>
+                      <div>
+                          <div class="small text-gray-500">December 2, 2019</div>
+                          Spending Alert: We've noticed unusually high spending for your account.
+                      </div>
+                  </a>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+          </li>
+
+          <div class="topbar-divider d-none d-sm-block"></div>-->
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -193,6 +195,10 @@
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Client:</div>
                                                 <span id="project_client" class="text-lg"></span>
                                               </td>
+                                              <td>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
+                                                <span id="project_status" class="text-lg"></span>
+                                              </td>
                                             </tr>
                                           
                                           <!-- Billing -->
@@ -202,28 +208,28 @@
                                                 <span id="project_billed" class="text-lg"></span>
                                               </td>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Current Cost:</div>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Cost:</div>
                                                 <span id="project_cost" class="text-lg"></span>
                                               </td>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
-                                                <span id="project_status" class="text-lg"></span>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration:</div>
+                                                <span id="project_duration" class="text-lg"></span>
                                               </td>
                                             </tr>
 
                                           <!-- Dates -->
                                             <tr>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Start Date:</div>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date Started:</div>
                                                 <span id="project_startDate" class="text-lg"></span>
                                               </td>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">End Date:</div>
-                                                <span id="project_endDate" class="text-lg "></span>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Expected Completion:</div>
+                                                <span id="project_expDate" class="text-lg"></span>
                                               </td>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration:</div>
-                                                <span id="project_duration" class="text-lg"></span>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date Completed:</div>
+                                                <span id="project_endDate" class="text-lg "></span>
                                               </td>
                                             </tr>
                                         </table>  
@@ -272,6 +278,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <!--End of Second Row -->    
 

@@ -48,7 +48,7 @@ function create_project() {
             'Description': projDesc,
             'Start_Date': projStartDate,
             'Project_managerID' : ProjectMangerId,
-            'End_Date': projEndDate,
+            'End_Date': null,
             'number_of_days': projDuration,
             'Client_Name': projClient,
             'Expected_Date': projEndDate,

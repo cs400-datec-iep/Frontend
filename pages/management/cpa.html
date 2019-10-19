@@ -7,21 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Management Dashboard</title>
+    <title id="page_title">CPA</title>
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <!-- Page level plugin CSS-->
+    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
     <!-- Custom styles for this page-->
+    <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
     <!-- Session Check -->
     <script src="../../assets/vendor/moment.js/moment.min.js"></script>
     <script src="../../assets/js/sessionCheck.js"></script>
-
-
 </head>
 
 <body id="page-top">
@@ -35,7 +37,7 @@
       <!-- Sidebar - Brand -->
       <div class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon">
-          <button class="rounded-circle border-0 " id="sidebarToggle"></button>
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
         <div class="sidebar-brand-text mt-3 p-3"><a class="text-white" href="dashboard.html">Management</a></div>
       </div>
@@ -44,26 +46,26 @@
       <hr class="sidebar-divider my-3">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Projects</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="smart_reporting.html">
-          <i class="fas fa-fw fa-map"></i>
-          <span>Smart Analysis</span></a>
-      </li>
-
+      <div class="display-none" id="icon_container">
+        <li class="nav-item" >
+            <a class="nav-link" id="project_link">
+              <i class="fas fa-fw fa-folder-open "></i>
+              <span id="project_name_side"></span></a>
+          </li>
+          <li  class="nav-item active">
+            <a class="nav-link" id="smart_analysis_link">
+              <i class="fas fa-fw fa-sitemap"></i>
+              <span>CPA</span></a>
+          </li>
+      </div>
     </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
       <!-- Main Content -->
       <div id="content">
-
+        
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -71,7 +73,7 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Alerts -->
-            <!-- <li class="nav-item dropdown no-arrow mx-1">
+           <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-bell fa-fw"></i>
@@ -121,10 +123,10 @@
               </div>
           </li>
 
-          <div class="topbar-divider d-none d-sm-block"></div> -->
+          <div class="topbar-divider d-none d-sm-block"></div>-->
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow ">
+            <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <label class="mt-1 text-primary">Welcome &nbsp</label>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
@@ -150,48 +152,42 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" >
 
             <!-- Breadcrumbs -->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    Project Dashboard
-                </li>
-                <li class="breadcrumb-item active">All Projects</li>
+                <li class="breadcrumb-item">Project Dashboard</li>
+                <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
+                <li class="breadcrumb-item" id="project_name_crumb"></li>
+                <li class="breadcrumb-item active">CPA</li>
             </ol>
-
+        
             <!-- Loading Icon -->
-            <div class="loader" id="load"></div>
+            <div class="loader " id="load"></div>
 
-            <!-- Content Row -->
-            <div class="row" id="container">
+            <!-- Container content -->
+            <div class="display-none" id="container_content">
 
-              <!-- PROJECTS GO HERE -->
-
-              <div class="m-auto mt-10 display-none" id="no_project">
-                <h1 class="mt-center">It Feels empty here, there are no projects</h1>
+              <!-- page header -->
+              <div class="card-header col-12 text-xxlg pb-0 mb-3" id="project_title_conatiner">
+                  <p class="font-weight-bold text-primary m-0">Critical Path Analysis</p>
               </div>
 
-              <!-- Card Template -->
-              <!-- <div class="col-xl-5 col-md-6 mb-4 mt-3">
-                  <div class="card border-left-primary shadow h-100 py-2">
-                      <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                              <div class="col mr-2">
-                                  <div class="text-xlg font-weight-bold text-primary text-uppercase mb-1">Project Name<div class="text-sm font-weight-normal text-green text-uppercase mb-1 float-right">On Going</div></div>
-                                  <div class="text-sm h5 mb-0 font-weight-bold text-gray-800">Project Description</div>
-                              </div>
-                          </div>
-                          <h4 class="small font-weight-bold mt-1">&nbsp<span class="float-right">14%</span></h4>
-                          <div class="progress">
-                            <div class="progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <!-- First row -->
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="card shadow-xlg py-2 mb-5">
+                          <div class="card-body">
+                            <div class="text-sm h5 mb-2 text-gray-800" >
+                              <p>This Gantt Chart displays all tasks and thier details such as duration and dates and calculates the Critical Path of your project.</p>
+                            </div>
+                            <div id="chart_div"></div>
                           </div>
                       </div>
                   </div>
-              </div> -->
-
+              </div>
+              
             </div>
-            <!--End of Content Row -->
 
         </div>
         <!-- /.container-fluid -->
@@ -228,23 +224,26 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/js/sb-admin-2.js"></script>
   <script src="../../assets/js/logout.js"></script>
   <script src="../../assets/js/get-username.js"></script>
 
   <!-- Scripts for this dashboard -->
-  <script src="js/get-all-projects.js"></script>
-
+  <script src="../../assets/js/global-variables.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="js/cpa.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@ Function to get all tasks and initialize the task view page
 */////////////////////////////////////
 $(document).ready(function () {
   // Urls
-  urlGetTask = urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem('ProjectID');
+  var urlGetTask = urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem('ProjectID');
 
   // Initialize Dropdown For Members
   $('#members_list')
@@ -45,6 +45,7 @@ $(document).ready(function () {
     method: 'GET',
     crossDomain: true,
     headers: {
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token
     }
   }).then(response => response.json())
@@ -68,47 +69,40 @@ $(document).ready(function () {
           text: element.Name,
         }));
 
+        var type = "";
+        var critical, predecessor;
+
         // Check task type (Prepare array for datatable)
-        if (element.If_Milestone === false && element.If_Objective === false) {
-
-          var dataObj = {
-            "TaskID" : element.TaskID,
-            "Type" : "Task",
-            "Name" : element.Name,
-            "Start_Date" : datestart,
-            "Status" : element.Progress_Status,
-            "Duration" : element.Number_of_days,
-          };
-
-          dataset.push(dataObj);
-
-        } else if (element.If_Objective === true && element.If_Milestone === false) {
-
-          var dataObj = {
-            "TaskID" : element.TaskID,
-            "Type" :"Objective",
-            "Name" : element.Name,
-            "Start_Date" : datestart,
-            "Status" : element.Progress_Status,
-            "Duration" : element.Number_of_days,
-          };
-
-          dataset.push(dataObj);
-
-        } else if (element.If_Milestone === true && element.If_Objective === false) {
-
-          var dataObj = {
-            "TaskID" : element.TaskID,
-            "Type" :"Milestone",
-            "Name" : element.Name,
-            "Start_Date" : datestart,
-            "Status" : element.Progress_Status,
-            "Duration" : element.Number_of_days,
-          };
-
-          dataset.push(dataObj);
-
+        if (element.If_Milestone === false) {//Task
+          type = "Task";
+        }else if (element.If_Milestone === true) {//Milestone
+          type = "Milstone";
         }
+
+        if(element.Critical_flag === true){//Checking critical status
+          critical = element.Critical_flag;
+        }else if(element.Critical_flag === false){
+          critical = element.Critical_flag;
+        }
+
+        if( element.PredecessorTaskID === 0){//Checking critical status
+          predecessor = "None";
+        }else{
+          predecessor = element.PredecessorTaskID;
+        }
+
+        var dataObj = {
+          "TaskID" : element.TaskID,
+          "Type" : type,
+          "Name" : element.Name,
+          "Start_Date" : datestart,
+          "Status" : element.Progress_Status,
+          "Duration" : element.Number_of_days,
+          "Critical" : critical,
+          "Predecessor" : predecessor
+        };
+
+        dataset.push(dataObj);
 
       });
 
@@ -123,8 +117,22 @@ $(document).ready(function () {
             { data: 'Name' },
             { data: 'Start_Date' },
             { data: 'Status' },
-            { data: 'Duration' }
-          ]
+            { data: 'Duration' },
+            { data: 'Critical' },
+            { data: 'Predecessor' }
+          ],
+          "columnDefs": [
+            {
+                "targets": [ 6 ],
+                "visible": false,
+                "searchable": false
+            }
+          ],
+          "createdRow": function( row, data, dataIndex){
+            if( data.Critical ==  true){
+                $(row).addClass('bg-danger text-white');
+            }
+          }
         }
       );
 
