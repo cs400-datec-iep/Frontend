@@ -442,6 +442,7 @@ $(document).ready(function () {
                     if(records > 0){
                         var rowData = $("#taskTable").DataTable().rows().data();
 
+
                         //View task details
                         $('#taskTable tbody').on( 'click', 'tr', function () {
 
