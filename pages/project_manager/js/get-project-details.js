@@ -12,7 +12,6 @@ $(document).ready(function () {
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
     var urlGetProjectFiles = urlMain+'api/GetFilesProjectID/'+projectID;
     var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
-    var UpdateProjectPercentage = urlMain + 'api/UpdateProjectPercentage/'+projectID+'/';
 
     //Get project details
     fetch(urlGetProjectByID, {
@@ -25,6 +24,9 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
+
+        //Set Project Details for Smart reporting
+        sessionStorage.setItem('ProjectDetails',JSON.stringify(j));
 
         //Get html Containers
         var page_title =  document.getElementById("page_title");

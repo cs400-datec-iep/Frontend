@@ -164,9 +164,10 @@ $(document).ready(function () {
                     
                     //Display tasks in kanban boards
                     b.forEach(element => {
+
                         if(element.Progress_Status === "Todo" && element.PredecessorTaskID != 0){
                             
-                            //Checks if predecesor tasks are compelte
+                            //Checks if predecesor tasks are compelte   
                             tasks.forEach(task => {
                                 if(element.PredecessorTaskID == task.TaskID ){
                                     if(task.Progress_Status == "Done" ){
@@ -386,7 +387,7 @@ $(document).ready(function () {
 
                                 
                                 // Check task type (Prepare array for datatable)
-                                if (element.If_Milestone === false && element.If_Objective === false) {
+                                if (element.If_Milestone === false) {
                         
                                     var dataObj = {
                                     "TaskID" : element.TaskID,
@@ -400,21 +401,7 @@ $(document).ready(function () {
                         
                                     dataset.push(dataObj);
                         
-                                } else if (element.If_Objective === true && element.If_Milestone === false) {
-                        
-                                    var dataObj = {
-                                    "TaskID" : element.TaskID,
-                                    "Type" :"Objective",
-                                    "Name" : element.Name,
-                                    "Start_Date" : datestart,
-                                    "Status" : element.Progress_Status,
-                                    "Duration" : element.Number_of_days,
-                                    "Assigned_To" : user.Username
-                                    };
-                        
-                                    dataset.push(dataObj);
-                        
-                                } else if (element.If_Milestone === true && element.If_Objective === false) {
+                                }else if (element.If_Milestone === true) {
                         
                                     var dataObj = {
                                     "TaskID" : element.TaskID,
@@ -451,21 +438,9 @@ $(document).ready(function () {
 
                     //Allow view tasks if records > 0
                     var records = totalDisplayRecord = $("#taskTable").DataTable().page.info().recordsDisplay;
-
+                    
                     if(records > 0){
-
                         var rowData = $("#taskTable").DataTable().rows().data();
-
-                        for(var i = 0; i < records; i++){
-                            if(rowData[i].Assigned_To == sessionStorage.getItem("username")){
-                                if(!(rowData[i].Type == "Task")){
-                                    document.getElementById("list").classList.toggle("d-none");
-                                    document.getElementById("no_tasksKanban").classList.toggle("d-none");
-                                    document.getElementById("grid").classList.toggle("d-none");
-                                }
-                            }
-                        }
-
 
                         //View task details
                         $('#taskTable tbody').on( 'click', 'tr', function () {

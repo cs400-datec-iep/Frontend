@@ -498,13 +498,13 @@
       document.getElementById("grid_footer").classList.remove("d-none");
     }
     
-    //Toggle duration for milestones and objectives (No duration)
+    //Toggle grid and list view (No duration)
     function toggleListView(){
       document.getElementById('grid').classList.toggle('display-none');
       document.getElementById('list').classList.toggle('display-none');
 
       if(document.getElementById('grid').classList.contains('display-none')){
-        document.getElementById('toggle_view').innerHTML = "Gird View";
+        document.getElementById('toggle_view').innerHTML = "Grid View";
         
       }else if(document.getElementById('list').classList.contains('display-none')){
         document.getElementById('toggle_view').innerHTML = "List View";

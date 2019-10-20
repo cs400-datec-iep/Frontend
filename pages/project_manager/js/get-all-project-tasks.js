@@ -128,7 +128,7 @@ $(document).ready(function () {
                 "searchable": false
             }
           ],
-          "createdRow": function( row, data, dataIndex){
+          "createdRow": function( row, data){
             if( data.Critical ==  true){
                 $(row).addClass('bg-danger text-white');
             }
