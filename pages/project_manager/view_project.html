@@ -204,12 +204,12 @@
                                           <!-- Billing -->
                                             <tr>
                                               <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Amount Billed:</div>
-                                                <span id="project_billed" class="text-lg"></span>
-                                              </td>
-                                              <td>
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Cost:</div>
                                                 <span id="project_cost" class="text-lg"></span>
+                                              </td>
+                                              <td>
+                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Amount Billed:</div>
+                                                <span id="project_billed" class="text-lg"></span>
                                               </td>
                                               <td>
                                                 <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration:</div>
@@ -360,7 +360,7 @@
   </a>
 
   <!--Loader Modal -->
-  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -413,23 +413,14 @@
           <!-- Project name and client name -->
           <div class="form-group row">
             <div class="col-md-6">
-              <label for="projBilled">Amount Billed:</label>
-              <input type="number" step="0.01" min="1" id="projBilled" class="form-control" required disabled>
+              <label for="projCost">Project Cost ($):</label>
+              <input type="number" step="0.01" min="1" id="projCost" class="form-control" required disabled>
             </div>
             <div class="col-md-6">
-              <label for="projCost">Project Current Cost:</label>
-              <input type="number" step="0.01" min="1" id="projCost" class="form-control" required>
+              <label for="projBilled">Amount Billed ($):</label>
+              <input type="number" step="0.01" min="1" id="projBilled" class="form-control" required >
             </div>
           </div>
-
-          <!-- Start dates , end dates , percentage, client and critical HIDDEN -->
-          <input type="text" id="project_duration" class="form-control" hidden>
-          <input type="text" id="project_client" class="form-control" hidden>
-          <input type="date" id="project_startDate" class="form-control" hidden>
-          <input type="date" id="project_endDate" class="form-control" hidden>
-          <input type="date" id="project_expendDate" class="form-control" hidden>
-          <input type="text" id="project_percentage" class="form-control" hidden>
-          <input type="text" id="project_critical" class="form-control" hidden>
 
           <!-- Project Description -->
           <div class="form-group">

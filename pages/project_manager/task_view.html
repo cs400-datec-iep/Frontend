@@ -264,7 +264,6 @@
                           </div>
                         </div>
 
-
                     </div>
 
                     <div class="form-group row" id="duration_row">
@@ -356,6 +355,21 @@
   <script src="js/get-all-staff.js"></script>
   <script src="js/get-all-project-tasks.js"></script>
   <script src="js/create-task.js"></script>
+  <script>
+    //Milestone checkbox listener
+    $('#IfMilestone').change(function(){
+        $('#members_list_container').toggleClass('d-none');
+        $('#duration_row').toggleClass('d-none');
+        
+    if($(this).is(':checked')) {
+        document.getElementById("members_list").required = false;
+        document.getElementById("taskDuration").required = false;
+    } else {
+        document.getElementById("members_list").required = true;
+        document.getElementById("taskDuration").required = true;
+    }
+});
+  </script>
 
 </body>
 

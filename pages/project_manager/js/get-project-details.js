@@ -216,22 +216,27 @@ $(document).ready(function () {
         
         //Load data into Edit project modal
         $('#edit_button').on("click", function () {
+            //values that are edited
             document.getElementById("projName").value = j.Name;
-            document.getElementById("project_client").value = j.Client_Name;
             document.getElementById("projDesc").value = j.Description;
             document.getElementById("status").value = j.Status;
             document.getElementById("project_status").value = j.Progress_Status;
-            document.getElementById("project_startDate").value = j.Start_Date;
-            document.getElementById("project_duration").value = j.number_of_days;
-            document.getElementById("project_endDate").value = j.End_Date;
-            document.getElementById("project_expendDate").value = j.Expected_Date;
-            document.getElementById("project_percentage").value = j.Percentage;
-            document.getElementById("project_critical").value = j.Critical_flag;
             document.getElementById("projBilled").value = j.amount_billed;
             document.getElementById("projCost").value = j.amount_cost;
             document.getElementById("projCost").value = j.amount_cost;
             document.getElementById("projBilled").value = j.amount_billed;
-            
+
+            //values that cant be edited
+            sessionStorage.setItem("project_duration", j.number_of_days);
+            sessionStorage.setItem("project_client", j.Client_Name);
+            sessionStorage.setItem("project_startDate", j.Start_Date);
+            sessionStorage.setItem("project_endDate", j.End_Date);
+            sessionStorage.setItem("project_expendDate", j.Expected_Date);
+            sessionStorage.setItem("project_percentage", j.Percentage);
+            sessionStorage.setItem("project_critical", j.Critical_flag);
+
+            console.log(j);
+
             //Get html container
             var ul = document.getElementById("fileList");
             $('#fileList').empty();//Empty list from previous load

@@ -33,18 +33,18 @@ function createTask(){
     // Data encapsulation based on type
     if(IfMilestone == true){//Is a milestone
         var payload_task = {
-            "UserID": userIdList[0],
+            "UserID": null,
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
             "Date_Created": current_date,
-            "Expected_Date": end_date,
+            "Expected_Date": null,
             "Start_Date": null,
             "End_Date": null,
             "Status": true,
             "If_Milestone": true,
             "PredecessorTaskID": selected_tasks_array[0],
-            "Number_of_days" : taskDuration,
+            "Number_of_days" : 0,
             "Percentage" : 0,
             "Progress_Status": "Todo",
             "Critical_flag": false
@@ -62,14 +62,14 @@ function createTask(){
             "Status": true,
             "If_Milestone": false,
             "PredecessorTaskID":  selected_tasks_array[0],
-            "Number_of_days" : 0,
+            "Number_of_days" : taskDuration,
             "Percentage" : 0,
             "Progress_Status": "Todo",
             "Critical_flag": false
         }
     }
 
-    //Creates a task to the database
+    // //Creates a task to the database
     fetch(urlPostTask, {
         async: false,
         method: 'POST',

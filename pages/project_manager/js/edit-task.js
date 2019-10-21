@@ -19,19 +19,13 @@ function editTask(){
     var status = document.getElementById("status").value;
     var percentageRange = document.getElementById("percentageRange").value;
 
-
     //Set up dates
-    if(sessionStorage.getItem('startDate') === null){
-        var createdDate = new Date(sessionStorage.getItem('createdDate'));
-        var startDate = null;
-        var endDate = null;
-        var expDate = null;
+    var createdDate = new Date(sessionStorage.getItem('createdDate'));
+    var date_Created = new Date(sessionStorage.getItem('createdDate'));
 
-    }else{
-        //Expected Completion Date
-        var createdDate = new Date(sessionStorage.getItem('createdDate'));
-        var startDate = new Date(sessionStorage.getItem('startDate'));
-        var endDate = new Date(sessionStorage.getItem('endDate'));
+    if(sessionStorage.getItem('startDate') === null){
+        var startDate = null;
+
         var expDate = "", count = 0;
         while(count < taskDuration){
             expDate = new Date(createdDate.setDate(createdDate.getDate() + 1));
@@ -40,7 +34,29 @@ function editTask(){
             count++;
             }
         }
+
+    }else{
+        var startDate = new Date(sessionStorage.getItem('startDate'));
+
+        if(sessionStorage.getItem('expDate') === null){
+            var expDate = null;
+        }else{
+            var expDate = "", count = 0;
+            while(count < taskDuration){
+                expDate = new Date(startDate.setDate(startDate.getDate() + 1));
+    
+                if(expDate.getDay() != 0 && expDate.getDay() != 6){
+                count++;
+                }
+            }
+        }
     }
+
+    if(sessionStorage.getItem('endDate') === null){
+        var endDate = null;
+    }else{
+        var endDate = new Date(sessionStorage.getItem('endDate'));
+    }   
 
     $("#editTaskModal").modal('hide');
     //Loading modal
@@ -61,7 +77,7 @@ function editTask(){
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Date_Created": createdDate,
+            "Date_Created": date_Created,
             "Expected_Date": expDate,
             "Start_Date": startDate,
             "End_Date": endDate,
@@ -75,39 +91,16 @@ function editTask(){
             "Critical_flag": project_critical
         }
 
-    }else if(taskType === "objective"){
-
-        //Data encapsulation
-        var payload_task = {
-            "TaskID": sessionStorage.getItem('taskID'),
-            "UserID": members_list,
-            "ProjectID": sessionStorage.getItem('ProjectID'),
-            "Name": taskName,
-            "Description": taskDesc,
-            "Date_Created": createdDate,
-            "Expected_Date": expDate,
-            "Start_Date": startDate,
-            "End_Date": endDate,
-            "Status": status,
-            "If_Milestone": false,
-            "If_Objective": true,
-            "PredecessorTaskID": taskPredecesor,
-            "Number_of_days": taskDuration,
-            "Percentage": percentageRange,
-            "Progress_Status": taskStatus,
-            "Critical_flag": project_critical
-        }
-
     }else if(taskType === "milestone"){
 
         //Data encapsulation
         var payload_task = {
             "TaskID": sessionStorage.getItem('taskID'),
-            "UserID": members_list,
+            "UserID": null,
             "ProjectID": sessionStorage.getItem('ProjectID'),
             "Name": taskName,
             "Description": taskDesc,
-            "Date_Created": createdDate,
+            "Date_Created": date_Created,
             "Expected_Date": expDate,
             "Start_Date": startDate,
             "End_Date": endDate,
@@ -138,7 +131,5 @@ function editTask(){
         window.location.assign("view_task_details.html?"+sessionStorage.getItem('taskID'));
         
     }).catch(error => { console.error('Error:', error); return error; });
-
-
 
 }

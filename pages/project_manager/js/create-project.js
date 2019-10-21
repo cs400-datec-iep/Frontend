@@ -15,7 +15,7 @@ function create_project() {
     var projDesc = document.getElementById("projDesc").value;
     var projStartDate = document.getElementById("projStartDate").value;
     var projDuration = document.getElementById("projDuration").value;
-    var projBilled = document.getElementById("projBilled").value;
+    var projCost = document.getElementById("projCost").value;
     var ProjectMangerId = sessionStorage.getItem("userID");
 
     //Calculate End date
@@ -55,8 +55,8 @@ function create_project() {
             'Progress_Status': "OnGoing",
             'Percentage': 0,
             'Status': true,
-            'amount_billed': projBilled,
-            'amount_cost': projBilled,
+            'amount_billed': 0,
+            'amount_cost': projCost,
             'Critical_flag': false
         };
 

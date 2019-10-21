@@ -19,9 +19,17 @@
   $(window).resize(function() {
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
+      $('#container').addClass('container-fluid-collapsed');
+    }else{
+      $('#container').removeClass('container-fluid-collapsed');
     };
   });
   
+  //Reszie contianer fluid for pixels < 768
+  if ($(window).width() < 768) {
+    $('#container').toggleClass('container-fluid-collapsed');
+  };
+
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
   $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
     if ($(window).width() > 768) {

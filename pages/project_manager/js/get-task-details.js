@@ -26,6 +26,8 @@ $(document).ready(function () {
     }).then(response => response.json())
     .then((a) => {
 
+        console.log(a);
+
         // Get Users for dropdown and get user for task
         fetch(urlGetProjectTeam, {
             async: false,
@@ -53,17 +55,16 @@ $(document).ready(function () {
             document.getElementById("task_name_crumb").innerHTML = a.Name;
 
             // Check task type
-            if(a.If_Milestone === false && a.If_Objective === false){
+            if(a.If_Milestone === false){
 
                 task_type = "task";
 
-            }else if(a.If_Objective === true && a.If_Milestone === false){
-
-                task_type = "objective";
-
-            }else if(a.If_Milestone === true && a.If_Objective === false){
+            }else if(a.If_Milestone === true){
 
                 task_type = "milestone";
+                $('#taskDuration_Container').toggleClass("d-none");
+                $('#taskPredecesor_Container').toggleClass("d-none");
+                $('#members_list_Container').toggleClass("d-none");
 
             }
 
@@ -126,11 +127,16 @@ $(document).ready(function () {
                 document.getElementById("task_end_date").innerHTML = dateend;
             }
 
-            var datecreated = moment(a.Date_Created).format('DD-MMM-YYYY');
-            var dateexp = moment(a.Expected_Date).format('DD-MMM-YYYY');
+            //Expecetd End Date
+            if(a.Expected_Date === null){
+                document.getElementById("task_expected").innerHTML = "Not Completed"
+            }else{
+                var dateexp = moment(a.Expected_Date).format('DD-MMM-YYYY');
+                document.getElementById("task_expected").innerHTML = dateexp;
+            }
 
+            var datecreated = moment(a.Date_Created).format('DD-MMM-YYYY');
             document.getElementById("task_Created_date").innerHTML = datecreated;
-            document.getElementById("task_expected").innerHTML = dateexp;
 
             document.getElementById("task_duration").innerHTML = a.Number_of_days;
             document.getElementById("progress_meter").setAttribute("Style","width:"+a.Percentage+"%;")
@@ -141,29 +147,6 @@ $(document).ready(function () {
             //Get task array from previous page
             var task_array = JSON.parse(sessionStorage.getItem('task_array'));
 
-            //Predecssor task display
-            if(a.PredecessorTaskID === 0){
-                document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> None" ;
-            }else{
-                task_array.forEach(element => {
-                    if(element.TaskID === a.PredecessorTaskID){
-    
-                        $('#taskPredecesor').append($('<option>', {
-                            value: element.TaskID,
-                            text: element.Name,
-                            selected: true
-                        }));
-    
-                        document.getElementById('predecessor_task').innerHTML = "<b>Parent Task:</b> " + element.Name + "[ID:"+ element.TaskID + "]" ;
-                        
-                    }else{
-                        $('#taskPredecesor').append($('<option>', {
-                            value: element.TaskID,
-                            text: element.Name,
-                        }));
-                    }
-                });
-            }
 
             //Setup range slider for percentage
             document.getElementById("value").innerHTML = a.Percentage+"%";
@@ -191,13 +174,12 @@ $(document).ready(function () {
                 document.getElementById("taskDuration").value = a.Number_of_days;
                 document.getElementById("taskDesc").value = a.Description;
 
-                //Set task ID as session and start date as session
+                //Set task ID and dates as session
                 sessionStorage.setItem('taskID',a.TaskID);
                 sessionStorage.setItem('startDate',a.Start_Date);
                 sessionStorage.setItem('endDate',a.End_Date);
                 sessionStorage.setItem('expDate',a.Expected_Date);
                 sessionStorage.setItem('createdDate',a.Date_Created);
-
                
             };
             button.innerHTML = "Edit Task";

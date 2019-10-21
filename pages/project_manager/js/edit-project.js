@@ -31,16 +31,16 @@ function editProject() {
 
         //Get values from html elements
         var projectName = document.getElementById("projName").value;
-        var projClient = document.getElementById("project_client").value;
+        var projClient = sessionStorage.getItem("project_client");
         var projDesc = document.getElementById("projDesc").value;
-        var project_startDate = document.getElementById("project_startDate").value;
-        var project_duration = document.getElementById("project_duration").value;
-        var project_endDate = document.getElementById("project_endDate").value;
-        var project_expendDate = document.getElementById("project_expendDate").value;
+        var project_startDate = sessionStorage.getItem("project_startDate");
+        var project_duration = sessionStorage.getItem("project_duration");
+        var project_endDate =  sessionStorage.getItem("project_endDate");
+        var project_expendDate =  sessionStorage.getItem("project_expendDate");
         var project_status = document.getElementById("project_status").value;
         var status = document.getElementById("status").value;
-        var project_percentage = document.getElementById("project_percentage").value;
-        var project_critical = document.getElementById("project_critical").value;
+        var project_percentage =  sessionStorage.getItem("project_percentage");
+        var project_critical = sessionStorage.getItem("project_critical");
         var project_cost = document.getElementById("projCost").value;
         var project_billed = document.getElementById("projBilled").value;
         var ProjectMangerId = sessionStorage.getItem("userID");
@@ -65,95 +65,97 @@ function editProject() {
             'amount_cost': project_billed,
         }
 
-        //Delete all  members in UserProject
-        fetch(URLDeleteProjectMembers, {
-            async: false,
-            method: 'DELETE',
-            crossDomain: true,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            },
-        }).then(function (a) {
-            wait = true;
-            //Link users to project
-            for (var i = 0; i < userIdList.length; i++) {
+        console.log(payload_project);
 
-                //Data encapsulation
-                var payload_user_project = {
-                    'ProjectID': projectID,
-                    'UserID': userIdList[i]
-                }
+    //     //Delete all  members in UserProject
+    //     fetch(URLDeleteProjectMembers, {
+    //         async: false,
+    //         method: 'DELETE',
+    //         crossDomain: true,
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'Bearer ' + token
+    //         },
+    //     }).then(function (a) {
+    //         wait = true;
+    //         //Link users to project
+    //         for (var i = 0; i < userIdList.length; i++) {
 
-                //Create Users in UserProject
-                fetch(urlPostUserProject, {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-                    },
-                    body: JSON.stringify(payload_user_project)
-                }).catch(error => { console.error('Error:', error); return error; });
-            }
-            wait = false;
+    //             //Data encapsulation
+    //             var payload_user_project = {
+    //                 'ProjectID': projectID,
+    //                 'UserID': userIdList[i]
+    //             }
 
-            //Add new files
-            for (var i = 0; i < ArrayOfFiles.length; i++) {
-                fetch(urlFiles, {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-                    },
-                    body: JSON.stringify(ArrayOfFiles[i])
-                }).catch(error => { console.error('Error:', error); return error; });
-            }
+    //             //Create Users in UserProject
+    //             fetch(urlPostUserProject, {
+    //                 async: false,
+    //                 method: 'POST',
+    //                 crossDomain: true,
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': 'Bearer ' + token
+    //                 },
+    //                 body: JSON.stringify(payload_user_project)
+    //             }).catch(error => { console.error('Error:', error); return error; });
+    //         }
+    //         wait = false;
+
+    //         //Add new files
+    //         for (var i = 0; i < ArrayOfFiles.length; i++) {
+    //             fetch(urlFiles, {
+    //                 async: false,
+    //                 method: 'POST',
+    //                 crossDomain: true,
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': 'Bearer ' + token
+    //                 },
+    //                 body: JSON.stringify(ArrayOfFiles[i])
+    //             }).catch(error => { console.error('Error:', error); return error; });
+    //         }
     
-            //Delete old files
-            for (var i = 0; i < deleted_file_array.length; i++) {
-                var urlDeleteFiles = urlMain+'api/Files/' + deleted_file_array[i];
+    //         //Delete old files
+    //         for (var i = 0; i < deleted_file_array.length; i++) {
+    //             var urlDeleteFiles = urlMain+'api/Files/' + deleted_file_array[i];
     
-                fetch(urlDeleteFiles, {
-                    async: false,
-                    method: 'DELETE',
-                    crossDomain: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + token
-                    },
-                }).catch(error => { console.error('Error:', error); return error; });
-            }
+    //             fetch(urlDeleteFiles, {
+    //                 async: false,
+    //                 method: 'DELETE',
+    //                 crossDomain: true,
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Authorization': 'Bearer ' + token
+    //                 },
+    //             }).catch(error => { console.error('Error:', error); return error; });
+    //         }
     
-            //Edit Project Details
-            fetch(urlPutProjectID, {
-                async: false,
-                method: 'PUT',
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                },
-                body: JSON.stringify(payload_project)
-            }).then(function (a) { 
+    //         //Edit Project Details
+    //         fetch(urlPutProjectID, {
+    //             async: false,
+    //             method: 'PUT',
+    //             crossDomain: true,
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': 'Bearer ' + token
+    //             },
+    //             body: JSON.stringify(payload_project)
+    //         }).then(function (a) { 
                 
-                while(wait == true){
+    //             while(wait == true){
     
-                }
-                alert("Project successfully edited");   
-                window.location.assign("view_project.html?"+projectID);
+    //             }
+    //             alert("Project successfully edited");   
+    //             window.location.assign("view_project.html?"+projectID);
     
-            }).catch(error => { console.error('Error:', error); return error; });
+    //         }).catch(error => { console.error('Error:', error); return error; });
             
-            //Clear delete cache arrays
-            deleted_members_array.length = 0;
-            deleted_file_array.length = 0;
+    //         //Clear delete cache arrays
+    //         deleted_members_array.length = 0;
+    //         deleted_file_array.length = 0;
 
 
-        }).catch(error => { console.error('Error:', error); return error; });
+    //     }).catch(error => { console.error('Error:', error); return error; });
         
     } 
 
