@@ -19,6 +19,12 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
         .then(function (j) {
+
+        //Check if no data
+        if(j.length == 0){
+            document.getElementById("gantt-no-data").classList.toggle("d-none");
+            document.getElementById("chart_div").classList.toggle("d-none");
+        }
         var array =[];
 
         google.charts.load('current', {'packages':['gantt']});

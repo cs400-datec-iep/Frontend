@@ -8,6 +8,7 @@
       $("body").toggleClass("sidebar-toggled");
       $(".sidebar").toggleClass("toggled");
       $(".container-fluid").toggleClass("container-fluid-collapsed");
+      
 
       if ($(".sidebar").hasClass("toggled")) {
         $('.sidebar .collapse').collapse('hide');
@@ -15,19 +16,22 @@
     }
   });
 
-  // Close any open menu accordions when window is resized below 768px
+  // Close any open menu accordions as well as makes certain divs responsive when window is resized below 768px
   $(window).resize(function() {
+
     if ($(window).width() < 768) {
       $('.sidebar .collapse').collapse('hide');
-      $('#container').addClass('container-fluid-collapsed');
+      $('.container-fluid').addClass('container-fluid-collapsed');
+
     }else{
-      $('#container').removeClass('container-fluid-collapsed');
+      $('.container-fluid').removeClass('container-fluid-collapsed');
+
     };
   });
   
-  //Reszie contianer fluid for pixels < 768
+  //Responsiveness for pixels < 768
   if ($(window).width() < 768) {
-    $('#container').toggleClass('container-fluid-collapsed');
+    $('.container-fluid').toggleClass('container-fluid-collapsed');
   };
 
   // Prevent the content wrapper from scrolling when the fixed side navigation hovered over

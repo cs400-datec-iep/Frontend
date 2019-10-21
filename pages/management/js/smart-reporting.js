@@ -21,15 +21,27 @@ $(document).ready(function () {
 
         //Variable decalration
         var chart_payload = [];
-        chart_payload.push(['Project Name', 'Percentage Complete',]);
+        chart_payload.push(['Project Name', 'Work Done','Expected Work']);
 
         var calendar_payload = [];
 
 
         //Set datasets
         j.forEach(element => {
-            chart_payload.push([element.Name, element.Percentage]);
-            calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+            var exp_date = moment(element.Start_Date);
+            var date_now = moment(new Date());
+            var diff = date_now.diff(exp_date, 'days');
+            var percentage = (diff/element.number_of_days)*100;
+
+            console.log(element.Name +": "+percentage);
+
+            chart_payload.push([element.Name, element.Percentage,percentage]);
+
+            if(element.Critical_flag == true){
+                calendar_payload.push([new Date (moment(element.Expected_Date)) , -50, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+            }else{
+                calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+            }
 
         });
 
@@ -46,7 +58,6 @@ $(document).ready(function () {
             var chartHeight = chartAreaHeight + 80;
 
             var options = {
-                title: 'Project Percentage Complete',
                 height: chartHeight,
                 chartArea: {
                     width: '70%',
@@ -90,9 +101,29 @@ $(document).ready(function () {
                     width: '100%',
                     height: chartAreaHeight
                 },
-                tooltip: {isHtml: true}
+                noDataPattern: {
+                    backgroundColor: '#858796'
+                },
+                calendar: {
+                    monthOutlineColor: {
+                        stroke: '#243568',
+                        strokeOpacity: 0.8,
+                        strokeWidth: 2
+                    },
+                    unusedMonthOutlineColor: {
+                        stroke: '#5a5c69',
+                        strokeOpacity: 0.8,
+                        strokeWidth: 1
+                    },
+                },
+                colorAxis: {colors:['red','#4e73df','#4e73df']},
+                tooltip: {isHtml: false}
             };
-
+            google.visualization.events.addListener(chart, 'ready', function () {
+                $($('#project_calender_chart text')[0]).text('Critical');
+                $($('#project_calender_chart text')[1]).text('');
+                $($('#project_calender_chart text')[2]).text('Not Critical');
+              });
             chart.draw(dataTable, options);
         }
 

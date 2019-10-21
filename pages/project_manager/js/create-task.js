@@ -43,7 +43,7 @@ function createTask(){
             "End_Date": null,
             "Status": true,
             "If_Milestone": true,
-            "PredecessorTaskID": selected_tasks_array[0],
+            "PredecessorTaskID": 0,
             "Number_of_days" : 0,
             "Percentage" : 0,
             "Progress_Status": "Todo",
@@ -69,7 +69,7 @@ function createTask(){
         }
     }
 
-    // //Creates a task to the database
+    // // //Creates a task to the database
     fetch(urlPostTask, {
         async: false,
         method: 'POST',
@@ -79,8 +79,7 @@ function createTask(){
             'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify(payload_task)
-    }).then(response => response.json())
-    .then((a) => {
+    }).then((a) => {
 
         alert("Task has been created, the page will now refresh.");
         window.location.assign("task_view.html?"+sessionStorage.getItem('ProjectID'));

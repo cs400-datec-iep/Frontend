@@ -8337,6 +8337,10 @@ button.bg-dark:focus {
   overflow: hidden !important;
 }
 
+.overflow-x{
+  overflow-x: scroll;
+}
+
 .position-static {
   position: static !important;
 }

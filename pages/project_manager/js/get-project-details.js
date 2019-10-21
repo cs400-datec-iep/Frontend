@@ -69,7 +69,7 @@ $(document).ready(function () {
 
         //Create edit button for project
         var button = document.createElement("button");
-        button.classList.add('btn', 'btn-danger', 'btn-block', 'text-white',  'float-right', 'col-md-2');
+        button.classList.add('btn', 'btn-danger', 'btn-block', 'text-white',  'float-right', 'col-md-2', 'mb-2');
         button.setAttribute("data-toggle","modal");
         button.setAttribute("data-target","#editProjectModel");
         button.setAttribute("disabled-target","true");

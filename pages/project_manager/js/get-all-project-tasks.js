@@ -76,7 +76,7 @@ $(document).ready(function () {
         if (element.If_Milestone === false) {//Task
           type = "Task";
         }else if (element.If_Milestone === true) {//Milestone
-          type = "Milstone";
+          type = "Milestone";
         }
 
         if(element.Critical_flag === true){//Checking critical status

@@ -68,7 +68,7 @@ $(document).ready(function () {
 
                 //Create elements
                 var a = document.createElement('div');
-                a.classList.add('col-xl-5', 'col-sm-6', 'mb-4', 'mt-3','ml-5');
+                a.classList.add('col-xl-5', 'col-sm-6', 'mb-4', 'mt-3');
 
                 var card = document.createElement("a");
                 card.classList.add('card', 'border-left-primary','shadow','o-hidden', 'h-100', 'py-2');
