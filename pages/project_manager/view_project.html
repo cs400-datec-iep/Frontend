@@ -441,7 +441,7 @@
                       <input type="file" class="custom-file-input" id="FileInput" name="file">
                       <label class="custom-file-label" for="FileInput">Choose a file...</label>
                   </div>
-                  <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                  <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadFile()">Add File</button>
               </div>
 
             <p class="m-0 mt-2 ">Upload Progress:</p>
@@ -482,7 +482,7 @@
         <!-- Footer -->
         <div class="modal-footer">
           <a class="btn btn-info text-white" onclick="editProject();">Save Changes</a>
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="resetModal();">Cancel</button>
         </div>
       </div>
     </div>
@@ -507,8 +507,7 @@
   <script src="js/get-project-details.js"></script>
   <script src="js/get-all-project-members-edit.js"></script>
   <script src="js/chart-get-task-details.js"></script>
-  <script src="js/azure-storage.blob.js"></script>
-  <script src="js/edit-file-upload.js"></script>
+  <script src="js/file-upload-edit.js"></script>
   <script src="js/dropdown-member-list.js"></script>
   <script>
     //Places filename in the "Choose a file" label
@@ -518,6 +517,17 @@
       //replace the "Choose a file" label
       $(this).next('.custom-file-label').html(fileName);
     })
+
+    //Resets the file list when user cancels edit
+    function resetModal(){
+      file_array=[]
+
+      display_file_array.forEach(element => {
+        file_array.push(element);
+      });
+
+
+    }
   </script>
   <script src="js/edit-project.js"></script>
 

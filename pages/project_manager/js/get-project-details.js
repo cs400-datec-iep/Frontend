@@ -199,15 +199,18 @@ $(document).ready(function () {
                     'ProjectID': k[i].ProjectID
                 }
 
+                
                 file_array.push(files);
+                display_file_array.push(files);
 
                 //Append project team members to html list container
                 var li = document.createElement("li");
                 var a = document.createElement("a");
-                a.innerHTML ="<a href='" + k[i].Directory + "'>" +  k[i].Name  + "</a>";;
+                a.innerHTML ="<a href='https://" + k[i].Directory + "'>" +  k[i].Name  + "</a>";;
                 li.appendChild(a);
                 ul.appendChild(li);
             }
+
         }).catch(error => { console.error('Error:', error); return error; });
 
         //Remove loading icon and display output for sidebar
@@ -235,14 +238,13 @@ $(document).ready(function () {
             sessionStorage.setItem("project_percentage", j.Percentage);
             sessionStorage.setItem("project_critical", j.Critical_flag);
 
-            console.log(j);
-
             //Get html container
             var ul = document.getElementById("fileList");
-            $('#fileList').empty();//Empty list from previous load
 
             //Populate file list in edit modal
             function populateList(){
+                $('#fileList').empty();//Empty list from previous load
+
                 //Loop through file array and display with hyperlinks
                 for(var i = 0; i< file_array.length; i++){
 
@@ -254,17 +256,18 @@ $(document).ready(function () {
     
                     var btn = document.createElement("button");
                     btn.classList.add('btn-circle-edit','btn-danger','col-md-2','ml-2');
-                    btn.id = file_array[i].Name;
+                    btn.id = file_array[i].FileID;
                     btn.innerHTML = "X";
                     btn.setAttribute("type","button");
+                    
                     //Function which deletes file on edit view 
                     btn.onclick = function(){
                         for(var j = 0; j< file_array.length; j++){
 
-                            if(file_array[j].Name == this.id){
+                            if(file_array[j].FileID == this.id){
                                 deleted_file_array.push(file_array[j].FileID);
                                 file_array.splice(j,1);
-                                var elem = document.getElementById(li.id);
+                                var elem = document.getElementById(this.id);
                                 elem.parentNode.removeChild(elem);
                                 populateList();
                             }

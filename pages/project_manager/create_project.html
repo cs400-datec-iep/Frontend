@@ -257,10 +257,10 @@
                             <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
                             <div class="form-row">
                                 <div class="col-9 ml-1">
-                                    <input type="file" class="custom-file-input" id="FileInput" name="file">
+                                    <input type="file" class="custom-file-input" id="FileInput" name="file" >
                                     <label class="custom-file-label" for="FileInput">Choose a file...</label>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadBlob()">Add File</button>
+                                <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadFile();">Add File</button>
                             </div>
 
                           <p class="m-0 mt-2 ">Upload Progress:</p>
@@ -379,6 +379,7 @@
   </script>
   <script src="js/azure-storage.blob.js"></script>
   <script src="js/upload-file.js"></script>
+  <script src="js/file-upload.js"></script>
   <script src="js/create-project.js"></script>
 
 

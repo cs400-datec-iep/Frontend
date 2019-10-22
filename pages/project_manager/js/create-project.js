@@ -8,6 +8,7 @@ function create_project() {
     urlPostProject = urlMain+'api/Projects';
     urlPostUserProject =  urlMain+'api/UserProjects';
     urlPostFiles =  urlMain+'api/Files';
+    var urlFileUpload = urlMain + 'api/FileUpload/';
 
     //Get html containers
     var projectName = document.getElementById("projName").value;
@@ -101,27 +102,28 @@ function create_project() {
             //Link uploaded files to the project ID 
             if(ArrayOfFiles.length > 0){
                 for (var i = 0; i < ArrayOfFiles.length; i++) {
-                    
-                    fetch(urlPostFiles, {
-                        async: false,
-                        method: 'POST',
-                        crossDomain: true,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: JSON.stringify(ArrayOfFiles[i])
-                    }).then(function (a) {
-                        
-                        localStorage.setItem('created_project',"true");
-                        alert("Project created successfully");
-                        window.location.href ="dashboard.html";
+                    const formData = new FormData();
+                    formData.append('', ArrayOfFiles[i]);
 
-                    }).catch(error => { console.error('Error:', error); return error; });
+                    const options = {
+                        method: 'POST',
+                        body: formData,
+                        // If you add this, upload won't work
+                        // headers: {
+                        //   'Content-Type': 'multipart/form-data',
+                        // }
+                    };
+                    fetch(urlFileUpload+j.ProjectID, options)
+                    .catch(error => { console.log(error) });
                 }
+                    
+                    localStorage.setItem('created_project',"true");
+                    alert("Project created successfully");
+                    window.location.href ="dashboard.html";
+
             }else{
                 localStorage.setItem('created_project',"true");
-                alert("Project created successfully");
+                alert("Project created unsuccessfully");
                 window.location.href ="dashboard.html";
             }
             

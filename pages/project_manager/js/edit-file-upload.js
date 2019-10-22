@@ -69,6 +69,7 @@ function uploadBlob() {
                 }, 200);
             }
             refreshProgress();
+            
             //Get html container
             var list = document.getElementById("fileList");
 
@@ -102,6 +103,7 @@ function uploadBlob() {
             p.appendChild(btn);
             item.appendChild(p);
             list.appendChild(item);
+
         
     }
     
