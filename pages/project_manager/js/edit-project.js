@@ -49,7 +49,6 @@ function editProject() {
             project_endDate = null;
         }
 
-
         //Data encapsulation
         var payload_project = {
             'ProjectID': projectID,

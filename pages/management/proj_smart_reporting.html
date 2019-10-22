@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title id="page_title">CPA</title>
+    <title id="page_title">Smart Reporting</title>
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,7 +55,7 @@
           <li  class="nav-item active">
             <a class="nav-link" id="smart_analysis_link">
               <i class="fas fa-fw fa-sitemap"></i>
-              <span>CPA</span></a>
+              <span>Smart Reporting</span></a>
           </li>
       </div>
     </ul>
@@ -71,60 +71,7 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Alerts -->
-           <!-- <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-bell fa-fw"></i>
-
-                  <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                  aria-labelledby="alertsDropdown" id="notifications">
-                  <h6 class="dropdown-header">
-                      Alerts Center
-                  </h6>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                          <div class="icon-circle bg-primary">
-                              <i class="fas fa-file-alt text-white"></i>
-                          </div>
-                      </div>
-                      <div>
-                          <div class="small text-gray-500">December 12, 2019</div>
-                          <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                      </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                          <div class="icon-circle bg-success">
-                              <i class="fas fa-donate text-white"></i>
-                          </div>
-                      </div>
-                      <div>
-                          <div class="small text-gray-500">December 7, 2019</div>
-                          $290.29 has been deposited into your account!
-                      </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                          <div class="icon-circle bg-warning">
-                              <i class="fas fa-exclamation-triangle text-white"></i>
-                          </div>
-                      </div>
-                      <div>
-                          <div class="small text-gray-500">December 2, 2019</div>
-                          Spending Alert: We've noticed unusually high spending for your account.
-                      </div>
-                  </a>
-                  <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-          </li>
-
-          <div class="topbar-divider d-none d-sm-block"></div>-->
-
+           
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -159,7 +106,7 @@
                 <li class="breadcrumb-item">Project Dashboard</li>
                 <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
                 <li class="breadcrumb-item" id="project_name_crumb"></li>
-                <li class="breadcrumb-item active">CPA</li>
+                <li class="breadcrumb-item active">Smart Reporting</li>
             </ol>
         
             <!-- Loading Icon -->
@@ -168,23 +115,92 @@
             <!-- Container content -->
             <div class="display-none" id="container_content">
 
-              <!-- page header -->
-              <div class="card-header col-12 text-xxlg pb-0 mb-3" id="project_title_conatiner">
-                  <p class="font-weight-bold text-primary m-0">Critical Path Analysis</p>
-              </div>
-
-              <!-- First row -->
+              <!-- Smart Reporting -->
               <div class="row">
-                  <div class="col-xl-12">
-                      <div class="card shadow-xlg py-2 mb-5">
-                          <div class="card-body">
-                            <div class="text-sm h5 mb-2 text-gray-800" >
-                              <p>This Gantt Chart displays all tasks and thier details such as duration and dates and calculates the Critical Path of this project.</p>
-                            </div>
-                            <div id="chart_div"></div>
+                <div class="col-xl-12">
+                    <div class="card shadow mb-3">
+                      <!--Card Header -->
+                      <div class="card-header">
+                          <h6 class="font-weight-bold text-lg text-primary">Critical Path Analysis</h6>
+                          <div class="text-sm mb-2 text-gray-800" >
+                            <p>This Gantt Chart displays all tasks and thier details such as duration and dates and calculates the Critical Path of your project.</p>
                           </div>
                       </div>
+
+                      <div class="card-body">
+
+                        <div class="m-auto d-none" id="gantt-no-data">
+                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                        </div>
+
+                        <div id="chart_div"></div>
+
+                      </div>
                   </div>
+                </div>
+              </div>
+
+              <!--Task Statuses  Chart -->
+              <div class="row mb-4 mt-3 p-auto">
+                  <div class="col-xl-6 col-md-6 ">
+                    <div class="card shadow ">
+                      <!--Card Header -->
+                      <div class="card-header">
+                          <h6 class="font-weight-bold text-lg text-primary">Task Status </h6>
+                      </div>
+      
+                      <!-- Card Content -->
+                      <div class="card-body">
+                        <div class="m-auto d-none" id="status-no-data">
+                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                        </div>
+
+                        <div id="task_complete_chart" class="chart"></div>
+                      </div>
+                    </div>
+                  </div>
+    
+                <!--Task Active/inactive  Chart -->
+                  <div class="col-xl-6 col-md-6 ">
+                    <div class="card shadow">
+                      <!--Card Header -->
+                      <div class="card-header">
+                          <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Task</h6>
+                      </div>
+      
+                      <!-- Card Content -->
+                      <div class="card-body">
+                        <div class="m-auto d-none" id="active-no-data">
+                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                        </div>
+
+                        <div id="task_active_inactive_chart" class="chart"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <!-- Task Due Dates -->
+              <div class="row">
+                <div class="col-xl-12">
+                    <div class="card shadow mb-5">
+                      <!--Card Header -->
+                      <div class="card-header">
+                        <h6 class="font-weight-bold text-lg text-primary">Task Percentage Completed</h6>
+                        <p><b><u>Note:</u></b> Negative values indicate that the Task has not started yet.</p>
+                      </div>
+
+                      <div class="card-body" id="calendar_container">
+
+                        <div class="m-auto d-none" id="percentage-no-data">
+                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                        </div>
+                        
+                        <div id="task_percentage_chart"></div>
+
+                      </div>
+                  </div>
+                </div>
               </div>
               
             </div>
@@ -243,7 +259,7 @@
   <!-- Scripts for this dashboard -->
   <script src="../../assets/js/global-variables.js"></script>
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="js/cpa.js"></script>
+  <script src="js/proj_smart_reporting.js"></script>
 </body>
 
 </html>
