@@ -10,6 +10,16 @@ function logout(){
     //Url
     var UrlLogout = urlMain + 'api/Logs';
 
+    $("#logoutModal").modal('hide');
+    //Loggin out modal
+    var btn = document.createElement("button");
+    btn.id = "click";
+    btn.setAttribute("data-toggle","modal");
+    btn.setAttribute("data-target","#logging_out_loader");
+    btn.setAttribute("hidden","true");
+    document.getElementById("wrapper").appendChild(btn);
+    $('#click').trigger('click');
+
     //Payload
     var payload_logout = {
         "UserID": sessionStorage.getItem("email"),

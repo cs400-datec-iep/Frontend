@@ -348,99 +348,113 @@
 
   <!-- View Task(List)-->
   <div class="modal fade" id="taskViewListModal"role="dialog" >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-  
-          <!-- Header -->
-          <div class="modal-header">
-            <h5 class="modal-title" id="taskViewTitle">View Task</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-  
-          <!-- Content -->
-          <div class="modal-body">
-  
-          <!--Task name and status -->
-          <div class="form-group row">
-            <div class="col-md-6">
-              <label for="taskNameList" class="font-weight-bolder">Task Name:</label>
-              <p id="taskNameList"></p>
-            </div>
-            <div class="col-md-6">
-              <label for="taskStatusList" class="font-weight-bolder">Task Status:</label>
-              <p id="taskStatusList"></p>
-            </div>
-          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
 
-          <!--Task Percentage Completion -->
-          <div class="form-group">
-            <label for="percentageRangeList" class="font-weight-bolder">Task Percentage Completion:</label>
-            <div class="progress fh-1-6 mt-3 text-center">
-                <div class="progress-bar-striped bg-success p-1" role="progressbar" id="percentageRangeList"><span class="text-white font-weight-bold text-sm" id="valueList"></span></div>
-            </div>
-          </div>
-
-          <!--Task Start/End Dates-->
-          <div class="form-group row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskStartDate" class="font-weight-bolder">Date Started:</label>
-                <p id="taskStartDate"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskEndDate" class="font-weight-bolder">End Date:</label>
-                <p id="taskEndDate"></p>
-              </div>
-            </div>
-          </div>
-
-          <!--Task Created/Exp End Dates-->
-          <div class="form-group row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskCreatedDate" class="font-weight-bolder">Date Created:</label>
-                <p id="taskCreatedDate"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskExpDate" class="font-weight-bolder">Expected Completion:</label>
-                <p id="taskExpDate"></p>
-              </div>
-            </div>
-          </div>
-
-          <!--Task Predecesor and Duration -->
-          <div class="form-group row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskPredList" class="font-weight-bolder">Task Predecesor ID:</label>
-                <p id="taskPredList"></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="taskDurationList" class="font-weight-bolder">Task Duration:</label>
-                <p id="taskDurationList"></p>
-              </div>
-            </div>
-          </div>
-
-          <!--Task Description -->
-          <div class="form-group">
-            <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
-            <p id="taskDescList" class="m-auto" rows="3" required></p>
-          </div>
-  
-          </div>
-  
+        <!-- Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskViewTitle">View Task</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
+
+        <!-- Content -->
+        <div class="modal-body">
+
+        <!--Task name and status -->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label for="taskNameList" class="font-weight-bolder">Task Name:</label>
+            <p id="taskNameList"></p>
+          </div>
+          <div class="col-md-6">
+            <label for="taskStatusList" class="font-weight-bolder">Task Status:</label>
+            <p id="taskStatusList"></p>
+          </div>
+        </div>
+
+        <!--Task Percentage Completion -->
+        <div class="form-group">
+          <label for="percentageRangeList" class="font-weight-bolder">Task Percentage Completion:</label>
+          <div class="progress fh-1-6 mt-3 text-center">
+              <div class="progress-bar-striped bg-success p-1" role="progressbar" id="percentageRangeList"><span class="text-white font-weight-bold text-sm" id="valueList"></span></div>
+          </div>
+        </div>
+
+        <!--Task Start/End Dates-->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskStartDate" class="font-weight-bolder">Date Started:</label>
+              <p id="taskStartDate"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskEndDate" class="font-weight-bolder">End Date:</label>
+              <p id="taskEndDate"></p>
+            </div>
+          </div>
+        </div>
+
+        <!--Task Created/Exp End Dates-->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskCreatedDate" class="font-weight-bolder">Date Created:</label>
+              <p id="taskCreatedDate"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskExpDate" class="font-weight-bolder">Expected Completion:</label>
+              <p id="taskExpDate"></p>
+            </div>
+          </div>
+        </div>
+
+        <!--Task Predecesor and Duration -->
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskPredList" class="font-weight-bolder">Task Predecesor ID:</label>
+              <p id="taskPredList"></p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="taskDurationList" class="font-weight-bolder">Task Duration:</label>
+              <p id="taskDurationList"></p>
+            </div>
+          </div>
+        </div>
+
+        <!--Task Description -->
+        <div class="form-group">
+          <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
+          <p id="taskDescList" class="m-auto" rows="3" required></p>
+        </div>
+
+        </div>
+
       </div>
     </div>
+  </div>
+
+  <!--Logging out Modal -->
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+            <div class="loader-work"></div>
+            <div clas="loader-txt">
+                <p>Logging you out</p>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

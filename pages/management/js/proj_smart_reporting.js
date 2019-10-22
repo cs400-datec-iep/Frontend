@@ -255,6 +255,8 @@ $(document).ready(function () {
         document.getElementById("project_name_side").innerHTML = result.Name;
         document.getElementById("project_link").href = "view_project.html?"+sessionStorage.getItem('ProjectID');
         document.getElementById("project_name_crumb").innerHTML = result.Name;
+        document.getElementById("project_name_crumb").href = "view_project.html?"+sessionStorage.getItem('ProjectID');
+
 
         //Remove loading icon and display output
         document.getElementById("load").style.display = "none";

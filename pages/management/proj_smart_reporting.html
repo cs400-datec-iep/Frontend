@@ -105,7 +105,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Project Dashboard</li>
                 <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
-                <li class="breadcrumb-item" id="project_name_crumb"></li>
+                <li class="breadcrumb-item" ><a id="project_name_crumb"></a></li>
                 <li class="breadcrumb-item active">Smart Analysis</li>
             </ol>
         
@@ -223,6 +223,20 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!--Logging out Modal -->
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+          <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+              <p>Logging you out</p>
+          </div>
+          </div>
+      </div>
+      </div>
+  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

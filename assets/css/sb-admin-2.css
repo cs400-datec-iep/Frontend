@@ -3493,9 +3493,12 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #2e2f37;
+  color: #ffffff;
   text-decoration: none;
-  background-color: #f8f9fc;
+  border-radius: 5px;
+  width: 95%;
+  margin:auto;
+  background-color: #9399aa;
 }
 
 .dropdown-item.active, .dropdown-item:active {
