@@ -228,4 +228,9 @@ animation: spin 1s linear infinite;
   #chart_div {
     overflow-x: scroll;
   }
+
+  .chart {
+    width: 100%; 
+    min-height: 450px;
+  }
   

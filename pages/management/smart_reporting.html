@@ -163,37 +163,89 @@
             <!-- Loading Icon -->
             <div class="loader d-none" id="load"></div>
 
-            <!-- Card Template -->
-            <div class="col-xl-12 col-md-12 mb-4 mt-3">
-                <div class="card shadow h-100 py-2">
+            <!-- Calendar -->
+            <div class="row mb-4 mt-3 ">
+              <div class="col-xl-12 col-md-12 ">
+                  <div class="card shadow h-100 py-2">
 
-                <!--Card Header -->
-                <div class="card-header">
-                    <h6 class="font-weight-bold text-lg text-primary">Project due dates</h6>
-                </div>
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Project Due Dates</h6>
+                  </div>
 
-                <!-- Card Content -->
-                <div class="card-body overflow-x">
-                    <div id="project_calender_chart"></div>
-                </div>
-                </div>
+                  <!-- Card Content -->
+                  <div class="card-body">
+                      <div id="project_calender_chart" class="chart"></div>
+                  </div>
+                  </div>
+              </div>
             </div>
 
-            <!-- Card Template -->
-            <div class="col-xl-12 col-md-12 mb-4 mt-3">
+            <!--Project Statuses  Chart -->
+            <div class="row mb-4 mt-3 p-auto">
+              <div class="col-xl-6 col-md-6 ">
                 <div class="card shadow h-100 py-2">
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Project Status </h6>
+                  </div>
+  
+                  <!-- Card Content -->
+                  <div class="card-body">
+                    <div id="project_complete_chart" class="chart"></div>
+                  </div>
+                </div>
+              </div>
 
-                <!--Card Header -->
-                <div class="card-header">
-                    <h6 class="font-weight-bold text-lg text-primary">Percentage completion per project</h6>
+            <!--Project Statuses  Chart -->
+              <div class="col-xl-6 col-md-6 ">
+                <div class="card shadow h-100 py-2">
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Projects</h6>
+                  </div>
+  
+                  <!-- Card Content -->
+                  <div class="card-body">
+                    <div id="project_active_inactive_chart" class="chart"></div>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <!-- Card Content -->
-                <div class="card-body">
-                  <p><b><u>Note:</u></b> Negative values indicate that the project has not started.</p>
-                  <div id="project_percentage_chart"></div>
+            <!--Project Percentage  Chart -->
+            <div class="row mb-4 mt-3">
+              <div class="col-xl-12 col-md-12 ">
+                <div class="card shadow h-100 py-2">
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Project Percentage Completed</h6>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="card-body" id="calendar_container">
+                    <p><b><u>Note:</u></b> Negative values indicate that the project has not started yet.</p>
+                    <div id="project_percentage_chart" class="chart"></div>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <!--Project Cost vs Amount Billed  Chart -->
+            <div class="row mb-4 mt-3">
+              <div class="col-xl-12 col-md-12">
+                <div class="card shadow h-100 py-2">
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Project Cost vs Amount Billed</h6>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="card-body">
+                    <div id="project_cost_billed_chart" class="chart"></div>
+                  </div>
                 </div>
+              </div>
             </div>
 
         </div>

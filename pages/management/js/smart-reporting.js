@@ -1,7 +1,6 @@
 /*////////////////////////////////////
 
-Function to initailize CPA Diagram
-
+Function to initailize Smart Reporting
 */////////////////////////////////////
 $(document).ready(function () {
     //Url
@@ -19,35 +18,60 @@ $(document).ready(function () {
     }).then(function (a) { return a.json() })
     .then(function (j) {
 
-        //Variable decalration
+        //Variable decalrations
         var chart_payload = [];
         chart_payload.push(['Project Name', 'Work Done','Expected Work']);
-
         var calendar_payload = [];
+        var num_ongoing = 0, num_onhold = 0, num_completed = 0, num_cancelled = 0;
+        var col_payload = [];
+        col_payload.push(['Project Name', 'Cost', 'Billed']);
+        var active_proj = 0, inactive_proj = 0;
 
 
         //Set datasets
         j.forEach(element => {
-            var exp_date = moment(element.Start_Date);
+            //Expected work vs work done calculation
+            var start_date = moment(element.Start_Date);
             var date_now = moment(new Date());
-            var diff = date_now.diff(exp_date, 'days');
+            var diff = date_now.diff(start_date, 'days');
             var percentage = (diff/element.number_of_days)*100;
 
-            console.log(element.Name +": "+percentage);
-
+            //Percentage completions per project
             chart_payload.push([element.Name, element.Percentage,percentage]);
 
+            //Calendar data
             if(element.Critical_flag == true){
                 calendar_payload.push([new Date (moment(element.Expected_Date)) , -50, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
             }else{
                 calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
             }
 
+            //Projects comeplted
+            if(element.Progress_Status === "OnGoing"){
+                num_ongoing++
+            }else if(element.Progress_Status === "OnHold"){
+                num_onhold++;
+            }else if(element.Progress_Status === "Completed"){
+                num_completed++;
+            }else if(element.Progress_Status === "Cancelled"){
+                num_cancelled++;
+            }
+
+            //Amount cost vs billed
+            col_payload.push([element.Name,element.amount_cost,element.amount_billed]);
+
+            //Active vs inactive projects
+            if(element.Status === true){
+                active_proj++;
+            }else if(element.Status === false){
+                inactive_proj++;
+            }
+            
         });
 
-        google.charts.load('current', {packages: ['corechart', 'bar']});
+        //Project percentage compeleted Chart
+        google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawBasic);
-
         function drawBasic() {
 
             var data = google.visualization.arrayToDataTable(chart_payload);
@@ -60,26 +84,26 @@ $(document).ready(function () {
             var options = {
                 height: chartHeight,
                 chartArea: {
-                    width: '70%',
                     height: chartAreaHeight
                 },
+                bars: 'horizontal',
                 hAxis: {
-                title: 'Percentage Complete',
-                minValue: 0
+                    title: 'Percentage Complete (%)',
+                    minValue: 0
                 },
                 vAxis: {
                 title: 'Project Name'
                 }
             };
+            
+            var chart = new google.charts.Bar(document.getElementById('project_percentage_chart'));
 
-            var chart = new google.visualization.BarChart(document.getElementById('project_percentage_chart'));
-
-            chart.draw(data, options);
+            chart.draw(data, google.charts.Bar.convertOptions(options));
         }
 
+        //Calendar chart
         google.charts.load("current", {packages:["calendar"]});
         google.charts.setOnLoadCallback(drawChart);
-
         function drawChart() {
             var dataTable = new google.visualization.DataTable();
             dataTable.addColumn({ type: 'date', id: 'Date' });
@@ -92,11 +116,11 @@ $(document).ready(function () {
             // set inner height to 30 pixels per row
             var chartAreaHeight = dataTable.getNumberOfRows() * 30;
             // add padding to outer height to accomodate title, axis labels, etc
-            var chartHeight = chartAreaHeight + 80;
+            var size = document.getElementById("calendar_container").offsetWidth;
 
             var options = {
                 title: "Today: " + moment().format("MMM DD, YYYY"),
-                height: chartHeight,
+                height: size/3,
                 chartArea: {
                     width: '100%',
                     height: chartAreaHeight
@@ -105,6 +129,7 @@ $(document).ready(function () {
                     backgroundColor: '#858796'
                 },
                 calendar: {
+                    cellSize: size/60,
                     monthOutlineColor: {
                         stroke: '#243568',
                         strokeOpacity: 0.8,
@@ -127,8 +152,88 @@ $(document).ready(function () {
             chart.draw(dataTable, options);
         }
 
+        //Project Status pie chart
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawPie);
+        function drawPie() {
+            var data = google.visualization.arrayToDataTable([
+            ['Status', 'Number'],
+            ['Projects on Going',     num_ongoing],
+            ['Projects On Hold',      num_onhold],
+            ['Projects Completed',  num_completed],
+            ['Projects Cancelled', num_cancelled]
+            ]);
+
+            var options = {
+                is3D:true,
+                chartArea: {
+                    width: '90%',
+                    height: '90%'
+                },
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('project_complete_chart'));
+
+            chart.draw(data, options);
+        }
+
+        //Doughtnut chart project active vs not-active
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawDoughnut);
+        function drawDoughnut() {
+            var data = google.visualization.arrayToDataTable([
+            ['Status', 'Number'],
+            ['Active Projects',     active_proj],
+            ['Inactive Projects',      inactive_proj]
+            ]);
+
+            var options = {
+                pieHole: 0.4,
+                chartArea: {
+                    width: '90%',
+                    height: '90%'
+                },
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('project_active_inactive_chart'));
+            chart.draw(data, options);
+        }
+
+        //Amount Billed vs Cost chart
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawCol);
+        function drawCol() {
+            var data = google.visualization.arrayToDataTable(col_payload);
+
+            // set inner height to 30 pixels per row
+            var chartAreaHeight = data.getNumberOfRows() * 40;
+            // add padding to outer height to accomodate title, axis labels, etc
+            var chartHeight = chartAreaHeight + 80;
+
+            var options = {
+                height: chartHeight,
+                chartArea: {
+                    height: chartAreaHeight
+                },
+                chart: {
+                    title: 'Company Performance',
+                    subtitle: 'Costing and Billing',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('project_cost_billed_chart'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+
+        $(window).resize(function(){
+            drawBasic();
+            drawChart();
+            drawPie();
+            drawDoughnut();
+            drawCol();
+          });
+
     }).catch(error => console.error('Error:', error));
-
-
-
 })
+
