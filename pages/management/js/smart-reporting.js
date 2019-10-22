@@ -26,6 +26,7 @@ $(document).ready(function () {
         var col_payload = [];
         col_payload.push(['Project Name', 'Cost', 'Billed']);
         var active_proj = 0, inactive_proj = 0;
+        var timeline_payload = [];
 
 
         //Set datasets
@@ -39,11 +40,13 @@ $(document).ready(function () {
             //Percentage completions per project
             chart_payload.push([element.Name, element.Percentage,percentage]);
 
-            //Calendar data
+            //Calendar data & Timeline
             if(element.Critical_flag == true){
                 calendar_payload.push([new Date (moment(element.Expected_Date)) , -50, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+                timeline_payload.push([element.Name,"Critical!",new Date (element.Start_Date), new Date (element.Expected_Date)]);
             }else{
                 calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+                timeline_payload.push([element.Name,"On schedule",new Date (element.Start_Date), new Date (element.Expected_Date)]);
             }
 
             //Projects comeplted
@@ -66,7 +69,6 @@ $(document).ready(function () {
             }else if(element.Status === false){
                 inactive_proj++;
             }
-            
         });
 
         //Project percentage compeleted Chart
@@ -226,13 +228,31 @@ $(document).ready(function () {
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
 
+        google.charts.load('current', {'packages':['timeline']});
+        google.charts.setOnLoadCallback(drawTimeline);
+        function drawTimeline() {
+            var container = document.getElementById('project_calender_chart2');
+            var chart = new google.visualization.Timeline(container);
+            var dataTable = new google.visualization.DataTable();
+
+            dataTable.addColumn({ type: 'string', id: 'Project Name' });
+            dataTable.addColumn({ type: 'string', id: 'Critical' });
+            dataTable.addColumn({ type: 'date', id: 'Start' });
+            dataTable.addColumn({ type: 'date', id: 'End' });
+            dataTable.addRows(timeline_payload);
+
+            chart.draw(dataTable);
+        }
+        
+
         $(window).resize(function(){
             drawBasic();
             drawChart();
             drawPie();
             drawDoughnut();
             drawCol();
-          });
+            drawTimeline();
+        });
 
     }).catch(error => console.error('Error:', error));
 })

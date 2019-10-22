@@ -16,8 +16,6 @@
     <!-- Custom styles for this page-->
     <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="../../assets/css/dashboard.css" rel="stylesheet">
-    <link href='../../assets/vendor/fullcalendar-4.3.1/packages/core/main.css' rel='stylesheet' />
-    <link href='../../assets/vendor/fullcalendar-4.3.1/packages/daygrid/main.css' rel='stylesheet' />
 
     <!-- Session Check -->
     <script src="../../assets/vendor/moment.js/moment.min.js"></script>
@@ -106,11 +104,30 @@
                 <li class="breadcrumb-item">
                     Project Dashboard
                 </li>
-                <li class="breadcrumb-item active">Smart Analysis</li>
+                <li class="breadcrumb-item active">Smart Reporting</li>
             </ol>
 
             <!-- Loading Icon -->
             <div class="loader d-none" id="load"></div>
+
+            <!-- Calendar -->
+            <div class="row mb-4 mt-3 ">
+              <div class="col-xl-12 col-md-12 ">
+                  <div class="card shadow h-100 py-2">
+
+                  <!--Card Header -->
+                  <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">Project Timeline</h6>
+                      <p><b><u>Note:</u></b> Values range from 'Start Date' to 'Projected End Date'</p>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="card-body">
+                      <div id="project_calender_chart2" class="chart"></div>
+                  </div>
+                  </div>
+              </div>
+            </div>
 
             <!-- Calendar -->
             <div class="row mb-4 mt-3 ">
@@ -136,7 +153,8 @@
                 <div class="card shadow h-100 py-2">
                   <!--Card Header -->
                   <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Project Status </h6>
+                      <h6 class="font-weight-bold text-lg text-primary">Projects Status</h6>
+                      <p>Projects On Going, On Hold, Cancelled and Compeleted are depicted on the graph below</p>
                   </div>
   
                   <!-- Card Content -->
@@ -152,6 +170,7 @@
                   <!--Card Header -->
                   <div class="card-header">
                       <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Projects</h6>
+                      <p>This graph depicts projects that are currently active and inactive</p>
                   </div>
   
                   <!-- Card Content -->
@@ -247,9 +266,7 @@
   <script src="../../assets/js/get-username.js"></script>
 
   <!-- Scripts for this dashboard -->
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src='../../assets/vendor/fullcalendar-4.3.1/packages/core/main.js'></script>
-  <script src='../../assets/vendor/fullcalendar-4.3.1/packages/daygrid/main.js'></script>
+  <script src="../../assets/vendor/googleCharts/loader.js"></script>
   <script src="js/smart-reporting.js"></script>
 
 </body>
