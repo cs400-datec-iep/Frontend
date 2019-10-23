@@ -96,6 +96,9 @@
         </nav>
         <!-- End of Topbar -->
 
+        <!-- Loading Icon -->
+        <div class="loader d-none" id="load"></div>
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -107,8 +110,7 @@
                 <li class="breadcrumb-item active">Smart Reporting</li>
             </ol>
 
-            <!-- Loading Icon -->
-            <div class="loader d-none" id="load"></div>
+            <button class="btn btn-secondary" type="button" onclick="generateReport();">Generate Report</button>
 
             <!-- Calendar -->
             <div class="row mb-4 mt-3 ">
@@ -281,7 +283,11 @@
 
   <!-- Scripts for this dashboard -->
   <script src="../../assets/vendor/googleCharts/loader.js"></script>
+  <script src="../../assets/vendor/js-xlsx-master/dist/xlsx.full.min.js"></script>
+  <script src="js/generate-report.js"></script>
   <script src="js/smart-reporting.js"></script>
+
+
 
 </body>
 

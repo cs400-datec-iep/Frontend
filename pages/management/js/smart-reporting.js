@@ -31,24 +31,29 @@ $(document).ready(function () {
 
         //Set datasets
         j.forEach(element => {
-            //Expected work vs work done calculation
-            var start_date = moment(element.Start_Date);
-            var date_now = moment(new Date());
-            var diff = date_now.diff(start_date, 'days');
-            var percentage = (diff/element.number_of_days)*100;
-
-            //Percentage completions per project
-            chart_payload.push([element.Name, element.Percentage,percentage]);
-
-            //Calendar data & Timeline
-            if(element.Critical_flag == true){
-                calendar_payload.push([new Date (moment(element.Expected_Date)) , -50, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
-                timeline_payload.push([element.Name,"Critical!",new Date (element.Start_Date), new Date (element.Expected_Date)]);
-            }else{
-                calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
-                timeline_payload.push([element.Name,"On schedule",new Date (element.Start_Date), new Date (element.Expected_Date)]);
+            if(element.Status == true){
+                //Expected work vs work done calculation
+                var start_date = moment(element.Start_Date);
+                var date_now = moment(new Date());
+                var diff = date_now.diff(start_date, 'days');
+                var percentage = (diff/element.number_of_days)*100;
+    
+                //Percentage completions per project
+                chart_payload.push([element.Name, element.Percentage,percentage]);
+    
+                //Calendar data & Timeline
+                if(element.Critical_flag == true){
+                    calendar_payload.push([new Date (moment(element.Expected_Date)) , -50, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+                    timeline_payload.push([element.Name,"Critical!",new Date (element.Start_Date), new Date (element.Expected_Date)]);
+                }else{
+                    calendar_payload.push([new Date (moment(element.Expected_Date)) , element.ProjectID, element.Name + " - " +moment(element.Expected_Date).format("MMM dddd, YYYY")]);
+                    timeline_payload.push([element.Name,"On schedule",new Date (element.Start_Date), new Date (element.Expected_Date)]);
+                }
+    
+                //Amount cost vs billed
+                col_payload.push([element.Name,element.amount_cost,element.amount_billed]);    
+                
             }
-
             //Projects comeplted
             if(element.Progress_Status === "OnGoing"){
                 num_ongoing++
@@ -60,16 +65,34 @@ $(document).ready(function () {
                 num_cancelled++;
             }
 
-            //Amount cost vs billed
-            col_payload.push([element.Name,element.amount_cost,element.amount_billed]);
-
             //Active vs inactive projects
             if(element.Status === true){
                 active_proj++;
             }else if(element.Status === false){
                 inactive_proj++;
             }
+
+      
+
         });
+
+        ////////////////////////////////////////////////////// 
+        //Data for Report Generation
+        //////////////////////////////////////////////////////
+        sessionStorage.setItem("duedates",JSON.stringify(chart_payload));
+        sessionStorage.setItem("timeline",JSON.stringify(timeline_payload));
+        sessionStorage.setItem("billing",JSON.stringify(col_payload));
+
+        var project_status = [{active_proj,inactive_proj}];
+        sessionStorage.setItem("project_status",JSON.stringify(project_status));
+
+        var ongoing = "On Going Projects";
+        var onhold = "On Hold Projects";
+        var cancelled = "Cancelled Projects";
+        var completed = "Completed Projects";
+
+        var project_progress_status = [{ongoing,num_ongoing},{onhold,num_onhold},{cancelled,num_completed},{completed,num_cancelled}];
+        sessionStorage.setItem("project_progress_status",JSON.stringify(project_progress_status));
 
         //Project percentage compeleted Chart
         google.charts.load('current', {'packages':['bar']});
@@ -172,6 +195,7 @@ $(document).ready(function () {
                     width: '90%',
                     height: '90%'
                 },
+                colors:['#4285f4','#f6c23e','#1cc88a','red']
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('project_complete_chart'));
@@ -189,7 +213,8 @@ $(document).ready(function () {
             ['Inactive Projects',      inactive_proj]
             ]);
 
-            var options = {
+            var options = {      
+                is3D:true,
                 pieHole: 0.4,
                 chartArea: {
                     width: '90%',

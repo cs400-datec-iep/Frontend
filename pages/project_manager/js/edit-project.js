@@ -37,7 +37,7 @@ function editProject() {
         var project_duration = sessionStorage.getItem("project_duration");
         var project_endDate =  sessionStorage.getItem("project_endDate");
         var project_expendDate =  sessionStorage.getItem("project_expendDate");
-        var project_status = document.getElementById("project_status").value;
+        var project_status = document.getElementById("edit_project_status").value;
         var status = document.getElementById("status").value;
         var project_percentage =  sessionStorage.getItem("project_percentage");
         var project_critical = sessionStorage.getItem("project_critical");
@@ -49,26 +49,83 @@ function editProject() {
             project_endDate = null;
         }
 
-        //Data encapsulation
-        var payload_project = {
-            'ProjectID': projectID,
-            'Name': projectName,
-            'Description': projDesc,
-            'Start_Date': project_startDate,
-            'Project_managerID': ProjectMangerId,
-            'number_of_days': project_duration,
-            'End_Date': project_endDate,
-            'Client_Name': projClient,
-            'Expected_Date': project_expendDate,
-            'Progress_Status': project_status,
-            'Percentage': project_percentage,
-            'Status': status,
-            'Critical_flag': project_critical,
-            'amount_billed': project_cost,
-            'amount_cost': project_billed,
+        if(status == false){
+            //Data encapsulation
+            var payload_project = {
+                'ProjectID': projectID,
+                'Name': projectName,
+                'Description': projDesc,
+                'Start_Date': project_startDate,
+                'Project_managerID': ProjectMangerId,
+                'number_of_days': project_duration,
+                'End_Date': project_endDate,
+                'Client_Name': projClient,
+                'Expected_Date': project_expendDate,
+                'Progress_Status': "Cancelled",
+                'Percentage': project_percentage,
+                'Status': status,
+                'Critical_flag': project_critical,
+                'amount_billed': project_cost,
+                'amount_cost': project_billed,
+            }
+        }else if(status == true){
+            //Data encapsulation
+            var payload_project = {
+                'ProjectID': projectID,
+                'Name': projectName,
+                'Description': projDesc,
+                'Start_Date': project_startDate,
+                'Project_managerID': ProjectMangerId,
+                'number_of_days': project_duration,
+                'End_Date': project_endDate,
+                'Client_Name': projClient,
+                'Expected_Date': project_expendDate,
+                'Progress_Status': project_status,
+                'Percentage': project_percentage,
+                'Status': status,
+                'Critical_flag': project_critical,
+                'amount_billed': project_cost,
+                'amount_cost': project_billed,
+            }
+        }else if(project_status == "Cancelled"){
+            //Data encapsulation
+            var payload_project = {
+                'ProjectID': projectID,
+                'Name': projectName,
+                'Description': projDesc,
+                'Start_Date': project_startDate,
+                'Project_managerID': ProjectMangerId,
+                'number_of_days': project_duration,
+                'End_Date': project_endDate,
+                'Client_Name': projClient,
+                'Expected_Date': project_expendDate,
+                'Progress_Status': project_status,
+                'Percentage': project_percentage,
+                'Status': false,
+                'Critical_flag': project_critical,
+                'amount_billed': project_cost,
+                'amount_cost': project_billed,
+            }
+        }else{
+            //Data encapsulation
+            var payload_project = {
+                'ProjectID': projectID,
+                'Name': projectName,
+                'Description': projDesc,
+                'Start_Date': project_startDate,
+                'Project_managerID': ProjectMangerId,
+                'number_of_days': project_duration,
+                'End_Date': project_endDate,
+                'Client_Name': projClient,
+                'Expected_Date': project_expendDate,
+                'Progress_Status': project_status,
+                'Percentage': project_percentage,
+                'Status': status,
+                'Critical_flag': project_critical,
+                'amount_billed': project_cost,
+                'amount_cost': project_billed,
+            }
         }
-
-        console.log(typeof(project_endDate));
 
         //Delete all  members in UserProject
         fetch(URLDeleteProjectMembers, {
@@ -151,8 +208,14 @@ function editProject() {
                 while(wait == true){
     
                 }
-                alert("Project successfully edited");   
-                window.location.assign("view_project.html?"+projectID);
+
+                if(status === "false"){
+                    alert("Project successfully edited");   
+                    window.location.assign("dashboard.html");
+                }else{
+                    alert("Project successfully edited");   
+                    window.location.assign("view_project.html?"+projectID);
+                }
     
             }).catch(error => { console.error('Error:', error); return error; });
             
