@@ -110,7 +110,12 @@
                 <li class="breadcrumb-item active">Smart Reporting</li>
             </ol>
 
-            <button class="btn btn-secondary" type="button" onclick="generateReport();">Generate Report</button>
+            <div class="row ">
+              <div class="col-md-12">
+                <button class="btn btn-secondary float-right ml-3" type="button" onclick="generateReportPdf();">Generate Report (PDF)</button>
+                <button class="btn btn-secondary float-right" type="button" onclick="generateReport();">Generate Report (Excel Rows)</button>
+              </div>
+            </div>
 
             <!-- Calendar -->
             <div class="row mb-4 mt-3 ">
@@ -284,6 +289,8 @@
   <!-- Scripts for this dashboard -->
   <script src="../../assets/vendor/googleCharts/loader.js"></script>
   <script src="../../assets/vendor/js-xlsx-master/dist/xlsx.full.min.js"></script>
+  <script src="../../assets/vendor/html2canvas/html2canvas.min.js"></script>
+  <script src="../../assets/vendor/jspdf/jspdf.debug.js"></script>
   <script src="js/generate-report.js"></script>
   <script src="js/smart-reporting.js"></script>
 

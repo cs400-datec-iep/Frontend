@@ -84,3 +84,17 @@ function generateReport(){
     XLSX.writeFile(wb, filename);
     if (typeof console !== 'undefined') console.log(new Date());
 }
+
+function generateReportPdf(){
+    var filename  = 'Smart_Report.pdf';
+    let pdf = new jsPDF('p', 'mm', 'a4');
+    html2canvas(document.querySelector('#project_complete_chart')).then(canvas => {
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 100 , 100 );
+    });
+
+    html2canvas(document.querySelector('#project_complete_chart')).then(canvas => {
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 100, 0, 100 , 100 );
+    });
+    
+    pdf.save(filename);
+}
