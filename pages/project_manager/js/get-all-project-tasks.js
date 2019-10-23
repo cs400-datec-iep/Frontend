@@ -121,13 +121,13 @@ $(document).ready(function () {
             { data: 'Critical' },
             { data: 'Predecessor' }
           ],
-          "columnDefs": [
-            {
-                "targets": [ 6 ],
-                "visible": false,
-                "searchable": false
-            }
-          ],
+          // "columnDefs": [
+          //   {
+          //       "targets": [ 6 ],
+          //       "visible": false,
+          //       "searchable": false
+          //   }
+          // ],
           "createdRow": function( row, data){
             if( data.Critical ==  true){
                 $(row).addClass('bg-danger text-white');

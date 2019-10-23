@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             j.forEach(element => {
                 var a = document.createElement("a");
-                a.classList.add("dropdown-item", "d-flex","align-items-center");
+                a.classList.add("notifications","dropdown-item", "d-flex","align-items-center");
 
                 var icon_warpper =  document.createElement("div");
                 icon_warpper.classList.add("mr-3");

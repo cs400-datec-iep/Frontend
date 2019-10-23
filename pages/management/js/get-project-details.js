@@ -13,6 +13,7 @@ $(document).ready(function () {
     var urlGetProjectFiles = urlMain+'api/GetFilesProjectID/'+projectID;
     var urlGetProjectTeam = urlMain+'api/GetMembersProjectID/'+projectID;
     var urlGetUserMain = urlMain+'api/UserMains/';
+    var urlGetActiveUser = urlMain + 'api/GetActivePM';
 
 
     //Get project details
@@ -121,7 +122,7 @@ $(document).ready(function () {
             }
         }
         //Get Project Manager
-        fetch(urlGetUserMain, {
+        fetch(urlGetUserMain+j.Project_managerID, {
             async: false,
             method: 'GET',
             crossDomain: true,
@@ -130,15 +131,44 @@ $(document).ready(function () {
             }
         }).then(function (a) { return a.json() })
         .then(function (k) {
-            //Get html container
+            //Get html container and append project manager to container
             var pm = document.getElementById("project_manager");
+            pm.innerHTML = k.Username;
 
-            //Loop thorugh array of users and append them to the project manager container
-            for(var i = 0; i< k.length; i++){
-                if(j.Project_managerID === k[i].ID){
-                    pm.innerHTML = k[i].Username;
-                }
+            if(k.Status == false){
+                //Populates Pm_list in change PM modal
+                fetch(urlGetActiveUser, {
+                    async: false,
+                    method: 'GET',
+                    crossDomain: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    }
+                }).then(function (result) { return result.json() })
+                .then(function (l) {
+
+                    l.forEach(element => {
+                        $('#pm_list').append($('<option>', {
+                            value: element.ID,
+                            text: element.Username,
+                        }));
+                    });
+                    
+                }).catch(error => { console.error('Error:', error); return error; });
+
+                //Create button to change PM
+                var button = document.createElement("button");
+                button.classList.add('btn', 'btn-info', 'btn-block', 'text-white',  'float-right', 'col-md-3', 'mb-2');
+                button.setAttribute("data-toggle","modal");
+                button.setAttribute("data-target","#changePMModal");
+                button.setAttribute("disabled-target","true");
+                button.setAttribute("id","change_pm_button");
+                button.innerHTML = "Reassign Project Manager";
+
+                project_name.appendChild(button);
             }
+           
 
         }).catch(error => { console.error('Error:', error); return error; });
 

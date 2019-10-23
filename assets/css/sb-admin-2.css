@@ -3507,6 +3507,13 @@ input[type="button"].btn-block {
   background-color: #4e73df;
 }
 
+.notifications:hover, .notifications:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #e0e0e0;
+  width: 100%;
+}
+
 .dropdown-item.disabled, .dropdown-item:disabled {
   color: #858796;
   pointer-events: none;
