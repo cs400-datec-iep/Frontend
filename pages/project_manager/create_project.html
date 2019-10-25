@@ -230,7 +230,7 @@
                                 </div>
                                 <div class="col-md-6">
                                   <p class="dateTitle  mb-1">Project Duration (In days):</p>
-                                  <input type="number" min="1" id="projDuration" class="form-control" required>
+                                  <input type="number" min="1" max="700" id="projDuration" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -390,6 +390,13 @@
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
     })
+
+    //set max and min dates for input (MAX AND MIN = 2 YEARS)
+    var minDate = moment().subtract(2, 'years');
+    var maxDate = moment().add(2, 'years');
+
+    document.getElementById("projStartDate").setAttribute("max", maxDate.format("YYYY-MM-DD"));
+    document.getElementById("projStartDate").setAttribute("min", minDate.format("YYYY-MM-DD"));
   </script>
   <script src="js/azure-storage.blob.js"></script>
   <script src="js/upload-file.js"></script>
