@@ -148,18 +148,22 @@ $(document).ready(function () {
                     stroke: '#e64a19',
                     strokeWidth: 5
                     },
+                    palette: [
+                        {
+                            "color": "#3b3a39",
+                            "dark": "#1cc88a"
+                        },
+                    ],
                     labelStyle: {
-                        color: '#ff0000',
                         fontName: 'sans-serif',
                         fontSize: 15
                     },
-                    palette: [
-                        {
-                            "color": "#4e73df",
-                            "dark": "#1cc88a",
-                            "light": "#8b9fdb"
-                        },
-                    ]
+                    arrow: {
+                        angle: 40,
+                        width: 3,
+                        color: 'grey'
+                    }
+                    
                 }
             };
 

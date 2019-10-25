@@ -92,6 +92,7 @@ $(document).ready(function () {
 
             // Check status and critical
             if(a.Critical_flag == true){
+                document.getElementById("task_status").innerHTML = "Critical";
                 
             }else{
                 // Check Project status and display
@@ -118,6 +119,7 @@ $(document).ready(function () {
                 var datecreated = moment(a.Date_Created).format('DD-MMM-YYYY');
                 document.getElementById("task_start").innerHTML = datecreated;
             }
+
 
             //End Date
             if(a.End_Date === null){

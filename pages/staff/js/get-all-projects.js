@@ -23,6 +23,7 @@ $(document).ready(function () {
             document.getElementById("no_project").style.display = "inline-block";
         }
 
+
         //Loop to display all projects
         for (var i = 0; i < j.length; i++) {
 
