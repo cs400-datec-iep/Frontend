@@ -20,6 +20,7 @@ $(document).ready(function () {
     .then(function (j) {
         var counter = 0;
 
+
         //Remove loading icon on success
         document.getElementById("load").style.display = "none";
 
@@ -28,15 +29,16 @@ $(document).ready(function () {
             document.getElementById("no_project").style.display = "inline-block";
         }
 
-        //Counter for completed projects
-        if(j.Progress_Status == "Completed"){
-            counter++;
-        }
-        
         //Loop to display all projects
         for (var i = 0; i < j.length; i++) {
 
             if(j[i].Status == true){
+
+                //Counter for completed projects
+                if(j[i].Progress_Status == "Completed"){
+                    counter++;
+                }
+
                 //Creating project card
                 var projectName = j[i].Name;
                 var projectDesc = j[i].Description;
@@ -161,7 +163,7 @@ $(document).ready(function () {
         }
         
         //Return Container to display normal output
-        document.getElementById("container").style.display = "";
+        document.getElementById("container").classList.toggle("d-none");
 
     }).catch(error => { console.error('Error:', error); return error; });
 
