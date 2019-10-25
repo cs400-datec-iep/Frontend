@@ -283,6 +283,42 @@
         </div>
     </div>
 
+    <!-- First time login -->
+  <div class="modal fade" id="firstLoginModal" tabindex="-1" role="dialog" aria-labelledby="firstLoginModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" >Welcome!</h5>
+        </div>
+        <div class="modal-body">
+            <p>I see this your first time logging into the system, for security reasons you are required to change your password. Please enter your new password below:</p>
+            <br>
+            <p class="text-center"><b><u>Passwords must contain:</u> An uppercase character, a lowercase character, a number and a symbol.</b></p>
+            <form onsubmit="newPassword();return false">
+            <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                <input type="password" id="oldpassword" class="form-control" placeholder="Enter old password (Check email)" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                <input type="password" id="password" class="form-control" placeholder="Enter new password" required>
+                </div>
+                <div class="col-md-6  mb-3">
+                <input type="password" id="passwordConfirm" class="form-control" placeholder="Confirm new password" required>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success text-white m-auto" type="submit">Change</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -318,6 +354,8 @@
     <script src="../../assets/js/sb-admin-2.js"></script>
     <script src="../../assets/js/logout.js"></script>
     <script src="../../assets/js/get-username.js"></script>
+    <script src="../../assets/js/change-password.js"></script>
+    <script src="../../assets/js/check-first-login.js"></script>
 
     <!-- Scripts for this dashboard -->
     <script src="js/get-overview.js"></script>

@@ -6,7 +6,6 @@ Function to get and display all projects for PM
 $(document).ready(function () {
     //Urls
     var urlGetUserProjects = urlMain+'api/GetProjectsForPM/' ;
-    var urlUpdateProjectStatus = urlMain+'api/UpdateProjectStatus/';
 
     //Get projects based on manager id
     fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {
@@ -19,27 +18,7 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
-
-        //Check critical status
-        j.forEach(element => {
-            
-            var current_date =  moment(new Date());
-            var end_date = moment(element.Expected_Date);
-            var difference = end_date.diff(current_date, 'days');
-
-            if(difference == 7){
-                //Get project details
-                fetch(urlUpdateProjectStatus+'true', {
-                    async: false,
-                    method: 'POST',
-                    crossDomain: true,
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).catch(error => { console.error('Error:', error); return error; });
-            }
-
-        });
+        var counter = 0;
 
         //Remove loading icon on success
         document.getElementById("load").style.display = "none";
@@ -49,6 +28,11 @@ $(document).ready(function () {
             document.getElementById("no_project").style.display = "inline-block";
         }
 
+        //Counter for completed projects
+        if(j.Progress_Status == "Completed"){
+            counter++;
+        }
+        
         //Loop to display all projects
         for (var i = 0; i < j.length; i++) {
 
@@ -89,8 +73,10 @@ $(document).ready(function () {
 
                 }
 
-                //Get container to put elements in
-                var container = document.getElementById("container");
+                //Containers
+                var container = document.getElementById("row1");
+                var container2 = document.getElementById("row2");
+
 
                 //Create elements
                 var a = document.createElement('div');
@@ -159,8 +145,17 @@ $(document).ready(function () {
                 cardbody.appendChild(progressBarDiv);
                 progressBarDiv.appendChild(progressBar);
 
-                //Place generated elements into container  
-                container.append(a);
+                //Place generated elements into proper containers  
+                if(j[i].Progress_Status == " Completed"){
+                    container2.append(a);
+                }else{
+                    container.append(a);
+                }
+
+                //Display no completed projects
+                if(counter == 0){   
+                    document.getElementById("no_completed_project").style.display = "inline-block";
+                }
             }    
 
         }
