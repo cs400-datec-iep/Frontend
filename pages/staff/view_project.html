@@ -3,28 +3,30 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title id="page_title">Loading..</title>
+  <title id="page_title">Loading..</title>
 
-    <!-- Custom fonts for this page-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Page level plugin CSS-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
-    <link href="../../assets/vendor/dragula.js/dragula.css" rel="stylesheet">
-    <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
+  <link href="../../assets/vendor/dragula.js/dragula.css" rel="stylesheet">
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-    <!-- Session Check -->
-    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
-    <script src="../../assets/js/sessionCheck.js"></script>
+  <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
+  <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
 
@@ -49,8 +51,8 @@
 
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
-        <li class="nav-item active" >
-            <a class="nav-link">
+        <li class="nav-item active">
+          <a class="nav-link">
             <i class="fas fa-fw fa-folder-open "></i>
             <span id="project_name_side"></span></a>
         </li>
@@ -72,13 +74,15 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter" id="notif_counter"></span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="notifications">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown" id="notifications">
                 <h6 class="dropdown-header">
                   Your Notifications
                 </h6>
@@ -88,13 +92,14 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <label class="mt-1 text-primary">Welcome &nbsp</label>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
                 <i class="fas fa-user-circle fa-fw fa-2x"></i>
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" id="userDropdown-contianer">
                 <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
@@ -113,158 +118,172 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid " >
+        <div class="container-fluid ">
 
-            <!-- Breadcrumbs -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">Project Dashboard</li>
-                <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
-                <li class="breadcrumb-item active" id="project_name_crumb"></li>
-            </ol>
-        
-            <!-- Loading Icon -->
-            <div class="loader " id="load"></div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">Project Dashboard</li>
+            <li class="breadcrumb-item"><a href="dashboard.html">Your Projects</a></li>
+            <li class="breadcrumb-item active" id="project_name_crumb"></li>
+          </ol>
 
-            <!-- Loading Container -->
-            <div class="display-none" id="container">
-                
-                <!-- First row -->
-                <div class="row ">
+          <!-- Loading Icon -->
+          <div class="loader " id="load"></div>
 
-                    <!-- page header -->
-                    <div class="card-header col-md-12 text-xxlg pb-0 mb-3" id="project_title_conatiner">
-                        <p id="project_name_title" class="font-weight-bold text-primary m-0"></p>
-                    </div>
+          <!-- Loading Container -->
+          <div class="display-none" id="container">
 
-                    <div class="col-xl-12 m-auto ">
-                        <div class="card h-100 py-2 mb-3">
-                            <div class="card-body ">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project info<i class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
+            <!-- First row -->
+            <div class="row ">
 
-                                        <!-- Client Name -->
-                                        <table class="table-responsive-md col-md-12 ">
-                                            <tr>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Manager:</div>
-                                                <span id="project_manager" class="text-lg"></span>
-                                              </td>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Client:</div>
-                                                <span id="project_client" class="text-lg"></span>
-                                              </td>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Status:</div>
-                                                <span id="project_status" class="text-lg"></span>
-                                              </td>
-                                            </tr>
+              <!-- page header -->
+              <div class="card-header col-md-12 text-xxlg pb-0 mb-3" id="project_title_conatiner">
+                <p id="project_name_title" class="font-weight-bold text-primary m-0"></p>
+              </div>
 
-                                          <!-- Dates -->
-                                            <tr>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Start Date:</div>
-                                                <span id="project_startDate" class="text-lg"></span>
-                                              </td>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Project Duration:</div>
-                                                <span id="project_duration" class="text-lg"></span>
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Expected Completion:</div>
-                                                <span id="project_expDate" class="text-lg"></span>
-                                              </td>
-                                              <td>
-                                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">End Date:</div>
-                                                <span id="project_endDate" class="text-lg "></span>
-                                              </td>
-                                            </tr>
-                                        </table>  
+              <div class="col-xl-12 m-auto ">
+                <div class="card h-100 py-2 mb-3">
+                  <div class="card-body ">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-1">Project info<i
+                            class="fas fa-address-book text-xxlg text-gray-300 float-right"></i></div>
 
-                                        <!-- Progress Bar-->
-                                        <div class="text-sm font-weight-bold text-primary text-center text-gray-800 mb-1">Percentage Completed</div>
-                                        <div class="progress fh-1-6 mt-3 text-center">
-                                            <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white font-weight-bold text-sm" id="project_percentage_text"></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Client Name -->
+                        <table class="table-responsive-md col-md-12 ">
+                          <tr>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Project Manager:</div>
+                              <span id="project_manager" class="text-lg"></span>
+                            </td>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Client:</div>
+                              <span id="project_client" class="text-lg"></span>
+                            </td>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Project Status:</div>
+                              <span id="project_status" class="text-lg"></span>
+                            </td>
+                          </tr>
+
+                          <!-- Dates -->
+                          <tr>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Start Date:</div>
+                              <span id="project_startDate" class="text-lg"></span>
+                            </td>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Project Duration:</div>
+                              <span id="project_duration" class="text-lg"></span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">
+                                Expected Completion:</div>
+                              <span id="project_expDate" class="text-lg"></span>
+                            </td>
+                            <td>
+                              <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">End
+                                Date:</div>
+                              <span id="project_endDate" class="text-lg "></span>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- Progress Bar-->
+                        <div class="text-sm font-weight-bold text-primary text-center text-gray-800 mb-1">Percentage
+                          Completed</div>
+                        <div class="progress fh-1-6 mt-3 text-center">
+                          <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span
+                              class="text-white font-weight-bold text-sm" id="project_percentage_text"></span></div>
                         </div>
+                      </div>
                     </div>
-
+                  </div>
                 </div>
-                <!--End of First Row -->
+              </div>
 
-                <!-- Second Row -->
-                <div class="row">
-                  <div class="col-xl-12 col-md-12 m-auto">
-                    <div class="card mb-4">
-                      <!--Card Header -->
-                      <div class="card-header py-3">
-                          <i class="fas fa-tasks float-left text-xlg mr-2"> </i>
-                          <h6 class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-2">Your Work Board<button id="toggle_view" class="btn btn-info btn-block text-white float-right col-md-2" onclick="toggleListView();">List View</button></h6>
-                          <p>Here all milestones, objectives and tasks will be displayed.<br>Toggle between  <b>Grid View</b> ( Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all tasks, objectives and milestone where you can view information of each item)</p>
+            </div>
+            <!--End of First Row -->
+
+            <!-- Second Row -->
+            <div class="row">
+              <div class="col-xl-12 col-md-12 m-auto">
+                <div class="card mb-4">
+                  <!--Card Header -->
+                  <div class="card-header py-3">
+                    <i class="fas fa-tasks float-left text-xlg mr-2"> </i>
+                    <h6 class="text-xlg font-weight-bold text-gray-800 text-uppercase mb-2">Your Work Board<button
+                        id="toggle_view" class="btn btn-info btn-block text-white float-right col-md-2"
+                        onclick="toggleListView();">List View</button></h6>
+                    <p>Here all milestones, objectives and tasks will be displayed.<br>Toggle between <b>Grid View</b> (
+                      Kanban view for all your tasks and update them as you may please) and <b>List View</b> (Lists all
+                      tasks, objectives and milestone where you can view information of each item)</p>
+                  </div>
+
+                  <div class="m-auto d-none" id="no_tasksKanban">
+                    <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                  </div>
+
+                  <!-- Card Body Grid-->
+                  <div class="card-body bg-datec" id="grid">
+                    <div class="form-group row">
+                      <div class="col-md-4 bg-datec p-3">
+                        <h3 class="font-weight-bold text-center text-white">To Do</h4>
+                          <div id='todo' class="h-100">
+                          </div>
                       </div>
 
-                      <div class="m-auto d-none" id="no_tasksKanban">
-                        <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
+                      <div class="col-md-4 drag-border bg-grey rounded-corners p-3 mb-2">
+                        <h3 class="font-weight-bold text-center text-white">Doing</h4>
+                          <div id='doing' class="h-100 ">
+                          </div>
                       </div>
 
-                      <!-- Card Body Grid-->
-                      <div class="card-body bg-datec" id="grid">
-                        <div class="form-group row">
-                          <div class="col-md-4 bg-datec p-3">
-                            <h3 class="font-weight-bold text-center text-white">To Do</h4>
-                              <div id='todo' class="h-100">
-                              </div>
+                      <div class="col-md-4 bg-grey rounded-corners p-3 mb-2">
+                        <h3 class="font-weight-bold text-center text-white">Done</h4>
+                          <div id='done' class="h-100 ">
                           </div>
-
-                          <div class="col-md-4 drag-border bg-grey rounded-corners p-3 mb-2" >
-                            <h3 class="font-weight-bold text-center text-white">Doing</h4>
-                            <div id='doing'  class="h-100 ">
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 bg-grey rounded-corners p-3 mb-2">
-                            <h3 class="font-weight-bold text-center text-white">Done</h4>
-                            <div id='done'  class="h-100 ">
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-
-                      <!-- Card Body list -->
-                      <div class="card-body display-none" id="list">
-                        <div class="form-group row">
-                          <div class="table-responsive" id="taskTableContainer">
-                              <table class="hover table " id="taskTable" width="100%" cellspacing="0">
-                                  <thead>
-                                      <tr>
-                                          <th>ID</th>
-                                          <th>Type</th>
-                                          <th>Name</th>
-                                          <th>Start Date</th>
-                                          <th>Status</th>
-                                          <th>Duration(Days)</th>
-                                          <th>Assigned To</th>
-                                      </tr>
-                                  </thead>
-                              </table>
-                          </div>
-                        </div>
                       </div>
 
                     </div>
                   </div>
-                  
+
+                  <!-- Card Body list -->
+                  <div class="card-body display-none" id="list">
+                    <div class="form-group row">
+                      <div class="table-responsive" id="taskTableContainer">
+                        <table class="hover table " id="taskTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Type</th>
+                              <th>Name</th>
+                              <th>Start Date</th>
+                              <th>Status</th>
+                              <th>Duration(Days)</th>
+                              <th>Assigned To</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                <!--End Second Row -->
+              </div>
 
             </div>
-            
+            <!--End Second Row -->
+
+          </div>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -283,7 +302,8 @@
   </a>
 
   <!-- View Task(Grid)-->
-  <div class="modal fade" id="taskViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="taskViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
@@ -312,7 +332,8 @@
 
           <!--Task Percentage Completion -->
           <div class="form-group" id="percentage_container">
-            <label for="percentageRange" class="font-weight-bolder">Task Percentage Completion:  <span id="value" class="text-success"></span></label>
+            <label for="percentageRange" class="font-weight-bolder">Task Percentage Completion: <span id="value"
+                class="text-success"></span></label>
             <input type="range" min="1" max="100" step="1" class="form-control-range custom-range" id="percentageRange">
           </div>
 
@@ -347,7 +368,7 @@
   </div>
 
   <!-- View Task(List)-->
-  <div class="modal fade" id="taskViewListModal"role="dialog" >
+  <div class="modal fade" id="taskViewListModal" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
@@ -362,79 +383,80 @@
         <!-- Content -->
         <div class="modal-body">
 
-        <!--Task name and status -->
-        <div class="form-group row">
-          <div class="col-md-6">
-            <label for="taskNameList" class="font-weight-bolder">Task Name:</label>
-            <p id="taskNameList"></p>
+          <!--Task name and status -->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="taskNameList" class="font-weight-bolder">Task Name:</label>
+              <p id="taskNameList"></p>
+            </div>
+            <div class="col-md-6">
+              <label for="taskStatusList" class="font-weight-bolder">Task Status:</label>
+              <p id="taskStatusList"></p>
+            </div>
           </div>
-          <div class="col-md-6">
-            <label for="taskStatusList" class="font-weight-bolder">Task Status:</label>
-            <p id="taskStatusList"></p>
-          </div>
-        </div>
 
-        <!--Task Percentage Completion -->
-        <div class="form-group">
-          <label for="percentageRangeList" class="font-weight-bolder">Task Percentage Completion:</label>
-          <div class="progress fh-1-6 mt-3 text-center">
-              <div class="progress-bar-striped bg-success p-1" role="progressbar" id="percentageRangeList"><span class="text-white font-weight-bold text-sm" id="valueList"></span></div>
+          <!--Task Percentage Completion -->
+          <div class="form-group">
+            <label for="percentageRangeList" class="font-weight-bolder">Task Percentage Completion:</label>
+            <div class="progress fh-1-6 mt-3 text-center">
+              <div class="progress-bar-striped bg-success p-1" role="progressbar" id="percentageRangeList"><span
+                  class="text-white font-weight-bold text-sm" id="valueList"></span></div>
+            </div>
           </div>
-        </div>
 
-        <!--Task Start/End Dates-->
-        <div class="form-group row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskStartDate" class="font-weight-bolder">Date Started:</label>
-              <p id="taskStartDate"></p>
+          <!--Task Start/End Dates-->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskStartDate" class="font-weight-bolder">Date Started:</label>
+                <p id="taskStartDate"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskEndDate" class="font-weight-bolder">End Date:</label>
+                <p id="taskEndDate"></p>
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskEndDate" class="font-weight-bolder">End Date:</label>
-              <p id="taskEndDate"></p>
-            </div>
-          </div>
-        </div>
 
-        <!--Task Created/Exp End Dates-->
-        <div class="form-group row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskCreatedDate" class="font-weight-bolder">Date Created:</label>
-              <p id="taskCreatedDate"></p>
+          <!--Task Created/Exp End Dates-->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskCreatedDate" class="font-weight-bolder">Date Created:</label>
+                <p id="taskCreatedDate"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskExpDate" class="font-weight-bolder">Expected Completion:</label>
+                <p id="taskExpDate"></p>
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskExpDate" class="font-weight-bolder">Expected Completion:</label>
-              <p id="taskExpDate"></p>
-            </div>
-          </div>
-        </div>
 
-        <!--Task Predecesor and Duration -->
-        <div class="form-group row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskPredList" class="font-weight-bolder">Task Predecesor ID:</label>
-              <p id="taskPredList"></p>
+          <!--Task Predecesor and Duration -->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskPredList" class="font-weight-bolder">Task Predecesor ID:</label>
+                <p id="taskPredList"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="taskDurationList" class="font-weight-bolder">Task Duration:</label>
+                <p id="taskDurationList"></p>
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="taskDurationList" class="font-weight-bolder">Task Duration:</label>
-              <p id="taskDurationList"></p>
-            </div>
-          </div>
-        </div>
 
-        <!--Task Description -->
-        <div class="form-group">
-          <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
-          <p id="taskDescList" class="m-auto" rows="3" required></p>
-        </div>
+          <!--Task Description -->
+          <div class="form-group">
+            <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
+            <p id="taskDescList" class="m-auto" rows="3" required></p>
+          </div>
 
         </div>
 
@@ -443,21 +465,23 @@
   </div>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-            <div class="loader-work"></div>
-            <div clas="loader-txt">
-                <p>Logging you out</p>
-            </div>
-            </div>
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Logging you out</p>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -504,26 +528,43 @@
     var output = document.getElementById("value");
     output.innerHTML = slider.value;
 
-    slider.oninput = function() {
-      output.innerHTML = this.value+"%";
+    slider.oninput = function () {
+      output.innerHTML = this.value + "%";
 
       document.getElementById("grid_footer").classList.remove("d-none");
     }
-    
+
     //Toggle grid and list view (No duration)
-    function toggleListView(){
+    function toggleListView() {
       document.getElementById('grid').classList.toggle('display-none');
       document.getElementById('list').classList.toggle('display-none');
 
-      if(document.getElementById('grid').classList.contains('display-none')){
+      if (document.getElementById('grid').classList.contains('display-none')) {
         document.getElementById('toggle_view').innerHTML = "Grid View";
-        
-      }else if(document.getElementById('list').classList.contains('display-none')){
+
+      } else if (document.getElementById('list').classList.contains('display-none')) {
         document.getElementById('toggle_view').innerHTML = "List View";
       }
 
     }
-    
+
+    if (sessionStorage.getItem("is_project_manager") === "true") {//Change view for PM
+      var menu = document.getElementById("userDropdown-contianer");
+
+      var a = document.createElement("a");
+      a.classList.add("dropdown-item");
+      a.href = "#";
+      a.onclick = function () {
+        window.location.assign("../../pages/project_manager/dashboard.html");
+      };
+      a.innerHTML = "<i class='fas fa-desktop fa-sm fa-fw mr-2 text-gray-400'></i>View as Project Manager";
+
+      var div = document.createElement("div");
+      div.classList.add("dropdown-divider");
+
+      menu.insertBefore(div, menu.firstChild);
+      menu.insertBefore(a, menu.firstChild);
+    }
   </script>
 
 

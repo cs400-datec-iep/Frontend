@@ -3,23 +3,25 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Management Dashboard</title>
+  <title>Management Dashboard</title>
 
-    <!-- Custom fonts for this page-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-    <!-- Session Check -->
-    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
-    <script src="../../assets/js/sessionCheck.js"></script>
+  <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
+  <script src="../../assets/js/sessionCheck.js"></script>
 
 
 </head>
@@ -69,10 +71,11 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-            
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow ">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <label class="mt-1 text-primary">Welcome &nbsp</label>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
                 <i class="fas fa-user-circle fa-fw fa-2x"></i>
@@ -102,126 +105,128 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <!-- Breadcrumbs -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    Project Dashboard
-                </li>
-                <li class="breadcrumb-item active">Smart Reporting</li>
-            </ol>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              Project Dashboard
+            </li>
+            <li class="breadcrumb-item active">Smart Reporting</li>
+          </ol>
 
-            <div class="row ">
-              <div class="col-md-12">
-                <button class="btn btn-secondary float-right ml-3" type="button" onclick="generateReportPdf();">Generate Report (PDF)</button>
-                <button class="btn btn-secondary float-right" type="button" onclick="generateReport();">Generate Report (Excel Rows)</button>
+          <div class="row ">
+            <div class="col-md-12">
+              <button class="btn btn-secondary float-right ml-3" type="button" onclick="generateReportPdf();">Generate
+                Report (PDF)</button>
+              <button class="btn btn-secondary float-right" type="button" onclick="generateReport();">Generate Report
+                (Excel Rows)</button>
+            </div>
+          </div>
+
+          <!-- Calendar -->
+          <div class="row mb-4 mt-3 ">
+            <div class="col-xl-12 col-md-12 ">
+              <div class="card shadow h-100 py-2">
+
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Project Timeline</h6>
+                  <p><b><u>Note:</u></b> Values range from 'Start Date' to 'Projected End Date'</p>
+                </div>
+
+                <!-- Card Content -->
+                <div class="card-body">
+                  <div id="project_calender_chart2" class="chart"></div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Calendar -->
-            <div class="row mb-4 mt-3 ">
-              <div class="col-xl-12 col-md-12 ">
-                  <div class="card shadow h-100 py-2">
+          <!-- Calendar -->
+          <div class="row mb-4 mt-3 ">
+            <div class="col-xl-12 col-md-12 ">
+              <div class="card shadow h-100 py-2">
 
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Project Timeline</h6>
-                      <p><b><u>Note:</u></b> Values range from 'Start Date' to 'Projected End Date'</p>
-                  </div>
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Project Due Dates</h6>
+                </div>
 
-                  <!-- Card Content -->
-                  <div class="card-body">
-                      <div id="project_calender_chart2" class="chart"></div>
-                  </div>
-                  </div>
+                <!-- Card Content -->
+                <div class="card-body">
+                  <div id="project_calender_chart" class="chart"></div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Calendar -->
-            <div class="row mb-4 mt-3 ">
-              <div class="col-xl-12 col-md-12 ">
-                  <div class="card shadow h-100 py-2">
+          <!--Project Statuses  Chart -->
+          <div class="row mb-4 mt-3 p-auto">
+            <div class="col-xl-6 col-md-6 ">
+              <div class="card shadow h-100 py-2">
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Projects Status</h6>
+                  <p>Projects On Going, On Hold, Cancelled and Compeleted are depicted on the graph below</p>
+                </div>
 
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Project Due Dates</h6>
-                  </div>
-
-                  <!-- Card Content -->
-                  <div class="card-body">
-                      <div id="project_calender_chart" class="chart"></div>
-                  </div>
-                  </div>
+                <!-- Card Content -->
+                <div class="card-body">
+                  <div id="project_complete_chart" class="chart"></div>
+                </div>
               </div>
             </div>
 
             <!--Project Statuses  Chart -->
-            <div class="row mb-4 mt-3 p-auto">
-              <div class="col-xl-6 col-md-6 ">
-                <div class="card shadow h-100 py-2">
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Projects Status</h6>
-                      <p>Projects On Going, On Hold, Cancelled and Compeleted are depicted on the graph below</p>
-                  </div>
-  
-                  <!-- Card Content -->
-                  <div class="card-body">
-                    <div id="project_complete_chart" class="chart"></div>
-                  </div>
+            <div class="col-xl-6 col-md-6 ">
+              <div class="card shadow h-100 py-2">
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Projects</h6>
+                  <p>This graph depicts projects that are currently active and inactive</p>
                 </div>
-              </div>
 
-            <!--Project Statuses  Chart -->
-              <div class="col-xl-6 col-md-6 ">
-                <div class="card shadow h-100 py-2">
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Projects</h6>
-                      <p>This graph depicts projects that are currently active and inactive</p>
-                  </div>
-  
-                  <!-- Card Content -->
-                  <div class="card-body">
-                    <div id="project_active_inactive_chart" class="chart"></div>
-                  </div>
+                <!-- Card Content -->
+                <div class="card-body">
+                  <div id="project_active_inactive_chart" class="chart"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--Project Percentage  Chart -->
-            <div class="row mb-4 mt-3">
-              <div class="col-xl-12 col-md-12 ">
-                <div class="card shadow h-100 py-2">
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Project Percentage Completed</h6>
-                  </div>
+          <!--Project Percentage  Chart -->
+          <div class="row mb-4 mt-3">
+            <div class="col-xl-12 col-md-12 ">
+              <div class="card shadow h-100 py-2">
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Project Percentage Completed</h6>
+                </div>
 
-                  <!-- Card Content -->
-                  <div class="card-body" id="calendar_container">
-                    <p><b><u>Note:</u></b> Negative values indicate that the project has not started yet.</p>
-                    <div id="project_percentage_chart" class="chart"></div>
-                  </div>
+                <!-- Card Content -->
+                <div class="card-body" id="calendar_container">
+                  <p><b><u>Note:</u></b> Negative values indicate that the project has not started yet.</p>
+                  <div id="project_percentage_chart" class="chart"></div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--Project Cost vs Amount Billed  Chart -->
-            <div class="row mb-4 mt-3">
-              <div class="col-xl-12 col-md-12">
-                <div class="card shadow h-100 py-2">
-                  <!--Card Header -->
-                  <div class="card-header">
-                      <h6 class="font-weight-bold text-lg text-primary">Project Cost vs Amount Billed</h6>
-                  </div>
+          <!--Project Cost vs Amount Billed  Chart -->
+          <div class="row mb-4 mt-3">
+            <div class="col-xl-12 col-md-12">
+              <div class="card shadow h-100 py-2">
+                <!--Card Header -->
+                <div class="card-header">
+                  <h6 class="font-weight-bold text-lg text-primary">Project Cost vs Amount Billed</h6>
+                </div>
 
-                  <!-- Card Content -->
-                  <div class="card-body">
-                    <div id="project_cost_billed_chart" class="chart"></div>
-                  </div>
+                <!-- Card Content -->
+                <div class="card-body">
+                  <div id="project_cost_billed_chart" class="chart"></div>
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -241,21 +246,23 @@
   </a>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
-          <div class="modal-body text-center">
+        <div class="modal-body text-center">
           <div class="loader-work"></div>
           <div clas="loader-txt">
-              <p>Logging you out</p>
+            <p>Logging you out</p>
           </div>
-          </div>
+        </div>
       </div>
-      </div>
+    </div>
   </div>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -291,7 +298,7 @@
   <script src="../../assets/vendor/js-xlsx-master/dist/xlsx.full.min.js"></script>
   <script src="../../assets/vendor/bytescoutpdf/bytescoutpdf1.16.153.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/generate-report.js"></script>
   <script src="js/smart-reporting.js"></script>
 

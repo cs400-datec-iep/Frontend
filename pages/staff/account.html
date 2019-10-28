@@ -75,8 +75,8 @@
                                 <span class="badge badge-danger badge-counter"></span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown"
-                                id="notifications">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown" id="notifications">
                                 <h6 class="dropdown-header">
                                     Your Notifications
                                 </h6>
@@ -94,7 +94,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in "
-                                aria-labelledby="userDropdown">
+                                aria-labelledby="userDropdown" id="userDropdown-contianer">
                                 <a class="dropdown-item active" href="account.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Account
@@ -210,14 +210,15 @@
     </a>
 
     <!--Logging out Modal -->
-    <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog"
+        aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                <div class="loader-work"></div>
-                <div clas="loader-txt">
-                    <p>Logging you out</p>
-                </div>
+                    <div class="loader-work"></div>
+                    <div clas="loader-txt">
+                        <p>Logging you out</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -308,6 +309,23 @@
     <script src="js/get-user-details.js"></script>
     <script src="js/edit-password.js"></script>
     <script>
+        if (sessionStorage.getItem("is_project_manager") === "true") {//Change view for PM
+            var menu = document.getElementById("userDropdown-contianer");
+
+            var a = document.createElement("a");
+            a.classList.add("dropdown-item");
+            a.href = "#";
+            a.onclick = function () {
+                window.location.assign("../../pages/project_manager/dashboard.html");
+            };
+            a.innerHTML = "<i class='fas fa-desktop fa-sm fa-fw mr-2 text-gray-400'></i>View as Project Manager";
+
+            var div = document.createElement("div");
+            div.classList.add("dropdown-divider");
+
+            menu.insertBefore(div, menu.firstChild);
+            menu.insertBefore(a, menu.firstChild);
+        }
         $(".toggle-password").click(function () {
             $(this).toggleClass("fa-eye fa-eye-slash");
             var input = $($(this).attr("toggle"));

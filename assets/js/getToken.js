@@ -2,7 +2,7 @@
 
 Function to Get token for user login
 
-*/////////////////////////////////////
+*/ ////////////////////////////////////
 async function getToken() {
   //Get html containers
   var username = document.getElementById("usrnme").value;
@@ -10,13 +10,13 @@ async function getToken() {
   var data;
 
   //Urls
-  var urlToken = urlMain+'token';
+  var urlToken = urlMain + "token";
 
   //data encapsulation
   var details = {
-    'userName': username,
-    'password': password,
-    'grant_type': 'password'
+    userName: username,
+    password: password,
+    grant_type: "password"
   };
 
   //Create a form
@@ -30,24 +30,23 @@ async function getToken() {
 
   //Fetch token
   await fetch(urlToken, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     },
     body: formBody
-  }).then(response => response.json())
+  })
+    .then(response => response.json())
     .then(response => {
-
       if (response.access_token != null) {
         data = response.access_token;
-      }
-      else {
-        console.error('Error:', response.error_description);
+      } else {
+        console.error("Error:", response.error_description);
         data = false;
       }
-
-    }).catch(error => {
-      console.error('Error:', error)
+    })
+    .catch(error => {
+      console.error("Error:", error);
       return error;
     });
 

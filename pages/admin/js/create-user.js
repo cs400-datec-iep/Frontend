@@ -2,10 +2,10 @@
 
 Function to create a user
 
-*/////////////////////////////////////
+*/ ////////////////////////////////////
 function create_user() {
   //Urls
-  var urlRegisterAccount = urlMain + 'api/Account/Register';
+  var urlRegisterAccount = urlMain + "api/Account/Register";
 
   //Get html containers
   var userName = document.getElementById("userName").value;
@@ -21,29 +21,34 @@ function create_user() {
 
   //data encapsulation
   var payload_usermains = {
-    "Username": userName,
-    "Department": department,
-    "Email": email,
-    "Role": role
+    Username: userName,
+    Department: department,
+    Email: email,
+    Role: role
   };
 
   //Register User into Database
   fetch(urlRegisterAccount, {
     async: false,
-    method: 'POST',
+    method: "POST",
     crossDomain: true,
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
     },
     body: JSON.stringify(payload_usermains)
-  }).then(function (a) { return a.json(); })
-  .then(function (id) {
-    
-    alert("User Successfully Created");
-    window.location.assign("edit_user.html");
-    return a.json();
-    
-  }).catch(error => { console.error('Error:', error); window.location.reload; return error;});
+  })
+    .then(function(a) {
+      return a.json();
+    })
+    .then(function(id) {
+      alert("User Successfully Created");
+      window.location.assign("edit_user.html");
+      return a.json();
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      window.location.reload;
+      return error;
+    });
 }
-

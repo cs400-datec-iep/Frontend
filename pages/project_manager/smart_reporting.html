@@ -3,27 +3,29 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title id="page_title">Smart Analysis</title>
+  <title id="page_title">Smart Analysis</title>
 
-    <!-- Custom fonts for this page-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Page level plugin CSS-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
-    <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-    <!-- Session Check -->
-    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
-    <script src="../../assets/js/sessionCheck.js"></script>
+  <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
+  <script src="../../assets/js/sessionCheck.js"></script>
 </head>
 
 <body id="page-top">
@@ -47,21 +49,21 @@
 
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
-        <li class="nav-item" >
-            <a class="nav-link" id="project_link">
-              <i class="fas fa-fw fa-folder-open "></i>
-              <span id="project_name_side"></span></a>
-          </li>
-          <li  class="nav-item">
-            <a class="nav-link" id="task_view_link">
-              <i class="fas fa-fw fa-tasks "></i>
-              <span>Task View</span></a>
-          </li>
-          <li  class="nav-item active">
-            <a class="nav-link" id="smart_analysis_link" href="smart_reporting.html">
-              <i class="fas fa-fw fa-sitemap"></i>
-              <span>Smart Reporting</span></a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" id="project_link">
+            <i class="fas fa-fw fa-folder-open "></i>
+            <span id="project_name_side"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="task_view_link">
+            <i class="fas fa-fw fa-tasks "></i>
+            <span>Task View</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" id="smart_analysis_link" href="smart_reporting.html">
+            <i class="fas fa-fw fa-sitemap"></i>
+            <span>Smart Reporting</span></a>
+        </li>
       </div>
     </ul>
     <!-- End of Sidebar -->
@@ -70,7 +72,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
       <div id="content">
-        
+
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -79,13 +81,19 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <label class="mt-1 text-primary">Welcome &nbsp</label>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
                 <i class="fas fa-user-circle fa-fw fa-2x"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" onclick="changeView();" href="#">
+                  <i class="fas fa-desktop fa-sm fa-fw mr-2 text-gray-400"></i>
+                  View As Staff
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
@@ -104,113 +112,137 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid" >
+        <div class="container-fluid">
 
-            <!-- Breadcrumbs -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">Project Dashboard</li>
-                <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
-                <li class="breadcrumb-item" id="project_name_crumb"></li>
-                <li class="breadcrumb-item active">Smart Reporting</li>
-            </ol>
-        
-            <!-- Loading Icon -->
-            <div class="loader " id="load"></div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">Project Dashboard</li>
+            <li class="breadcrumb-item"><a href="dashboard.html">Your Projects</a></li>
+            <li class="breadcrumb-item" id="project_name_crumb"></li>
+            <li class="breadcrumb-item active">Smart Reporting</li>
+          </ol>
 
-            <!-- Container content -->
-            <div class="display-none" id="container_content">
+          <!-- Loading Icon -->
+          <div class="loader " id="load"></div>
 
-              <!-- Smart Reporting -->
+          <!-- Container content -->
+          <div class="display-none" id="container_content">
               <div class="row">
                 <div class="col-xl-12">
-                    <div class="card shadow mb-3">
-                      <!--Card Header -->
-                      <div class="card-header">
-                          <h6 class="font-weight-bold text-lg text-primary">Critical Path Analysis</h6>
-                          <div class="text-sm mb-2 text-gray-800" >
-                            <p>This Gantt Chart displays all tasks and thier details such as duration and dates and calculates the Critical Path of your project.</p>
-                          </div>
+                  <div class="card shadow mb-3">
+                    <!--Card Header -->
+                    <div class="card-header">
+                      <h6 class="font-weight-bold text-lg text-primary">PERT</h6>
+                      <div class="text-sm mb-2 text-gray-800">
+                        <p>chart</p>
                       </div>
-
-                      <div class="card-body">
-
-                        <div class="m-auto d-none" id="gantt-no-data">
-                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
-                        </div>
-
-                        <div id="chart_div"></div>
-
+                    </div>
+  
+                    <div class="card-body">
+  
+                      <div class="m-auto d-none" id="pert-no-data">
+                        <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
                       </div>
+  
+                      <div id="pert"></div>
+  
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!--Task Statuses  Chart -->
-              <div class="row mb-4 mt-3 p-auto">
-                  <div class="col-xl-6 col-md-6 ">
-                    <div class="card shadow ">
-                      <!--Card Header -->
-                      <div class="card-header">
-                          <h6 class="font-weight-bold text-lg text-primary">Task Status </h6>
-                          <p>Tasks that are left Todo, being done and completed are depicted below</p>
-                      </div>
-      
-                      <!-- Card Content -->
-                      <div class="card-body">
-                        <div class="m-auto d-none" id="status-no-data">
-                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
-                        </div>
-
-                        <div id="task_complete_chart" class="chart"></div>
-                      </div>
+            <!-- Smart Reporting -->
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card shadow mb-3">
+                  <!--Card Header -->
+                  <div class="card-header">
+                    <h6 class="font-weight-bold text-lg text-primary">Critical Path Analysis</h6>
+                    <div class="text-sm mb-2 text-gray-800">
+                      <p>This Gantt Chart displays all tasks and thier details such as duration and dates and calculates
+                        the Critical Path of your project.</p>
                     </div>
                   </div>
-    
-                <!--Task Active/inactive  Chart -->
-                  <div class="col-xl-6 col-md-6 ">
-                    <div class="card shadow">
-                      <!--Card Header -->
-                      <div class="card-header">
-                          <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Task</h6>
-                          <p>This chart depicts the percentage of active tasks and inactive tasks in the project.</p>
-                      </div>
-      
-                      <!-- Card Content -->
-                      <div class="card-body">
-                        <div class="m-auto d-none" id="active-no-data">
-                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
-                        </div>
 
-                        <div id="task_active_inactive_chart" class="chart"></div>
-                      </div>
+                  <div class="card-body">
+
+                    <div class="m-auto d-none" id="gantt-no-data">
+                      <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
                     </div>
-                  </div>
-                </div>
 
-              <!-- Task Due Dates -->
-              <div class="row">
-                <div class="col-xl-12">
-                    <div class="card shadow mb-5">
-                      <!--Card Header -->
-                      <div class="card-header">
-                        <h6 class="font-weight-bold text-lg text-primary">Task Percentage Completed</h6>
-                        <p><b><u>Note:</u></b> Negative values indicate that the Task has not started yet.</p>
-                      </div>
+                    <div id="chart_div"></div>
 
-                      <div class="card-body" id="calendar_container">
-
-                        <div class="m-auto d-none" id="percentage-no-data">
-                          <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
-                        </div>
-                        
-                        <div id="task_percentage_chart"></div>
-
-                      </div>
                   </div>
                 </div>
               </div>
-              
             </div>
+
+            <!--Task Statuses  Chart -->
+            <div class="row mb-4 mt-3 p-auto">
+              <div class="col-xl-6 col-md-6 ">
+                <div class="card shadow ">
+                  <!--Card Header -->
+                  <div class="card-header">
+                    <h6 class="font-weight-bold text-lg text-primary">Task Status </h6>
+                    <p>Tasks that are left Todo, being done and completed are depicted below</p>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="card-body">
+                    <div class="m-auto d-none" id="status-no-data">
+                      <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                    </div>
+
+                    <div id="task_complete_chart" class="chart"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!--Task Active/inactive  Chart -->
+              <div class="col-xl-6 col-md-6 ">
+                <div class="card shadow">
+                  <!--Card Header -->
+                  <div class="card-header">
+                    <h6 class="font-weight-bold text-lg text-primary">Inactive vs Active Task</h6>
+                    <p>This chart depicts the percentage of active tasks and inactive tasks in the project.</p>
+                  </div>
+
+                  <!-- Card Content -->
+                  <div class="card-body">
+                    <div class="m-auto d-none" id="active-no-data">
+                      <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                    </div>
+
+                    <div id="task_active_inactive_chart" class="chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task Due Dates -->
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card shadow mb-5">
+                  <!--Card Header -->
+                  <div class="card-header">
+                    <h6 class="font-weight-bold text-lg text-primary">Task Percentage Completed</h6>
+                    <p><b><u>Note:</u></b> Negative values indicate that the Task has not started yet.</p>
+                  </div>
+
+                  <div class="card-body" id="calendar_container">
+
+                    <div class="m-auto d-none" id="percentage-no-data">
+                      <h3 class="text-center mt-5 mb-5">No Data To Produce Graph</h3>
+                    </div>
+
+                    <div id="task_percentage_chart"></div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -230,21 +262,23 @@
   </a>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-          <div class="modal-content">
-              <div class="modal-body text-center">
-              <div class="loader-work"></div>
-              <div clas="loader-txt">
-                  <p>Logging you out</p>
-              </div>
-              </div>
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Logging you out</p>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -261,7 +295,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -280,8 +314,9 @@
   <!-- Scripts for this dashboard -->
   <script src="../../assets/js/global-variables.js"></script>
   <script src="../../assets/vendor/googleCharts/loader.js"></script>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="../../assets/vendor/anychart.js/anychart-custom-build.min.js"></script>
   <script src="js/smart-reporting.js"></script>
+  <script src="js/change-view.js"></script>
 </body>
 
 </html>

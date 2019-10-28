@@ -11,13 +11,15 @@
 
   <!-- Custom fonts for this page-->
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this page-->
   <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../../assets/css/dashboard.css" rel="stylesheet">
-  
+
   <!-- Session Check -->
   <script src="../../assets/vendor/moment.js/moment.min.js"></script>
   <script src="../../assets/js/sessionCheck.js"></script>
@@ -117,33 +119,34 @@
           <div class="loader" id="load"></div>
 
           <!-- Content Row -->
-          <div class="row " >
+          <div class="row ">
             <div class="col-xl-11 col-md-12 m-auto  display-none" id="container">
               <div class="card shadow mb-4">
-                
+
                 <!--Card Header -->
                 <div class="card-header py-3">
-                    <i class="fas fa-edit float-left text-xxlg"> </i>
-                    <h6 class="font-weight-bold text-xxlg text-primary ml-5">View and Edit Users</h6>
-                    <p>You can view all users as well as edit them on this page.</p>
+                  <i class="fas fa-edit float-left text-xxlg"> </i>
+                  <h6 class="font-weight-bold text-xxlg text-primary ml-5">View and Edit Users</h6>
+                  <p>You can view all users as well as edit them on this page.</p>
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive ">
-                        <button id="edit_button" class="btn btn-danger btn-block text-white  float-right col-2" data-toggle="modal" data-target="#editModal" disabled="true">Edit</button>
-                        <table class=" table table-bordered" id="fluidTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Department</th>
-                                    <th>Active</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                  <div class="table-responsive ">
+                    <button id="edit_button" class="btn btn-danger btn-block text-white  float-right col-2"
+                      data-toggle="modal" data-target="#editModal" disabled="true">Edit</button>
+                    <table class=" table table-bordered" id="fluidTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>Role</th>
+                          <th>Department</th>
+                          <th>Active</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
                 </div>
 
               </div>
@@ -170,7 +173,8 @@
   </a>
 
   <!--Loader Modal -->
-  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -184,123 +188,125 @@
   </div>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
-          <div class="modal-body text-center">
+        <div class="modal-body text-center">
           <div class="loader-work"></div>
           <div clas="loader-txt">
-              <p>Logging you out</p>
+            <p>Logging you out</p>
           </div>
-          </div>
+        </div>
       </div>
-      </div>
+    </div>
   </div>
-    
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
-                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                  </button>
-              </div>
-              <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-              <div class="modal-footer">
-                  <a class="btn btn-primary" href="../../index.html">Logout</a>
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              </div>
-          </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Logging Out?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" href="../../index.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
       </div>
+    </div>
   </div>
 
   <!-- Edit Modal-->
   <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog " role="document">
-          <form>
-              <div class="modal-content">
-                  <!-- Header -->
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
-                  </div>
+    <div class="modal-dialog " role="document">
+      <form>
+        <div class="modal-content">
+          <!-- Header -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
+          </div>
 
-                  <!-- Start of Content -->
-                  <div class="modal-body">
-                      <input type="hidden" id="id" name="id">
-                      
-                      <div class="form-group">
-                        <label for="userName">Username:</label>
-                        <input type="text" id="userName" class="form-control" placeholder="Username" required="required" autofocus="autofocus" >
-                      </div>
+          <!-- Start of Content -->
+          <div class="modal-body">
+            <input type="hidden" id="id" name="id">
 
-                      <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="role">Role:</label>
-                            <input type="text" id="prev_role" hidden="true">
-                              <select class="custom-select dash-edit-modal-dropdown" id="role">
-                                  <option selected>Select A Role</option>
-                                  <option value="System Administrator">System Administrator</option>
-                                  <option value="Management">Management</option>
-                                  <option value="Project Manager">Project Manager</option>
-                                  <option value="Staff">Staff</option>
-                              </select>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="department">Department:</label>
-                          <input type="text" id="department" class="form-control" placeholder="Department" required="required">
-                        </div>
-                      </div>
-                      
-                      <div class="form-group row">
-                        <div class="col-md-6">
-                          <label for="email">Email address:</label>
-                          <input type="email" id="email" class="form-control"
-                              placeholder="Email address" required="required" disabled="true">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="status">Status:</label>
-                            <select class="custom-select dash-edit-modal-dropdown" id="status">
-                                <option selected value="true">Active</option>
-                                <option value="false">Inactive</option>
-                            </select>
-                        </div>
-                      </div>
+            <div class="form-group">
+              <label for="userName">Username:</label>
+              <input type="text" id="userName" class="form-control" placeholder="Username" required="required"
+                autofocus="autofocus">
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="role">Role:</label>
+                <input type="text" id="prev_role" hidden="true">
+                <select class="custom-select dash-edit-modal-dropdown" id="role">
+                  <option selected>Select A Role</option>
+                  <option value="System Administrator">System Administrator</option>
+                  <option value="Management">Management</option>
+                  <option value="Project Manager">Project Manager</option>
+                  <option value="Staff">Staff</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="department">Department:</label>
+                <input type="text" id="department" class="form-control" placeholder="Department" required="required">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="email">Email address:</label>
+                <input type="email" id="email" class="form-control" placeholder="Email address" required="required"
+                  disabled="true">
+              </div>
+              <div class="col-md-6">
+                <label for="status">Status:</label>
+                <select class="custom-select dash-edit-modal-dropdown" id="status">
+                  <option selected value="true">Active</option>
+                  <option value="false">Inactive</option>
+                </select>
+              </div>
+            </div>
 
 
-                  </div>
-                  <!-- End of Content -->
+          </div>
+          <!-- End of Content -->
 
-                  <!-- Footer -->
-                  <div class="modal-footer">
-                      <a class="btn btn-info text-white" onclick="edit_user();">Save</a>
-                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  </div>
+          <!-- Footer -->
+          <div class="modal-footer">
+            <a class="btn btn-info text-white" onclick="edit_user();">Save</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          </div>
 
-          </form>
-      </div>
+      </form>
+    </div>
   </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>  
+  <!-- Bootstrap core JavaScript-->
+  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../../assets/js/sb-admin-2.js"></script>
-    <script src="../../assets/js/logout.js"></script>
-    <script src="../../assets/js/get-username.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../../assets/js/sb-admin-2.js"></script>
+  <script src="../../assets/js/logout.js"></script>
+  <script src="../../assets/js/get-username.js"></script>
 
-    <!-- Scripts for this dashboard -->
-    <script src="../../assets/js/global-variables.js"></script>
-    <script src="js/edit-user-datatable.js"></script>
-    <script src="js/edit-user.js"></script>
+  <!-- Scripts for this dashboard -->
+  <script src="../../assets/js/global-variables.js"></script>
+  <script src="js/edit-user-datatable.js"></script>
+  <script src="js/edit-user.js"></script>
 
 
 </body>

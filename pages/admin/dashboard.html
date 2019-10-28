@@ -11,7 +11,9 @@
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this page-->
     <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
@@ -37,7 +39,8 @@
                 <div class="sidebar-brand-icon">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-                <div class="sidebar-brand-text mt-3"><a class="text-white" href="dashboard.html">System Administrator</a></div>
+                <div class="sidebar-brand-text mt-3"><a class="text-white" href="dashboard.html">System
+                        Administrator</a></div>
             </div>
 
             <!-- Divider -->
@@ -116,7 +119,7 @@
                     </ol>
 
                     <!-- Content Row -->
-                    <div class="row" >
+                    <div class="row">
 
                         <!-- Number of users -->
                         <div class="col-xl-3 col-md-6">
@@ -143,9 +146,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Management</div>
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
+                                                Management</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <h1 class="text-white"  id='Number_of_Management'></h1>
+                                                <h1 class="text-white" id='Number_of_Management'></h1>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -161,9 +165,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Project Managers</div>
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Project
+                                                Managers</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <h1 class="text-white"  id='Number_of_PM'></h1>
+                                                <h1 class="text-white" id='Number_of_PM'></h1>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -179,9 +184,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Staff</div>
+                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Staff
+                                            </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <h1 class="text-white"  id='Number_of_Staff'></h1>
+                                                <h1 class="text-white" id='Number_of_Staff'></h1>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -198,19 +204,23 @@
 
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-active" role="tab" aria-controls="nav-active-tab" aria-selected="true">Active Users</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-log" role="tab" aria-controls="nav-log" aria-selected="false">Logs</a>
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-active"
+                                role="tab" aria-controls="nav-active-tab" aria-selected="true">Active Users</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-log"
+                                role="tab" aria-controls="nav-log" aria-selected="false">Logs</a>
                         </div>
                     </nav>
-                    
+
                     <!-- Bar Chart -->
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
+                        <div class="tab-pane fade show active" id="nav-active" role="tabpanel"
+                            aria-labelledby="nav-active-tab">
                             <div class="row">
                                 <div class="col-lg-12 mt-3 mb-3">
                                     <div class="card shadow">
                                         <div class="card-header bg-datec py-3">
-                                            <h6 class="m-0 font-weight-bold text-uppercase text-white">Active Users VS Inactive Users</h6>
+                                            <h6 class="m-0 font-weight-bold text-uppercase text-white">Active Users VS
+                                                Inactive Users</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="chart-bar">
@@ -230,7 +240,8 @@
                                             <h6 class="m-0 font-weight-bold text-uppercase text-white">Logs</h6>
                                         </div>
                                         <div class="table-responsive p-3">
-                                            <table class=" table table-bordered" id="logTable" width="100%" cellspacing="0">
+                                            <table class=" table table-bordered" id="logTable" width="100%"
+                                                cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>Log ID</th>
@@ -270,53 +281,60 @@
     </a>
 
     <!--Logging out Modal -->
-    <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog"
+        aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                <div class="loader-work"></div>
-                <div clas="loader-txt">
-                    <p>Logging you out</p>
-                </div>
+                    <div class="loader-work"></div>
+                    <div clas="loader-txt">
+                        <p>Logging you out</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- First time login -->
-  <div class="modal fade" id="firstLoginModal" tabindex="-1" role="dialog" aria-labelledby="firstLoginModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" >Welcome!</h5>
-        </div>
-        <div class="modal-body">
-            <p>I see this your first time logging into the system, for security reasons you are required to change your password. Please enter your new password below:</p>
-            <br>
-            <p class="text-center"><b><u>Passwords must contain:</u> An uppercase character, a lowercase character, a number and a symbol.</b></p>
-            <form onsubmit="newPassword();return false">
-            <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-12 mb-3">
-                <input type="password" id="oldpassword" class="form-control" placeholder="Enter old password (Check email)" required>
+    <div class="modal fade" id="firstLoginModal" tabindex="-1" role="dialog" aria-labelledby="firstLoginModal"
+        aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome!</h5>
+                </div>
+                <div class="modal-body">
+                    <p>I see this your first time logging into the system, for security reasons you are required to
+                        change your password. Please enter your new password below:</p>
+                    <br>
+                    <p class="text-center"><b><u>Passwords must contain:</u> An uppercase character, a lowercase
+                            character, a number and a symbol.</b></p>
+                    <form onsubmit="newPassword();return false">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <input type="password" id="oldpassword" class="form-control"
+                                        placeholder="Enter old password (Check email)" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="password" id="password" class="form-control"
+                                        placeholder="Enter new password" required>
+                                </div>
+                                <div class="col-md-6  mb-3">
+                                    <input type="password" id="passwordConfirm" class="form-control"
+                                        placeholder="Confirm new password" required>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success text-white m-auto" type="submit">Change</button>
+                    </form>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-md-6 mb-3">
-                <input type="password" id="password" class="form-control" placeholder="Enter new password" required>
-                </div>
-                <div class="col-md-6  mb-3">
-                <input type="password" id="passwordConfirm" class="form-control" placeholder="Confirm new password" required>
-                </div>
-            </div>
-            </div>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-success text-white m-auto" type="submit">Change</button>
-            </form>
-        </div>
-        </div>
-    </div>
     </div>
 
     <!-- Logout Modal-->
@@ -347,7 +365,7 @@
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="../../assets/vendor/chart.js/Chart.min.js"></script>
     <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>  
+    <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="../../assets/js/global-variables.js"></script>

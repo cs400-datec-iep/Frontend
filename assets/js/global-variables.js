@@ -4,15 +4,15 @@
 */
 ///////////////////////////////////////////////////////////////
 
-    var urlMain = 'https://datectestapi.azurewebsites.net/';
-   
+var urlMain = "https://datectestapi.azurewebsites.net/";
+
 ///////////////////////////////////////////////////////////////
 /*
                     Global Variables
 */
 ///////////////////////////////////////////////////////////////
 
-    var token = sessionStorage.getItem("token");
+var token = sessionStorage.getItem("token");
 
 //Global variables for Admin Module
 var Total_Staff;
@@ -34,5 +34,3 @@ var selected_tasks_array = [];
 var display_file_array = [];
 
 var ProjectName;
-
-

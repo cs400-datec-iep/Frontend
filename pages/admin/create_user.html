@@ -11,7 +11,9 @@
 
   <!-- Custom fonts for this page-->
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this page-->
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
@@ -74,7 +76,7 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-            
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -118,7 +120,7 @@
 
             <div class="col-xl-9 col-md-11 m-auto">
               <div class="card shadow mb-4">
-                
+
                 <!--Card Header -->
                 <div class="card-header py-3">
                   <i class="fas fa-edit float-left text-xxlg"> </i>
@@ -130,36 +132,37 @@
                   <form onsubmit="create_user();return false">
 
                     <div class="form-group">
-                        <input type="text" id="userName" class="form-control" placeholder="Enter Username" required="required"
-                          autofocus="autofocus">
+                      <input type="text" id="userName" class="form-control" placeholder="Enter Username"
+                        required="required" autofocus="autofocus">
                     </div>
 
                     <div class="form-group row">
 
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                          <select class="form-control form-control-user" id="role">
-                            <option selected>Select a User Role</option>
-                            <option value="System Administrator">System Administrator</option>
-                            <option value="Management">Management</option>
-                            <option value="Project Manager">Project Manager</option>
-                            <option value="Staff">Staff</option>
-                          </select>
-                        </div>
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select class="form-control form-control-user" id="role">
+                          <option selected>Select a User Role</option>
+                          <option value="System Administrator">System Administrator</option>
+                          <option value="Management">Management</option>
+                          <option value="Project Manager">Project Manager</option>
+                          <option value="Staff">Staff</option>
+                        </select>
+                      </div>
 
-                        <div class="col-sm-6">
-                          <div class="form-label-group">
-                            <input type="text" id="department" class="form-control" placeholder="Enter Department" required>
-                          </div>
+                      <div class="col-sm-6">
+                        <div class="form-label-group">
+                          <input type="text" id="department" class="form-control" placeholder="Enter Department"
+                            required>
                         </div>
+                      </div>
 
                     </div>
 
                     <div class="form-group">
-                        <input type="email" id="email" class="form-control" placeholder="Enter Email address" required>
+                      <input type="email" id="email" class="form-control" placeholder="Enter Email address" required>
                     </div>
 
                     <input class="btn btn-primary btn-block text-white col-4 m-auto" type="submit" value="Create">
-                  
+
                   </form>
                 </div>
               </div>
@@ -186,7 +189,8 @@
   </a>
 
   <!--Loader Modal -->
-  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -200,17 +204,18 @@
   </div>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
-          <div class="modal-body text-center">
+        <div class="modal-body text-center">
           <div class="loader-work"></div>
           <div clas="loader-txt">
-              <p>Logging you out</p>
+            <p>Logging you out</p>
           </div>
-          </div>
+        </div>
       </div>
-      </div>
+    </div>
   </div>
 
   <!-- Logout Modal-->

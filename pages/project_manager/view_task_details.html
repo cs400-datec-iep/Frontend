@@ -3,27 +3,29 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title id="page_title">Loading...</title>
+  <title id="page_title">Loading...</title>
 
-    <!-- Custom fonts for this page-->
-    <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom fonts for this page-->
+  <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Page level plugin CSS-->
+  <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Custom styles for this page-->
-    <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
-    <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../../assets/css/dashboard.css" rel="stylesheet">
+  <!-- Custom styles for this page-->
+  <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
+  <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../../assets/css/dashboard.css" rel="stylesheet">
 
-    <!-- Session Check -->
-    <script src="../../assets/vendor/moment.js/moment.min.js"></script>
-    <script src="../../assets/js/sessionCheck.js"></script>
+  <!-- Session Check -->
+  <script src="../../assets/vendor/moment.js/moment.min.js"></script>
+  <script src="../../assets/js/sessionCheck.js"></script>
 
 </head>
 
@@ -49,21 +51,21 @@
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
         <li class="nav-item ">
-            <a class="nav-link" id="view_project_link">
-                <i class="fas fa-fw fa-folder-open "></i>
-                <span id="project_name_side"></span></a>
+          <a class="nav-link" id="view_project_link">
+            <i class="fas fa-fw fa-folder-open "></i>
+            <span id="project_name_side"></span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link " >
-                <i class="fas fa-fw fa-tasks "></i>
-                <span>Task View</span></a>
+          <a class="nav-link ">
+            <i class="fas fa-fw fa-tasks "></i>
+            <span>Task View</span></a>
         </li>
-        <li  class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" id="smart_analysis_link" href="smart_reporting.html">
             <i class="fas fa-fw fa-sitemap"></i>
             <span>Smart Reporting</span></a>
         </li>
-    </div>
+      </div>
     </ul>
     <!-- End of Sidebar -->
 
@@ -79,68 +81,21 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Alerts -->
-            <!-- <li class="nav-item dropdown no-arrow mx-1">
-                  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-bell fa-fw"></i>
-
-                      <span class="badge badge-danger badge-counter">3+</span>
-                  </a>
-
-                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                      aria-labelledby="alertsDropdown" id="notifications">
-                      <h6 class="dropdown-header">
-                          Alerts Center
-                      </h6>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-primary">
-                                  <i class="fas fa-file-alt text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 12, 2019</div>
-                              <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                          </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-success">
-                                  <i class="fas fa-donate text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 7, 2019</div>
-                              $290.29 has been deposited into your account!
-                          </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-warning">
-                                  <i class="fas fa-exclamation-triangle text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 2, 2019</div>
-                              Spending Alert: We've noticed unusually high spending for your account.
-                          </div>
-                      </a>
-                      <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                  </div>
-              </li>
-
-              <div class="topbar-divider d-none d-sm-block"></div>-->
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <label class="mt-1 text-primary">Welcome &nbsp</label>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username"></span>
                 <i class="fas fa-user-circle fa-fw fa-2x"></i>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" onclick="changeView();" href="#">
+                  <i class="fas fa-desktop fa-sm fa-fw mr-2 text-gray-400"></i>
+                  View As Staff
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
@@ -157,90 +112,99 @@
 
         </nav>
         <!-- End of Topbar -->
-        
+
 
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <!-- Breadcrumbs -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">Project Dashboard</li>
-                <li class="breadcrumb-item" ><a href="dashboard.html">Your Projects</a></li>
-                <li class="breadcrumb-item" id="project_name_crumb"></li>
-                <li class="breadcrumb-item" id="task_view_crumb"></li>
-                <li class="breadcrumb-item active" id="task_name_crumb"></li>
-            </ol>
-            
-            <!-- Loading Icon -->
-            <div class="loader" id="load"></div>
+          <!-- Breadcrumbs -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">Project Dashboard</li>
+            <li class="breadcrumb-item"><a href="dashboard.html">Your Projects</a></li>
+            <li class="breadcrumb-item" id="project_name_crumb"></li>
+            <li class="breadcrumb-item" id="task_view_crumb"></li>
+            <li class="breadcrumb-item active" id="task_name_crumb"></li>
+          </ol>
 
-            <!-- Loading Container -->
-            <div class="display-none" id="container">
+          <!-- Loading Icon -->
+          <div class="loader" id="load"></div>
 
-              <!-- Content Row -->
-              <div class="Row">
-                    <div class="col-xl-10 col-md-12 m-auto">
-                        <div class="card shadow mb-4">
-                            <!--Card Header -->
-                            <div class="card-header py-3">
-                                <i class="fas fa-th-large float-left text-xxlg"> </i>
-                                <h6 class="font-weight-bold text-xxlg text-primary ml-5" id="task_name_title"></h6>
-                                <p id="task_type"></p>
-                                <p id="predecessor_task"></p>
-                            </div>
-    
-                            <!-- Card body -->
-                            <div class="card-body">
-                                <table class="table-responsive-md col-md-12 ">
-                                    <tr>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Assigned to:</div>
-                                            <span id="task_assigned_to" class="text-lg"></span>
-                                        </td>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Task Status:</div>
-                                            <span id="task_status" class="text-lg"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date Started:</div>
-                                            <span id="task_start" class="text-lg">Not Started</span>
-                                        </td>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date completed:</div>
-                                            <span id="task_end_date" class="text-lg"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date Created:</div>
-                                            <span id="task_Created_date" class="text-lg"></span>
-                                        </td>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Expected completion:</div>
-                                            <span id="task_expected" class="text-lg"></span>
-                                        </td>
-                                        <td>
-                                            <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Duration (Days):</div>
-                                            <span id="task_duration" class="text-lg"></span>
-                                        </td>
-                                    </tr>
-                                </table> 
+          <!-- Loading Container -->
+          <div class="display-none" id="container">
 
-                                <div class="progress fh-1-6 mt-2 text-center">
-                                    <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span class="text-white font-weight-bold text-sm" id="task_percentage"></span></div>
-                                </div>
+            <!-- Content Row -->
+            <div class="Row">
+              <div class="col-xl-10 col-md-12 m-auto">
+                <div class="card shadow mb-4">
+                  <!--Card Header -->
+                  <div class="card-header py-3">
+                    <i class="fas fa-th-large float-left text-xxlg"> </i>
+                    <h6 class="font-weight-bold text-xxlg text-primary ml-5" id="task_name_title"></h6>
+                    <p id="task_type"></p>
+                    <p id="predecessor_task"></p>
+                  </div>
 
-                                <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block mt-3">Task Description:</div>
-                                <div class="text-lg" id="task_desc"></div>
-                            </div>
-                        </div>    
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <table class="table-responsive-md col-md-12 ">
+                      <tr>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Assigned
+                            to:</div>
+                          <span id="task_assigned_to" class="text-lg"></span>
+                        </td>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Task
+                            Status:</div>
+                          <span id="task_status" class="text-lg"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date
+                            Started:</div>
+                          <span id="task_start" class="text-lg">Not Started</span>
+                        </td>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date
+                            completed:</div>
+                          <span id="task_end_date" class="text-lg"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Date
+                            Created:</div>
+                          <span id="task_Created_date" class="text-lg"></span>
+                        </td>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Expected
+                            completion:</div>
+                          <span id="task_expected" class="text-lg"></span>
+                        </td>
+                        <td>
+                          <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block">Duration
+                            (Days):</div>
+                          <span id="task_duration" class="text-lg"></span>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <div class="progress fh-1-6 mt-2 text-center">
+                      <div class="progress-bar-striped bg-success p-1" role="progressbar" id="progress_meter"><span
+                          class="text-white font-weight-bold text-sm" id="task_percentage"></span></div>
                     </div>
-              </div>
 
+                    <div class="text-lg font-weight-bold text-primary text-gray-800 display-inline-block mt-3">Task
+                      Description:</div>
+                    <div class="text-lg" id="task_desc"></div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -251,161 +215,164 @@
     </div>
     <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-    <!-- Edit Task Modal-->
-    <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModal"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!-- Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
-                </div>
-
-                <!-- Content -->
-                <div class="modal-body">
-
-                  <!--Task name and status -->
-                  <div class="form-group row">
-                    <div class="col-md-6">
-                      <label for="taskName">Task Name:</label>
-                      <input type="text" id="taskName" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="taskStatus">Task Status:</label>
-                        <select class="custom-select dash-edit-modal-dropdown" id="taskStatus">
-                            <option value="Todo">To do</option>
-                            <option value="Doing">Doing</option>
-                            <option value="Done">Done</option>
-                        </select>
-                    </div>
-                  </div>
-
-                  <!--Task Percentage Completion -->
-                  <div class="form-group">
-                    <label for="taskPercentage">Task Percentage Completion:  <span id="value" class="text-success"></span></label>
-                    <input type="range" min="0" max="100" step="10" class="form-control-range custom-range" id="percentageRange">
-                  </div>
-
-                  <!--Task type and duration -->
-                  <div class="form-group row">
-                    <div class="col-md-6" id="taskType_Container">
-                      <label for="taskType">Task Type:</label>
-                      <select class="custom-select dash-edit-modal-dropdown" id="taskType">
-                          <option value="milestone">Milestone</option>
-                          <option value="task">Task</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6" id="taskDuration_Container">
-                        <label for="taskDuration">Task Duration:</label>
-                        <input type="number" id="taskDuration" class="form-control" min="1" required>
-                    </div>
-                  </div>
-
-                  <!--Task Predecesor -->
-                  <div class="form-group"  id="taskPredecesor_Container">
-                    <label for="taskPredecesor">Task Predecesor:</label>
-                    <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown" disabled>
-                        <option value="0">None</option>
-                    </select>
-                  </div>
-
-                  <!--Task assgined to -->
-                  <div class="form-group" id="members_list_Container">
-                    <label for="members_list">Assigned to:</label>
-                    <select name="members" id="members_list" class="label ui selection fluid dropdown">
-                    </select>
-                  </div>
-
-                  <!--Task Description -->
-                  <div class="form-group">
-                    <label for="taskDesc">Task Description:</label>
-                    <textarea id="taskDesc" class="form-control m-auto" rows="3" required></textarea>
-                  </div>
-
-                  <!--Task Critical and Active -->
-                  <div class="form-group row">
-                    <div class="col-md-6">
-                        <label for="status">Is Task Active:</label>
-                        <select class="custom-select dash-edit-modal-dropdown" id="status">
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="project_critical">Set Critical Status:</label>
-                        <select class="custom-select dash-edit-modal-dropdown" id="project_critical">
-                            <option value="true">Is Critical</option>
-                            <option value="false">Not Critical</option>
-                        </select>
-                    </div>
-                  </div>
-
-                </div>
-                
-                <!-- Footer -->
-                <div class="modal-footer">
-                    <a class="btn btn-info text-white" onclick="editTask();">Save Changes</a>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+  <!-- Edit Task Modal-->
+  <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" aria-labelledby="editTaskModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
         </div>
-    </div>
 
-    <!--Loader Modal -->
-    <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <div class="loader-work"></div>
-            <div clas="loader-txt">
-              <p>Please wait...</p>
+        <!-- Content -->
+        <div class="modal-body">
+
+          <!--Task name and status -->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="taskName">Task Name:</label>
+              <input type="text" id="taskName" class="form-control" required>
             </div>
+            <div class="col-md-6">
+              <label for="taskStatus">Task Status:</label>
+              <select class="custom-select dash-edit-modal-dropdown" id="taskStatus">
+                <option value="Todo">To do</option>
+                <option value="Doing">Doing</option>
+                <option value="Done">Done</option>
+              </select>
+            </div>
+          </div>
+
+          <!--Task Percentage Completion -->
+          <div class="form-group">
+            <label for="taskPercentage">Task Percentage Completion: <span id="value"
+                class="text-success"></span></label>
+            <input type="range" min="0" max="100" step="10" class="form-control-range custom-range"
+              id="percentageRange">
+          </div>
+
+          <!--Task type and duration -->
+          <div class="form-group row">
+            <div class="col-md-6" id="taskType_Container">
+              <label for="taskType">Task Type:</label>
+              <select class="custom-select dash-edit-modal-dropdown" id="taskType">
+                <option value="milestone">Milestone</option>
+                <option value="task">Task</option>
+              </select>
+            </div>
+            <div class="col-md-6" id="taskDuration_Container">
+              <label for="taskDuration">Task Duration:</label>
+              <input type="number" id="taskDuration" class="form-control" min="1" required>
+            </div>
+          </div>
+
+          <!--Task Predecesor -->
+          <div class="form-group" id="taskPredecesor_Container">
+            <label for="taskPredecesor">Task Predecesor:</label>
+            <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown" disabled>
+              <option value="0">None</option>
+            </select>
+          </div>
+
+          <!--Task assgined to -->
+          <div class="form-group" id="members_list_Container">
+            <label for="members_list">Assigned to:</label>
+            <select name="members" id="members_list" class="label ui selection fluid dropdown">
+            </select>
+          </div>
+
+          <!--Task Description -->
+          <div class="form-group">
+            <label for="taskDesc">Task Description:</label>
+            <textarea id="taskDesc" class="form-control m-auto" rows="3" required></textarea>
+          </div>
+
+          <!--Task Critical and Active -->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="status">Is Task Active:</label>
+              <select class="custom-select dash-edit-modal-dropdown" id="status">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="project_critical">Set Critical Status:</label>
+              <select class="custom-select dash-edit-modal-dropdown" id="project_critical">
+                <option value="true">Is Critical</option>
+                <option value="false">Not Critical</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+          <a class="btn btn-info text-white" onclick="editTask();">Save Changes</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Loader Modal -->
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Please wait...</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!--Logging out Modal -->
-    <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                <div class="loader-work"></div>
-                <div clas="loader-txt">
-                    <p>Logging you out</p>
-                </div>
-                </div>
-            </div>
+  <!--Logging out Modal -->
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Logging you out</p>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <a class="btn btn-primary text-white" onclick="logout();">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
@@ -432,27 +399,28 @@
     var output = document.getElementById("value");
     output.innerHTML = slider.value;
 
-    slider.oninput = function() {
-      output.innerHTML = this.value+"%";
+    slider.oninput = function () {
+      output.innerHTML = this.value + "%";
     }
 
     //listen to task-type dropdown in task edit
-    $('#taskType').change(function(){
-        if(this.value == "Milestone"){
-          $('#taskType_Container').toggleClass("col-md-12");
-          $('#taskDuration_Container').toggleClass("d-none");
-          $('#taskPredecesor_Container').toggleClass("d-none");
-          $('#members_list_Container').toggleClass("d-none");
-        }else{
-          $('#taskType_Container').toggleClass("col-md-12");
-          $('#taskDuration_Container').toggleClass("d-none");
-          $('#taskPredecesor_Container').toggleClass("d-none");
-          $('#members_list_Container').toggleClass("d-none");
-        }
+    $('#taskType').change(function () {
+      if (this.value == "Milestone") {
+        $('#taskType_Container').toggleClass("col-md-12");
+        $('#taskDuration_Container').toggleClass("d-none");
+        $('#taskPredecesor_Container').toggleClass("d-none");
+        $('#members_list_Container').toggleClass("d-none");
+      } else {
+        $('#taskType_Container').toggleClass("col-md-12");
+        $('#taskDuration_Container').toggleClass("d-none");
+        $('#taskPredecesor_Container').toggleClass("d-none");
+        $('#members_list_Container').toggleClass("d-none");
+      }
     });
 
   </script>
-
+  <script src="js/change-view.js"></script>
+  
 </body>
 
 </html>

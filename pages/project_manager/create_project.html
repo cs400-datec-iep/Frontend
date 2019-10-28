@@ -11,7 +11,9 @@
 
   <!-- Custom fonts for this page-->
   <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Page level plugin CSS-->
   <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
@@ -94,60 +96,6 @@
                 </form>
               </div>
             </li>
-
-            <!-- Nav Item - Alerts -->
-           <!-- <li class="nav-item dropdown no-arrow mx-1">
-                  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-bell fa-fw"></i>
-
-                      <span class="badge badge-danger badge-counter">3+</span>
-                  </a>
-
-                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                      aria-labelledby="alertsDropdown" id="notifications">
-                      <h6 class="dropdown-header">
-                          Alerts Center
-                      </h6>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-primary">
-                                  <i class="fas fa-file-alt text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 12, 2019</div>
-                              <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                          </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-success">
-                                  <i class="fas fa-donate text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 7, 2019</div>
-                              $290.29 has been deposited into your account!
-                          </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-center" href="#">
-                          <div class="mr-3">
-                              <div class="icon-circle bg-warning">
-                                  <i class="fas fa-exclamation-triangle text-white"></i>
-                              </div>
-                          </div>
-                          <div>
-                              <div class="small text-gray-500">December 2, 2019</div>
-                              Spending Alert: We've noticed unusually high spending for your account.
-                          </div>
-                      </a>
-                      <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                  </div>
-              </li>
-
-              <div class="topbar-divider d-none d-sm-block"></div>-->
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -158,6 +106,11 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" onclick="changeView();" href="#">
+                  <i class="fas fa-desktop fa-sm fa-fw mr-2 text-gray-400"></i>
+                  View As Staff
+                </a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
@@ -197,91 +150,97 @@
                   <h6 class="font-weight-bold text-xxlg text-primary ml-5">Create a Project</h6>
                   <p>This page allows you to create a project. Please enter all details.</p>
                 </div>
-                
+
                 <!-- Card Content -->
                 <div class="card-body">
-                    <form onsubmit="create_project();return false">
+                  <form onsubmit="create_project();return false">
 
-                        <!-- Project name and client name -->
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                  <input type="text" id="projName" class="form-control" placeholder="Enter Project Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                  <input type="text" id="projClient" class="form-control" placeholder="Enter Client Name" required>
-                                </div>
-                            </div>
+                    <!-- Project name and client name -->
+                    <div class="form-group">
+                      <div class="form-row">
+                        <div class="col-md-6 mb-2">
+                          <input type="text" id="projName" class="form-control" placeholder="Enter Project Name"
+                            required>
                         </div>
-                        
-                        <!-- Project Description -->
-                        <div class="form-group">
-                            <textarea id="projDesc" class="form-control m-auto" rows="3" placeholder="Enter Project Description"></textarea>
+                        <div class="col-md-6">
+                          <input type="text" id="projClient" class="form-control" placeholder="Enter Client Name"
+                            required>
                         </div>
+                      </div>
+                    </div>
 
-                        <div class="divider mb-3 mt-3"></div>
-                        
-                        <!-- Enter Dates -->
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                  <p class="dateTitle mb-1">Start Date:</p>
-                                  <input type="date" id="projStartDate" class="form-control" required>
-                                </div>
-                                <div class="col-md-6">
-                                  <p class="dateTitle  mb-1">Project Duration (In days):</p>
-                                  <input type="number" min="1" max="700" id="projDuration" class="form-control" required>
-                                </div>
-                            </div>
+                    <!-- Project Description -->
+                    <div class="form-group">
+                      <textarea id="projDesc" class="form-control m-auto" rows="3"
+                        placeholder="Enter Project Description"></textarea>
+                    </div>
+
+                    <div class="divider mb-3 mt-3"></div>
+
+                    <!-- Enter Dates -->
+                    <div class="form-group">
+                      <div class="form-row">
+                        <div class="col-md-6">
+                          <p class="dateTitle mb-1">Start Date:</p>
+                          <input type="date" id="projStartDate" class="form-control" required>
                         </div>
-
-                        <div class="divider  mb-3 mt-3"></div>
-
-                        <!-- Billing -->
-                        <div class="form-group">
-                          <input type="number" id="projCost" class="form-control" placeholder="Enter Project Cost ($)" step="0.01" min="0" required>
+                        <div class="col-md-6">
+                          <p class="dateTitle  mb-1">Project Duration (In days):</p>
+                          <input type="number" min="1" max="700" id="projDuration" class="form-control" required>
                         </div>
+                      </div>
+                    </div>
 
-                        <div class="divider  mb-3 mt-3"></div>
+                    <div class="divider  mb-3 mt-3"></div>
 
-                        <!-- Member select -->
-                        <div class="form-group">
-                          <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown" required></select>
+                    <!-- Billing -->
+                    <div class="form-group">
+                      <input type="number" id="projCost" class="form-control" placeholder="Enter Project Cost ($)"
+                        step="0.01" min="0" required>
+                    </div>
+
+                    <div class="divider  mb-3 mt-3"></div>
+
+                    <!-- Member select -->
+                    <div class="form-group">
+                      <select name="members" id="members_list" multiple="" class="label ui selection fluid dropdown"
+                        required></select>
+                    </div>
+
+                    <div class="divider  mb-3 mt-3"></div>
+
+                    <!-- File Upload -->
+                    <div class="form-group">
+
+                      <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
+                      <div class="form-row">
+                        <div class="col-9 ml-1">
+                          <input type="file" class="custom-file-input" id="FileInput" name="file">
+                          <label class="custom-file-label" for="FileInput">Choose a file...</label>
                         </div>
+                        <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob"
+                          onclick="uploadFile();">Add File</button>
+                      </div>
 
-                        <div class="divider  mb-3 mt-3"></div>
-
-                        <!-- File Upload -->
-                        <div class="form-group">
-                          
-                            <p class="m-0 mt-3 mb-3">Please upload your files below:</p>
-                            <div class="form-row">
-                                <div class="col-9 ml-1">
-                                    <input type="file" class="custom-file-input" id="FileInput" name="file" >
-                                    <label class="custom-file-label" for="FileInput">Choose a file...</label>
-                                </div>
-                                <button type="button" class="btn btn-primary btn-block col-2 m-auto" id="UploadBlob" onclick="uploadFile();">Add File</button>
-                            </div>
-
-                          <p class="m-0 mt-2 ">Upload Progress:</p>
-                          <div class="progress mb-2 mt-2 h-10" id="uploadProgressBarContainer">
-                              <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
-                                  <span class="ml-2">0%</span>
-                              </div>
-                          </div>
-                          
-                          <p class="project-sub-text">Uploaded file list:</p>
-                          <ul class="uploaded-file-list" id="fileList">
-                          </ul>
+                      <p class="m-0 mt-2 ">Upload Progress:</p>
+                      <div class="progress mb-2 mt-2 h-10" id="uploadProgressBarContainer">
+                        <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
+                          <span class="ml-2">0%</span>
                         </div>
+                      </div>
 
-                      <!-- Submit Button -->
-                      <input class="btn btn-success btn-block text-white col-md-2 m-auto" type="submit" value="Create">
+                      <p class="project-sub-text">Uploaded file list:</p>
+                      <ul class="uploaded-file-list" id="fileList">
+                      </ul>
+                    </div>
 
-                    </form>
+                    <!-- Submit Button -->
+                    <input class="btn btn-success btn-block text-white col-md-2 m-auto" type="submit" value="Create">
+
+                  </form>
                 </div>
 
-              </div>  
+              </div>
             </div>
           </div>
           <!--End of Content Row -->
@@ -304,7 +263,8 @@
   </a>
 
   <!--Loader Modal -->
-  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
+  <div class="modal fade modal-loader" id="loader_work" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body text-center">
@@ -318,17 +278,18 @@
   </div>
 
   <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-          <div class="modal-content">
-              <div class="modal-body text-center">
-              <div class="loader-work"></div>
-              <div clas="loader-txt">
-                  <p>Logging you out</p>
-              </div>
-              </div>
+  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="loader-work"></div>
+          <div clas="loader-txt">
+            <p>Logging you out</p>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 
   <!-- Logout Modal-->
@@ -372,23 +333,23 @@
   <script>
     // Get Dropdownvalues
     $('#members_list')
-    .dropdown({
-      placeholder:'Please select your members',
-      onChange: function(value){
+      .dropdown({
+        placeholder: 'Please select your members',
+        onChange: function (value) {
           userIdList = value
-      }
-    });
+        }
+      });
 
     //Set current date
     let today = new Date().toISOString().substr(0, 10);
     document.querySelector("#projStartDate").value = today;
 
     //Places filename in the "Choose a file" label
-    $('#FileInput').on('change',function(){
-        //get the file name
-        var fileName = $(this).val();
-        //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(fileName);
+    $('#FileInput').on('change', function () {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
     })
 
     //set max and min dates for input (MAX AND MIN = 2 YEARS)
@@ -402,7 +363,7 @@
   <script src="js/upload-file.js"></script>
   <script src="js/file-upload.js"></script>
   <script src="js/create-project.js"></script>
-
+  <script src="js/change-view.js"></script>
 
 </body>
 
