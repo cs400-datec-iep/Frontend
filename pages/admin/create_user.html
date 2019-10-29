@@ -19,7 +19,7 @@
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../../assets/css/dashboard.css" rel="stylesheet">
   <link id="favicon" rel="shortcut icon" type="image/png" href="../../assets/img/BP_icon.ico" />
-  
+
   <!-- Session Check -->
   <script src="../../assets/vendor/moment.js/moment.min.js"></script>
   <script src="../../assets/js/sessionCheck.js"></script>
@@ -162,7 +162,9 @@
                       <input type="email" id="email" class="form-control" placeholder="Enter Email address" required>
                     </div>
 
-                    <input class="btn btn-primary btn-block text-white col-4 m-auto" type="submit" value="Create">
+                    <div class="row">
+                      <input class="btn btn-primary text-white col-md-2 m-auto" type="submit" value="Create"></input>
+                    </div>
 
                   </form>
                 </div>
@@ -199,6 +201,39 @@
           <div clas="loader-txt">
             <p>Please wait...</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Add CSV create user modal -->
+  <div class="modal fade" id="csvUploadModal" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload CSV File</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Please select your modified csv file using the template provided.</p>
+          <div class="input-group mt-5 mb-5">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="csv_file" aria-describedby="csv_file">
+              <label class="custom-file-label" for="csv_file">Choose file</label>
+            </div>
+          </div>
+          <p class="m-0 mt-2 ">Upload Progress:</p>
+          <div class="progress mb-2 mt-2 h-10" id="uploadProgressBarContainer">
+            <div class="progress-bar" role="progressbar" id="uploadProgressBar" style="width: 0%;">
+              <span class="ml-2">0%</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer align-items-center">
+          <a class="btn btn-primary text-white text-center" onclick="uploadCsv();">Upload</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
     </div>
@@ -254,7 +289,6 @@
 
   <!-- Scripts for this dashboard -->
   <script src="js/create-user.js"></script>
-
 
 </body>
 

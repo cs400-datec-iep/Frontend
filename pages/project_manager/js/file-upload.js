@@ -6,12 +6,13 @@ Function to display progress bar for fileupload
 function displayProcess(process) {
   document.getElementById("uploadProgressBar").style.width = process + "%";
   document.getElementById("uploadProgressBar").innerHTML = process + "%";
-} ////////////////////////////////////
+}
 
 /*////////////////////////////////////
 
 Function to upload file to storage
 
+////////////////////////////////////
 */ async function uploadFile() {
   //Url
   var urlGetLastProjectID = urlMain + "api/GetLastProjectID";
