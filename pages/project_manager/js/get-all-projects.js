@@ -29,6 +29,7 @@ $(document).ready(function() {
       //Message for no Projects to Display
       if (j.length == 0) {
         document.getElementById("no_project").style.display = "inline-block";
+        document.getElementById("container").classList.toggle("d-none");
       }
 
       //Loop to display all projects

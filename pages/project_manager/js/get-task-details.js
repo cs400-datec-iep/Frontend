@@ -65,13 +65,15 @@ $(document).ready(function() {
           document.getElementById("task_name_crumb").innerHTML = a.Name;
 
           // Check task type
-          if (a.If_Milestone === false) {
+          if (a.If_Milestone === false && a.If_Objective === false) {
             task_type = "task";
           } else if (a.If_Milestone === true) {
             task_type = "milestone";
             $("#taskDuration_Container").toggleClass("d-none");
             $("#taskPredecesor_Container").toggleClass("d-none");
             $("#members_list_Container").toggleClass("d-none");
+          } else if (a.If_Objective === true) {
+            task_type = "objective";
           }
 
           document.getElementById("task_name_title").innerHTML = a.Name;

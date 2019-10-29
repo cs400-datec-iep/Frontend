@@ -29,6 +29,7 @@ $(document).ready(function() {
     .then(function(j) {
       //Set Project Details for Smart reporting
       sessionStorage.setItem("ProjectDetails", JSON.stringify(j));
+      console.log("j :", j);
 
       //Get html Containers
       var page_title = document.getElementById("page_title");
@@ -37,6 +38,7 @@ $(document).ready(function() {
       var project_name_crumb = document.getElementById("project_name_crumb");
       var project_client = document.getElementById("project_client");
       var project_status = document.getElementById("project_status");
+      var project_status_val;
       var startDate = document.getElementById("project_startDate");
       var endDate = document.getElementById("project_endDate");
       var expDate = document.getElementById("project_expDate");
@@ -132,23 +134,27 @@ $(document).ready(function() {
             "text-blue",
             "ml-1"
           );
-          project_status.innerHTML = "On Going";
+          project_status.value = "On Going";
           project_status.appendChild(icon);
+          project_status_val = "OnGoing";
         } else if (j.Progress_Status == "OnHold") {
           var icon = document.createElement("i");
           icon.classList.add("fas", "fa-pause-circle", "text-yellow", "ml-1");
           project_status.innerHTML = "On Hold";
           project_status.appendChild(icon);
+          project_status_val = "OnHold";
         } else if (j.Progress_Status == "Completed") {
           var icon = document.createElement("i");
           icon.classList.add("fas", "fa-check-circle", "text-green", "ml-1");
           project_status.innerHTML = "Completed";
           project_status.appendChild(icon);
+          project_status_val = "Completed";
         } else if (j.Progress_Status == "Cancelled") {
           var icon = document.createElement("i");
           icon.classList.add("fas", "fa-times-circle", "text-red", "ml-1");
           project_status.innerHTML = "Cancelled";
           project_status.appendChild(icon);
+          project_status_val = "Cancelled";
         }
       }
 
@@ -266,6 +272,9 @@ $(document).ready(function() {
         document.getElementById("projCost").value = j.amount_cost;
         document.getElementById("projCost").value = j.amount_cost;
         document.getElementById("projBilled").value = j.amount_billed;
+        document.getElementById(
+          "edit_project_status"
+        ).value = project_status_val;
 
         //values that cant be edited
         sessionStorage.setItem("project_duration", j.number_of_days);

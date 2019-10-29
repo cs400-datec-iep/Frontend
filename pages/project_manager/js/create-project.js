@@ -123,7 +123,7 @@ function create_project() {
         window.location.href = "dashboard.html";
       } else {
         localStorage.setItem("created_project", "true");
-        alert("Project created unsuccessfully");
+        alert("Project created successfully");
         window.location.href = "dashboard.html";
       }
     })
