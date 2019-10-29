@@ -275,7 +275,28 @@
   min-height: 450px;
 }
 
-.hidden {
-  display: none;
-  visibility: hidden;
+.table-border tbody tr td {
+  border: 1px solid black;
+}
+
+.table-border {
+  border: 3px solid black;
+  text-align: center;
+}
+
+.table-border thead tr td {
+  border: 3px solid black;
+  font-weight: bold;
+}
+
+.report-divider-sm {
+  width: 100%;
+  border: 1px solid rgb(124, 124, 124);
+  border-radius: 10px;
+}
+
+.report-divider {
+  width: 95%;
+  border: 5px solid black;
+  border-radius: 10px;
 }

@@ -87,12 +87,3 @@ function generateReport() {
   XLSX.writeFile(wb, filename);
   if (typeof console !== "undefined") console.log(new Date());
 }
-
-// function generateReportPdf() {
-//   var doc = new jsPDF();
-//   doc.text(20, 10, "Hello world!");
-//   doc.text(20, 30, "This is client-side Javascript, pumping out a PDF.");
-//   doc.addPage();
-//   doc.text(20, 20, "Do you like that?");
-//   doc.save("Smart_Analysis.pdf");
-// }
