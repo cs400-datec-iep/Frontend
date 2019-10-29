@@ -34,6 +34,7 @@ $(document).ready(function() {
       var active_proj = 0,
         inactive_proj = 0;
       var timeline_payload = [];
+      var uri_array = [];
 
       //Set datasets
       j.forEach(element => {
@@ -130,6 +131,23 @@ $(document).ready(function() {
         JSON.stringify(project_progress_status)
       );
 
+      //Project status chart
+      google.charts.load("current", { packages: ["timeline"] });
+      google.charts.setOnLoadCallback(drawTimeline);
+      function drawTimeline() {
+        var container = document.getElementById("project_calender_chart2");
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: "string", id: "Project Name" });
+        dataTable.addColumn({ type: "string", id: "Critical" });
+        dataTable.addColumn({ type: "date", id: "Start" });
+        dataTable.addColumn({ type: "date", id: "End" });
+        dataTable.addRows(timeline_payload);
+
+        chart.draw(dataTable);
+      }
+
       //Project percentage compeleted Chart
       google.charts.load("current", { packages: ["bar"] });
       google.charts.setOnLoadCallback(drawBasic);
@@ -156,9 +174,8 @@ $(document).ready(function() {
           }
         };
 
-        var chart = new google.charts.Bar(
-          document.getElementById("project_percentage_chart")
-        );
+        var div = document.getElementById("project_percentage_chart");
+        var chart = new google.charts.Bar(div);
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
@@ -173,9 +190,8 @@ $(document).ready(function() {
         dataTable.addColumn({ type: "string", role: "tooltip" });
         dataTable.addRows(calendar_payload);
 
-        var chart = new google.visualization.Calendar(
-          document.getElementById("project_calender_chart")
-        );
+        var div = document.getElementById("project_calender_chart");
+        var chart = new google.visualization.Calendar(div);
 
         // set inner height to 30 pixels per row
         var chartAreaHeight = dataTable.getNumberOfRows() * 30;
@@ -237,9 +253,12 @@ $(document).ready(function() {
           colors: ["#4285f4", "#f6c23e", "#1cc88a", "red"]
         };
 
-        var chart = new google.visualization.PieChart(
-          document.getElementById("project_complete_chart")
-        );
+        var div = document.getElementById("project_complete_chart");
+        var chart = new google.visualization.PieChart(div);
+
+        google.visualization.events.addListener(chart, "ready", function() {
+          uri_array.push(chart.getImageURI());
+        });
 
         chart.draw(data, options);
       }
@@ -263,9 +282,13 @@ $(document).ready(function() {
           }
         };
 
-        var chart = new google.visualization.PieChart(
-          document.getElementById("project_active_inactive_chart")
-        );
+        var div = document.getElementById("project_active_inactive_chart");
+        var chart = new google.visualization.PieChart(div);
+
+        google.visualization.events.addListener(chart, "ready", function() {
+          uri_array.push(chart.getImageURI());
+        });
+
         chart.draw(data, options);
       }
 
@@ -290,28 +313,9 @@ $(document).ready(function() {
             subtitle: "Costing and Billing"
           }
         };
-
-        var chart = new google.charts.Bar(
-          document.getElementById("project_cost_billed_chart")
-        );
-
+        var div = document.getElementById("project_cost_billed_chart");
+        var chart = new google.charts.Bar(div);
         chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-
-      google.charts.load("current", { packages: ["timeline"] });
-      google.charts.setOnLoadCallback(drawTimeline);
-      function drawTimeline() {
-        var container = document.getElementById("project_calender_chart2");
-        var chart = new google.visualization.Timeline(container);
-        var dataTable = new google.visualization.DataTable();
-
-        dataTable.addColumn({ type: "string", id: "Project Name" });
-        dataTable.addColumn({ type: "string", id: "Critical" });
-        dataTable.addColumn({ type: "date", id: "Start" });
-        dataTable.addColumn({ type: "date", id: "End" });
-        dataTable.addRows(timeline_payload);
-
-        chart.draw(dataTable);
       }
 
       $(window).resize(function() {

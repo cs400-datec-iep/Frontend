@@ -1,0 +1,9 @@
+POST https://datectestapi.azurewebsites.net/api/Account/ForgotPassword 
+
+Content-Type: application/json
+
+{
+    "Email": "system@datec.com",
+    "myURL": "",
+}
+
