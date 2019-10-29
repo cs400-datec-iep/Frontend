@@ -342,7 +342,7 @@
       });
 
     //Set current date
-    let today = new Date().toISOString().substr(0, 10);
+    var today = moment().format('YYYY-MM-DD');
     document.querySelector("#projStartDate").value = today;
 
     //Places filename in the "Choose a file" label

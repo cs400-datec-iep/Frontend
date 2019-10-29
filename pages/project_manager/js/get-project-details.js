@@ -29,7 +29,6 @@ $(document).ready(function() {
     .then(function(j) {
       //Set Project Details for Smart reporting
       sessionStorage.setItem("ProjectDetails", JSON.stringify(j));
-      console.log("j :", j);
 
       //Get html Containers
       var page_title = document.getElementById("page_title");
@@ -55,7 +54,9 @@ $(document).ready(function() {
       expDate.innerHTML = moment(j.Expected_Date).format("DD-MMM-YYYY");
       startDate.innerHTML = moment(j.Start_Date).format("DD-MMM-YYYY");
 
-      if (j.endDate === null) {
+      console.log("j.Start_Date :", j.Start_Date);
+
+      if (j.endDate == null) {
         endDate.innerHTML = "Not Completed";
       } else {
         endDate.innerHTML = moment(j.endDate).format("DD-MMM-YYYY");
