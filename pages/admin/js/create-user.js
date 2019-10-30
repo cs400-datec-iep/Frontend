@@ -39,12 +39,13 @@ function create_user() {
     body: JSON.stringify(payload_usermains)
   })
     .then(function(a) {
-      return a.json();
-    })
-    .then(function(id) {
-      alert("User Successfully Created");
-      window.location.assign("edit_user.html");
-      return a.json();
+      if (a.status == 400) {
+        alert("That email already exists. Please enter a new email");
+        $("#loader_work").modal("hide");
+      } else {
+        alert("User Successfully Created");
+        window.location.assign("edit_user.html");
+      }
     })
     .catch(error => {
       console.error("Error:", error);
