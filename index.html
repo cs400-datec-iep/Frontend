@@ -18,12 +18,36 @@
 <body id="container">
     <div class="login-dark">
         <ul class="cb-slideshow">
-            <li><span>Image 01</span><div><h3 class="font-weight-bold">PLAN</h3></div></li>
-            <li><span>Image 02</span><div><h3 class="font-weight-bold">ORGANIZE</h3></div></li>
-            <li><span>Image 03</span><div><h3 class="font-weight-bold">MONITOR</h3></div></li>
-            <li><span>Image 04</span><div><h3 class="font-weight-bold">MANAGEMENT</h3></div></li>
-            <li><span>Image 05</span><div><h3 class="font-weight-bold">REPORT</h3></div></li>
-            <li><span>Image 06</span><div><h3 class="font-weight-bold">SCHEDULE</h3></div></li>
+            <li><span>Image 01</span>
+                <div>
+                    <h3 class="font-weight-bold">PLAN</h3>
+                </div>
+            </li>
+            <li><span>Image 02</span>
+                <div>
+                    <h3 class="font-weight-bold">ORGANIZE</h3>
+                </div>
+            </li>
+            <li><span>Image 03</span>
+                <div>
+                    <h3 class="font-weight-bold">MONITOR</h3>
+                </div>
+            </li>
+            <li><span>Image 04</span>
+                <div>
+                    <h3 class="font-weight-bold">MANAGEMENT</h3>
+                </div>
+            </li>
+            <li><span>Image 05</span>
+                <div>
+                    <h3 class="font-weight-bold">REPORT</h3>
+                </div>
+            </li>
+            <li><span>Image 06</span>
+                <div>
+                    <h3 class="font-weight-bold">SCHEDULE</h3>
+                </div>
+            </li>
         </ul>
         <div class="login-form">
             <form method="dialog">
@@ -34,13 +58,14 @@
                 </div>
                 <div class="loader" id="load"></div>
                 <div class="form-group"><input class="form-control" type="email" name="username" id="usrnme"
-                        placeholder="Username" required></div>
+                        placeholder="Email" required></div>
                 <div class="form-group"><input class="form-control" type="password" name="password" id="pass"
                         placeholder="Password" required></div>
                 <div class="form-group"><button class="btn btn-primary btn-block" type="submit" onclick="Login();">Log
                         In</button></div>
                 <button data-toggle="modal" data-target="#incorrectLoginModal" hidden="hidden" id="clickme"></button>
-                <a href="#" class="forgot"  data-toggle="modal" data-target="#forgotLoginModule">Forgot your password?</a>
+                <a href="#" class="forgot" data-toggle="modal" data-target="#forgotLoginModule">Forgot your
+                    password?</a>
             </form>
         </div>
     </div>
@@ -62,7 +87,8 @@
                     <div class="form-group">
                         <label for="email">Please enter your email address for a password reset:</label>
                         <input type="email" id="email" placeholder="Enter Email" class="form-control" required>
-                        <p class="text-center text-danger d-none" id="confirmation_message">An email has been sent to your account, please follow the instructions on how to reset your password.</p>
+                        <p class="text-center text-danger d-none" id="confirmation_message">An email has been sent to
+                            your account, please follow the instructions on how to reset your password.</p>
                     </div>
 
 
@@ -70,7 +96,8 @@
 
                 <!-- Footer -->
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" onclick="passwordReset()" data-backdrop="static">Submit</button>
+                    <button class="btn btn-primary" type="button" onclick="passwordReset()"
+                        data-backdrop="static">Submit</button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -87,8 +114,10 @@
                 </div>
                 <div class="modal-body">Would you like to login as a Staff or a Project Manager?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="redirectStaff()">Staff</button>
-                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="redirectPM()">Project Manager</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal"
+                        onclick="redirectStaff()">Staff</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="redirectPM()">Project
+                        Manager</button>
                 </div>
             </div>
         </div>
@@ -104,7 +133,8 @@
                 </div>
                 <div class="modal-body">Your username or password is incorrect.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="incorrectLogin()">Okay</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal"
+                        onclick="incorrectLogin()">Okay</button>
                 </div>
             </div>
         </div>
@@ -122,4 +152,5 @@
     <script src="/assets/js/password-reset.js"></script>
 
 </body>
+
 </html>

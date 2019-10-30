@@ -11,7 +11,7 @@ function logout() {
   var UrlLogout = urlMain + "api/Logs";
 
   $("#logoutModal").modal("hide");
-  //Loggin out modal
+  //Logging out modal
   var btn = document.createElement("button");
   btn.id = "click";
   btn.setAttribute("data-toggle", "modal");
