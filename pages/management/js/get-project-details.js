@@ -36,6 +36,9 @@ $(document).ready(function() {
       var page_title = document.getElementById("page_title");
       var project_name = document.getElementById("project_name_title");
       var project_name_side = document.getElementById("project_name_side");
+      var project_name_side_link = document.getElementById(
+        "project_name_side_link"
+      );
       var project_name_crumb = document.getElementById("project_name_crumb");
       var project_client = document.getElementById("project_client");
       var project_status = document.getElementById("project_status");
@@ -81,6 +84,7 @@ $(document).ready(function() {
       project_name.innerHTML = j.Name;
 
       project_name_side.innerHTML = j.Name;
+      project_name_side_link.href = window.location.href;
       project_name_crumb.innerHTML = j.Name;
 
       project_desc.innerHTML = j.Description;
@@ -268,7 +272,6 @@ $(document).ready(function() {
               .getElementById("no_files")
               .classList.remove("text-gray-800");
           }
-
           //Loop thorugh array of users and append them to list
           for (var i = 0; i < k.length; i++) {
             //Storing files into array for edit modal use
@@ -281,11 +284,16 @@ $(document).ready(function() {
 
             file_array.push(files);
 
+            console.log("k[i].Dire :", k[i].Directory);
             //Append project team members to html list container
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.innerHTML =
-              "<a href='" + k[i].Directory + "'>" + k[i].Name + "</a>";
+              "<a href='https://" +
+              k[i].Directory +
+              "' target='_blank'>" +
+              k[i].Name +
+              "</a>";
             li.appendChild(a);
             ul.appendChild(li);
           }

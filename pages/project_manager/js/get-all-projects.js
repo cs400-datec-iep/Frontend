@@ -36,9 +36,6 @@ $(document).ready(function() {
       for (var i = 0; i < j.length; i++) {
         if (j[i].Status == true) {
           //Counter for completed projects
-          if (j[i].Progress_Status == "Completed") {
-            counter++;
-          }
 
           //Creating project card
           var projectName = j[i].Name;
@@ -198,12 +195,13 @@ $(document).ready(function() {
           } else {
             container.append(a);
           }
+        } else {
+          counter++;
+        }
 
-          //Display no completed projects
-          if (counter == 0) {
-            document.getElementById("no_completed_project").style.display =
-              "inline-block";
-          }
+        //Message for no Projects to Display if all are cancelled
+        if (j.length == counter) {
+          document.getElementById("no_project").style.display = "inline-block";
         }
       }
 

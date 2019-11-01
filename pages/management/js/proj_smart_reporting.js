@@ -245,6 +245,7 @@ $(document).ready(function() {
 
         var options = {
           pieHole: 0.4,
+          is3D: true,
           chartArea: {
             width: "90%",
             height: "90%"

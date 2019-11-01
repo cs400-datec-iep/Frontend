@@ -7,12 +7,16 @@ $(document).ready(function() {
   // Urls
   var urlGetTask =
     urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem("ProjectID");
+  var urlGetProjectTeam =
+    urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
+
+  //Set Task_view link
+  document.getElementById("task_view_side_link").href = window.location.href;
 
   // Initialize Dropdown For Members
   $("#members_list").dropdown({
     onChange: function(value) {
       userIdList.push(value);
-      console.log(value);
     }
   });
 
@@ -21,7 +25,6 @@ $(document).ready(function() {
     placeholder: "Please Select Task Predecesors:",
     onChange: function(value) {
       selected_tasks_array.push(value);
-      console.log(value);
     }
   });
 
@@ -61,124 +64,163 @@ $(document).ready(function() {
   })
     .then(response => response.json())
     .then(a => {
-      //Dataset array
-      var dataset = [];
-      tasks_array = JSON.stringify(a);
-
-      a.forEach(element => {
-        //Parsing date into correct format
-        if (element.Start_Date === null) {
-          var datestart = "Not Started";
-        } else {
-          var datestart = new Date(element.Start_Date);
-          datestart = moment(datestart).format("DD-MMM-YYYY");
+      fetch(urlGetProjectTeam, {
+        async: false,
+        method: "GET",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
         }
+      })
+        .then(response => response.json())
+        .then(result => {
+          //Dataset array
+          var dataset = [];
+          tasks_array = JSON.stringify(a);
 
-        //Populate task predecessor
-        $("#taskPredecesor").append(
-          $("<option>", {
-            value: element.TaskID,
-            text: element.Name
-          })
-        );
+          a.forEach(element => {
+            //Parsing date into correct format
+            if (element.Start_Date === null) {
+              var datestart = "Not Started";
+            } else {
+              var datestart = new Date(element.Start_Date);
+              datestart = moment(datestart).format("DD-MMM-YYYY");
+            }
 
-        var type = "";
-        var critical, predecessor;
+            //Populate task predecessor
+            $("#taskPredecesor").append(
+              $("<option>", {
+                value: element.TaskID,
+                text: element.Name
+              })
+            );
 
-        // Check task type (Prepare array for datatable)
-        if (element.If_Milestone === false) {
-          //Task
-          type = "Task";
-        } else if (element.If_Milestone === true) {
-          //Milestone
-          type = "Milestone";
-        }
+            var type = "";
+            var critical, predecessor;
 
-        if (element.Critical_flag === true) {
-          //Checking critical status
-          critical = element.Critical_flag;
-        } else if (element.Critical_flag === false) {
-          critical = element.Critical_flag;
-        }
+            // Check task type (Prepare array for datatable)
+            if (
+              element.If_Milestone === false &&
+              element.If_Objective === false
+            ) {
+              //Task
+              type = "Task";
+            } else if (
+              element.If_Milestone === true &&
+              element.If_Objective === false
+            ) {
+              //Milestone
+              type = "Milestone";
+            } else if (
+              element.If_Milestone === false &&
+              element.If_Objective === true
+            ) {
+              //Objective
+              type = "Objective";
+            }
 
-        if (element.PredecessorTaskID === 0) {
-          //Checking critical status
-          predecessor = "None";
-        } else {
-          predecessor = element.PredecessorTaskID;
-        }
+            if (element.Critical_flag === true) {
+              //Checking critical status
+              critical = element.Critical_flag;
+            } else if (element.Critical_flag === false) {
+              critical = element.Critical_flag;
+            }
 
-        var dataObj = {
-          TaskID: element.TaskID,
-          Type: type,
-          Name: element.Name,
-          Start_Date: datestart,
-          Status: element.Progress_Status,
-          Duration: element.Number_of_days,
-          Critical: critical,
-          Predecessor: predecessor
-        };
+            if (element.PredecessorTaskID === 0) {
+              //Checking critical status
+              predecessor = "None";
+            } else {
+              predecessor = element.PredecessorTaskID;
+            }
 
-        dataset.push(dataObj);
-      });
+            //Check if assigned to, if so display the name
+            var assign_to = "None";
+            result.forEach(currentItem => {
+              if (element.UserID == currentItem.ID) {
+                assign_to = currentItem.Username;
+              }
+            });
 
-      //Initialize datatable
-      table = $("#taskTable").DataTable({
-        data: dataset,
-        select: true,
-        columns: [
-          { data: "TaskID" },
-          { data: "Type" },
-          { data: "Name" },
-          { data: "Start_Date" },
-          { data: "Status" },
-          { data: "Duration" },
-          { data: "Critical" },
-          { data: "Predecessor" }
-        ],
-        columnDefs: [
-          {
-            targets: [6],
-            visible: false,
-            searchable: false
+            var dataObj = {
+              TaskID: element.TaskID,
+              Type: type,
+              Name: element.Name,
+              Start_Date: datestart,
+              Status: element.Progress_Status,
+              Duration: element.Number_of_days,
+              Critical: critical,
+              Predecessor: predecessor,
+              Assigned: assign_to
+            };
+            dataset.push(dataObj);
+          });
+
+          //Initialize datatable
+          table = $("#taskTable").DataTable({
+            data: dataset,
+            select: true,
+            columns: [
+              { data: "TaskID" },
+              { data: "Type" },
+              { data: "Name" },
+              { data: "Start_Date" },
+              { data: "Status" },
+              { data: "Duration" },
+              { data: "Critical" },
+              { data: "Predecessor" },
+              { data: "Assigned" }
+            ],
+            columnDefs: [
+              {
+                targets: [6],
+                visible: false,
+                searchable: false
+              }
+            ],
+            createdRow: function(row, data) {
+              if (data.Critical == true) {
+                $(row).addClass("bg-danger text-white");
+              }
+            }
+          });
+
+          //Allow view tasks if records > 0
+          var records = (totalDisplayRecord = $("#taskTable")
+            .DataTable()
+            .page.info().recordsDisplay);
+
+          if (records > 0) {
+            //View task details
+            $("#taskTable tbody").on("click", "tr", function() {
+              sessionStorage.setItem("task_array", tasks_array);
+              window.location.assign(
+                "view_task_details.html?" + table.row(this).data().TaskID
+              );
+            });
+          } else {
+            document
+              .getElementById("taskTableContainer")
+              .classList.toggle("d-none");
+            document.getElementById("no_tasksTable").classList.toggle("d-none");
           }
-        ],
-        createdRow: function(row, data) {
-          if (data.Critical == true) {
-            $(row).addClass("bg-danger text-white");
-          }
-        }
-      });
 
-      //Allow view tasks if records > 0
-      var records = (totalDisplayRecord = $("#taskTable")
-        .DataTable()
-        .page.info().recordsDisplay);
+          //Remove loading icon and display output
+          document.getElementById("load").style.display = "none";
+          document.getElementById("container").classList.remove("display-none");
 
-      if (records > 0) {
-        //View task details
-        $("#taskTable tbody").on("click", "tr", function() {
-          sessionStorage.setItem("task_array", tasks_array);
-          window.location.assign(
-            "view_task_details.html?" + table.row(this).data().TaskID
-          );
+          //Remove loading icon and display output for sidebar
+          document
+            .getElementById("icon_container")
+            .classList.remove("display-none");
+          document
+            .getElementById("sidebarToggle")
+            .classList.remove("display-none");
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          return error;
         });
-      } else {
-        document
-          .getElementById("taskTableContainer")
-          .classList.toggle("d-none");
-        document.getElementById("no_tasksTable").classList.toggle("d-none");
-      }
-
-      //Remove loading icon and display output
-      document.getElementById("load").style.display = "none";
-      document.getElementById("container").classList.remove("display-none");
-
-      //Remove loading icon and display output for sidebar
-      document
-        .getElementById("icon_container")
-        .classList.remove("display-none");
-      document.getElementById("sidebarToggle").classList.remove("display-none");
     })
     .catch(error => {
       console.error("Error:", error);

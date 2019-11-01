@@ -13,6 +13,10 @@ $(document).ready(function() {
   var urlGetProjectTeam =
     urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
 
+  //Set Task_view link
+  document.getElementById("task_view_side_link").href =
+    "task_view.html?" + sessionStorage.getItem("ProjectID");
+
   //Loacal Variables
   var task_type;
 
@@ -27,8 +31,6 @@ $(document).ready(function() {
   })
     .then(response => response.json())
     .then(a => {
-      console.log(a);
-
       // Get Users for dropdown and get user for task
       fetch(urlGetProjectTeam, {
         async: false,
@@ -79,26 +81,30 @@ $(document).ready(function() {
           document.getElementById("task_name_title").innerHTML = a.Name;
 
           //Set Dropdown values for members
-          j.forEach(element => {
-            if (a.UserID === element.ID) {
-              document.getElementById("task_assigned_to").innerHTML =
-                element.Username;
-              $("#members_list").append(
-                $("<option>", {
-                  value: element.ID,
-                  text: element.Username,
-                  selected: true
-                })
-              );
-            } else {
-              $("#members_list").append(
-                $("<option>", {
-                  value: element.ID,
-                  text: element.Username
-                })
-              );
-            }
-          });
+          if (a.UserID == null) {
+            document.getElementById("task_assigned_to").innerHTML = "None";
+          } else {
+            j.forEach(element => {
+              if (a.UserID === element.ID) {
+                document.getElementById("task_assigned_to").innerHTML =
+                  element.Username;
+                $("#members_list").append(
+                  $("<option>", {
+                    value: element.ID,
+                    text: element.Username,
+                    selected: true
+                  })
+                );
+              } else {
+                $("#members_list").append(
+                  $("<option>", {
+                    value: element.ID,
+                    text: element.Username
+                  })
+                );
+              }
+            });
+          }
 
           // Check status and critical
           if (a.Critical_flag == true) {
@@ -195,6 +201,8 @@ $(document).ready(function() {
             document.getElementById("taskType").value = task_type;
             document.getElementById("taskDuration").value = a.Number_of_days;
             document.getElementById("taskDesc").value = a.Description;
+            document.getElementById("taskPredecesor").value =
+              a.PredecessorTaskID;
 
             //Set task ID and dates as session
             sessionStorage.setItem("taskID", a.TaskID);

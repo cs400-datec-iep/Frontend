@@ -30,11 +30,23 @@ $(document).ready(function() {
         tasksTodoCounter = 0;
 
       j.forEach(element => {
-        if (element.Progress_Status == "Todo") {
+        if (
+          element.Progress_Status == "Todo" &&
+          element.If_Milestone == false &&
+          element.If_Objective == false
+        ) {
           tasksTodoCounter++;
-        } else if (element.Progress_Status == "Doing") {
+        } else if (
+          element.Progress_Status == "Doing" &&
+          element.If_Milestone == false &&
+          element.If_Objective == false
+        ) {
           tasksDoingCounter++;
-        } else if (element.Progress_Status == "Done") {
+        } else if (
+          element.Progress_Status == "Done" &&
+          element.If_Milestone == false &&
+          element.If_Objective == false
+        ) {
           tasksDoneCounter++;
         }
       });

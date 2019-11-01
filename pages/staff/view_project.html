@@ -53,7 +53,7 @@
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
         <li class="nav-item active">
-          <a class="nav-link">
+          <a class="nav-link" id="project_name_side_link">
             <i class="fas fa-fw fa-folder-open "></i>
             <span id="project_name_side"></span></a>
         </li>
@@ -100,7 +100,8 @@
                 <i class="fas fa-user-circle fa-fw fa-2x"></i>
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" id="userDropdown-contianer">
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown"
+                id="userDropdown-contianer">
                 <a class="dropdown-item" href="account.html">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Account
@@ -415,7 +416,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="taskEndDate" class="font-weight-bolder">End Date:</label>
+                <label for="taskEndDate" class="font-weight-bolder">Date Completed:</label>
                 <p id="taskEndDate"></p>
               </div>
             </div>
@@ -456,7 +457,7 @@
           <!--Task Description -->
           <div class="form-group">
             <label for="taskDescList" class="font-weight-bolder">Task Description:</label>
-            <p id="taskDescList" class="m-auto" rows="3" required></p>
+            <p id="taskDescList" class="m-auto" rows="3"></p>
           </div>
 
         </div>

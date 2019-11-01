@@ -145,7 +145,19 @@ $(document).ready(function() {
         dataTable.addColumn({ type: "date", id: "End" });
         dataTable.addRows(timeline_payload);
 
-        chart.draw(dataTable);
+        // set inner height to 30 pixels per row
+        var chartAreaHeight = dataTable.getNumberOfRows() * 30;
+        // add padding to outer height to accomodate title, axis labels, etc
+        var chartHeight = chartAreaHeight + 100;
+
+        var options = {
+          height: chartHeight,
+          chartArea: {
+            height: chartAreaHeight
+          }
+        };
+
+        chart.draw(dataTable, options);
       }
 
       //Project percentage compeleted Chart

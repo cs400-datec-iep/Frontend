@@ -301,6 +301,12 @@
                 input.attr("type", "password");
             }
         });
+
+        $('#passwordEditModal').on('hidden.bs.modal', function () {
+            $('#oldpassword').val('');
+            $('#password').val('');
+            $('#passwordConfirm').val('');
+        });
     </script>
 
 

@@ -21,6 +21,8 @@ $(document).ready(function() {
       return a.json();
     })
     .then(function(j) {
+      sessionStorage.setItem("notifications", JSON.stringify(j));
+
       if (j.length > 0) {
         document.getElementById("notif_counter").innerHTML = j.length + "+";
 

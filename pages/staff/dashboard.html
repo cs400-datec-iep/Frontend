@@ -48,7 +48,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link">
+        <a class="nav-link" href="dashboard.html">
           <i class="fas fa-fw fa-folder"></i>
           <span>Your Projects</span></a>
       </li>
@@ -69,7 +69,7 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1 ">
+            <li class="nav-item dropdown no-arrow mx-1 " id="dropdown_notification" onclick="notificationRead();">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -272,6 +272,7 @@
 
   <!-- Scripts for this dashboard -->
   <script src="js/notifications.js"></script>
+  <script src="js/notification-viewed.js"></script>
   <script src="js/change-view.js"></script>
   <script src="js/get-all-projects.js"></script>
   <script>
@@ -292,6 +293,7 @@
       menu.insertBefore(div, menu.firstChild);
       menu.insertBefore(a, menu.firstChild);
     }
+
   </script>
 
 

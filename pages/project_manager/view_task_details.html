@@ -57,7 +57,7 @@
             <span id="project_name_side"></span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link ">
+          <a class="nav-link " id="task_view_side_link">
             <i class="fas fa-fw fa-tasks "></i>
             <span>Task View</span></a>
         </li>
@@ -279,9 +279,7 @@
           <!--Task Predecesor -->
           <div class="form-group" id="taskPredecesor_Container">
             <label for="taskPredecesor">Task Predecesor:</label>
-            <select name="Predecesor" id="taskPredecesor" class="label ui selection fluid dropdown" disabled>
-              <option value="0">None</option>
-            </select>
+            <input type="number" id="taskPredecesor" class="form-control" disabled>
           </div>
 
           <!--Task assgined to -->

@@ -10,12 +10,12 @@ $(document).ready(function() {
 
   //Urls
   var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
-  var urlGetUserMains = urlMain + "api/UserMains";
+  var urlGetProjectTeam = urlMain + "api/GetMembersProjectID/" + projectID;
 
   var dataset = [];
 
   // Get user names to compare with userdID in task
-  fetch(urlGetUserMains, {
+  fetch(urlGetProjectTeam, {
     async: false,
     method: "GET",
     crossDomain: true,
@@ -38,75 +38,85 @@ $(document).ready(function() {
         .then(tasks => {
           //loop through tasks and user to match matching UserID's
           tasks.forEach(element => {
-            users.forEach(user => {
-              if (element.UserID === user.ID) {
-                //Parsing date into correct format
-                if (element.Start_Date == null) {
-                  var datestart = "Has not started work";
-                } else {
-                  var datestart = new Date(element.Start_Date);
-                  datestart = moment(datestart).format("DD-MMM-YYYY");
-                }
+            //Parsing date into correct format
+            if (element.Start_Date == null) {
+              var datestart = "Has not started work";
+            } else {
+              var datestart = new Date(element.Start_Date);
+              datestart = moment(datestart).format("DD-MMM-YYYY");
+            }
 
-                var datecreated = new Date(element.Date_Created);
-                datecreated = moment(datecreated).format("DD-MMM-YYYY");
+            var datecreated = new Date(element.Date_Created);
+            datecreated = moment(datecreated).format("DD-MMM-YYYY");
 
-                // Check task type (Prepare array for datatable)
-                if (
-                  element.If_Milestone === false &&
-                  element.If_Objective === false
-                ) {
-                  var dataObj = {
-                    TaskID: element.TaskID,
-                    Type: "Task",
-                    Name: element.Name,
-                    Created_Date: datecreated,
-                    Start_Date: datestart,
-                    Status: element.Progress_Status,
-                    Duration: element.Number_of_days + " Days",
-                    Assigned_To: user.Username
-                  };
+            var type = "";
+            var critical, predecessor;
 
-                  dataset.push(dataObj);
-                } else if (
-                  element.If_Objective === true &&
-                  element.If_Milestone === false
-                ) {
-                  var dataObj = {
-                    TaskID: element.TaskID,
-                    Type: "Objective",
-                    Name: element.Name,
-                    Created_Date: datecreated,
-                    Start_Date: datestart,
-                    Status: element.Progress_Status,
-                    Duration: element.Number_of_days + " Days",
-                    Assigned_To: user.Username
-                  };
+            // Check task type (Prepare array for datatable)
+            if (
+              element.If_Milestone === false &&
+              element.If_Objective === false
+            ) {
+              //Task
+              type = "Task";
+            } else if (
+              element.If_Milestone === true &&
+              element.If_Objective === false
+            ) {
+              //Milestone
+              type = "Milestone";
+            } else if (
+              element.If_Milestone === false &&
+              element.If_Objective === true
+            ) {
+              //Objective
+              type = "Objective";
+            }
 
-                  dataset.push(dataObj);
-                } else if (
-                  element.If_Milestone === true &&
-                  element.If_Objective === false
-                ) {
-                  var dataObj = {
-                    TaskID: element.TaskID,
-                    Type: "Milestone",
-                    Name: element.Name,
-                    Created_Date: datecreated,
-                    Start_Date: datestart,
-                    Status: element.Progress_Status,
-                    Duration: element.Number_of_days + " Days",
-                    Assigned_To: user.Username
-                  };
+            if (element.Critical_flag === true) {
+              //Checking critical status
+              critical = element.Critical_flag;
+            } else if (element.Critical_flag === false) {
+              critical = element.Critical_flag;
+            }
 
-                  dataset.push(dataObj);
-                }
+            if (element.PredecessorTaskID === 0) {
+              //Checking critical status
+              predecessor = "None";
+            } else {
+              predecessor = element.PredecessorTaskID;
+            }
+
+            //Check if assigned to, if so display the name
+            var assign_to = "None";
+            users.forEach(currentItem => {
+              if (element.UserID == currentItem.ID) {
+                assign_to = currentItem.Username;
               }
             });
+
+            var dataObj = {
+              TaskID: element.TaskID,
+              Type: type,
+              Name: element.Name,
+              Created_Date: datecreated,
+              Start_Date: datestart,
+              Status: element.Progress_Status,
+              Duration: element.Number_of_days,
+              Critical: critical,
+              Predecessor: predecessor,
+              Assigned_To: assign_to
+            };
+            dataset.push(dataObj);
           });
 
           //Initialize datatable
           table = $("#taskTable").DataTable({
+            dom:
+              "<'row'<'col-sm-2'B><'col-sm-6'f><'col-sm-4'l>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-'i><'col-sm-6'p>>",
+            buttons: ["excelHtml5", "pdf"],
             data: dataset,
             select: true,
             columns: [
@@ -117,8 +127,22 @@ $(document).ready(function() {
               { data: "Start_Date" },
               { data: "Status" },
               { data: "Duration" },
+              { data: "Critical" },
+              { data: "Predecessor" },
               { data: "Assigned_To" }
-            ]
+            ],
+            columnDefs: [
+              {
+                targets: [7],
+                visible: false,
+                searchable: false
+              }
+            ],
+            createdRow: function(row, data) {
+              if (data.Critical == true) {
+                $(row).addClass("bg-danger text-white");
+              }
+            }
           });
 
           //Allow view tasks if records > 0

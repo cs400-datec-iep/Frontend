@@ -7,6 +7,8 @@ $(document).ready(function() {
   //Urls
   var urlGetUserProjects = urlMain + "api/GetProjectsForUser/";
 
+  var counter = 0;
+
   //Get projects based on manager id
   fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {
     async: false,
@@ -182,6 +184,13 @@ $(document).ready(function() {
 
           //Place generated elements into container
           container.append(a);
+        } else {
+          counter++;
+        }
+
+        //Message for no Projects to Display if all are cancelled
+        if (j.length == counter) {
+          document.getElementById("no_project").style.display = "inline-block";
         }
       }
       //Remove loading icon on success

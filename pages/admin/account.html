@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Project Manager Dashboard</title>
+    <title>Staff Dashboard</title>
 
     <!-- Custom fonts for this page-->
     <link href="../../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,24 +39,31 @@
                 <div class="sidebar-brand-icon">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-                <div class="sidebar-brand-text mt-3"><a class="text-white" href="dashboard.html">Project Manager</a>
-                </div>
+                <div class="sidebar-brand-text mt-3 p-5"><a class="text-white" href="dashboard.html">System
+                        Administrator</a></div>
             </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-3">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="dashboard.html">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Your Projects</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Overview</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="create_project.html">
-                    <i class="fas fa-fw fa-edit"></i>
-                    <span>Create Project</span></a>
+                <a class="nav-link" href="create_user.html">
+                    <i class="fas fa-fw fa-user-plus"></i>
+                    <span>Create A User</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="edit_user.html">
+                    <i class="fas fa-fw fa-user-edit"></i>
+                    <span>View & Edit Users</span></a>
+            </li>
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -83,12 +90,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in "
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" onclick="changeView();" href="#">
-                                    <i class="fas fa-desktop fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    View As Staff
-                                </a>
-                                <div class="dropdown-divider"></div>
+                                aria-labelledby="userDropdown" id="userDropdown-contianer">
                                 <a class="dropdown-item active" href="account.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Account
@@ -278,8 +280,7 @@
                 <!-- Footer -->
                 <div class="modal-footer">
                     <a class="btn btn-danger col-2 text-white" onclick="editPassword();">Edit</a>
-                    <button class="btn btn-secondary col-2" type="button" data-dismiss="modal"
-                        id="passCancel">Cancel</button>
+                    <button class="btn btn-secondary col-2" type="button" data-dismiss="modal">Cancel</button>
                 </div>
 
             </div>
@@ -303,6 +304,23 @@
     <script src="js/get-user-details.js"></script>
     <script src="js/edit-password.js"></script>
     <script>
+        if (sessionStorage.getItem("is_project_manager") === "true") {//Change view for PM
+            var menu = document.getElementById("userDropdown-contianer");
+
+            var a = document.createElement("a");
+            a.classList.add("dropdown-item");
+            a.href = "#";
+            a.onclick = function () {
+                window.location.assign("../../pages/project_manager/dashboard.html");
+            };
+            a.innerHTML = "<i class='fas fa-desktop fa-sm fa-fw mr-2 text-gray-400'></i>View as Project Manager";
+
+            var div = document.createElement("div");
+            div.classList.add("dropdown-divider");
+
+            menu.insertBefore(div, menu.firstChild);
+            menu.insertBefore(a, menu.firstChild);
+        }
         $(".toggle-password").click(function () {
             $(this).toggleClass("fa-eye fa-eye-slash");
             var input = $($(this).attr("toggle"));
@@ -319,7 +337,7 @@
             $('#passwordConfirm').val('');
         });
     </script>
-    <script src="js/change-view.js"></script>
+
 
 </body>
 

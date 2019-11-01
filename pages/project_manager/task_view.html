@@ -58,7 +58,7 @@
                         <span id="project_name_side"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link ">
+                    <a class="nav-link " id="task_view_side_link">
                         <i class="fas fa-fw fa-tasks "></i>
                         <span>Task View</span></a>
                 </li>
@@ -168,6 +168,7 @@
                                                         <th>Duration(Days)</th>
                                                         <th>Critical</th>
                                                         <th>Predecessor</th>
+                                                        <th>Assigned to</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -245,7 +246,7 @@
                         </div>
 
                         <div class="form-group" id="members_list_container">
-                            <select name="members" id="members_list" class="label ui selection fluid dropdown" required>
+                            <select name="members" id="members_list" class="label ui selection fluid dropdown">
                                 <option value="">Assign Task to:</option>
                             </select>
                         </div>

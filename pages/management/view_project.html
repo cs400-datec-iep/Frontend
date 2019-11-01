@@ -18,6 +18,7 @@
   <!-- Page level plugin CSS-->
   <link href="../../assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
+
   <!-- Custom styles for this page-->
   <link href="../../assets/vendor/semantic-ui/semantic.css" rel="stylesheet">
   <link href="../../assets/css/sb-admin-2.css" rel="stylesheet">
@@ -52,7 +53,7 @@
       <!-- Nav Item - Dashboard -->
       <div class="display-none" id="icon_container">
         <li class="nav-item active">
-          <a class="nav-link">
+          <a class="nav-link" id="project_name_side_link">
             <i class="fas fa-fw fa-folder-open "></i>
             <span id="project_name_side"></span></a>
         </li>
@@ -327,6 +328,8 @@
                                 <th>Date Started</th>
                                 <th>Status</th>
                                 <th>Duration</th>
+                                <th>Critical</th>
+                                <th>Predecessor</th>
                                 <th>Assigned To</th>
                               </tr>
                             </thead>
@@ -508,10 +511,16 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+
 
   <!-- Core plugin JavaScript-->
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>

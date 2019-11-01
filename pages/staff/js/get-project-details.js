@@ -12,7 +12,8 @@ $(document).ready(function () {
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
     var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
-    var urlGetUserMains = urlMain + "api/UserMains";
+    var urlGetProjectTeam =
+    urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
     var UpdateProjectPercentage = urlMain + 'api/UpdateProjectPercentage/'+projectID+'/';
 
     //Dataset array for table
@@ -29,7 +30,6 @@ $(document).ready(function () {
         }
     }).then(function (a) { return a.json() })
     .then(function (j) {
-
         //Message for no Projects to Display
         if(j.length == 0){
             document.getElementById("no_project").style.display = "inline-block";
@@ -39,6 +39,7 @@ $(document).ready(function () {
         var page_title =  document.getElementById("page_title");
         var project_name =  document.getElementById("project_name_title");
         var project_name_side =  document.getElementById("project_name_side");
+        var project_name_side_link =  document.getElementById("project_name_side_link");
         var project_name_crumb =  document.getElementById("project_name_crumb");
         var project_client =  document.getElementById("project_client");
         var project_status  =  document.getElementById("project_status");
@@ -74,6 +75,7 @@ $(document).ready(function () {
         page_title.innerHTML = j.Name;
         project_name.innerHTML = j.Name;
         project_name_side.innerHTML = j.Name;
+        project_name_side_link.href = window.location.href;
         project_name_crumb.innerHTML = j.Name;
         project_client.innerHTML = j.Client_Name;
 
@@ -126,7 +128,7 @@ $(document).ready(function () {
         }).then(function (c) { return c.json() })
         .then(function (b) {
             // Get user names to compare with userdID in task
-            fetch(urlGetUserMains, {
+            fetch(urlGetProjectTeam, {
                 async: false,
                 method: 'GET',
                 crossDomain: true,
@@ -351,8 +353,12 @@ $(document).ready(function () {
                             counter++;
                         }
                     })
-                    
-                    total_percentage = (counter/total_tasks)* 100;
+
+                    if(counter == 0){
+                        total_percentage = 0;
+                    }else{
+                        total_percentage = parseInt((counter/total_tasks)* 100);
+                    }
 
                     //Update project percentage
                     fetch(UpdateProjectPercentage + total_percentage, {
@@ -367,57 +373,63 @@ $(document).ready(function () {
                     
                     //loop through tasks and user to match matching UserID's
                     tasks.forEach(element => {
-                        users.forEach(user => {
+                        //Parsing date into correct format
+                        if(element.Start_Date === null){
+                            var datestart = "Not Started";
+                        }else{
+                            var datestart = new Date(element.Start_Date);
+                            datestart = moment(datestart).format('DD-MMM-YYYY');
+                        }
+                
+                        //Populate task predecessor
+                        $('#taskPredecesor').append($('<option>', {
+                            value: element.TaskID,
+                            text: element.Name,
+                        }));
 
-                            if(element.UserID === user.ID){
-
-                                //Parsing date into correct format
-                                if(element.Start_Date === null){
-                                    var datestart = "Not Started";
-                                }else{
-                                    var datestart = new Date(element.Start_Date);
-                                    datestart = moment(datestart).format('DD-MMM-YYYY');
-                                }
-                        
-                                //Populate task predecessor
-                                $('#taskPredecesor').append($('<option>', {
-                                    value: element.TaskID,
-                                    text: element.Name,
-                                }));
-
-                                
-                                // Check task type (Prepare array for datatable)
-                                if (element.If_Milestone === false) {
-                        
-                                    var dataObj = {
-                                    "TaskID" : element.TaskID,
-                                    "Type" : "Task",
-                                    "Name" : element.Name,
-                                    "Start_Date" : datestart,
-                                    "Status" : element.Progress_Status,
-                                    "Duration" : element.Number_of_days,
-                                    "Assigned_To" : user.Username
-                                    };
-                        
-                                    dataset.push(dataObj);
-                        
-                                }else if (element.If_Milestone === true) {
-                        
-                                    var dataObj = {
-                                    "TaskID" : element.TaskID,
-                                    "Type" :"Milestone",
-                                    "Name" : element.Name,
-                                    "Start_Date" : datestart,
-                                    "Status" : element.Progress_Status,
-                                    "Duration" : element.Number_of_days,
-                                    "Assigned_To" : user.Username
-                                    };
-                        
-                                    dataset.push(dataObj);
-                        
-                                }
-                            }
+                        var assign_to = "None";
+                        users.forEach(currentItem => {
+                          if (element.UserID == currentItem.ID) {
+                            assign_to = currentItem.Username;
+                          }
                         });
+
+                        
+                        // Check task type (Prepare array for datatable)
+                        var type = "";
+
+                        // Check task type (Prepare array for datatable)
+                        if (
+                        element.If_Milestone === false &&
+                        element.If_Objective === false
+                        ) {
+                        //Task
+                        type = "Task";
+                        } else if (
+                        element.If_Milestone === true &&
+                        element.If_Objective === false
+                        ) {
+                        //Milestone
+                        type = "Milestone";
+                        } else if (
+                        element.If_Milestone === false &&
+                        element.If_Objective === true
+                        ) {
+                        //Objective
+                        type = "Objective";
+                        }
+
+                        var dataObj = {
+                            "TaskID" : element.TaskID,
+                            "Type" : type,
+                            "Name" : element.Name,
+                            "Start_Date" : datestart,
+                            "Status" : element.Progress_Status,
+                            "Duration" : element.Number_of_days,
+                            "Assigned_To" : assign_to
+                            };
+                
+                            dataset.push(dataObj);
                     });
             
                     //Initialize datatable
@@ -480,12 +492,16 @@ $(document).ready(function () {
                                         document.getElementById("taskExpDate").innerHTML = moment(exp).format('DD-MMM-YYYY');
                                     }
 
-                                    var dateend = new Date(value.End_Date);
+                                    if(value.End_Date === null){
+                                        document.getElementById("taskEndDate").innerHTML =   "Not Completed";
+                                    }else{
+                                        document.getElementById("taskEndDate").innerHTML =   moment(dateend).format('DD-MMM-YYYY');
+                                    }
                                     var created = new Date(value.Date_Created);
 
-                                    
-                                    document.getElementById("taskEndDate").innerHTML =   moment(dateend).format('DD-MMM-YYYY');
                                     document.getElementById("taskCreatedDate").innerHTML =   moment(created).format('DD-MMM-YYYY');
+                                    document.getElementById("taskDescList").innerHTML = value.Description;
+                                    
                                 }
                             })
 

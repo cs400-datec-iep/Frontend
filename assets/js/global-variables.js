@@ -34,3 +34,6 @@ var selected_tasks_array = [];
 var display_file_array = [];
 
 var ProjectName;
+
+//Global variables for Staff Module
+var notifications;

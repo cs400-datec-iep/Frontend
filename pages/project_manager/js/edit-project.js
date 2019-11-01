@@ -69,8 +69,8 @@ function editProject() {
           Percentage: project_percentage,
           Status: status,
           Critical_flag: project_critical,
-          amount_billed: project_cost,
-          amount_cost: project_billed
+          amount_billed: project_billed,
+          amount_cost: project_cost
         };
       } else if (status == true) {
         //Data encapsulation
@@ -88,8 +88,8 @@ function editProject() {
           Percentage: project_percentage,
           Status: status,
           Critical_flag: project_critical,
-          amount_billed: project_cost,
-          amount_cost: project_billed
+          amount_billed: project_billed,
+          amount_cost: project_cost
         };
       } else if (project_status == "Cancelled") {
         //Data encapsulation
@@ -107,8 +107,8 @@ function editProject() {
           Percentage: project_percentage,
           Status: false,
           Critical_flag: project_critical,
-          amount_billed: project_cost,
-          amount_cost: project_billed
+          amount_billed: project_billed,
+          amount_cost: project_cost
         };
       } else {
         //Data encapsulation
@@ -126,8 +126,8 @@ function editProject() {
           Percentage: project_percentage,
           Status: status,
           Critical_flag: project_critical,
-          amount_billed: project_cost,
-          amount_cost: project_billed
+          amount_billed: project_billed,
+          amount_cost: project_cost
         };
       }
 
