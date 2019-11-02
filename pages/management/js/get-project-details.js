@@ -310,7 +310,7 @@ $(document).ready(function() {
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.innerHTML =
-              "<a href='https://" +
+              "<a href='" +
               k[i].Directory +
               "' target='_blank'>" +
               k[i].Name +
