@@ -522,7 +522,7 @@ $(document).ready(function () {
 
                 
                     //Remove loading icon on success
-                    Swol.close();
+                    Swal.close();
 
                     //Remove loading icon and display output for sidebar
                     document.getElementById("icon_container").classList.remove("display-none");
