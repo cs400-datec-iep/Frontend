@@ -91,7 +91,12 @@ $(document).ready(function() {
       });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

@@ -7,6 +7,13 @@ $(document).ready(function() {
   //Urls
   var urlGetUserProjects = urlMain + "api/GetProjectsForPM/";
 
+  Swal.fire({
+    title: "Loading projects...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Get projects based on manager id
   fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {
     async: false,
@@ -24,7 +31,7 @@ $(document).ready(function() {
       var counter = 0;
 
       //Remove loading icon on success
-      document.getElementById("load").style.display = "none";
+      Swal.close();
 
       //Message for no Projects to Display
       if (j.length == 0) {
@@ -209,7 +216,12 @@ $(document).ready(function() {
       document.getElementById("container").classList.toggle("d-none");
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

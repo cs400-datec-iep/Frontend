@@ -117,9 +117,6 @@
             <li class="breadcrumb-item active">Your Projects</li>
           </ol>
 
-          <!-- Loading Icon -->
-          <div class="loader" id="load"></div>
-
           <div class="col-md-12 text-center display-none" id="no_project">
             <h1 class="mt-center-no">It Feels empty here, create a project.</h1>
           </div>
@@ -213,21 +210,6 @@
     </div>
   </div>
 
-  <!--Logging out Modal -->
-  <div class="modal fade modal-loader" id="logging_out_loader" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel"
-    data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered  modal-sm" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          <div class="loader-work"></div>
-          <div clas="loader-txt">
-            <p>Logging you out</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -254,6 +236,7 @@
 
   <!-- Core plugin JavaScript-->
   <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../../assets/vendor/swetalerts/sweetalert2@8.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="../../assets/js/global-variables.js"></script>

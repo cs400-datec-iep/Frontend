@@ -7,6 +7,14 @@ $(document).ready(function() {
   //Urls
   var urlGetUserInfo = urlMain + "api/UserMains/";
 
+  //Loading modal
+  Swal.fire({
+    title: "Please wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Fetch User Details
   fetch(urlGetUserInfo + sessionStorage.getItem("userID"), {
     async: false,
@@ -28,8 +36,16 @@ $(document).ready(function() {
       document.getElementById("user_dept").innerHTML = j.Department;
 
       //Removing loading icon and display output
-      document.getElementById("load").style.display = "none";
       document.getElementById("container").classList.remove("display-none");
+      Swal.close();
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error => {
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
+    });
 });

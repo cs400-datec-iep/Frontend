@@ -8,6 +8,13 @@ $(document).ready(function () {
     var url = window.location.href;
     var projectID = url.substring(url.lastIndexOf('?') + 1);
 
+    Swal.fire({
+        title: "Loading details...",
+        customClass: "swal-load",
+        allowOutsideClick: false
+      });
+      Swal.showLoading();
+
     //Urls
     var urlGetProjectByID = urlMain+'api/Projects/'+projectID;
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
@@ -515,7 +522,7 @@ $(document).ready(function () {
 
                 
                     //Remove loading icon on success
-                    document.getElementById("load").style.display = "none";
+                    Swol.close();
 
                     //Remove loading icon and display output for sidebar
                     document.getElementById("icon_container").classList.remove("display-none");
@@ -524,12 +531,36 @@ $(document).ready(function () {
                     //Return Container to display normal output
                     document.getElementById("container").classList.remove("display-none");
             
-                }).catch(error => { console.error('Error:', error); return error; });
+                }).catch(error => { Swal.fire({
+                    title: "Error!",
+                    text: error,
+                    type: "error",
+                    allowOutsideClick: false,
+                    confirmButtonText: "Ok"
+                  });});
 
-            }).catch(error => { console.error('Error:', error); return error; });
+            }).catch(error => { Swal.fire({
+                title: "Error!",
+                text: error,
+                type: "error",
+                allowOutsideClick: false,
+                confirmButtonText: "Ok"
+              });});
 
-        }).catch(error => console.error('Error:', error));
+        }).catch(error => {Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });});
 
-    }).catch(error => { console.error('Error:', error); return error; });
+    }).catch(error => { Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });});
 });
 

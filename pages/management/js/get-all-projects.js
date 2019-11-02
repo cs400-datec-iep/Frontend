@@ -6,6 +6,13 @@ $(document).ready(function() {
   //Urls
   var urlGetUserProjects = urlMain + "api/Projects";
 
+  Swal.fire({
+    title: "Please wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Get all projects in the system
   fetch(urlGetUserProjects, {
     async: false,
@@ -173,11 +180,16 @@ $(document).ready(function() {
       }
 
       //Remove loading icon on success and return Container to display normal output
-      document.getElementById("load").style.display = "none";
       document.getElementById("container").style.display = "";
+      Swal.close();
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

@@ -14,18 +14,22 @@ function createTask() {
   var taskDesc = document.getElementById("taskDesc").value;
 
   if (userIdList.length == 0 && IfMilestone == false) {
-    alert("You must assign the task to someone!");
+    Swal.fire({
+      title: "Task Not Assigned",
+      text: "You must assign the task to someone!",
+      type: "warning",
+      allowOutsideClick: false,
+      confirmButtonText: "Ok"
+    });
   } else {
     $("#createTaskModal").modal("hide");
     //Loading modal
-    var btn = document.createElement("button");
-    btn.id = "click";
-    btn.setAttribute("data-toggle", "modal");
-    btn.setAttribute("data-target", "#loader_work");
-    btn.setAttribute("hidden", "true");
-    document.getElementById("wrapper").appendChild(btn);
-    $("#click").trigger("click");
-
+    Swal.fire({
+      title: "Creating your task. Please wait...",
+      customClass: "swal-load",
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
     //Setup start date for task
     var current_date = new Date();
     var Start = new Date();
@@ -93,14 +97,27 @@ function createTask() {
       body: JSON.stringify(payload_task)
     })
       .then(a => {
-        alert("Task has been created, the page will now refresh.");
-        window.location.assign(
-          "task_view.html?" + sessionStorage.getItem("ProjectID")
-        );
+        localStorage.setItem("created_project", "true");
+        Swal.fire({
+          title: "Success!",
+          text: "Task has been created, the page will now refresh.",
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        }).then(() => {
+          window.location.assign(
+            "task_view.html?" + sessionStorage.getItem("ProjectID")
+          );
+        });
       })
       .catch(error => {
-        console.error("Error:", error);
-        return error;
+        Swal.fire({
+          title: "Error!",
+          text: error,
+          type: "error",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        });
       });
   }
 }

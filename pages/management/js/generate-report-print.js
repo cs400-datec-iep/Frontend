@@ -184,5 +184,13 @@ $(document).ready(function() {
 
       window.print();
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error =>
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      })
+    );
 });

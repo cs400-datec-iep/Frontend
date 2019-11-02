@@ -7,6 +7,13 @@ $(document).ready(function() {
   //Url
   var urlGetAllProjects = urlMain + "api/Projects";
 
+  Swal.fire({
+    title: "Analyzing...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Fetch All Projects
   fetch(urlGetAllProjects, {
     async: false,
@@ -330,6 +337,8 @@ $(document).ready(function() {
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
+      Swal.close();
+
       $(window).resize(function() {
         drawBasic();
         drawChart();
@@ -339,5 +348,13 @@ $(document).ready(function() {
         drawTimeline();
       });
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error => {
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
+    });
 });

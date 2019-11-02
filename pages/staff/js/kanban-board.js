@@ -75,7 +75,15 @@
                 headers: {
                   Authorization: "Bearer " + token
                 }
-              }).catch(error => console.error("Error:", error));
+              }).catch(error => {
+                Swal.fire({
+                  title: "Error!",
+                  text: error,
+                  type: "error",
+                  allowOutsideClick: false,
+                  confirmButtonText: "Ok"
+                });
+              });
 
               break;
             case "done":
@@ -93,7 +101,15 @@
                 headers: {
                   Authorization: "Bearer " + token
                 }
-              }).catch(error => console.error("Error:", error));
+              }).catch(error => {
+                Swal.fire({
+                  title: "Error!",
+                  text: error,
+                  type: "error",
+                  allowOutsideClick: false,
+                  confirmButtonText: "Ok"
+                });
+              });
               break;
             default:
               break;

@@ -115,7 +115,7 @@ $(document).ready(function() {
             dom:
               "<'row'<'col-sm-2'B><'col-sm-6'f><'col-sm-4'l>>" +
               "<'row'<'col-sm-12'tr>>" +
-              "<'row'<'col-sm-'i><'col-sm-6'p>>",
+              "<'row'<'col-sm-6'i><'col-sm-6'p>>",
             buttons: ["excelHtml5", "pdf"],
             data: dataset,
             select: true,
@@ -191,12 +191,22 @@ $(document).ready(function() {
           }
         })
         .catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

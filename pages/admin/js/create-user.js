@@ -13,11 +13,12 @@ function create_user() {
   var department = document.getElementById("department").value;
   var email = document.getElementById("email").value;
 
-  $("#loader_work").modal({
-    backdrop: "static", //remove ability to close modal with click
-    keyboard: false, //remove option to close with keyboard
-    show: true //Display loader!
+  Swal.fire({
+    title: "Please wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
   });
+  Swal.showLoading();
 
   //data encapsulation
   var payload_usermains = {
@@ -40,16 +41,34 @@ function create_user() {
   })
     .then(function(a) {
       if (a.status == 400) {
-        alert("That email already exists. Please enter a new email");
-        $("#loader_work").modal("hide");
+        Swal.fire({
+          title: "Email Exists!",
+          text: "The email entered already exists",
+          type: "warning",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        });
       } else {
-        alert("User Successfully Created");
-        window.location.assign("edit_user.html");
+        Swal.fire({
+          title: "Success!",
+          text: "User has been created",
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        }).then(() => {
+          window.location.assign("edit_user.html");
+        });
       }
     })
     .catch(error => {
-      console.error("Error:", error);
-      window.location.reload;
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      }).then(() => {
+        window.location.reload;
+      });
     });
 }

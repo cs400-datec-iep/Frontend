@@ -8,6 +8,13 @@ $(document).ready(function() {
   var url = window.location.href;
   var projectID = url.substring(url.lastIndexOf("?") + 1);
 
+  Swal.fire({
+    title: "Loading Details...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Urls
   var urlGetProjectByID = urlMain + "api/Projects/" + projectID;
   var urlGetProjectFiles = urlMain + "api/GetFilesProjectID/" + projectID;
@@ -195,12 +202,17 @@ $(document).ready(function() {
           }
 
           //Remove loading icon and display output
-          document.getElementById("load").style.display = "none";
           document.getElementById("container").classList.remove("display-none");
+          Swal.close();
         })
         .catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
 
       //Get files realted to project
@@ -258,8 +270,13 @@ $(document).ready(function() {
           }
         })
         .catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
 
       //Remove loading icon and display output for sidebar
@@ -343,7 +360,12 @@ $(document).ready(function() {
       });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

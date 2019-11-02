@@ -20,6 +20,14 @@ $(document).ready(function() {
   //Loacal Variables
   var task_type;
 
+  //Loading modal
+  Swal.fire({
+    title: "Loading details...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   // Get task details
   fetch(urlGetTaskDetails, {
     async: false,
@@ -216,8 +224,8 @@ $(document).ready(function() {
           task_name_title.appendChild(button);
 
           //Remove loading icon and display output
-          document.getElementById("load").style.display = "none";
           document.getElementById("container").classList.remove("display-none");
+          Swal.close();
 
           //Remove loading icon and display output for sidebar
           document
@@ -228,12 +236,22 @@ $(document).ready(function() {
             .classList.remove("display-none");
         })
         .catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

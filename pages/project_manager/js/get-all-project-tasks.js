@@ -10,6 +10,14 @@ $(document).ready(function() {
   var urlGetProjectTeam =
     urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
 
+  //Loading modal
+  Swal.fire({
+    title: "Please wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Set Task_view link
   document.getElementById("task_view_side_link").href = window.location.href;
 
@@ -206,7 +214,6 @@ $(document).ready(function() {
           }
 
           //Remove loading icon and display output
-          document.getElementById("load").style.display = "none";
           document.getElementById("container").classList.remove("display-none");
 
           //Remove loading icon and display output for sidebar
@@ -216,14 +223,26 @@ $(document).ready(function() {
           document
             .getElementById("sidebarToggle")
             .classList.remove("display-none");
+
+          Swal.close();
         })
         .catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

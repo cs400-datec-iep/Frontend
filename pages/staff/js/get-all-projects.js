@@ -9,6 +9,13 @@ $(document).ready(function() {
 
   var counter = 0;
 
+  Swal.fire({
+    title: "Loading projects...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Get projects based on manager id
   fetch(urlGetUserProjects + sessionStorage.getItem("userID"), {
     async: false,
@@ -194,13 +201,18 @@ $(document).ready(function() {
         }
       }
       //Remove loading icon on success
-      document.getElementById("load").style.display = "none";
+      Swal.close();
 
       //Return Container to display normal output
       document.getElementById("container").style.display = "";
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

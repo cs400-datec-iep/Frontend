@@ -61,13 +61,12 @@ function editTask() {
 
   $("#editTaskModal").modal("hide");
   //Loading modal
-  var btn = document.createElement("button");
-  btn.id = "click";
-  btn.setAttribute("data-toggle", "modal");
-  btn.setAttribute("data-target", "#loader_work");
-  btn.setAttribute("hidden", "true");
-  document.getElementById("wrapper").appendChild(btn);
-  $("#click").trigger("click");
+  Swal.fire({
+    title: "Applying changes...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
 
   if (taskType === "task") {
     //Data encapsulation
@@ -124,13 +123,25 @@ function editTask() {
     body: JSON.stringify(payload_task)
   })
     .then(response => {
-      alert("Your task has been edited, the page will now reload");
-      window.location.assign(
-        "view_task_details.html?" + sessionStorage.getItem("taskID")
-      );
+      Swal.fire({
+        title: "Success!",
+        text: "Your task has been edited, the page will now reload",
+        type: "success",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      }).then(() => {
+        window.location.assign(
+          "view_task_details.html?" + sessionStorage.getItem("taskID")
+        );
+      });
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 }

@@ -300,3 +300,8 @@
   border: 5px solid black;
   border-radius: 10px;
 }
+
+.swal-load {
+  width: 300px !important;
+  height: 250px !important;
+}

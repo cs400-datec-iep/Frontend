@@ -9,6 +9,13 @@ $(document).ready(function() {
     urlMain + "api/GetTasksPerProject/" + sessionStorage.getItem("ProjectID");
   var result = JSON.parse(sessionStorage.getItem("ProjectDetails"));
 
+  Swal.fire({
+    title: "Analyzing...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
+
   //Fetch all project tasks
   fetch(urlGetAllTasks, {
     async: false,
@@ -273,16 +280,22 @@ $(document).ready(function() {
         "view_project.html?" + sessionStorage.getItem("ProjectID");
 
       //Remove loading icon and display output
-      document.getElementById("load").style.display = "none";
       document
         .getElementById("container_content")
         .classList.remove("display-none");
-
-      //Remove loading icon and display output for sidebar
       document
         .getElementById("icon_container")
         .classList.remove("display-none");
       document.getElementById("sidebarToggle").classList.remove("display-none");
+      Swal.close();
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error => {
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
+    });
 });

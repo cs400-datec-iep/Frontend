@@ -6,8 +6,14 @@ Function to populate datatable with all users
 $(document).ready(function() {
   //Urls
   var urlGetUserMains = urlMain + "api/UserMains";
-
   var table;
+
+  Swal.fire({
+    title: "Please wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
 
   fetch(urlGetUserMains, {
     async: false,
@@ -65,11 +71,16 @@ $(document).ready(function() {
       });
 
       //Removing loading icon and display output
-      document.getElementById("load").style.display = "none";
+      Swal.close();
       document.getElementById("container").classList.remove("display-none");
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 });

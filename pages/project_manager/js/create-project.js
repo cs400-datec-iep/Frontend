@@ -31,13 +31,12 @@ function create_project() {
   }
 
   //Loading modal
-  var btn = document.createElement("button");
-  btn.id = "click";
-  btn.setAttribute("data-toggle", "modal");
-  btn.setAttribute("data-target", "#loader_work");
-  btn.setAttribute("hidden", "true");
-  document.getElementById("content").appendChild(btn);
-  $("#click").trigger("click");
+  Swal.fire({
+    title: "Creating your project. Please Wait...",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
 
   //Data encapsulation
   var payload_project = {
@@ -94,8 +93,13 @@ function create_project() {
           },
           body: JSON.stringify(payload_user_project)
         }).catch(error => {
-          console.error("Error:", error);
-          return error;
+          Swal.fire({
+            title: "Error!",
+            text: error,
+            type: "error",
+            allowOutsideClick: false,
+            confirmButtonText: "Ok"
+          });
         });
       }
 
@@ -114,21 +118,46 @@ function create_project() {
             // }
           };
           fetch(urlFileUpload + j.ProjectID, options).catch(error => {
-            console.log(error);
+            Swal.fire({
+              title: "Error!",
+              text: error,
+              type: "error",
+              allowOutsideClick: false,
+              confirmButtonText: "Ok"
+            });
           });
         }
 
         localStorage.setItem("created_project", "true");
-        alert("Project created successfully");
-        window.location.href = "dashboard.html";
+        Swal.fire({
+          title: "Success!",
+          text: "Project created successfully",
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        }).then(() => {
+          window.location.href = "dashboard.html";
+        });
       } else {
         localStorage.setItem("created_project", "true");
-        alert("Project created successfully");
-        window.location.href = "dashboard.html";
+        Swal.fire({
+          title: "Success!",
+          text: "Project created successfully",
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        }).then(() => {
+          window.location.href = "dashboard.html";
+        });
       }
     })
     .catch(error => {
-      console.error("Error:", error);
-      return error;
+      Swal.fire({
+        title: "Error!",
+        text: error,
+        type: "error",
+        allowOutsideClick: false,
+        confirmButtonText: "Ok"
+      });
     });
 }

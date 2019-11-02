@@ -14,9 +14,20 @@ function editPassword() {
 
   //Password Validation
   if (password == "" || oldpassword == "" || confirmPassword == "") {
-    alert("Please fill all fields!");
+    Swal.fire({
+      title: "Empty Fields!",
+      text: "Please fill all fields",
+      type: "warning",
+      confirmButtonText: "Ok"
+    });
   } else if (password != confirmPassword) {
-    alert("Passwords do not match!");
+    Swal.fire({
+      title: "Passwords Dont Match!",
+      text: "Your passwords do not match",
+      type: "warning",
+      allowOutsideClick: false,
+      confirmButtonText: "Ok"
+    });
   } else {
     //Data encapsulation
     var payload_password = {
@@ -37,11 +48,22 @@ function editPassword() {
       body: JSON.stringify(payload_password)
     })
       .then(function(a) {
-        alert("Your password has been successfully changed.");
+        Swal.fire({
+          title: "Success!",
+          text: "Your password has been successfully changed",
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        });
       })
       .catch(error => {
-        console.error("Error:", error);
-        return error;
+        Swal.fire({
+          title: "Error!",
+          text: error,
+          type: "error",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        });
       });
   }
 }

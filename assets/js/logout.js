@@ -11,14 +11,12 @@ function logout() {
   var UrlLogout = urlMain + "api/Logs";
 
   $("#logoutModal").modal("hide");
-  //Logging out modal
-  var btn = document.createElement("button");
-  btn.id = "click";
-  btn.setAttribute("data-toggle", "modal");
-  btn.setAttribute("data-target", "#logging_out_loader");
-  btn.setAttribute("hidden", "true");
-  document.getElementById("wrapper").appendChild(btn);
-  $("#click").trigger("click");
+  Swal.fire({
+    title: "Logging you out",
+    customClass: "swal-load",
+    allowOutsideClick: false
+  });
+  Swal.showLoading();
 
   //Payload
   var payload_logout = {

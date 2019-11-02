@@ -17,17 +17,22 @@ function changeProjectPM() {
 
   //Check if null
   if (proj_mang_ID.length == 0) {
-    alert("Please select a project manager.");
+    Swal.fire({
+      title: "No Project Manager",
+      text: "You have not selected a project manager, please select one",
+      type: "warning",
+      allowOutsideClick: false,
+      confirmButtonText: "Ok"
+    });
   } else {
     $("#changePMModal").modal("hide");
     //Loading modal
-    var btn = document.createElement("button");
-    btn.id = "click";
-    btn.setAttribute("data-toggle", "modal");
-    btn.setAttribute("data-target", "#loader_work");
-    btn.setAttribute("hidden", "true");
-    document.getElementById("wrapper").appendChild(btn);
-    $("#click").trigger("click");
+    Swal.fire({
+      title: "Please wait...",
+      customClass: "swal-load",
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
 
     var payload_project = {
       ProjectID: projectID,
@@ -59,12 +64,24 @@ function changeProjectPM() {
       body: JSON.stringify(payload_project)
     })
       .then(function(a) {
-        alert("Reassigned project manager to: " + Project.Name);
-        window.location.assign("view_project.html?" + projectID);
+        Swal.fire({
+          title: "Success!",
+          text: "Reassigned project manager to: " + Project.Name,
+          type: "success",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        }).then(() => {
+          window.location.assign("view_project.html?" + projectID);
+        });
       })
       .catch(error => {
-        console.error("Error:", error);
-        return error;
+        Swal.fire({
+          title: "Error!",
+          text: error,
+          type: "error",
+          allowOutsideClick: false,
+          confirmButtonText: "Ok"
+        });
       });
   }
 }
