@@ -376,9 +376,12 @@ $(document).ready(function () {
                     var total_percentage, counter = 0;
 
                     tasks.forEach(element => {
-                        if(element.Progress_Status == "Done"){
-                            counter++;
+                        if(!element.If_Milestone){
+                            if(element.Progress_Status == "Done"){
+                                counter++;
+                            }
                         }
+                        
                     })
 
                     if(counter == 0){
