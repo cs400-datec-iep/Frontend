@@ -139,16 +139,17 @@
                                     <!--Card Header -->
                                     <div class="card-header py-3">
                                         <i class="fas fa-tasks float-left text-xxlg"> </i>
-                                        <h6 class="font-weight-bold text-xxlg text-primary ml-5">Task View</h6>
+                                        <h6 class="font-weight-bold text-xxlg text-primary ml-5">Task View
+                                            <button id="edit_button"
+                                                class="btn btn-info btn-block text-white float-right col-md-2 mb-2"
+                                                data-toggle="modal" data-target="#createTaskModal">Create Task</button>
+                                        </h6>
                                         <p>This page allows you to view and create tasks, objectives and milestones in
                                             the system</p>
                                     </div>
 
                                     <!-- Card body -->
                                     <div class="card-body">
-                                        <button id="edit_button"
-                                            class="btn btn-info btn-block text-white float-right col-md-2 mb-2"
-                                            data-toggle="modal" data-target="#createTaskModal">Create Task</button>
                                         <div class="m-auto d-none" id="no_tasksTable">
                                             <h3 class="text-center mt-5 mb-5">There are no tasks to view</h3>
                                         </div>
@@ -290,6 +291,11 @@
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/vendor/datatables/jquery.dataTables.js"></script>
     <script src="../../assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="../../assets/vendor/datatables/dataTables.buttons.min.js"></script>
+    <script src="../../assets/vendor/datatables/jszip.min.js"></script>
+    <script src="../../assets/vendor/datatables/pdfmake.min.js"></script>
+    <script src="../../assets/vendor/datatables/vfs_fonts.js"></script>
+    <script src="../../assets/vendor/datatables/buttons.html5.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="../../assets/vendor/jquery-easing/jquery.easing.min.js"></script>

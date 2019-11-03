@@ -167,6 +167,11 @@ $(document).ready(function() {
           //Initialize datatable
           table = $("#taskTable").DataTable({
             data: dataset,
+            dom:
+              "<'row'<'col-sm-3'l><'col-sm-6'f><'col-sm-3'<'text-center'B>>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+            buttons: ["excelHtml5", "pdf"],
             select: true,
             columns: [
               { data: "TaskID" },

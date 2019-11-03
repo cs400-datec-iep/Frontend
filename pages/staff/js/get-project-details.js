@@ -190,7 +190,11 @@ $(document).ready(function () {
                                             document.getElementById("taskName").innerHTML = element.Name;
                                             document.getElementById("taskStatus").innerHTML = element.Progress_Status;
                                             document.getElementById("percentage_container").classList.add('d-none');
-                                            document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                            if(element.PredecessorTaskID == 0){
+                                                document.getElementById("taskPred").innerHTML = "No Task Predecessor";
+                                            }else{
+                                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                            }
                                             document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                             document.getElementById("taskDesc").innerHTML = element.Description;
                                             document.getElementById("grid_footer").classList.add('d-none');
@@ -221,7 +225,11 @@ $(document).ready(function () {
                                             document.getElementById("taskName").innerHTML = element.Name;
                                             document.getElementById("taskStatus").innerHTML = element.Progress_Status;
                                             document.getElementById("percentage_container").classList.add('d-none');
-                                            document.getElementById("taskPred").innerHTML = element.PredecessorTaskID + " (TASK NOT COMPLETED)";
+                                            if(element.PredecessorTaskID == 0){
+                                                document.getElementById("taskPred").innerHTML = "No Task Predecessor";
+                                            }else{
+                                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID + " (TASK NOT COMPLETED)";
+                                            }
                                             document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                             document.getElementById("taskDesc").innerHTML = element.Description;
                                             document.getElementById("grid_footer").classList.add('d-none');
@@ -262,7 +270,11 @@ $(document).ready(function () {
                                 document.getElementById("taskName").innerHTML = element.Name;
                                 document.getElementById("taskStatus").innerHTML = element.Progress_Status;
                                 document.getElementById("percentage_container").classList.add('d-none');
-                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                if(element.PredecessorTaskID == 0){
+                                    document.getElementById("taskPred").innerHTML = "No Task Predecessor";
+                                }else{
+                                    document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                }
                                 document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                 document.getElementById("taskDesc").innerHTML = element.Description;
                                 document.getElementById("grid_footer").classList.add('d-none');
@@ -295,7 +307,11 @@ $(document).ready(function () {
                                 document.getElementById("percentage_container").classList.remove('d-none');
                                 document.getElementById("value").innerHTML = element.Percentage+"%";
                                 document.getElementById("percentageRange").value = element.Percentage;
-                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                if(element.PredecessorTaskID == 0){
+                                    document.getElementById("taskPred").innerHTML = "No Task Predecessor";
+                                }else{
+                                    document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                }
                                 document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                 document.getElementById("taskDesc").innerHTML = element.Description;
                                 document.getElementById("grid_footer").classList.add('d-none');
@@ -328,7 +344,11 @@ $(document).ready(function () {
                                 document.getElementById("taskName").innerHTML = element.Name;
                                 document.getElementById("taskStatus").innerHTML = element.Progress_Status;
                                 document.getElementById("percentage_container").classList.add('d-none');
-                                document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                if(element.PredecessorTaskID == 0){
+                                    document.getElementById("taskPred").innerHTML = "No Task Predecessor";
+                                }else{
+                                    document.getElementById("taskPred").innerHTML = element.PredecessorTaskID;
+                                }
                                 document.getElementById("taskDuration").innerHTML = element.Number_of_days + " Days";
                                 document.getElementById("taskDesc").innerHTML = element.Description;
                                 document.getElementById("grid_footer").classList.add('d-none');
@@ -481,7 +501,11 @@ $(document).ready(function () {
                                     document.getElementById("taskStatusList").innerHTML = value.Progress_Status;
                                     document.getElementById("valueList").innerHTML = value.Percentage+"%";
                                     document.getElementById("percentageRangeList").setAttribute("Style","width:"+value.Percentage+"%;")
-                                    document.getElementById("taskPredList").innerHTML = value.PredecessorTaskID;
+                                    if(element.PredecessorTaskID == 0){
+                                        document.getElementById("taskPredList").innerHTML = "No Task Predecessor";
+                                    }else{
+                                        document.getElementById("taskPredList").innerHTML = element.PredecessorTaskID;
+                                    }
                                     document.getElementById("taskDurationList").innerHTML = value.Number_of_days;
 
                                     //Set up Dates

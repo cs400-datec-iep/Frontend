@@ -54,7 +54,7 @@ function edit_user() {
     .then(function(a) {
       Swal.fire({
         title: "Success!",
-        text: "User Successfull Edited",
+        text: "User Successfully Edited",
         type: "success",
         allowOutsideClick: false,
         confirmButtonText: "Ok"
@@ -63,6 +63,8 @@ function edit_user() {
       });
     })
     .catch(error => {
+      console.log("TCL: functionedit_user -> error", error);
+
       Swal.fire({
         title: "Error!",
         text: error,
