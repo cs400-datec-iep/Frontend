@@ -53,7 +53,11 @@ $(document).ready(function() {
           var percentage = (diff / element.number_of_days) * 100;
 
           //Percentage completions per project
-          chart_payload.push([element.Name, element.Percentage, percentage]);
+          if (percentage >= 100) {
+            chart_payload.push([element.Name, element.Percentage, 100]);
+          } else {
+            chart_payload.push([element.Name, element.Percentage, percentage]);
+          }
 
           //Calendar data & Timeline
           if (element.Critical_flag == true) {

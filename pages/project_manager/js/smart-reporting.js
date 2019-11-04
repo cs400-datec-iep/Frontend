@@ -73,7 +73,11 @@ $(document).ready(function() {
         }
 
         //Percentage completions per Task
-        chart_payload.push([element.Name, element.Percentage, percentage]);
+        if (percentage >= 100) {
+          chart_payload.push([element.Name, element.Percentage, 100]);
+        } else {
+          chart_payload.push([element.Name, element.Percentage, percentage]);
+        }
 
         //Projects comeplted
         if (element.Progress_Status === "Todo") {
@@ -201,8 +205,7 @@ $(document).ready(function() {
           },
           bars: "horizontal",
           hAxis: {
-            title: "Percentage Complete (%)",
-            minValue: 0
+            title: "Percentage Complete (%)"
           },
           vAxis: {
             title: "Project Name"
