@@ -20,7 +20,7 @@ $(document).ready(function () {
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
     var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
     var urlGetProjectTeam =
-    urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
+    urlMain + "api/GetMembersProjectID/" + projectID;
     var UpdateProjectPercentage = urlMain + 'api/UpdateProjectPercentage/'+projectID+'/';
 
     //Dataset array for table
@@ -423,9 +423,11 @@ $(document).ready(function () {
                             value: element.TaskID,
                             text: element.Name,
                         }));
+                        console.log("TCL: users", users)
 
                         var assign_to = "None";
                         users.forEach(currentItem => {
+                        
                           if (element.UserID == currentItem.ID) {
                             assign_to = currentItem.Username;
                           }
