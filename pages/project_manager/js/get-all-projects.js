@@ -197,7 +197,7 @@ $(document).ready(function() {
           progressBarDiv.appendChild(progressBar);
 
           //Place generated elements into proper containers
-          if (j[i].Progress_Status == " Completed") {
+          if (j[i].Progress_Status == "Completed") {
             container2.append(a);
           } else {
             container.append(a);
