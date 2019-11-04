@@ -20,7 +20,7 @@ $(document).ready(function () {
     var urlGetTasksByUserANdProject = urlMain+'api/GetTasksPerProjectsAndUser/'+projectID+"/";
     var urlGetTask = urlMain + "api/GetTasksPerProject/" + projectID;
     var urlGetProjectTeam =
-    urlMain + "api/GetMembersProjectID/" + sessionStorage.getItem("ProjectID");
+    urlMain + "api/GetMembersProjectID/" + projectID;
     var UpdateProjectPercentage = urlMain + 'api/UpdateProjectPercentage/'+projectID+'/';
 
     //Dataset array for table
@@ -373,18 +373,28 @@ $(document).ready(function () {
 
                     //Updates percentage of project via task calculation
                     var total_tasks = tasks.length;
-                    var total_percentage, counter = 0;
+                    var total_percentage, counter = 0,  milestones = 0;
 
                     tasks.forEach(element => {
-                        if(element.Progress_Status == "Done"){
-                            counter++;
+                        if(element.If_Milestone === false ){
+                            if(element.Progress_Status == "Done"){
+                                counter++;
+                                console.log("TCL: counter", counter)
+                            }
+                        }else {
+                            milestones++;
                         }
+                        
                     })
 
                     if(counter == 0){
                         total_percentage = 0;
                     }else{
-                        total_percentage = parseInt((counter/total_tasks)* 100);
+                        total_percentage = parseInt((counter/(total_tasks - milestones))* 100);
+                        console.log("TCL: total_tasks", total_tasks)
+                        console.log("TCL: counter", counter)
+                        console.log("TCL: total_percentage", total_percentage)
+                        
                     }
 
                     //Update project percentage
@@ -413,9 +423,11 @@ $(document).ready(function () {
                             value: element.TaskID,
                             text: element.Name,
                         }));
+                        console.log("TCL: users", users)
 
                         var assign_to = "None";
                         users.forEach(currentItem => {
+                        
                           if (element.UserID == currentItem.ID) {
                             assign_to = currentItem.Username;
                           }
