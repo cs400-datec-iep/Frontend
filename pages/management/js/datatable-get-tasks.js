@@ -59,10 +59,7 @@ $(document).ready(function() {
             ) {
               //Task
               type = "Task";
-            } else if (
-              element.If_Milestone === true &&
-              element.If_Objective === false
-            ) {
+            } else if (element.If_Milestone === true) {
               //Milestone
               type = "Milestone";
             } else if (
