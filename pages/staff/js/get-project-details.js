@@ -373,13 +373,16 @@ $(document).ready(function () {
 
                     //Updates percentage of project via task calculation
                     var total_tasks = tasks.length;
-                    var total_percentage, counter = 0;
+                    var total_percentage, counter = 0,  milestones = 0;
 
                     tasks.forEach(element => {
-                        if(!element.If_Milestone){
+                        if(element.If_Milestone === false ){
                             if(element.Progress_Status == "Done"){
                                 counter++;
+                                console.log("TCL: counter", counter)
                             }
+                        }else {
+                            milestones++;
                         }
                         
                     })
@@ -387,7 +390,11 @@ $(document).ready(function () {
                     if(counter == 0){
                         total_percentage = 0;
                     }else{
-                        total_percentage = parseInt((counter/total_tasks)* 100);
+                        total_percentage = parseInt((counter/(total_tasks - milestones))* 100);
+                        console.log("TCL: total_tasks", total_tasks)
+                        console.log("TCL: counter", counter)
+                        console.log("TCL: total_percentage", total_percentage)
+                        
                     }
 
                     //Update project percentage
